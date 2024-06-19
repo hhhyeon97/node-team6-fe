@@ -5,6 +5,7 @@ const { DOMParser } = require('xmldom');
 
 const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
 
+// xml -> json
 function xmlToJson(xml) {
     var obj = {};
 
@@ -41,6 +42,7 @@ function xmlToJson(xml) {
     return obj;
 }
 
+// xml 다듬기
 function cleanUp(obj) {
     if (typeof obj === 'object' && obj !== null) {
         if (Array.isArray(obj)) {
@@ -62,6 +64,7 @@ function cleanUp(obj) {
     return obj;
 }
 
+// api 데이터 호출
 const getPerformanceList = async ({ setLoading, setPerformanceListData, setErrorMsg }) => {
     try {
         const queryParams = new URLSearchParams({
