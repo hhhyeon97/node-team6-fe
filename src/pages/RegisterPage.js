@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Alert, Container, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { userActions } from '../action/userAction';
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
