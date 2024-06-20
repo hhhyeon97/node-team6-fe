@@ -1,0 +1,101 @@
+.DetailPageAllBox {
+    margin-top: 60px;
+
+    .DetailStatus {
+        margin-right: 10px;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid black;
+        width: max-content;
+        vertical-align: middle;
+
+        margin-bottom: 10px;
+    }
+
+    .DetailTitle {
+        font-size: 2em;
+        font-family: 'Gsans_B';
+        margin-bottom: 15px;
+    }
+
+    .DetailTopBox {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 70px;
+        border-bottom: solid 1px #bbb;
+
+        .DetailTopImg {
+            text-align: center;
+
+            img {
+                width: 95%;
+                border-radius: 10px;
+            }
+        }
+
+        .DetailInfoBox {
+            border-top: solid 4px black;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+
+            .DetailInfo {
+                flex-grow: 1;
+                display: flex;
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                }
+            }
+
+            .ticketNum {
+                border: solid 1px black;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 10px;
+                border-radius: 5px;
+
+                ul {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+
+                    li {
+                        display: inline-block;
+                        padding: 10px;
+                        cursor: pointer;
+                        /* 선택 가능한 요소로 표시하기 위해 추가 */
+                    }
+                }
+            }
+
+            .reserveBtn {
+                background: none;
+                padding: 10px;
+                border-radius: 5px;
+                background-color: black;
+                color: white;
+            }
+        }
+    }
+
+    .subTitle {
+        font-size: 2em;
+        margin: 85px 0 15px;
+
+        +li {
+            font-family: 'Gsans_L';
+            font-weight: lighter;
+
+            +li {
+                font-family: 'Gsans_L';
+                font-weight: lighter;
+            }
+        }
+    }
+}
