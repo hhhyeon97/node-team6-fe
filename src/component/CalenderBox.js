@@ -17,7 +17,6 @@ const CalenderBox = ({ selectDate, setSelectDate }) => {
             next2Label={null}
             showNeighboringMonth={false}
             defaultView="month"
-            // maxDetail="month"
             minDetail="year"
 
             activeStartDate={
