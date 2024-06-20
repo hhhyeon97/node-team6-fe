@@ -16,10 +16,20 @@ const CalenderBox = ({ selectDate, setSelectDate }) => {
             prev2Label={null}
             next2Label={null}
             showNeighboringMonth={false}
-        >
-            {/* 캘린더 위의 '일'지우기 */}
+            defaultView="month"
+            // maxDetail="month"
+            minDetail="year"
 
-        </Calendar>
+            activeStartDate={
+                selectDate === null ? undefined : selectDate
+            }
+
+            onActiveStartDateChange={({ selectDate }) =>
+                setSelectDate(selectDate)
+            }
+        >
+
+        </Calendar >
     )
 
 }
