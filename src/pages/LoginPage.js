@@ -3,6 +3,7 @@ import { Container, Form, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../action/userAction';
+import { GoogleLogin } from '@react-oauth/google';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,10 @@ const LoginPage = () => {
   const loginWithEmail = (event) => {
     event.preventDefault();
     dispatch(userActions.loginWithEmail({ email, password }));
+  };
+
+  const handleGoogleLogin = async (googleData) => {
+    dispatch(userActions.loginWithGoogle(googleData.credential));
   };
 
   useEffect(() => {
@@ -67,7 +72,12 @@ const LoginPage = () => {
           <div className="text-align-center mt-2">
             <p>- 간편 로그인 -</p>
             <div className="display-center">
-              <button>구글 로그인</button>
+              <GoogleLogin
+                onSuccess={handleGoogleLogin}
+                onError={() => {
+                  console.log('Login Failed');
+                }}
+              />
             </div>
           </div>
         </Form>
