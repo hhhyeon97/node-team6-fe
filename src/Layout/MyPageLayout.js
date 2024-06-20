@@ -1,23 +1,15 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Container } from "react-bootstrap";
 
 
 const MyPageLayout = ({ children }) => {
     return (
-        <div>
-            <div className="my_page_layout">
-                <Row>
-                    <Col md={3}>
-                    </Col>
-                    <Col md={9}>
-                        <main>
-                          <div>my_page_layout</div>
-                            {children}
-                        </main>
-                    </Col>
-                </Row>
+        <Container>
+            <div style={{ marginTop: '20px', marginBottom: '20px', border: '1px solid #ccc', padding: '10px' }}>
+                <div>MyPageLayout 내용이 화면에 잘 나타납니다.</div>
+                {children}
             </div>
-        </div>
+        </Container>
     );
 }
 
