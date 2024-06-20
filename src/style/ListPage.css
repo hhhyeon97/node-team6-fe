@@ -19,13 +19,21 @@
         .image_col {
             height: 100%;
             border: solid 1px orange;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
             .posterImg {
                 max-height: 100%;
-                width: auto;
+                max-width: 100%;
 
             }
+        }
+
+        .item_info_box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
     }
 }
@@ -78,6 +86,19 @@
             }
 
 
+        }
+
+        .todayButton {
+            background: none;
+            border: solid 2px black;
+            border-radius: 20px;
+            padding: 5px auto;
+        }
+
+        .todayButton:hover {
+            background-color: orange;
+            border-color: orange;
+            color: white;
         }
     }
 }
