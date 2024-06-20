@@ -30,7 +30,7 @@ const loginWithEmail =
       dispatch({ type: types.LOGIN_REQUEST });
       const response = await api.post('/auth/login', { email, password });
       if (response.status !== 200) throw new Error(response.error);
-
+      localStorage.setItem('token', response.data.token);
       dispatch({ type: types.LOGIN_SUCCESS, payload: response.data });
     } catch (error) {
       dispatch({ type: types.LOGIN_FAIL, payload: error.error });
