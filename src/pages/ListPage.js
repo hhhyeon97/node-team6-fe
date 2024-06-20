@@ -20,7 +20,12 @@ const ListPage = () => {
         console.log("receive performanceListData: ", performanceListData)
     }, [performanceListData])
 
-    useEffect(() => { }, [selectDate.toString()])
+    useEffect(() => { }, [selectDate])
+
+
+    const backToday = () => {
+        setSelectDate(new Date())
+    }
 
     return (
         <Container>
@@ -39,7 +44,10 @@ const ListPage = () => {
                 </Col>
                 <Col lg={5} md={5} sm={6} className="CalenderBox">
                     <div className="stickyBox">
-                        {selectDate ? <div className="selectDate">선택 날짜: {Dateformat(selectDate)} </div> : <div> 날짜를 선택해주세요 </div>}
+                        {/* {today ? <div>오늘: {Dateformat(today)}</div> : ''} */}
+                        <button onClick={() => backToday()} className="todayButton">오늘로</button>
+                        {selectDate ? <div className="selectDate">선택 날짜: {Dateformat(selectDate)} </div> :
+                            <div className="selectDate"> 선택 날짜: {Dateformat(new Date())} </div>}
                         <CalenderBox selectDate={selectDate} setSelectDate={setSelectDate} />
                     </div>
                 </Col>

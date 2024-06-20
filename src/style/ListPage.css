@@ -87,5 +87,18 @@
 
 
         }
+
+        .todayButton {
+            background: none;
+            border: solid 2px black;
+            border-radius: 20px;
+            padding: 5px auto;
+        }
+
+        .todayButton:hover {
+            background-color: orange;
+            border-color: orange;
+            color: white;
+        }
     }
 }
