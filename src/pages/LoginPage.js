@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../action/userAction';
 import { GoogleLogin } from '@react-oauth/google';
+import '../style/LoginPage.css';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -34,14 +35,15 @@ const LoginPage = () => {
 
   return (
     <>
-      <Container className="login-area">
+      <Container className="login_area d-flex justify-content-center align-items-center">
+        <h2 className="login_title">LOGIN</h2>
         {error && (
-          <div className="error-message">
+          <div className="login_error_message">
             <Alert variant="danger">{error}</Alert>
           </div>
         )}
-        <Form className="login-form" onSubmit={loginWithEmail}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form className="login_form" onSubmit={loginWithEmail}>
+          <Form.Group className="mb-4" controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
@@ -51,7 +53,7 @@ const LoginPage = () => {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Group className="mb-4" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
@@ -60,25 +62,25 @@ const LoginPage = () => {
               onChange={(event) => setPassword(event.target.value)}
             />
           </Form.Group>
-          <div className="display-space-between login-button-area">
-            <button type="submit" className="custom-btn">
+          <div className="login_btn_area">
+            <button type="submit" className="login_btn">
               로그인
             </button>
-            <div>
-              아직 계정이 없으세요? <Link to="/register">회원가입 하기</Link>{' '}
+            <div className="info_register_message">
+              아직 계정이 없으신가요? &nbsp;
+              <Link to="/register">회원가입 하기</Link>{' '}
             </div>
           </div>
-
-          <div className="text-align-center mt-2">
-            <p>- 간편 로그인 -</p>
-            <div className="display-center">
-              <GoogleLogin
-                onSuccess={handleGoogleLogin}
-                onError={() => {
-                  console.log('Login Failed');
-                }}
-              />
-            </div>
+          <div className="sns_btn_area">
+            <p>
+              <strong>SNS</strong> 계정으로 로그인하기
+            </p>
+            <GoogleLogin
+              onSuccess={handleGoogleLogin}
+              onError={() => {
+                console.log('Login Failed');
+              }}
+            />
           </div>
         </Form>
       </Container>
