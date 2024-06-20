@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router';
 import ListPage from '../pages/ListPage';
 import RegisterPage from '../pages/RegisterPage';
 import PerformanceDetail from '../pages/PerformanceDetail';
+import LoginPage from '../pages/LoginPage';
 
 const AppRouter = () => {
   return (
@@ -12,6 +13,7 @@ const AppRouter = () => {
       <Route path="/performance" element={<ListPage />} />
       <Route path="/performance/:id" element={<PerformanceDetail />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/login" element={<LoginPage />} />
     </Routes>
   );
 };

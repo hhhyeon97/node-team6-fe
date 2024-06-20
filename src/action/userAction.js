@@ -23,6 +23,20 @@ const registerUser =
     }
   };
 
+const loginWithEmail =
+  ({ email, password }) =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: types.LOGIN_REQUEST });
+      const response = await api.post('/auth/login', { email, password });
+      if (response.status !== 200) throw new Error(response.error);
+
+      dispatch({ type: types.LOGIN_SUCCESS, payload: response.data });
+    } catch (error) {
+      dispatch({ type: types.LOGIN_FAIL, payload: error.error });
+    }
+  };
+
 export const resetError = () => ({
   type: types.RESET_ERROR,
 });
@@ -30,4 +44,5 @@ export const resetError = () => ({
 export const userActions = {
   registerUser,
   resetError,
+  loginWithEmail,
 };
