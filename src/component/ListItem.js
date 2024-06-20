@@ -15,7 +15,7 @@ const ListItem = ({ item }) => {
                 <img className="posterImg" src={item.poster} alt="포스터 이미지"></img>
             </Col>
             <Col lg={5} md={5} sm={5} className="item_info_box">
-                <div>{item.fcltynm}</div>
+                <div>{item.prfnm}</div>
                 <div>기간: {item.prfpdfrom} ~ {item.prfpdto}</div>
                 <div>공연 상태: {item.prfstate}</div>
             </Col>
