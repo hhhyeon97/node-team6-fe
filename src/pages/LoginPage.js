@@ -27,6 +27,17 @@ const LoginPage = () => {
     dispatch(userActions.loginWithGoogle(googleData.credential));
   };
 
+  const handleKakaoLogin = () => {
+    window.Kakao.Auth.login({
+      success: (authObj) => {
+        dispatch(userActions.loginWithKakao(authObj.access_token));
+      },
+      fail: (err) => {
+        console.error(err);
+      },
+    });
+  };
+
   useEffect(() => {
     if (user) {
       navigate('/');
@@ -81,6 +92,10 @@ const LoginPage = () => {
                 console.log('Login Failed');
               }}
             />
+            {/*카카오 로그인 버튼*/}
+            <button onClick={handleKakaoLogin} className="kakao_btn">
+              카카오 로그인
+            </button>
           </div>
         </Form>
       </Container>
