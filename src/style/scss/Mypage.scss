@@ -1,0 +1,51 @@
+ul, li{
+  list-style: none;
+  padding: 0;
+}
+
+/* mypage-top */
+.mypage-top{
+  display: flex;
+}
+
+/* side-bar */
+.mypage_sidebar{
+  border: 1px solid red;
+  width: 17%;
+
+  .reservation_sub_menu{
+    font-size: 10px;
+  }
+
+}
+
+
+/* user-profile */
+.mypage_user_profile{
+  border: 10px solid purple;
+  width: 17%;
+
+  .user_profile{
+    border: 1px solid #000;
+    font-size: 40px;
+  }
+
+  .user_name{
+    font-size: 30px;
+  }
+}
+
+
+
+
+
+/* mypage_header */
+.mypage_header {
+
+  .user_level_info{
+    display: flex;
+    color: red;
+    background-color: red;
+  }
+}
+
