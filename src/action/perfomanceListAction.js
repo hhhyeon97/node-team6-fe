@@ -1,6 +1,8 @@
 import api from "../utils/api";
 import * as types from "../constants/performanceList.constants";
 import { useEffect, useState } from 'react';
+import { StringDateformat, EndDateformat } from '../utils/Date'
+
 const { DOMParser } = require('xmldom');
 
 const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
@@ -67,15 +69,23 @@ function cleanUp(obj) {
 // api 데이터 호출
 
 // 공연 리스트 호출
-const getPerformanceList = async ({ setLoading, setPerformanceListData, setErrorMsg }) => {
+const getPerformanceList = async ({ setLoading, setPerformanceListData, setErrorMsg, selectDate, status }) => {
+    console.log('recieve status:', status)
+
+    if (!selectDate) {
+        console.error('Error: selectDate is undefined');
+        setErrorMsg('Invalid date selected');
+        return;
+    }
+
     try {
         const queryParams = new URLSearchParams({
             service: REACT_APP_YEJIN_SERVICE_KEY,
-            stdate: '20230101',
-            eddate: '20230630',
+            stdate: StringDateformat(selectDate),
+            eddate: EndDateformat(selectDate),
             cpage: 1,
             rows: 10,
-            prfstate: '02',
+            prfstate: status ? status : '02',
         }).toString();
 
         // ['01', '02'].forEach(state => queryParams.append('prfstate', state));

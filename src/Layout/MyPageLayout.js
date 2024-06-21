@@ -1,24 +1,30 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Container } from "react-bootstrap";
+import MypageUserLevel from '../component/mypage/MypageUserLevel';
+import MypageSidebar from "../component/mypage/MypageSidebar";
+import MypageUserProfile from "../component/mypage/MypageUserProfile";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "../style/css/Mypage.css";
+import MypageTitle from '../component/mypage/MypageTitle';
 
-
-const MyPageLayout = ({ children }) => {
-    return (
-        <div>
-            <div className="my_page_layout">
-                <Row>
-                    <Col md={3}>
-                    </Col>
-                    <Col md={9}>
-                        <main>
-                          <div>my_page_layout</div>
-                            {children}
-                        </main>
-                    </Col>
-                </Row>
-            </div>
-        </div>
-    );
+const MyPageLayout = ({ title, cap, children }) => {
+  return (
+    <Container className='wrap-container'>
+      <div className="mypage-container"style={{ marginTop: '20px', marginBottom: '20px', border: '1px solid #ccc' }}>
+        <section className="mypage-left">
+          <MypageUserProfile />
+          <MypageSidebar />
+        </section>
+        <section className="mypage-right">
+          <MypageUserLevel/>
+          <MypageTitle title={title} cap={cap}/>
+          <main>
+          {children}
+          </main>
+        </section>
+      </div>
+    </Container>
+  );
 }
 
 export default MyPageLayout;

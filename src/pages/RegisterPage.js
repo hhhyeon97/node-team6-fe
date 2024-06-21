@@ -3,7 +3,7 @@ import { Alert, Container, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { userActions } from '../action/userAction';
-
+import '../style/RegisterPage.css';
 const RegisterPage = () => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -47,21 +47,22 @@ const RegisterPage = () => {
   }, [dispatch]);
 
   return (
-    <Container className="register-area mb-5">
+    <Container className="register_area d-flex justify-content-center align-items-center">
+      <h2 className="register_title">JOIN</h2>
       {error && (
-        <div>
+        <div className="register_error_message">
           <Alert variant="danger" className="error-message">
             {error}
           </Alert>
         </div>
       )}
-      <Form onSubmit={register}>
+      <Form className="register_form" onSubmit={register}>
         <Form.Group className="mb-3">
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
             id="email"
-            placeholder="Enter email"
+            placeholder="Email"
             onChange={handleChange}
             required
           />
@@ -71,7 +72,7 @@ const RegisterPage = () => {
           <Form.Control
             type="text"
             id="name"
-            placeholder="Enter name"
+            placeholder="Name"
             onChange={handleChange}
             required
           />
@@ -81,7 +82,7 @@ const RegisterPage = () => {
           <Form.Control
             type="text"
             id="contact"
-            placeholder="Enter Phone Number"
+            placeholder="Phone Number"
             onChange={handleChange}
             required
           />
@@ -110,7 +111,7 @@ const RegisterPage = () => {
             {passwordError}
           </Form.Control.Feedback>
         </Form.Group>
-        <button type="submit" className="custom-login-btn">
+        <button type="submit" className="register_btn">
           회원가입
         </button>
       </Form>
