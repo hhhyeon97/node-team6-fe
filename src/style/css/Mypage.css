@@ -9,6 +9,11 @@ ul, li {
   padding: 0;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .wrap-container {
   max-width: 1440px;
 }
@@ -28,26 +33,24 @@ ul, li {
 }
 .mypage-container .mypage-left .mypage_sidebar {
   border: 1px solid red;
+  padding-top: 40px;
   color: #919191;
 }
-.mypage-container .mypage-left .mypage_sidebar li {
-  padding: 15px 0;
-}
-.mypage-container .mypage-left .mypage_sidebar li:hover {
+.mypage-container .mypage-left .mypage_sidebar h3 {
+  font-size: 20px;
   color: #000;
 }
-.mypage-container .mypage-left .mypage_sidebar li:first-child {
-  padding: 20px 0 0 0;
+.mypage-container .mypage-left .mypage_sidebar a:hover {
+  color: #000;
 }
-.mypage-container .mypage-left .mypage_sidebar .reservation_sub_menu {
-  font-size: 10px;
+.mypage-container .mypage-left .mypage_sidebar .link_menu {
+  margin-bottom: 30px;
+  font-size: 13px;
 }
-.mypage-container .mypage-left .mypage_sidebar .reservation_sub_menu li:first-child {
-  padding: 10px 0 0 5px;
-}
-.mypage-container .mypage-left .mypage_sidebar .reservation_sub_menu li {
-  padding: 10px 0;
-  padding-left: 5px;
+.mypage-container .mypage-left .mypage_sidebar .link_menu a {
+  display: inline-block;
+  padding: 8px 0 0 5px;
+  cursor: pointer;
 }
 .mypage-container .mypage-left .mypage_user_profile {
   border: 1px solid purple;

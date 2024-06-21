@@ -9,6 +9,11 @@ ul, li{
   padding: 0;
 }
 
+a {
+  text-decoration: none; 
+  color: inherit; 
+}
+
 .wrap-container{
   max-width: 1440px;
 }
@@ -26,32 +31,41 @@ ul, li{
     /* [ side-bar ] */
     .mypage_sidebar{
       border: 1px solid red;
+      padding-top: 40px;
       color: #919191;
 
-      li{
-        padding: 15px 0;
-      }
-
-      li:hover{
+      h3{
+        font-size: 20px;
         color: #000;
       }
 
-      li:first-child{
-        padding: 20px 0 0 0;
+      a:hover{
+        color: #000;
       }
 
-      .reservation_sub_menu{
-        font-size: 10px;
+      .link_menu{
+        margin-bottom: 30px;
+        font-size: 13px;
 
-        li:first-child{
-          padding: 10px 0 0 5px;
+        a{
+          display: inline-block;
+          padding: 8px 0 0 5px;
+          cursor: pointer;
         }
 
-        li{
-          padding: 10px 0;
-          padding-left: 5px;
-        }
+
+
+        // li{
+        //   padding: 10px 0;
+        //   padding-left: 5px;
+        // }
       }
+
+      // .link_menu:first-child{
+      //   a:first-child{
+      //     padding: 10px 0 0 5px;
+      //   }
+      // }
     }
 
     /* [ user-profile ] */
