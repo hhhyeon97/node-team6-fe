@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../action/userAction';
 import { GoogleLogin } from '@react-oauth/google';
-import '../style/LoginPage.css';
+import '../style/css/LoginPage.css';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
