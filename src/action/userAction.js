@@ -76,7 +76,7 @@ const getUserList = () => async (dispatch) => {
     dispatch({ type: types.GET_USER_LIST_REQUEST });
     const response = await api.get('/user');
     if (response.status !== 200) throw new Error(response.error);
-    dispatch({ type: types.GET_USER_LIST_SUCCESS, payload: response.data });
+    dispatch({ type: types.GET_USER_LIST_SUCCESS, payload: response.data.data });
   }catch(error){
     dispatch({ type: types.GET_USER_LIST_FAIL, payload: error.error });
   }

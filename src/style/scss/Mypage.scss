@@ -1,25 +1,21 @@
-h1,h2,h3,h4,h5,p {
-  margin: 0;
-  padding: 0;
-}
-
-ul, li{
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-a {
-  text-decoration: none; 
-  color: inherit; 
-}
-
-.wrap-container{
-  max-width: 1440px;
-}
-
 .mypage-container{
   display: flex;
+
+  h1,h2,h3,h4,h5,p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  ul, li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  a {
+    text-decoration: none; 
+    color: inherit; 
+  }
 
   /* < mypage-left > */
   .mypage-left{
