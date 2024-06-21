@@ -4,7 +4,7 @@ import MypageHeader from '../component/mypage/MypageHeader';
 import MypageSidebar from "../component/mypage/MypageSidebar";
 import MypageUserProfile from "../component/mypage/MypageUserProfile";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../style/Mypage.css";
+import "../style/css/Mypage.css";
 
 const MyPageLayout = ({ children }) => {
   return (
