@@ -65,6 +65,42 @@ const loginWithGoogle = (token) => async (dispatch) => {
   }
 };
 
+const loginWithKakao = (token) => async (dispatch) => {
+  try {
+    dispatch({ type: types.KAKAO_LOGIN_REQUEST });
+    console.log('test 1');
+    const response = await api.post('/auth/kakao', { token });
+    console.log('test 2');
+    if (response.status !== 200) throw new Error(response.error);
+    console.log('test 3');
+    localStorage.setItem('token', response.data.token);
+    dispatch({ type: types.KAKAO_LOGIN_SUCCESS, payload: response.data });
+  } catch (error) {
+    dispatch({
+      type: types.KAKAO_LOGIN_FAIL,
+      payload: error.error,
+    });
+  }
+};
+
+const loginWithKakaoCode = (code, navigate) => async (dispatch) => {
+  console.log('인가', code);
+  try {
+    dispatch({ type: types.KAKAO_LOGIN_REQUEST });
+    console.log('testtttttttt');
+    const response = await api.post('/auth/kakao/code', { code });
+    console.log('testtttttttt', response);
+    if (response.status !== 200) throw new Error(response.error);
+    localStorage.setItem('token', response.data.token);
+    dispatch({ type: types.KAKAO_LOGIN_SUCCESS, payload: response.data });
+    console.log('testtttttttt');
+    navigate('/');
+  } catch (error) {
+    dispatch({ type: types.KAKAO_LOGIN_FAIL, payload: error.error });
+    console.log('testtttttttt');
+  }
+};
+
 const logout = () => async (dispatch) => {
   dispatch({ type: types.LOGOUT });
   localStorage.removeItem('token');
@@ -72,15 +108,18 @@ const logout = () => async (dispatch) => {
 
 // 회원 리스트 가져오기 (admin)
 const getUserList = () => async (dispatch) => {
-  try{
+  try {
     dispatch({ type: types.GET_USER_LIST_REQUEST });
     const response = await api.get('/user');
     if (response.status !== 200) throw new Error(response.error);
-    dispatch({ type: types.GET_USER_LIST_SUCCESS, payload: response.data.data });
-  }catch(error){
+    dispatch({
+      type: types.GET_USER_LIST_SUCCESS,
+      payload: response.data.data,
+    });
+  } catch (error) {
     dispatch({ type: types.GET_USER_LIST_FAIL, payload: error.error });
   }
-}
+};
 
 export const resetError = () => ({
   type: types.RESET_ERROR,
@@ -94,4 +133,6 @@ export const userActions = {
   loginWithGoogle,
   logout,
   getUserList,
+  loginWithKakao,
+  loginWithKakaoCode,
 };
