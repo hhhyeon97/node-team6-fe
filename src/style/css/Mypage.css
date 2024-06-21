@@ -1,27 +1,20 @@
-h1, h2, h3, h4, h5, p {
-  margin: 0;
-  padding: 0;
-}
-
-ul, li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.wrap-container {
-  max-width: 1440px;
-}
-
 .mypage-container {
   display: flex;
   /* < mypage-left > */
   /* < mypage-right > */
+}
+.mypage-container h1, .mypage-container h2, .mypage-container h3, .mypage-container h4, .mypage-container h5, .mypage-container p {
+  margin: 0;
+  padding: 0;
+}
+.mypage-container ul, .mypage-container li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.mypage-container a {
+  text-decoration: none;
+  color: inherit;
 }
 .mypage-container .mypage-left {
   border: 2px solid green;
@@ -100,3 +93,5 @@ a {
 .mypage-container .mypage-right .mypage_title_section .mypage_title {
   display: flex;
 }
+
+/*# sourceMappingURL=Mypage.css.map */
