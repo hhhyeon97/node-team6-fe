@@ -8,14 +8,18 @@ import "../style/css/Mypage.css";
 
 const MyPageLayout = ({ children }) => {
   return (
-    <Container>
-      <div style={{ marginTop: '20px', marginBottom: '20px', border: '1px solid #ccc', padding: '10px' }}>
-        <div class="mypage-top">
+    <Container className='wrap-container'>
+      <div className="mypage-container"style={{ marginTop: '20px', marginBottom: '20px', border: '1px solid #ccc' }}>
+        <section className="mypage-left">
           <MypageUserProfile />
+          <MypageSidebar />
+        </section>
+        <section className="mypage-right">
           <MypageHeader/>
-        </div>
-        <MypageSidebar />
-        {children}
+          <main>
+          {children}
+          </main>
+        </section>
       </div>
     </Container>
   );
