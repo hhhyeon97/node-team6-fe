@@ -3,7 +3,7 @@ import ListItem from "../component/ListItem";
 import CalenderBox from '../component/CalenderBox';
 import { Dateformat } from '../utils/Date'
 import { Row, Col, Container } from "react-bootstrap";
-import '../style/ListPage.css'
+import '../style/css/ListPage.css'
 import { perfomanceListAction } from "../action/perfomanceListAction";
 
 const ListPage = () => {
@@ -33,7 +33,7 @@ const ListPage = () => {
     }
 
     return (
-        <Container>
+        <Container className="wrap-container">
             <Row className="ListPageTitle">
                 <h1>공연</h1>
                 <div>Noona Culture로 가장 빠르게 알아보는 컬쳐소식</div>
