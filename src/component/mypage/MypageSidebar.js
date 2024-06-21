@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const MypageSidebar = () => {
 
   return(
     <div className='mypage_sidebar'>
       <ul>
-      <li>나의 예매</li>
-        <ul className='reservation_sub_menu'>
-          <li>예약날짜로 조회</li>
-          <li>전체 조회</li>
-        </ul>
-        <li>나의 리뷰</li>
-        <li>나의 찜</li>
-        <li>회원정보 수정</li>
+        <h3>나의 예매정보</h3>
+          <ul className='link_menu'>
+            <li><Link to="/mypage/reservations/by-date">예약날짜로 조회</Link></li>
+            <li><Link to="/mypage/reservations/view-all">전체 조회</Link></li>
+          </ul>
+        <h3>나의 활동정보</h3>
+          <ul className='link_menu'>
+          <li><Link to="/mypage/reviews">나의 리뷰</Link></li>
+          <li><Link to="/mypage/reviews">나의 찜</Link></li>
+          </ul>
+        <h3>나의 계정설정</h3>
+          <ul className='link_menu'>
+            <li><Link to="/mypage/edit-profile">회원정보 수정</Link></li>
+          </ul>
       </ul>
     </div>
   )
