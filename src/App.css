@@ -14,3 +14,8 @@
 body{
   font-family: Gsans_M; 
 }
+
+/* Container */
+.wrap-container{
+  max-width: 1440px;
+}

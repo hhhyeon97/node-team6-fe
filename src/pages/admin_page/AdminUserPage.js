@@ -10,13 +10,16 @@ const AdminUserPage = () => {
 
   useEffect(() => {
     dispatch(userActions.getUserList());
-    console.log('userList', userList)
-  }, []);
-
+  }, [dispatch]);
+  console.log("userList", userList)
   return(
     <AdminPageLayout>
       <h3>회원관리 페이지</h3>
-
+      <ul>
+        {userList.map((user) => (
+          <li key={user.id}>{user.name}</li>
+        ))}
+      </ul>
     </AdminPageLayout>
   );
 }
