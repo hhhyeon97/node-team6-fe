@@ -17,6 +17,7 @@ const AppLayout = ({ children }) => {
   return (
     <div>
       {/* Header & Footer 호출 */}
+      <Navbar user={user} />
       {children}
     </div>
   );
