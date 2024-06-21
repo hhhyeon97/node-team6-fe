@@ -2,20 +2,22 @@
   font-family: 'Gsans_B';
   src: url("./assets/font/GmarketSansTTFBold.ttf");
 }
+
 @font-face {
   font-family: 'Gsans_M';
   src: url("./assets/font/GmarketSansTTFMedium.ttf");
 }
+
 @font-face {
   font-family: 'Gsans_L';
   src: url("./assets/font/GmarketSansTTFLight.ttf");
 }
 
-body{
-  font-family: Gsans_M; 
+body {
+  font-family: Gsans_M;
 }
 
 /* Container */
-.wrap-container{
+/* .wrap-container{
   max-width: 1440px;
-}
+} */
