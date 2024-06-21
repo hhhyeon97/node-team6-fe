@@ -11,6 +11,7 @@ import ReservationByDate from '../pages/mypage/ReservationByDate'
 import ViewAllReservations from "../pages/mypage/ViewAllReservations";
 import MyReviews from "../pages/mypage/MyReviews";
 import EditProfile from "../pages/mypage/EditProfile";
+import AdminPageLayout from '../Layout/AdminPageLayout';
 
 const AppRouter = () => {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ const AppRouter = () => {
       <Route path="/mypage/reservations/view-all" element={<ViewAllReservations />} />
       <Route path="/mypage/reviews" element={<MyReviews />} />
       <Route path="/mypage/edit-profile" element={<EditProfile />} />
+      <Route path="/admin-page" element={<AdminPageLayout />} />
     </Routes>
   );
 };
