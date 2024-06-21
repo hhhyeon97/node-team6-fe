@@ -12,15 +12,19 @@ import ViewAllReservations from "../pages/mypage/ViewAllReservations";
 import MyReviews from "../pages/mypage/MyReviews";
 import EditProfile from "../pages/mypage/EditProfile";
 import AdminPageLayout from '../Layout/AdminPageLayout';
+import AdminUserPage from '../pages/admin_page/AdminUserPage';
 
 const AppRouter = () => {
   const navigate = useNavigate();
 
-  // /mypage로 접근 시, /mypage/reservations/by-date 로 리디렉션
+  // redirection
   useEffect(() => {
     const path = window.location.pathname;
     if (path === '/mypage') {
       navigate('/mypage/reservations/by-date');
+    }
+    if (path === '/admin-page') {
+      navigate('/admin-page/user');
     }
   }, [navigate]);
 
@@ -35,7 +39,7 @@ const AppRouter = () => {
       <Route path="/mypage/reservations/view-all" element={<ViewAllReservations />} />
       <Route path="/mypage/reviews" element={<MyReviews />} />
       <Route path="/mypage/edit-profile" element={<EditProfile />} />
-      <Route path="/admin-page" element={<AdminPageLayout />} />
+      <Route path="/admin-page/user" element={<AdminUserPage />} />
     </Routes>
   );
 };
