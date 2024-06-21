@@ -1,38 +1,102 @@
-ul, li {
-  list-style: none;
+h1, h2, h3, h4, h5, p {
+  margin: 0;
   padding: 0;
 }
 
-/* mypage-top */
-.mypage-top {
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.wrap-container {
+  max-width: 1440px;
+}
+
+.mypage-container {
   display: flex;
+  /* < mypage-left > */
+  /* < mypage-right > */
 }
-
-/* side-bar */
-.mypage_sidebar {
+.mypage-container .mypage-left {
+  border: 2px solid green;
+  width: 10%;
+  display: flex;
+  flex-flow: column;
+  /* [ side-bar ] */
+  /* [ user-profile ] */
+}
+.mypage-container .mypage-left .mypage_sidebar {
   border: 1px solid red;
-  width: 17%;
+  padding-top: 40px;
+  color: #919191;
 }
-.mypage_sidebar .reservation_sub_menu {
-  font-size: 10px;
+.mypage-container .mypage-left .mypage_sidebar h3 {
+  font-size: 20px;
+  color: #000;
 }
-
-/* user-profile */
-.mypage_user_profile {
-  border: 10px solid purple;
-  width: 17%;
+.mypage-container .mypage-left .mypage_sidebar a:hover {
+  color: #000;
 }
-.mypage_user_profile .user_profile {
-  border: 1px solid #000;
+.mypage-container .mypage-left .mypage_sidebar .link_menu {
+  margin-bottom: 30px;
+  font-size: 13px;
+}
+.mypage-container .mypage-left .mypage_sidebar .link_menu a {
+  display: inline-block;
+  padding: 8px 0 0 5px;
+  cursor: pointer;
+}
+.mypage-container .mypage-left .mypage_user_profile {
+  border: 1px solid purple;
+}
+.mypage-container .mypage-left .mypage_user_profile .user_profile {
+  border: 2px solid rgb(211, 74, 204);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
   font-size: 40px;
 }
-.mypage_user_profile .user_name {
+.mypage-container .mypage-left .mypage_user_profile .user_name {
   font-size: 30px;
 }
-
-/* mypage_header */
-.mypage_header .user_level_info {
+.mypage-container .mypage-right {
   display: flex;
-  color: red;
-  background-color: red;
+  width: 90%;
+  flex-flow: column;
+  border: 2px solid green;
+  /* [ user_level_section ] */
+  /* [ mypage_title_section ] */
+}
+.mypage-container .mypage-right .user_level_section {
+  border: 1px solid blue;
+  display: flex;
+  padding: 10px;
+  background-color: #000;
+}
+.mypage-container .mypage-right .user_level_section .vertical_bar {
+  color: #4b4b4b;
+}
+.mypage-container .mypage-right .user_level_section .user_level_info {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 12px;
+  color: #fff;
+}
+.mypage-container .mypage-right .user_level_section .user_level_info h5 {
+  font-family: Gsans_B;
+  font-size: 12px;
+  color: #bbb;
+}
+.mypage-container .mypage-right .mypage_title_section {
+  border: 1px solid blue;
+}
+.mypage-container .mypage-right .mypage_title_section .mypage_title {
+  display: flex;
 }

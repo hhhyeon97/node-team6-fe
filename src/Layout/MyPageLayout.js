@@ -1,21 +1,27 @@
 import React from "react";
 import { Col, Row, Container } from "react-bootstrap";
-import MypageHeader from '../component/mypage/MypageHeader';
+import MypageUserLevel from '../component/mypage/MypageUserLevel';
 import MypageSidebar from "../component/mypage/MypageSidebar";
 import MypageUserProfile from "../component/mypage/MypageUserProfile";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../style/css/Mypage.css";
+import MypageTitle from '../component/mypage/MypageTitle';
 
-const MyPageLayout = ({ children }) => {
+const MyPageLayout = ({ title, cap, children }) => {
   return (
-    <Container>
-      <div style={{ marginTop: '20px', marginBottom: '20px', border: '1px solid #ccc', padding: '10px' }}>
-        <div class="mypage-top">
+    <Container className='wrap-container'>
+      <div className="mypage-container"style={{ marginTop: '20px', marginBottom: '20px', border: '1px solid #ccc' }}>
+        <section className="mypage-left">
           <MypageUserProfile />
-          <MypageHeader/>
-        </div>
-        <MypageSidebar />
-        {children}
+          <MypageSidebar />
+        </section>
+        <section className="mypage-right">
+          <MypageUserLevel/>
+          <MypageTitle title={title} cap={cap}/>
+          <main>
+          {children}
+          </main>
+        </section>
       </div>
     </Container>
   );
