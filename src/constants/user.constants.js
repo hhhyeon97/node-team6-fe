@@ -13,3 +13,7 @@ export const GOOGLE_LOGIN_SUCCESS = 'GOOGLE_LOGIN_SUCCESS';
 export const GOOGLE_LOGIN_FAIL = 'GOOGLE_LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const RESET_ERROR = 'RESET_ERROR';
+// 회원 리스트 가져오기 (admin)
+export const GET_USER_LIST_REQUEST = 'GET_USER_LIST_REQUEST';
+export const GET_USER_LIST_SUCCESS = 'GET_USER_LIST_SUCCESS';
+export const GET_USER_LIST_FAIL = 'GET_USER_LIST_FAIL';

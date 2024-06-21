@@ -70,6 +70,18 @@ const logout = () => async (dispatch) => {
   localStorage.removeItem('token');
 };
 
+// 회원 리스트 가져오기 (admin)
+const getUserList = () => async (dispatch) => {
+  try{
+    dispatch({ type: types.GET_USER_LIST_REQUEST });
+    const response = await api.get('/user');
+    if (response.status !== 200) throw new Error(response.error);
+    dispatch({ type: types.GET_USER_LIST_SUCCESS, payload: response.data });
+  }catch(error){
+    dispatch({ type: types.GET_USER_LIST_FAIL, payload: error.error });
+  }
+}
+
 export const resetError = () => ({
   type: types.RESET_ERROR,
 });
@@ -81,4 +93,5 @@ export const userActions = {
   loginWithToken,
   loginWithGoogle,
   logout,
+  getUserList,
 };
