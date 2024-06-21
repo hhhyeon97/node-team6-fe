@@ -16,7 +16,6 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   const [passwordError, setPasswordError] = useState('');
   const error = useSelector((state) => state.user.error);
-
   const register = (event) => {
     event.preventDefault();
     const { email, name, password, confirmPassword, contact } = formData;
@@ -39,7 +38,27 @@ const RegisterPage = () => {
     // 값을 읽어서 FormData에 넣어주기
     const { id, value, checked } = event.target;
     // console.log(id, checked);
-    setFormData({ ...formData, [id]: value });
+    const formattedValue = id === 'contact' ? formatPhoneNumber(value) : value;
+
+    // setFormData({ ...formData, [id]: value });
+    setFormData({ ...formData, [id]: formattedValue });
+  };
+
+  const formatPhoneNumber = (value) => {
+    let cleanValue = value.replace(/\D/g, '');
+    if (cleanValue.length > 11) {
+      cleanValue = cleanValue.slice(0, 11);
+    }
+    const match = cleanValue.match(/^(\d{3})(\d{0,4})(\d{0,4})$/);
+
+    if (match) {
+      const formattedValue = [match[1], match[2], match[3]]
+        .filter(Boolean)
+        .join('-'); // 각 그룹을 '-'로 연결
+      return formattedValue;
+    }
+
+    return cleanValue; // 매치되지 않으면 숫자만 반환
   };
 
   useEffect(() => {
@@ -83,6 +102,7 @@ const RegisterPage = () => {
             type="text"
             id="contact"
             placeholder="Phone Number"
+            value={formData.contact}
             onChange={handleChange}
             required
           />
@@ -105,7 +125,7 @@ const RegisterPage = () => {
             placeholder="Confirm Password"
             onChange={handleChange}
             required
-            isInvalid={passwordError}
+            isInvalid={!!passwordError}
           />
           <Form.Control.Feedback type="invalid">
             {passwordError}
