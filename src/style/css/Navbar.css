@@ -1,0 +1,36 @@
+.nav_area .nav_icon {
+  cursor: pointer;
+}
+.nav_area .nav_logo_area {
+  text-align: center;
+  margin: 30px auto;
+}
+.nav_area .nav_logo_area img {
+  width: 280px;
+}
+.nav_area .nav_menu {
+  display: flex;
+  justify-content: end;
+  margin-right: 25px;
+  font-size: 0.8rem;
+}
+.nav_area .nav_menu div {
+  margin-left: 16px;
+}
+.nav_area .nav_category {
+  display: flex;
+  font-size: 1.3rem;
+}
+.nav_area .nav_category li {
+  list-style: none;
+}
+.nav_area .nav_category button {
+  border: none;
+  background-color: transparent;
+  margin-right: 2rem;
+}
+.nav_area .nav_icon span {
+  margin-left: 6px;
+  position: relative;
+  bottom: 1px;
+}
