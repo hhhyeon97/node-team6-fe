@@ -21,3 +21,21 @@ body {
 /* .wrap-container{
   max-width: 1440px;
 } */
+
+
+/* title_section */
+.title_section {
+  padding-bottom: 10px;
+  border-bottom: 4px solid #000;
+}
+.title_section > .title{
+  display: flex;
+  align-items: flex-end;
+}
+.title_section > .title h3{
+  margin-right: 10px;
+}
+.title_section > .title p{
+  font-family: Gsans_L;
+  font-size: 12px;
+}
