@@ -64,7 +64,6 @@
   flex-flow: column;
   border: 2px solid green;
   /* [ user_level_section ] */
-  /* [ mypage_title_section ] */
 }
 .mypage-container .mypage-right .user_level_section {
   border: 1px solid blue;
@@ -87,11 +86,3 @@
   font-size: 12px;
   color: #bbb;
 }
-.mypage-container .mypage-right .mypage_title_section {
-  border: 1px solid blue;
-}
-.mypage-container .mypage-right .mypage_title_section .mypage_title {
-  display: flex;
-}
-
-/*# sourceMappingURL=Mypage.css.map */
