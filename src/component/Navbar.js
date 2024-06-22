@@ -15,7 +15,7 @@ const Navbar = ({ user }) => {
   };
 
   return (
-    <Container className="wrap-container">
+    <Container>
       <div className="nav_area">
         <div className="nav_logo_area">
           <a href="/">
