@@ -45,18 +45,8 @@
   padding: 8px 0 0 5px;
   cursor: pointer;
 }
-.mypage-container .mypage-left .mypage_user_profile {
-  border: 1px solid purple;
-}
-.mypage-container .mypage-left .mypage_user_profile .user_profile {
-  border: 2px solid rgb(211, 74, 204);
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  font-size: 40px;
-}
-.mypage-container .mypage-left .mypage_user_profile .user_name {
-  font-size: 30px;
+.mypage-container .mypage-left .user_profile_container .user_name {
+  font-family: Gsans_B;
 }
 .mypage-container .mypage-right {
   display: flex;
@@ -64,7 +54,6 @@
   flex-flow: column;
   border: 2px solid green;
   /* [ user_level_section ] */
-  /* [ mypage_title_section ] */
 }
 .mypage-container .mypage-right .user_level_section {
   border: 1px solid blue;
@@ -87,11 +76,3 @@
   font-size: 12px;
   color: #bbb;
 }
-.mypage-container .mypage-right .mypage_title_section {
-  border: 1px solid blue;
-}
-.mypage-container .mypage-right .mypage_title_section .mypage_title {
-  display: flex;
-}
-
-/*# sourceMappingURL=Mypage.css.map */

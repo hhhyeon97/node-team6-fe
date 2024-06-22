@@ -1,3 +1,75 @@
-.wrap-container{
-  max-width: 1440px;
+
+.admin_page_container{
+
+  h1,h2,h3,h4,h5,p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  ul, li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  a {
+    text-decoration: none; 
+    color: inherit; 
+  }
+
+  display: flex;
+
+  // < admin_sidebar >
+  .admin_sidebar{
+    background-color: #1e1e1e;
+    height: 100vh;
+    width: 20%;
+    max-width: 280px;
+    min-width: 200px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding-top: 70px;
+
+    .user_img{
+      color: #bbb;
+    }
+    .user_name{
+      color: #fff;
+    }
+
+    .link_menu{
+      display: flex;
+      flex-flow: column;
+      width: 100%;
+      color: #bbb;
+
+      li{
+        border: 1px solid #fff;
+        padding: 10px 0;
+      }
+
+      a{
+        border: 1px solid red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0;
+      }
+      a:hover{
+        color: #fff;
+      }
+    }
+  }
+
+  // < admin_main_section >
+
+
+  // 회원관리 페이지
+  .admin_user_container{
+    .user_item{
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 }
