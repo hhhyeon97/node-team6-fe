@@ -1,12 +1,11 @@
 import React from 'react'
 
-const HomePage = () => {
-
+const Footer = () => {
   return (
     <div>
-      캐러솔
+      footer
     </div>
   )
 }
 
-export default HomePage
+export default Footer

@@ -1,10 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
-import likeReducer from "./likeReducer";
-
+import { configureStore } from '@reduxjs/toolkit';
+import listReducer from './listReducer';
+import userReducer from './userReducer';
 const store = configureStore({
-    reducer: {
-        like:likeReducer
-    }
-})
-
+  reducer: {
+    list: listReducer,
+    user: userReducer,
+  },
+});
 export default store;

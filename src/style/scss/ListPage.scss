@@ -1,0 +1,168 @@
+.ListPageTitle {
+  margin: 30px 0 0;
+  padding: 0;
+  padding-left: 10px;
+
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+
+  h1 {
+    padding: 0;
+    margin-bottom: 0;
+
+    font-size: 3em;
+    font-family: "Gsans_B";
+  }
+
+  div {
+    padding: 0;
+    /* height: 2em; */
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+}
+
+.ListPageMainBox {
+  border-top: #bbb 2px solid;
+
+  .statusButtons {
+    padding: 0;
+    margin: 20px 0;
+    display: flex;
+
+    div {
+      margin-right: 10px;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 1em;
+      text-align: center;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+
+    .status_run {
+      color: white;
+      background-color: black;
+    }
+
+    .status_over {
+      background-color: #bbb;
+      color: white;
+      border-color: #bbb;
+    }
+  }
+
+  .ListItemsBox {
+    border: solid 1px green;
+    cursor: pointer;
+
+    .ListItem {
+      padding: 10px;
+      margin-bottom: 10px;
+      border: solid 1px red;
+      justify-content: end;
+      height: 350px;
+
+      box-sizing: border-box;
+      overflow: hidden;
+
+      .image_col {
+        height: 100%;
+        border: solid 1px orange;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .posterImg {
+          max-height: 100%;
+          max-width: 100%;
+        }
+      }
+
+      .item_info_box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+  }
+
+  .CalenderBox {
+    border: solid 1px blue;
+    padding: 20px;
+
+    .stickyBox {
+      position: sticky;
+      top: 20px;
+
+      .selectDate {
+        text-align: end;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      /*실제 캘린더 내의 css*/
+      .calender_custom {
+        padding: 3px;
+        width: 100%;
+        /* line-height: 1.8em; */
+        border: none;
+
+        .react-calendar__navigation__label {
+          flex-grow: 0 !important;
+        }
+
+        abbr[title] {
+          text-decoration: none;
+        }
+
+        .react-calendar__month-view__days__day--weekend {
+          color: black;
+        }
+
+        .react-calendar__tile--now {
+          background: none;
+          border-radius: 15px;
+          border: solid 1px #bbb;
+          color: black;
+          /* text-decoration: underline #f44f08 3px;
+                text-underline-offset: 5px; */
+          /* 원하는 간격(px)으로 조정 */
+        }
+
+        .react-calendar__tile--active:enabled:hover,
+        .react-calendar__tile--active:enabled:focus,
+        .react-calendar__tile--active {
+          border-radius: 15px;
+          background-color: #f44f08;
+          color: white;
+          border-color: #f44f08;
+        }
+
+        .react-calendar__month-view__days {
+          /* row-gap: 4px; */
+          min-width: 100%;
+          min-height: 200px;
+        }
+      }
+
+      .todayBTNBox {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+
+        .todayButton {
+          background: none;
+          border: solid 1px black;
+          border-radius: 20px;
+          padding: 5px 10px;
+
+          font-family: "Gsans_M";
+          font-weight: normal;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

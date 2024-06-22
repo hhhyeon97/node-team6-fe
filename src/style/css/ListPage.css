@@ -1,0 +1,142 @@
+@charset "UTF-8";
+.ListPageTitle {
+  margin: 30px 0 0;
+  padding: 0;
+  padding-left: 10px;
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+}
+.ListPageTitle h1 {
+  padding: 0;
+  margin-bottom: 0;
+  font-size: 3em;
+  font-family: "Gsans_B";
+}
+.ListPageTitle div {
+  padding: 0;
+  /* height: 2em; */
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.ListPageMainBox {
+  border-top: #bbb 2px solid;
+}
+.ListPageMainBox .statusButtons {
+  padding: 0;
+  margin: 20px 0;
+  display: flex;
+}
+.ListPageMainBox .statusButtons div {
+  margin-right: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 1em;
+  text-align: center;
+  border: 1px solid black;
+  cursor: pointer;
+}
+.ListPageMainBox .statusButtons .status_run {
+  color: white;
+  background-color: black;
+}
+.ListPageMainBox .statusButtons .status_over {
+  background-color: #bbb;
+  color: white;
+  border-color: #bbb;
+}
+.ListPageMainBox .ListItemsBox {
+  border: solid 1px green;
+  cursor: pointer;
+}
+.ListPageMainBox .ListItemsBox .ListItem {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: solid 1px red;
+  justify-content: end;
+  height: 350px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.ListPageMainBox .ListItemsBox .ListItem .image_col {
+  height: 100%;
+  border: solid 1px orange;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ListPageMainBox .ListItemsBox .ListItem .image_col .posterImg {
+  max-height: 100%;
+  max-width: 100%;
+}
+.ListPageMainBox .ListItemsBox .ListItem .item_info_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ListPageMainBox .CalenderBox {
+  border: solid 1px blue;
+  padding: 20px;
+}
+.ListPageMainBox .CalenderBox .stickyBox {
+  position: sticky;
+  top: 20px;
+  /*실제 캘린더 내의 css*/
+}
+.ListPageMainBox .CalenderBox .stickyBox .selectDate {
+  text-align: end;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.ListPageMainBox .CalenderBox .stickyBox .calender_custom {
+  padding: 3px;
+  width: 100%;
+  /* line-height: 1.8em; */
+  border: none;
+}
+.ListPageMainBox .CalenderBox .stickyBox .calender_custom .react-calendar__navigation__label {
+  flex-grow: 0 !important;
+}
+.ListPageMainBox .CalenderBox .stickyBox .calender_custom abbr[title] {
+  text-decoration: none;
+}
+.ListPageMainBox .CalenderBox .stickyBox .calender_custom .react-calendar__month-view__days__day--weekend {
+  color: black;
+}
+.ListPageMainBox .CalenderBox .stickyBox .calender_custom .react-calendar__tile--now {
+  background: none;
+  border-radius: 15px;
+  border: solid 1px #bbb;
+  color: black;
+  /* text-decoration: underline #f44f08 3px;
+        text-underline-offset: 5px; */
+  /* 원하는 간격(px)으로 조정 */
+}
+.ListPageMainBox .CalenderBox .stickyBox .calender_custom .react-calendar__tile--active:enabled:hover,
+.ListPageMainBox .CalenderBox .stickyBox .calender_custom .react-calendar__tile--active:enabled:focus,
+.ListPageMainBox .CalenderBox .stickyBox .calender_custom .react-calendar__tile--active {
+  border-radius: 15px;
+  background-color: #f44f08;
+  color: white;
+  border-color: #f44f08;
+}
+.ListPageMainBox .CalenderBox .stickyBox .calender_custom .react-calendar__month-view__days {
+  /* row-gap: 4px; */
+  min-width: 100%;
+  min-height: 200px;
+}
+.ListPageMainBox .CalenderBox .stickyBox .todayBTNBox {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.ListPageMainBox .CalenderBox .stickyBox .todayBTNBox .todayButton {
+  background: none;
+  border: solid 1px black;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-family: "Gsans_M";
+  font-weight: normal;
+  font-size: 14px;
+}

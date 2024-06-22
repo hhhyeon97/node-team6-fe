@@ -1,0 +1,181 @@
+.DetailPageAllBox {
+  margin-top: 60px;
+}
+.DetailPageAllBox .DetailStatus {
+  margin-right: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid black;
+  width: max-content;
+  vertical-align: middle;
+  margin-bottom: 10px;
+}
+.DetailPageAllBox .DetailTitle {
+  font-size: 2em;
+  font-family: "Gsans_B";
+  margin-bottom: 15px;
+}
+.DetailPageAllBox .DetailTopBox {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 70px;
+  border-bottom: solid 1px #bbb;
+  font-size: 24px;
+}
+.DetailPageAllBox .DetailTopBox .DetailTopImg {
+  text-align: center;
+}
+.DetailPageAllBox .DetailTopBox .DetailTopImg img {
+  width: 95%;
+  border-radius: 10px;
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox {
+  border-top: solid 4px black;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .LikeShare {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-top: 10px;
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .LikeShare svg,
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .LikeShare button {
+  width: fit-content;
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .LikeShare button {
+  background: none;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 8px;
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailInfo {
+  flex-grow: 1;
+  display: flex;
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailInfo div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox {
+  display: flex;
+  justify-content: space-between;
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox .ticketNum {
+  border: solid 1px black;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding: 0;
+  font-size: 0.7em;
+  position: relative;
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox .ticketNum ul {
+  padding: 0;
+  margin: 0;
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox .ticketNum .liBox {
+  position: absolute;
+  border: solid 1px black;
+  width: 100%;
+  left: 0;
+  top: 40px;
+  background-color: white;
+  border-radius: 8px;
+  animation: slideDown 0.8s forwards;
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox .ticketNum .liBox li {
+  list-style: none;
+  cursor: pointer;
+  padding: 2px 0;
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox .ticketNum .liBox li:hover {
+  background-color: black;
+  color: white;
+}
+@keyframes slideDown {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(25px);
+    opacity: 1;
+  }
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox .reservationBtnBox {
+  padding: 0;
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox .reservationBtnBox .reserveBtn {
+  background: none;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  width: 100%;
+}
+.DetailPageAllBox .subTitle {
+  font-size: 2em;
+  margin: 55px 0 10px;
+}
+.DetailPageAllBox .subTitle + li {
+  font-family: "Gsans_L";
+  font-weight: lighter;
+}
+.DetailPageAllBox .subTitle + li + li {
+  font-family: "Gsans_L";
+  font-weight: lighter;
+}
+.DetailPageAllBox #true1 {
+  display: block;
+}
+.DetailPageAllBox #false1 {
+  display: none;
+}
+.DetailPageAllBox .DetailBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.DetailPageAllBox .DetailBox .postersBox {
+  height: 2000px;
+}
+.DetailPageAllBox .DetailBox .postersBox .posters {
+  text-align: center;
+  padding: 0px 5em;
+}
+.DetailPageAllBox .DetailBox .postersBox .posters img {
+  max-width: 100%;
+}
+.DetailPageAllBox .DetailBox .detailHiddenBtn {
+  width: 70%;
+  background: none;
+  padding: 25px 0;
+  font-size: 1.7em;
+  box-shadow: 0 -10px 30px 50px rgba(255, 255, 255, 0.7);
+}
+.DetailPageAllBox #true {
+  overflow: hidden;
+}
+.DetailPageAllBox #false {
+  overflow: show;
+  height: fit-content;
+}
+
+@media screen and (max-width: 768px) {
+  .DetailPageAllBox .DetailBox .postersBox {
+    height: 90vh;
+  }
+}
+@media screen and (max-width: 480px) {
+  .DetailPageAllBox .DetailBox .postersBox {
+    height: 70vh;
+  }
+}

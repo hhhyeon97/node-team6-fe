@@ -1,0 +1,222 @@
+.DetailPageAllBox {
+  margin-top: 60px;
+
+  .DetailStatus {
+    margin-right: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid black;
+    width: max-content;
+    vertical-align: middle;
+
+    margin-bottom: 10px;
+  }
+
+  .DetailTitle {
+    font-size: 2em;
+    font-family: "Gsans_B";
+    margin-bottom: 15px;
+  }
+
+  .DetailTopBox {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 70px;
+    border-bottom: solid 1px #bbb;
+    font-size: 24px;
+
+    .DetailTopImg {
+      text-align: center;
+
+      img {
+        width: 95%;
+        border-radius: 10px;
+      }
+    }
+
+    .DetailInfoBox {
+      border-top: solid 4px black;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+
+      .LikeShare {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        margin-top: 10px;
+
+        svg,
+        button {
+          width: fit-content;
+        }
+
+        button {
+          background: none;
+          display: flex;
+          align-items: center;
+          padding: 5px;
+          border-radius: 8px;
+        }
+      }
+
+      .DetailInfo {
+        flex-grow: 1;
+        display: flex;
+
+        div {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+        }
+      }
+
+      .DetailButtonBox {
+        display: flex;
+        justify-content: space-between;
+
+        .ticketNum {
+          border: solid 1px black;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 5px;
+          padding: 0;
+          font-size: 0.7em;
+
+          position: relative;
+
+          ul {
+            padding: 0;
+            margin: 0;
+          }
+
+          .liBox {
+            position: absolute;
+            border: solid 1px black;
+            width: 100%;
+            left: 0;
+            top: 40px;
+            background-color: white;
+            border-radius: 8px;
+            animation: slideDown 0.8s forwards;
+
+            li {
+              list-style: none;
+              cursor: pointer;
+              padding: 2px 0;
+            }
+
+            li:hover {
+              background-color: black;
+              color: white;
+            }
+          }
+
+          @keyframes slideDown {
+            0% {
+              transform: translateY(-10px);
+              opacity: 0;
+            }
+            100% {
+              transform: translateY(25px);
+              opacity: 1;
+            }
+          }
+        }
+        .reservationBtnBox {
+          padding: 0;
+
+          .reserveBtn {
+            background: none;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: black;
+            color: white;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .subTitle {
+    font-size: 2em;
+    margin: 55px 0 10px;
+
+    + li {
+      font-family: "Gsans_L";
+      font-weight: lighter;
+
+      + li {
+        font-family: "Gsans_L";
+        font-weight: lighter;
+      }
+    }
+  }
+
+  #true1 {
+    display: block;
+  }
+
+  #false1 {
+    display: none;
+  }
+
+  .DetailBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .postersBox {
+      height: 2000px;
+
+      .posters {
+        text-align: center;
+        padding: 0px 5em;
+
+        img {
+          max-width: 100%;
+        }
+      }
+    }
+
+    .detailHiddenBtn {
+      width: 70%;
+      background: none;
+      padding: 25px 0;
+      font-size: 1.7em;
+      box-shadow: 0 -10px 30px 50px rgba($color: #fff, $alpha: 0.7);
+    }
+  }
+
+  #true {
+    overflow: hidden;
+  }
+
+  #false {
+    overflow: show;
+    height: fit-content;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .DetailPageAllBox {
+    .DetailBox {
+      .postersBox {
+        height: 90vh;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .DetailPageAllBox {
+    .DetailBox {
+      .postersBox {
+        height: 70vh;
+      }
+    }
+  }
+}

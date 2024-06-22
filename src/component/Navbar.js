@@ -1,66 +1,62 @@
-import React from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
-import '../style/navbar.style.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDoorOpen, faHeart, faUser } from '@fortawesome/free-solid-svg-icons'
-import { useNavigate } from 'react-router-dom'
-
-const Navbar = () => {
-  const navigate = useNavigate();
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { userActions } from '../action/userAction';
+import { useDispatch } from 'react-redux';
+import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
+import '../style/Navbar.css';
+import { faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
+const Navbar = ({ user }) => {
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
   const menuList = [
-    "콘서트/뮤지컬",
-    "연극",
-    "무용",
-    "미술",
-    "기타"
+    '뮤지컬',
+    '콘서트',
+    '클래식',
+    '국악',
+    '무용',
+    '연극'
   ]
 
-  const getPage = () => {
-
-  }
+  const logout = () => {
+    dispatch(userActions.logout());
+  };
 
   return (
-    <div>
-      <Container className='nav-style'>
-        <Row className='nav-header-box'>
-            <Col xs={12} md={4}>
-              <span className='site-name'>눈나<span className='site-name-color'>티켓</span></span>
-            </Col>
-            <Col xs={12} md={8}>
-              {/* {서치박스어디에넣나} */}
-              <div className='nav-user-box'>
-                
-                {/* 마이페이지 */}
-                <div>
-                  <FontAwesomeIcon icon={faUser} />
-                </div>
-
-                {/* 찜 */}
-                <div>
-                  <FontAwesomeIcon icon={faHeart} />
-                </div>
-
-                {/* 로그인/아웃 */}
-                <div>
-                  <FontAwesomeIcon icon={faDoorOpen} />
-                </div>
-              </div>
-            </Col>
-        </Row>
-        <Row>
-          <ul className='nav-menu-box'>
-            {menuList.map((menu,index)=>(
-              <li key={index}>
-                <button onClick={()=>getPage()}>
-                  {menu}
-                </button>
+    <div className="nav_area">
+      <div className="nav_logo_area">
+        <a href="/">
+          <img src="/testImage/logo.png" />
+        </a>
+      </div>
+      <div className="nav_menu">
+        <div><FontAwesomeIcon icon={faUser} /> {user?'MY PAGE':'JOIN US'}</div>
+        <div><FontAwesomeIcon icon={faHeart} /> {user?'':'MY LIKE'}</div>
+        {user ? (
+          <div onClick={logout} className="nav_icon">
+            <FontAwesomeIcon icon={faCircleUser} />
+            LOGOUT
+          </div>
+        ) : (
+          <div onClick={() => navigate('/login')} className="nav_icon">
+            <FontAwesomeIcon icon={faCircleUser} />
+            LOGIN
+          </div>
+        )}
+      </div>
+      <div>
+        <ul className='nav_category'>
+          {menuList.map((menu,index)=>(
+            <li key={index}>
+              <button>
+                {menu}
+              </button>
               </li>
-            ))}
-          </ul>
-        </Row>
-      </Container>
+          ))}
+        </ul>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
