@@ -1,3 +1,57 @@
-.wrap-container {
-  max-width: 1440px;
+.admin_page_container {
+  display: flex;
+}
+.admin_page_container h1, .admin_page_container h2, .admin_page_container h3, .admin_page_container h4, .admin_page_container h5, .admin_page_container p {
+  margin: 0;
+  padding: 0;
+}
+.admin_page_container ul, .admin_page_container li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.admin_page_container a {
+  text-decoration: none;
+  color: inherit;
+}
+.admin_page_container .admin_sidebar {
+  background-color: #1e1e1e;
+  height: 100vh;
+  width: 20%;
+  max-width: 280px;
+  min-width: 200px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding-top: 70px;
+}
+.admin_page_container .admin_sidebar .user_img {
+  color: #bbb;
+}
+.admin_page_container .admin_sidebar .user_name {
+  color: #fff;
+}
+.admin_page_container .admin_sidebar .link_menu {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  color: #bbb;
+}
+.admin_page_container .admin_sidebar .link_menu li {
+  border: 1px solid #fff;
+  padding: 10px 0;
+}
+.admin_page_container .admin_sidebar .link_menu a {
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+.admin_page_container .admin_sidebar .link_menu a:hover {
+  color: #fff;
+}
+.admin_page_container .admin_user_container .user_item {
+  display: flex;
+  justify-content: space-between;
 }
