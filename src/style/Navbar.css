@@ -1,0 +1,21 @@
+.nav_area {
+  .nav_icon {
+    cursor: pointer;
+  }
+  .nav_logo_area {
+    text-align: center;
+    margin: 30px auto;
+    img {
+      width: 280px;
+    }
+  }
+  .nav_menu {
+    text-align: right;
+    margin-right: 25px;
+  }
+  .nav_icon span {
+    margin-left: 6px;
+    position: relative;
+    bottom: 1px;
+  }
+}

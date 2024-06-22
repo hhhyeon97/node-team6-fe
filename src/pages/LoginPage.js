@@ -4,7 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../action/userAction';
 import { GoogleLogin } from '@react-oauth/google';
-import '../style/LoginPage.css';
+import '../style/css/LoginPage.css';
+import SocialKakao from '../component/SocialKakao';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,9 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const error = useSelector((state) => state.user.error);
+
+  // const KAKAO_REST_API_KEY = process.env.REACT_APP_KAKAO_REST_API_KEY;
+  // const KAKAO_REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI;
 
   useEffect(() => {
     dispatch(userActions.resetError());
@@ -25,6 +29,10 @@ const LoginPage = () => {
 
   const handleGoogleLogin = async (googleData) => {
     dispatch(userActions.loginWithGoogle(googleData.credential));
+  };
+
+  const handleKakaoLogin = async (kakaoData) => {
+    dispatch(userActions.loginWithKakao(kakaoData));
   };
 
   useEffect(() => {
@@ -73,10 +81,17 @@ const LoginPage = () => {
           </div>
           <div className="sns_btn_area">
             <p>
-              <strong>SNS</strong> 계정으로 로그인하기
+              - &nbsp;<strong>SNS</strong> 계정으로 로그인하기 &nbsp;-
             </p>
             <GoogleLogin
               onSuccess={handleGoogleLogin}
+              onError={() => {
+                console.log('Login Failed');
+              }}
+            />
+            {/*카카오 로그인 버튼*/}
+            <SocialKakao
+              onSuccess={handleKakaoLogin}
               onError={() => {
                 console.log('Login Failed');
               }}

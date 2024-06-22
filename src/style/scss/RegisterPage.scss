@@ -1,5 +1,5 @@
 .register_area {
-  margin: 50px auto;
+  // margin: 50px auto;
   flex-direction: column;
   width: 450px;
 
@@ -13,6 +13,7 @@
 
   .register_error_message {
     margin-top: 20px;
+    width: 100%;
   }
   .register_title {
     font-family: 'Gsans_B';

@@ -21,6 +21,7 @@
   }
   .login_error_message {
     margin-top: 20px;
+    width: 100%;
   }
   .login_btn_area,
   .sns_btn_area {
@@ -47,8 +48,8 @@
   .info_register_message {
     margin-top: 20px;
   }
-  .info_register_message a {
-    text-decoration: underline;
-    color: rgb(45, 111, 233);
-  }
+  /* .info_register_message a {
+      text-decoration: underline;
+      color: rgb(45, 111, 233);
+    } */
 }

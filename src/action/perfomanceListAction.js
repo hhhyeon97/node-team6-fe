@@ -1,11 +1,13 @@
 import api from "../utils/api";
 import * as types from "../constants/performanceList.constants";
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { StringDateformat, EndDateformat } from '../utils/Date'
 
 const { DOMParser } = require('xmldom');
 
 const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
+
+
 
 // xml -> json
 function xmlToJson(xml) {
@@ -146,7 +148,38 @@ const getPerformanceDetail = async ({ setLoading, setErrorMsg, id, setDetailData
     }
 }
 
+const getLocationLatLot = async ({ setLoading, setErrorMsg, location, setLat, setLot }) => {
+    try {
+        const queryParams = new URLSearchParams({
+            service: REACT_APP_YEJIN_SERVICE_KEY,
+            newsql: 'Y'
+        }).toString();
+
+        let url = `https://corsproxy.io/?http://www.kopis.or.kr/openApi/restful/prfplc/${location}/?${queryParams.toString()}`
+        setLoading(true)
+
+        const response = await fetch(url)
+        if (!response.ok) throw new Error("Failed to fetch data");
+        const xmlText = await response.text();
+
+        const domParser = new DOMParser();
+        const XmlNode = domParser.parseFromString(xmlText, 'text/xml');
+        const jsonData = xmlToJson(XmlNode)
+
+        const cleanedData = cleanUp(jsonData);
+
+        setLat(cleanedData.dbs.db.la)
+        setLot(cleanedData.dbs.db.lo)
+        setLoading(false)
+    } catch (error) {
+        setErrorMsg(error)
+        console.log("get location data error:", error)
+        setLoading(false)
+    }
+}
+
 export const perfomanceListAction = {
     getPerformanceList,
     getPerformanceDetail,
+    getLocationLatLot,
 }
