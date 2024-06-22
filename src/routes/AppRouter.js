@@ -13,6 +13,8 @@ import MyReviews from '../pages/mypage/MyReviews';
 import EditProfile from '../pages/mypage/EditProfile';
 import AdminPageLayout from '../Layout/AdminPageLayout';
 import AdminUserPage from '../pages/admin_page/AdminUserPage';
+import AdminReviewPage from '../pages/admin_page/AdminReviewPage';
+import AdminNoticePage from '../pages/admin_page/AdminNoticePage';
 import MainPage from '../pages/MainPage';
 
 const AppRouter = () => {
@@ -24,8 +26,8 @@ const AppRouter = () => {
     if (path === '/mypage') {
       navigate('/mypage/reservations/by-date');
     }
-    if (path === '/admin-page') {
-      navigate('/admin-page/user');
+    if (path === '/admin') {
+      navigate('/admin/user');
     }
   }, [navigate]);
 
@@ -46,7 +48,9 @@ const AppRouter = () => {
       />
       <Route path="/mypage/reviews" element={<MyReviews />} />
       <Route path="/mypage/edit-profile" element={<EditProfile />} />
-      <Route path="/admin-page/user" element={<AdminUserPage />} />
+      <Route path="/admin/user" element={<AdminUserPage />} />
+      <Route path="/admin/review" element={<AdminReviewPage />} />
+      <Route path="/admin/notice" element={<AdminNoticePage />} />
     </Routes>
   );
 };
