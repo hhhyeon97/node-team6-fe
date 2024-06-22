@@ -25,7 +25,7 @@ const PerformanceDetail = () => {
     const [lat, setLat] = useState()
     const [lot, setLot] = useState()
 
-    const ticketNumList = [1, 2, 3, 4, 5, 6]
+    const ticketNumList = [1, 2, 3, 4, 5]
 
     useEffect(() => {
         perfomanceListAction.getPerformanceDetail({ setLoading, setErrorMsg, id, setDetailData })

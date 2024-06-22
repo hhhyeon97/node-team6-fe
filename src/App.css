@@ -28,27 +28,30 @@ body {
   padding-bottom: 10px;
   border-bottom: 4px solid #000;
 }
-.title_section > .title{
+
+.title_section>.title {
   display: flex;
   align-items: flex-end;
 }
-.title_section > .title h3{
+
+.title_section>.title h3 {
   margin-right: 10px;
 }
-.title_section > .title p{
+
+.title_section>.title p {
   font-family: Gsans_L;
   font-size: 12px;
 }
 
 /* user-profile */
-.user_profile_container .user_profile{
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    font-size: 40px;
-  }
+.user_profile_container .user_profile {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  font-size: 40px;
+}
 
-.user_profile_container .user_name{
-    color: #000;
-    font-size: 30px;
-  }
+.user_profile_container .user_name {
+  color: #000;
+  font-size: 30px;
+}
