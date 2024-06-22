@@ -65,19 +65,9 @@
     }
 
     /* [ user-profile ] */
-    .mypage_user_profile{
-      border: 1px solid purple;
-
-      .user_profile{
-        border: 2px solid rgb(211, 74, 204);
-        display: flex;
-        flex-flow: column;
-        align-items: center;
-        font-size: 40px;
-      }
-
+    .user_profile_container{
       .user_name{
-        font-size: 30px;
+        font-family: Gsans_B;
       }
     }
   }
@@ -114,14 +104,6 @@
         }
       }
     }
-
-      /* [ mypage_title_section ] */
-      .mypage_title_section {
-        border: 1px solid blue;
-        .mypage_title{
-          display: flex;
-        }
-      }
   }
 }
 

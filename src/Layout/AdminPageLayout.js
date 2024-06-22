@@ -1,15 +1,19 @@
 import React from "react";
 import { Col, Row, Container } from "react-bootstrap";
+import AdminSidebar from '../component/admin_page/AdminSidebar';
+import "../style/css/AdminPage.css";
 
 const AdminPageLayout = ({ children }) => {
 
   return (
-    <Container className='wrap-container'>
-      <div className="admin-page-container" style={{ marginTop: '20px', marginBottom: '20px', border: '1px solid #ccc' }}>
-        <h1>admin page</h1>
-        <main>{children}</main>
-      </div>
-    </Container>
+    <div className="admin_page_container">
+      <AdminSidebar />
+      <Container className='wrap-container'>
+        <section className="admin_main_section" style={{ border: '1px solid #ccc' }}>
+          <main>{children}</main>
+        </section>
+      </Container>
+    </div>
   );
 }
 
