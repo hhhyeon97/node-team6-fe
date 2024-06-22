@@ -35,12 +35,12 @@ const Navbar = ({ user }) => {
         {user ? (
           <div onClick={logout} className="nav_icon">
             <FontAwesomeIcon icon={faCircleUser} />
-            LOGOUT
+            <span>LOGOUT</span>
           </div>
         ) : (
           <div onClick={() => navigate('/login')} className="nav_icon">
             <FontAwesomeIcon icon={faCircleUser} />
-            LOGIN
+            <span>LOGIN</span>
           </div>
         )}
       </div>

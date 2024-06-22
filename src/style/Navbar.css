@@ -9,7 +9,6 @@
       width: 280px;
     }
   }
-
   .nav_menu {
     display: flex;
     justify-content: end;
@@ -31,5 +30,10 @@
     border: none;
     background-color: transparent;
     margin-right: 2rem;
+  }
+  .nav_icon span {
+    margin-left: 6px;
+    position: relative;
+    bottom: 1px;
   }
 }
