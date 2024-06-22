@@ -11,8 +11,8 @@
     height: 50px;
   }
   .login_title {
-    font-family: "Gsans_B";
-    font-size: 40px;
+    font-family: 'Gsans_B';
+    font-size: 35px;
     letter-spacing: 3px;
     border-bottom: 5px solid #181818;
     padding-bottom: 15px;
@@ -52,4 +52,37 @@
       text-decoration: underline;
       color: rgb(45, 111, 233);
     } */
+  .custom_kakao_btn {
+    background-color: #fee500 !important;
+    border-radius: 50%;
+    border: none;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    color: #000;
+  }
+  .kakao_icon {
+    position: relative;
+    left: 1px;
+  }
+  .custom_google_btn {
+    background-color: #ffffff !important;
+    border-radius: 50%;
+    border: 1.5px solid lightgray;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sns_btn_wrap {
+    display: flex;
+    margin-bottom: 30px;
+  }
+  .sns_btn_area button {
+    margin: auto 5px;
+  }
 }

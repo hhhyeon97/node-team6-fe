@@ -1,16 +1,16 @@
 @font-face {
   font-family: 'Gsans_B';
-  src: url("./assets/font/GmarketSansTTFBold.ttf");
+  src: url('./assets/font/GmarketSansTTFBold.ttf');
 }
 
 @font-face {
   font-family: 'Gsans_M';
-  src: url("./assets/font/GmarketSansTTFMedium.ttf");
+  src: url('./assets/font/GmarketSansTTFMedium.ttf');
 }
 
 @font-face {
   font-family: 'Gsans_L';
-  src: url("./assets/font/GmarketSansTTFLight.ttf");
+  src: url('./assets/font/GmarketSansTTFLight.ttf');
 }
 
 body {
@@ -18,10 +18,9 @@ body {
 }
 
 /* Container */
-.wrap-container{
+.wrap-container {
   max-width: 1040px;
 }
-
 
 /* title_section */
 .title_section {
@@ -29,16 +28,16 @@ body {
   border-bottom: 4px solid #000;
 }
 
-.title_section>.title {
+.title_section > .title {
   display: flex;
   align-items: flex-end;
 }
 
-.title_section>.title h3 {
+.title_section > .title h3 {
   margin-right: 10px;
 }
 
-.title_section>.title p {
+.title_section > .title p {
   font-family: Gsans_L;
   font-size: 12px;
 }
