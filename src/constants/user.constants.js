@@ -17,6 +17,12 @@ export const RESET_ERROR = 'RESET_ERROR';
 export const GET_USER_LIST_REQUEST = 'GET_USER_LIST_REQUEST';
 export const GET_USER_LIST_SUCCESS = 'GET_USER_LIST_SUCCESS';
 export const GET_USER_LIST_FAIL = 'GET_USER_LIST_FAIL';
+// 선택된 회원 정보 수정하기 (admin)
+export const SET_SELECTED_USER = 'SET_SELECTED_USER';
+export const USER_LEVELS = ["normal", "gold", "suspend"];
+export const UPDATE_LEVEL_REQUEST = "UPDATE_LEVEL_REQUEST";
+export const UPDATE_LEVEL_SUCCESS = "UPDATE_LEVEL_SUCCESS";
+export const UPDATE_LEVEL_FAIL = "UPDATE_LEVEL_FAIL";
 
 export const KAKAO_LOGIN_REQUEST = 'KAKAO_LOGIN_REQUEST';
 export const KAKAO_LOGIN_SUCCESS = 'KAKAO_LOGIN_SUCCESS';

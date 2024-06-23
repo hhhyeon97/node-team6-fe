@@ -83,19 +83,25 @@ const LoginPage = () => {
             <p>
               - &nbsp;<strong>SNS</strong> 계정으로 로그인하기 &nbsp;-
             </p>
-            <GoogleLogin
-              onSuccess={handleGoogleLogin}
-              onError={() => {
-                console.log('Login Failed');
-              }}
-            />
-            {/*카카오 로그인 버튼*/}
-            <SocialKakao
-              onSuccess={handleKakaoLogin}
-              onError={() => {
-                console.log('Login Failed');
-              }}
-            />
+            <div className="sns_btn_wrap">
+              <GoogleLogin
+                className="custom_google_btn"
+                onSuccess={handleGoogleLogin}
+                onError={() => {
+                  console.log('Login Failed');
+                }}
+              />
+              <button className="custom_google_btn">
+                <img src="testImage/google.png" alt="구글" />
+              </button>
+              {/*카카오 로그인 버튼*/}
+              <SocialKakao
+                onSuccess={handleKakaoLogin}
+                onError={() => {
+                  console.log('Login Failed');
+                }}
+              />
+            </div>
           </div>
         </Form>
       </Container>
