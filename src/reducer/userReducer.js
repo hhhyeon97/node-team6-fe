@@ -4,6 +4,8 @@ const initialState = {
   user: null,
   error: '',
   userList: [],
+  totalPageNum: 1,
+  selectedUser: null,
 };
 
 function userReducer(state = initialState, action) {
@@ -15,6 +17,7 @@ function userReducer(state = initialState, action) {
     case types.GET_USER_LIST_REQUEST:
     case types.GOOGLE_LOGIN_REQUEST:
     case types.KAKAO_LOGIN_REQUEST:
+    case types.UPDATE_LEVEL_REQUEST:
       return { ...state, loading: true };
     case types.LOGIN_SUCCESS:
     case types.LOGIN_WITH_TOKEN_SUCCESS:
@@ -22,7 +25,11 @@ function userReducer(state = initialState, action) {
     case types.KAKAO_LOGIN_SUCCESS:
       return { ...state, loading: false, user: payload.user };
     case types.GET_USER_LIST_SUCCESS:
-      return { ...state, loading: false, userList: payload };
+      return {  ...state, loading: false, error: '',
+                userList: payload.data,
+                totalPageNum: payload.totalPageNum  };
+    case types.UPDATE_LEVEL_SUCCESS:
+      return { ...state, loading: false, error: ''}
     case types.REGISTER_USER_FAIL:
     case types.LOGIN_FAIL:
     case types.LOGIN_WITH_TOKEN_FAIL:
@@ -37,6 +44,8 @@ function userReducer(state = initialState, action) {
       };
     case types.LOGOUT:
       return { ...state, user: null };
+    case types.SET_SELECTED_USER:
+      return{...state, selectedUser: payload}  
     default:
       return state;
   }
