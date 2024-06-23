@@ -17,7 +17,6 @@ const ListPage = () => {
     const dispatch = useDispatch();
 
     const [selectDate, setSelectDate] = useState(new Date())
-    const [sort, setSort] = useState('date')
     const [view, setView] = useState(false);
     const [selectedRegion, setSelectedRegion] = useState('')
 
@@ -106,7 +105,7 @@ const ListPage = () => {
                 </Col>
                 <Col lg={5} md={5} sm={6} className="LegionDropContainer">
                     <ul onClick={() => { setView(!view) }} className="regionDrop">
-                        지역{selectedRegion ? ' : ' + selectedRegion.name : ''}
+                        지역{selectedRegion ? ' : ' + selectedRegion.name : ' : 전국'}
                         {view ? <FontAwesomeIcon icon={faCaretUp} /> : <FontAwesomeIcon icon={faCaretDown} />}
                         {view && <Dropdown />}
                     </ul>
