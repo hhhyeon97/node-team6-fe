@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router';
 import { Col, Row, Container } from 'react-bootstrap';
 import Navbar from '../component/Navbar';
+import Footer from '../component/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../action/userAction';
 import AdminSidebar from '../component/admin_page/AdminSidebar';
@@ -32,7 +33,8 @@ const AppLayout = ({ children }) => {
       ) : (
         <>
           <Navbar user={user} />
-          {children}
+            {children}
+          <Footer />
         </>
       )}
     </div>

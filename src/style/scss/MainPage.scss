@@ -1,0 +1,57 @@
+.month_performance_area{
+    margin-top: 2rem;
+   .month_performance_row{
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+} 
+}
+
+
+
+.performance_card_area{
+    width: 18.5%;
+    position: relative;
+    cursor: pointer;
+    .performance_card_img_box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        height: 29vh;
+        border-radius: 0.5rem;
+        margin-bottom: 0.4rem;
+    }
+    .performance_card_img{
+        height: 100%;
+    }
+
+    h3 {
+        font-size: 0.95rem;
+        font-weight: 600;
+    }
+
+    h4 {
+        font-size: 0.9rem;
+        margin-bottom: 0.15rem;
+    }
+
+    h5{
+        font-size: 0.9rem;
+        color: gray;
+    }
+
+    .like-heart {
+        position: absolute;
+        right: 0.5rem;
+        bottom: 0.5rem;
+        color: gray;
+    }
+
+    .like-heart:hover {
+        color: #D61F1F;
+        transition: 0.5s;
+    }
+}
+

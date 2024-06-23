@@ -1,11 +1,16 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import MonthPerformance from '../component/mainpage/MonthPerformance';
+import '../style/css/MainPage.css';
 
 const MainPage = () => {
   return (
-    <Container className="d-flex justify-content-center align-items-center">
-      <h3 className="mt-5">랜딩페이지</h3>
-    </Container>
+    <div>
+      <Container className='wrap-container'>
+        <MonthPerformance />
+      </Container>
+    </div>
+    
   );
 };
 
