@@ -2,24 +2,32 @@
   cursor: pointer;
 }
 .nav_area .nav_logo_area {
-  text-align: center;
-  margin: 30px auto;
+  margin: 30px 30px 30px 0px;
 }
 .nav_area .nav_logo_area img {
   width: 280px;
 }
-.nav_area .nav_menu {
+.nav_area .txt-align {
+  text-align: top;
+}
+.nav_area .nav_user_menu {
   display: flex;
   justify-content: end;
+  align-items: end;
   margin-right: 25px;
-  font-size: 0.8rem;
+  margin-bottom: 30px;
+  font-size: 0.5rem;
 }
-.nav_area .nav_menu div {
-  margin-left: 16px;
+.nav_area .nav_user_menu div {
+  margin-left: 1rem;
+}
+.nav_area .nav_user_icon {
+  font-size: 1rem;
 }
 .nav_area .nav_category {
   display: flex;
   font-size: 1.3rem;
+  padding-left: 0;
 }
 .nav_area .nav_category li {
   list-style: none;
@@ -28,6 +36,7 @@
   border: none;
   background-color: transparent;
   margin-right: 2rem;
+  padding-left: 0;
 }
 .nav_area .nav_icon span {
   margin-left: 6px;

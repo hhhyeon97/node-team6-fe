@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 // import '../style/Navbar2.css';
 import '../style/css/Navbar.css'
 import { faDoorOpen, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
-import { Container } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 const Navbar = ({ user }) => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
@@ -24,40 +24,50 @@ const Navbar = ({ user }) => {
   };
 
   return (
-    <Container className='wrap-container'>
-      <div className="nav_area">
-        <div className="nav_logo_area">
+    <Container className='wrap-container nav_area'>
+      <Row>
+         <Col className='nav_logo_area'>
           <a href="/">
             <img src="/testImage/logo.png" />
           </a>
-        </div>
-        <div className="nav_menu">
-          <div><FontAwesomeIcon icon={faUser} /> {user?'MY PAGE':'JOIN US'}</div>
-          <div><FontAwesomeIcon icon={faHeart} /> {user?'':'MY LIKE'}</div>
+        </Col>
+        <Col className="nav_user_menu nav_icon">
+          {user?(
+            <div onClick={()=>navigate('/mypage')}>
+              <FontAwesomeIcon icon={faUser} className='nav_user_icon'/> MY PAGE
+            </div>
+          ):(
+            <div onClick={()=>navigate('/register')}>
+              <FontAwesomeIcon icon={faUser} className='nav_user_icon'/> JOIN US
+            </div>)}
+          
+          <div><FontAwesomeIcon icon={faHeart} className='nav_user_icon'/> {user?'':'MY LIKE'}</div>
           {user ? (
-            <div onClick={logout} className="nav_icon">
-              <FontAwesomeIcon icon={faDoorOpen} />
-              <span>LOGOUT</span>
-            </div>
-          ) : (
-            <div onClick={() => navigate('/login')} className="nav_icon">
-              <FontAwesomeIcon icon={faDoorOpen} />
-              <span>LOGIN</span>
-            </div>
+              <div onClick={logout}>
+                <FontAwesomeIcon icon={faDoorOpen} className='nav_user_icon'/>
+                <span>LOGOUT</span>
+              </div>
+            ) : (
+              <div onClick={() => navigate('/login')}>
+                <FontAwesomeIcon icon={faDoorOpen} className='nav_user_icon'/>
+                <span>LOGIN</span>
+              </div>
           )}
-        </div>
-        <div>
+        </Col>
+      </Row>
+      <Row>
+        <Col className='nav_category_area'>
           <ul className='nav_category'>
-            {menuList.map((menu,index)=>(
-              <li key={index}>
-                <button>
-                  {menu}
-                </button>
+              {menuList.map((menu,index)=>(
+                <li key={index}>
+                  <button>
+                    {menu}
+                  </button>
                 </li>
-            ))}
+              ))}
           </ul>
-        </div>
-      </div>
+        </Col>
+      </Row>
     </Container>
   );
 };
