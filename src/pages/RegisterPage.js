@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { userActions } from '../action/userAction';
 import '../style/css/RegisterPage.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash, faSlash } from '@fortawesome/free-solid-svg-icons';
 const RegisterPage = () => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -20,6 +22,9 @@ const RegisterPage = () => {
   const [passwordValid, setPasswordValid] = useState(false);
   const [emailError, setEmailError] = useState('');
   const error = useSelector((state) => state.user.error);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const register = (event) => {
     event.preventDefault();
     const { email, name, password, confirmPassword, contact } = formData;
@@ -99,9 +104,17 @@ const RegisterPage = () => {
     }
   }, [error]);
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
   return (
     <Container className="register_area d-flex justify-content-center align-items-center">
-      <h2 className="register_title">JOIN</h2>
+      <h2 className="register_title">회원가입</h2>
       {/* {error && (
         <div className="register_error_message">
           <Alert variant="danger" className="error-message">
@@ -151,29 +164,52 @@ const RegisterPage = () => {
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            id="password"
-            placeholder="Password"
-            onChange={handleChange}
-            required
-          />
+          <div className="password_input_wrap">
+            <Form.Control
+              type={showPassword ? 'text' : 'password'}
+              id="password"
+              placeholder="Password"
+              onChange={handleChange}
+              required
+            />
+            <span
+              className="password_toggle_icon"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? (
+                <FontAwesomeIcon icon={faEye} />
+              ) : (
+                <FontAwesomeIcon icon={faEyeSlash} />
+              )}
+            </span>
+          </div>
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type="password"
-            id="confirmPassword"
-            placeholder="Confirm Password"
-            onChange={handleChange}
-            required
-            isInvalid={!!passwordError}
-            // isValid={passwordValid}
-            onFocus={() => setPasswordError('')}
-          />
-          <Form.Control.Feedback type="invalid">
-            {passwordError}
-          </Form.Control.Feedback>
+          <div className="password_input_wrap">
+            <Form.Control
+              type={showConfirmPassword ? 'text' : 'password'}
+              id="confirmPassword"
+              placeholder="Confirm Password"
+              onChange={handleChange}
+              required
+              isInvalid={!!passwordError}
+              onFocus={() => setPasswordError('')}
+            />
+            <span
+              className="password_toggle_icon"
+              onClick={toggleConfirmPasswordVisibility}
+            >
+              {showConfirmPassword ? (
+                <FontAwesomeIcon icon={faEye} />
+              ) : (
+                <FontAwesomeIcon icon={faEyeSlash} />
+              )}
+            </span>
+            <Form.Control.Feedback type="invalid" className="d-block">
+              {passwordError}
+            </Form.Control.Feedback>
+          </div>
           {/* <Form.Control.Feedback type="valid">
             비밀번호가 일치합니다.
           </Form.Control.Feedback> */}

@@ -20,9 +20,9 @@ function userReducer(state = initialState, action) {
     case types.LOGIN_WITH_TOKEN_SUCCESS:
     case types.GOOGLE_LOGIN_SUCCESS:
     case types.KAKAO_LOGIN_SUCCESS:
-      return { ...state, loading: false, user: payload.user };
+      return { ...state, loading: false, user: payload.user, error: '' };
     case types.GET_USER_LIST_SUCCESS:
-      return { ...state, loading: false, userList: payload };
+      return { ...state, loading: false, userList: payload, error: '' };
     case types.REGISTER_USER_FAIL:
     case types.LOGIN_FAIL:
     case types.LOGIN_WITH_TOKEN_FAIL:
