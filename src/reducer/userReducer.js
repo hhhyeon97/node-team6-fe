@@ -5,6 +5,7 @@ const initialState = {
   error: '',
   userList: [],
   totalPageNum: 1,
+  selectedUser: null,
 };
 
 function userReducer(state = initialState, action) {
@@ -40,6 +41,8 @@ function userReducer(state = initialState, action) {
       };
     case types.LOGOUT:
       return { ...state, user: null };
+    case types.SET_SELECTED_USER:
+      return{...state, selectedUser: payload}  
     default:
       return state;
   }
