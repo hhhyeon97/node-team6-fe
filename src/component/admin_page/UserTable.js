@@ -1,6 +1,8 @@
 import React from "react";
 import { Table, Badge } from "react-bootstrap";
 import { convertToKST } from "../../utils/Date";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 const UserTable = ({ header, userList, openEditForm }) => {
   return (
@@ -17,7 +19,23 @@ const UserTable = ({ header, userList, openEditForm }) => {
           {userList.length > 0 ? (
             userList.map((user, index) => (
               <tr onClick={() => openEditForm(user)} className="order-table-item">
-              <th>{user.image}{user.name}</th>
+              <th>
+                {user.image ? (
+                  <img 
+                    src={user.image}
+                    alt={user.name} 
+                    style={{ width: '23px', height: '23px', objectFit: 'cover' }} 
+                    onError={(e) => e.target.src = 'https://iconspng.com/_next/image?url=https%3A%2F%2Ficonspng.com%2Fimages%2Fabstract-user-icon-3%2Fabstract-user-icon-3.jpg&w=1080&q=75'}
+                  />
+                ) : (
+                  <img 
+                    src='https://iconspng.com/_next/image?url=https%3A%2F%2Ficonspng.com%2Fimages%2Fabstract-user-icon-3%2Fabstract-user-icon-3.jpg&w=1080&q=75'
+                    alt={user.name} 
+                    style={{ width: '23px', height: '23px', objectFit: 'cover' }} 
+                  />
+                )}
+                {user.name}
+              </th>
               <th>{user.level.toUpperCase()}</th>
               <th>{user.email}</th>
               <th>{user.contact}</th>
