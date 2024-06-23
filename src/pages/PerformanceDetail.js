@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { perfomanceListAction } from "../action/perfomanceListAction";
 import '../style/css/DetailPage.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faCaretUp, faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import KaKaoMap from "../component/KaKaoMap";
 import CopyClipButton from "../component/CopyClipButton";
+import { useDispatch, useSelector } from "react-redux";
+
 import KakaoClipButton from "../component/KakaoClipButton";
 
+const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
+
 const PerformanceDetail = () => {
-    const [loading, setLoading] = useState(false)
-    const [errorMsg, setErrorMsg] = useState('')
-    const [detailData, setDetailData] = useState()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const { loading } = useSelector(state => state.list)
+    const { error } = useSelector(state => state.list)
+
+    const { detailData } = useSelector(state => state.list)
+
     const [selectTicketNum, setSelectTicketNum] = useState(1)
     const { id } = useParams()
 
@@ -22,14 +31,18 @@ const PerformanceDetail = () => {
     const [hidden, setHidden] = useState(true)
     const [location, setLocation] = useState('')
 
-    const [lat, setLat] = useState()
-    const [lot, setLot] = useState()
+    const { locationLat } = useSelector(state => state.list)
+    const { locationLot } = useSelector(state => state.list)
 
     const ticketNumList = [1, 2, 3, 4, 5]
 
+    const settingQuery = {
+        service: REACT_APP_YEJIN_SERVICE_KEY,
+    }
+
     useEffect(() => {
-        perfomanceListAction.getPerformanceDetail({ setLoading, setErrorMsg, id, setDetailData })
-    }, [])
+        dispatch(perfomanceListAction.getPerformanceDetail(id, settingQuery))
+    }, [id])
 
     useEffect(() => {
         console.log('detailData: ', detailData)
@@ -40,19 +53,15 @@ const PerformanceDetail = () => {
     }, [detailData])
 
     useEffect(() => {
-        perfomanceListAction.getLocationLatLot({ setLoading, setErrorMsg, location, setLat, setLot })
+        dispatch(perfomanceListAction.getLocationLatLot(location, settingQuery))
     }, [location])
-
-    useEffect(() => {
-        // console.log('setLat, setLot', lat, lot)
-    }, [lat, lot])
 
     const showDetail = () => {
         setHidden(!hidden)
     }
 
     const movePage = (detailData) => {
-        navigator('/reservation', detailData)
+        navigate(`/reservation/${id}`)
     }
 
     return (
@@ -138,7 +147,7 @@ const PerformanceDetail = () => {
                             <FontAwesomeIcon icon={faLocationDot} size="xl" />{detailData.fcltynm}
                         </div>
                         {
-                            lat && lot ? (<KaKaoMap lat={lat} lot={lot} />) : null
+                            locationLat && locationLot ? (<KaKaoMap lat={locationLat} lot={locationLot} />) : null
                         }
                     </div>
 
