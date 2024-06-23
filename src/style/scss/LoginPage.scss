@@ -85,4 +85,16 @@
   .sns_btn_area button {
     margin: auto 5px;
   }
+  .password_input_wrap {
+    position: relative;
+  }
+
+  .password_toggle_icon {
+    position: absolute;
+    top: 65%;
+    right: 15px;
+    transform: translateY(-65%);
+    cursor: pointer;
+    color: #bbb;
+  }
 }

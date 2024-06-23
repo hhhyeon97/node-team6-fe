@@ -23,13 +23,17 @@ function userReducer(state = initialState, action) {
     case types.LOGIN_WITH_TOKEN_SUCCESS:
     case types.GOOGLE_LOGIN_SUCCESS:
     case types.KAKAO_LOGIN_SUCCESS:
-      return { ...state, loading: false, user: payload.user };
+      return { ...state, loading: false, user: payload.user, error: '' };
     case types.GET_USER_LIST_SUCCESS:
-      return {  ...state, loading: false, error: '',
-                userList: payload.data,
-                totalPageNum: payload.totalPageNum  };
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        userList: payload.data,
+        totalPageNum: payload.totalPageNum,
+      };
     case types.UPDATE_LEVEL_SUCCESS:
-      return { ...state, loading: false, error: ''}
+      return { ...state, loading: false, error: '' };
     case types.REGISTER_USER_FAIL:
     case types.LOGIN_FAIL:
     case types.LOGIN_WITH_TOKEN_FAIL:
@@ -45,7 +49,7 @@ function userReducer(state = initialState, action) {
     case types.LOGOUT:
       return { ...state, user: null };
     case types.SET_SELECTED_USER:
-      return{...state, selectedUser: payload}  
+      return { ...state, selectedUser: payload };
     default:
       return state;
   }

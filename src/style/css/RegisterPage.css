@@ -14,7 +14,7 @@
   width: 100%;
 }
 .register_area .register_title {
-  font-family: 'Gsans_B';
+  font-family: "Gsans_B";
   font-size: 35px;
   letter-spacing: 3px;
   border-bottom: 5px solid #181818;
@@ -35,4 +35,18 @@
 }
 .register_area .register_btn:hover {
   background-color: #505253;
+}
+.register_area .password_input_wrap {
+  position: relative;
+}
+.register_area .password_toggle_icon {
+  position: absolute;
+  top: 65%;
+  right: 15px;
+  transform: translateY(-65%);
+  cursor: pointer;
+  color: #bbb;
+}
+.register_area .form-control.is-invalid ~ .password_toggle_icon {
+  display: none;
 }
