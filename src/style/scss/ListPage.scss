@@ -20,6 +20,59 @@
     font-size: 1em;
     margin-bottom: 10px;
   }
+
+  .LegionDropContainer {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+
+    .regionDrop {
+      margin-bottom: 0;
+      border: solid 1px black;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      padding: 0;
+      width: fit-content;
+      padding: 5px 10px;
+
+      position: relative;
+
+      svg {
+        margin-left: 5px;
+      }
+
+      ul {
+        padding: 0;
+        margin: 0;
+      }
+
+      .liBox {
+        position: absolute;
+        border: solid 1px black;
+        width: 100%;
+        left: 0;
+        top: 20px;
+        background-color: white;
+        border-radius: 8px;
+        animation: slideDown 0.8s forwards;
+        z-index: 2;
+
+        li {
+          list-style: none;
+          cursor: pointer;
+          padding: 2px 0;
+        }
+
+        li:hover {
+          background-color: black;
+          color: white;
+        }
+      }
+    }
+  }
 }
 
 .ListPageMainBox {
@@ -123,57 +176,6 @@
           background-color: #bbb;
           color: white;
           border-color: #bbb;
-        }
-      }
-    }
-  }
-
-  .LegionDropContainer {
-    display: flex;
-    justify-content: end;
-    height: fit-content;
-
-    .regionDrop {
-      border: solid 1px black;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 5px;
-      padding: 0;
-      width: fit-content;
-      padding: 5px 10px;
-
-      position: relative;
-
-      svg {
-        margin-left: 5px;
-      }
-
-      ul {
-        padding: 0;
-        margin: 0;
-      }
-
-      .liBox {
-        position: absolute;
-        border: solid 1px black;
-        width: 100%;
-        left: 0;
-        top: 20px;
-        background-color: white;
-        border-radius: 8px;
-        animation: slideDown 0.8s forwards;
-
-        li {
-          list-style: none;
-          cursor: pointer;
-          padding: 2px 0;
-        }
-
-        li:hover {
-          background-color: black;
-          color: white;
         }
       }
     }
