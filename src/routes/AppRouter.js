@@ -16,6 +16,7 @@ import AdminUserPage from '../pages/admin_page/AdminUserPage';
 import AdminReviewPage from '../pages/admin_page/AdminReviewPage';
 import AdminNoticePage from '../pages/admin_page/AdminNoticePage';
 import MainPage from '../pages/MainPage';
+import ReservationPage from '../pages/ReservationPage';
 
 const AppRouter = () => {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const AppRouter = () => {
       <Route path="/" element={<MainPage />} />
       <Route path="/performance" element={<ListPage />} />
       <Route path="/performance/:id" element={<PerformanceDetail />} />
+      <Route path='/reservation' element={<ReservationPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route

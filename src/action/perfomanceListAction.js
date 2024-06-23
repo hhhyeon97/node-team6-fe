@@ -8,7 +8,6 @@ const { DOMParser } = require('xmldom');
 const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
 
 
-
 // xml -> json
 function xmlToJson(xml) {
     var obj = {};
@@ -71,8 +70,8 @@ function cleanUp(obj) {
 // api 데이터 호출
 
 // 공연 리스트 호출
-const getPerformanceList = async ({ setLoading, setPerformanceListData, setErrorMsg, selectDate, status }) => {
-    console.log('recieve status:', status)
+const getPerformanceList = async ({ setLoading, setPerformanceListData, setErrorMsg, selectDate, status, selectedRegion }) => {
+    console.log('recieve selectedRegion:', selectedRegion)
 
     if (!selectDate) {
         console.error('Error: selectDate is undefined');
@@ -87,6 +86,7 @@ const getPerformanceList = async ({ setLoading, setPerformanceListData, setError
             eddate: EndDateformat(selectDate),
             cpage: 1,
             rows: 10,
+            signgucode: selectedRegion ? selectedRegion.code : '',
             prfstate: status ? status : '02',
         }).toString();
 
@@ -95,7 +95,7 @@ const getPerformanceList = async ({ setLoading, setPerformanceListData, setError
         let url = `https://corsproxy.io/?http://www.kopis.or.kr/openApi/restful/pblprfr?${queryParams.toString()}`
         setLoading(true)
 
-        // console.log('call url:', url)
+        console.log('call url:', url)
 
         const response = await fetch(url)
         if (!response.ok) throw new Error("Failed to fetch data");
@@ -117,6 +117,21 @@ const getPerformanceList = async ({ setLoading, setPerformanceListData, setError
         setLoading(false)
     }
 }
+
+// const getPerformanceList = (query) => async (dispatch) => {
+//     try {
+//         dispatch({ type: types.PRODUCT_GET_REQUEST })
+//         const response = await api.get("/product", {
+//             params: { ...query }
+//         })
+//         console.log("response data", response)
+//         if (response.status !== 200) throw new Error(response.error)
+//         dispatch({ type: types.PRODUCT_GET_SUCCESS, payload: response.data })
+//         // console.log("product data", response.data.data)
+//     } catch (error) {
+//         dispatch({ type: types.PRODUCT_GET_FAIL, payload: error.error })
+//     }
+// };
 
 // 상세 정보 호출
 const getPerformanceDetail = async ({ setLoading, setErrorMsg, id, setDetailData }) => {

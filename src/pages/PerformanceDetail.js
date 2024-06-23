@@ -47,19 +47,12 @@ const PerformanceDetail = () => {
         // console.log('setLat, setLot', lat, lot)
     }, [lat, lot])
 
-
-    function Dropdown() {
-        return (
-            <div className="liBox">
-                {ticketNumList.map((num) => (
-                    <li onClick={() => setSelectTicketNum(num)}>{num}개</li>
-                ))}
-            </div>
-        );
-    }
-
     const showDetail = () => {
         setHidden(!hidden)
+    }
+
+    const movePage = (detailData) => {
+        navigator('/reservation', detailData)
     }
 
     return (
@@ -99,16 +92,16 @@ const PerformanceDetail = () => {
                                 </Col>
                             </Row>
                             <Row className="DetailButtonBox">
-                                <Col lg={3} md={3} sm={3} className="ticketNum">
+                                {/* <Col lg={3} md={3} sm={3} className="ticketNum">
                                     <ul onClick={() => { setView(!view) }}>
                                         수량 {selectTicketNum}개 {""}
                                         {view ? <FontAwesomeIcon icon={faCaretUp} /> : <FontAwesomeIcon icon={faCaretDown} />}
                                         {view && <Dropdown />}
                                     </ul>
-                                </Col>
-                                <Col lg={8} md={8} sm={8} className="reservationBtnBox">
-                                    <button className="reserveBtn">예매하기</button>
-                                </Col>
+                                </Col> */}
+                                <div className="reservationBtnBox">
+                                    <button className="reserveBtn" onClick={() => { movePage(detailData) }}>예매하기</button>
+                                </div>
                             </Row>
                         </Col>
                     </Row>
