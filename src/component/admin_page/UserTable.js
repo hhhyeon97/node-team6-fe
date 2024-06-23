@@ -1,5 +1,6 @@
 import React from "react";
 import { Table, Badge } from "react-bootstrap";
+import { convertToKST } from "../../utils/Date";
 
 const UserTable = ({ header, userList, openEditForm }) => {
   return (
@@ -20,7 +21,7 @@ const UserTable = ({ header, userList, openEditForm }) => {
               <th>{user.level.toUpperCase()}</th>
               <th>{user.email}</th>
               <th>{user.contact}</th>
-              <th>{user.createdAt}</th>
+              <th>{convertToKST(user.createdAt)}</th>
               </tr>
             ))
           ) : (
