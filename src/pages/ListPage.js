@@ -20,8 +20,8 @@ const ListPage = () => {
     const [view, setView] = useState(false);
     const [selectedRegion, setSelectedRegion] = useState('')
 
-    const loading = useSelector(state => state.list.loading)
-    const error = useSelector(state => state.list.error)
+    const { loading } = useSelector(state => state.list)
+    const { error } = useSelector(state => state.list)
 
     const [showPage, setShowPage] = useState(1)
     const [status, setStatus] = useState('02')

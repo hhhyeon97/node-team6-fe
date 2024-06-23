@@ -22,7 +22,7 @@ function listReducer(state = initialState, action) {
 
     switch (type) {
         case types.PERFORMANCELIST_GET_REQUEST:
-            return { ...state, loading: false }
+            return { ...state, loading: true }
 
         case types.PERFORMANCELIST_GET_SUCCESS:
             return { ...state, loading: false, PerformanceListData: payload }
