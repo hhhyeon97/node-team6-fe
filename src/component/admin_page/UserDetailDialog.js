@@ -3,6 +3,7 @@ import { Form, Modal, Button, Col, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { USER_LEVELS } from '../../constants/user.constants';
 import { userActions } from '../../action/userAction';
+import { convertToKST } from "../../utils/Date";
 
 const UserDetailDialog = ({ open, handleClose, setSearchQuery }) => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const UserDetailDialog = ({ open, handleClose, setSearchQuery }) => {
         <div>회원등급 : {selectedUser.level.toUpperCase()}</div>
         <div>이메일 : {selectedUser.email}</div>
         <div>연락처 : {selectedUser.contact}</div>
-        <div>가입일자 : {selectedUser.createdAt}</div>
+        <div>가입일자 : {convertToKST(selectedUser.createdAt)}</div>
           
         <Form onSubmit={submitLevel}>
           <Form.Group as={Col} controlId="status">

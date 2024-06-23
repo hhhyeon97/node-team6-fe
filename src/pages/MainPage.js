@@ -5,9 +5,12 @@ import '../style/css/MainPage.css';
 
 const MainPage = () => {
   return (
-    <Container className='wrap-container'>
-      <MonthPerformance />
-    </Container>
+    <div>
+      <Container className='wrap-container'>
+        <MonthPerformance />
+      </Container>
+    </div>
+    
   );
 };
 

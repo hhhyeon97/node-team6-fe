@@ -11,7 +11,6 @@ import ReservationByDate from '../pages/mypage/ReservationByDate';
 import ViewAllReservations from '../pages/mypage/ViewAllReservations';
 import MyReviews from '../pages/mypage/MyReviews';
 import EditProfile from '../pages/mypage/EditProfile';
-import AdminPageLayout from '../Layout/AdminPageLayout';
 import AdminUserPage from '../pages/admin_page/AdminUserPage';
 import AdminReviewPage from '../pages/admin_page/AdminReviewPage';
 import AdminNoticePage from '../pages/admin_page/AdminNoticePage';
