@@ -2,7 +2,8 @@ import React from 'react';
 import ReactPaginate from 'react-paginate';
 
 const Pagination = ({ totalPageNum, forcePage, onPageChange }) => {
-
+  const isFirstPage = forcePage === 0; // forcePage가 0일 때 첫 번째 페이지로 간주
+  const isLastPage = forcePage === totalPageNum - 1;
     return (
       <ReactPaginate
         nextLabel=">"
@@ -15,9 +16,9 @@ const Pagination = ({ totalPageNum, forcePage, onPageChange }) => {
         renderOnZeroPageCount={null}
         pageClassName="page-item"
         pageLinkClassName="page-link"
-        previousClassName="page-item"
+        previousClassName={`pre ${isFirstPage ? 'pg_disabled' : ''}`}
         previousLinkClassName="page-link"
-        nextClassName="page-item"
+        nextClassName={`next ${isLastPage ? 'pg_disabled' : ''}`}
         nextLinkClassName="page-link"
         breakLabel="..."
         breakClassName="page-item"
