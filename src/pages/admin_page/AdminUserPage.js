@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { Col, Row, Container, Button } from "react-bootstrap";
 import * as types from "../../constants/user.constants";
-import AdminPageLayout from '../../Layout/AdminPageLayout';
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from '../../action/userAction';
 import LinedTitle from '../../component/LinedTitle';
@@ -69,7 +68,6 @@ const AdminUserPage = () => {
   };
 
   return(
-    <AdminPageLayout>
       <div className="admin_user_container">
         <SearchBox
             searchQuery={searchQuery}
@@ -95,7 +93,6 @@ const AdminUserPage = () => {
 
       { open && <UserDetailDialog open={open} handleClose={handleClose} setSearchQuery={setSearchQuery} />}
       </div>
-    </AdminPageLayout>
   );
 }
 
