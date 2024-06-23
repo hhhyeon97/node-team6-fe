@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Modal, Button, Col, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { USER_LEVELS } from '../../constants/user.constants';
+import { userActions } from '../../action/userAction';
 
 const UserDetailDialog = ({ open, handleClose, setSearchQuery }) => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const UserDetailDialog = ({ open, handleClose, setSearchQuery }) => {
     setLevel(event.target.value);
   };
   const submitLevel = () => {
-    // dispatch(orderActions.updateOrder(selectedOrder._id, orderStatus, setSearchQuery));
+    dispatch(userActions.updateUserLevel(selectedUser._id, level, setSearchQuery));
     handleClose();
   };
 
