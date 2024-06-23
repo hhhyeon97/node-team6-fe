@@ -54,3 +54,23 @@ body {
   color: #000;
   font-size: 30px;
 }
+
+/* nc_pagination */
+.nc_pagination{
+  display: flex;
+  justify-content: center;
+}
+
+.nc_pagination .page-item{
+  padding: 0 12px;
+  color: #bbb;
+}
+
+.nc_pagination .page-item.active{
+  font-family: Gsans_B;
+  color: #000;
+}
+.pg_disabled {
+  opacity: .5;
+  pointer-events: none;
+}
