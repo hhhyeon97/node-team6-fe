@@ -18,6 +18,51 @@
   font-size: 1em;
   margin-bottom: 10px;
 }
+.ListPageTitle .LegionDropContainer {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+.ListPageTitle .LegionDropContainer .regionDrop {
+  margin-bottom: 0;
+  border: solid 1px black;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding: 0;
+  width: fit-content;
+  padding: 5px 10px;
+  position: relative;
+}
+.ListPageTitle .LegionDropContainer .regionDrop svg {
+  margin-left: 5px;
+}
+.ListPageTitle .LegionDropContainer .regionDrop ul {
+  padding: 0;
+  margin: 0;
+}
+.ListPageTitle .LegionDropContainer .regionDrop .liBox {
+  position: absolute;
+  border: solid 1px black;
+  width: 100%;
+  left: 0;
+  top: 20px;
+  background-color: white;
+  border-radius: 8px;
+  animation: slideDown 0.8s forwards;
+  z-index: 2;
+}
+.ListPageTitle .LegionDropContainer .regionDrop .liBox li {
+  list-style: none;
+  cursor: pointer;
+  padding: 2px 0;
+}
+.ListPageTitle .LegionDropContainer .regionDrop .liBox li:hover {
+  background-color: black;
+  color: white;
+}
 
 .ListPageMainBox {
   border-top: #bbb 2px solid;
@@ -108,49 +153,6 @@
   background-color: #bbb;
   color: white;
   border-color: #bbb;
-}
-.ListPageMainBox .LegionDropContainer {
-  display: flex;
-  justify-content: end;
-  height: fit-content;
-}
-.ListPageMainBox .LegionDropContainer .regionDrop {
-  border: solid 1px black;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  padding: 0;
-  width: fit-content;
-  padding: 5px 10px;
-  position: relative;
-}
-.ListPageMainBox .LegionDropContainer .regionDrop svg {
-  margin-left: 5px;
-}
-.ListPageMainBox .LegionDropContainer .regionDrop ul {
-  padding: 0;
-  margin: 0;
-}
-.ListPageMainBox .LegionDropContainer .regionDrop .liBox {
-  position: absolute;
-  border: solid 1px black;
-  width: 100%;
-  left: 0;
-  top: 20px;
-  background-color: white;
-  border-radius: 8px;
-  animation: slideDown 0.8s forwards;
-}
-.ListPageMainBox .LegionDropContainer .regionDrop .liBox li {
-  list-style: none;
-  cursor: pointer;
-  padding: 2px 0;
-}
-.ListPageMainBox .LegionDropContainer .regionDrop .liBox li:hover {
-  background-color: black;
-  color: white;
 }
 .ListPageMainBox .CalenderBox {
   border: solid 1px blue;

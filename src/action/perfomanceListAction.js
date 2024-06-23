@@ -70,38 +70,68 @@ function cleanUp(obj) {
 // api 데이터 호출
 
 // 공연 리스트 호출
-const getPerformanceList = async ({ setLoading, setPerformanceListData, setErrorMsg, selectDate, status, selectedRegion }) => {
-    console.log('recieve selectedRegion:', selectedRegion)
+// const getPerformanceList = async ({ setLoading, setPerformanceListData, setErrorMsg, selectDate, status, selectedRegion }) => {
+//     console.log('recieve selectedRegion:', selectedRegion)
 
-    if (!selectDate) {
-        console.error('Error: selectDate is undefined');
-        setErrorMsg('Invalid date selected');
-        return;
-    }
+//     if (!selectDate) {
+//         console.error('Error: selectDate is undefined');
+//         setErrorMsg('Invalid date selected');
+//         return;
+//     }
 
+//     try {
+//         const queryParams = new URLSearchParams({
+//             service: REACT_APP_YEJIN_SERVICE_KEY,
+//             stdate: StringDateformat(selectDate),
+//             eddate: EndDateformat(selectDate),
+//             cpage: 1,
+//             rows: 10,
+//             signgucode: selectedRegion ? selectedRegion.code : '',
+//             prfstate: status ? status : '02',
+//         }).toString();
+
+//         // ['01', '02'].forEach(state => queryParams.append('prfstate', state));
+
+//         let url = `https://corsproxy.io/?http://www.kopis.or.kr/openApi/restful/pblprfr?${queryParams.toString()}`
+//         setLoading(true)
+
+//         console.log('call url:', url)
+
+//         const response = await fetch(url)
+//         if (!response.ok) throw new Error("Failed to fetch data");
+//         const xmlText = await response.text();
+//         // console.log("xmlText:", xmlText)
+
+//         const domParser = new DOMParser();
+//         const XmlNode = domParser.parseFromString(xmlText, 'text/xml');
+//         const jsonData = xmlToJson(XmlNode)
+
+//         const cleanedData = cleanUp(jsonData);
+//         // console.log("Cleaned json data:", cleanedData.dbs.db); // 불필요한거 지우기
+
+//         setPerformanceListData(cleanedData.dbs.db)
+//         setLoading(false)
+//     } catch (error) {
+//         setErrorMsg(error)
+//         console.log("get data error:", error)
+//         setLoading(false)
+//     }
+// }
+
+const getPerformanceList = (query, settingQuery) => async (dispatch) => {
     try {
-        const queryParams = new URLSearchParams({
-            service: REACT_APP_YEJIN_SERVICE_KEY,
-            stdate: StringDateformat(selectDate),
-            eddate: EndDateformat(selectDate),
-            cpage: 1,
-            rows: 10,
-            signgucode: selectedRegion ? selectedRegion.code : '',
-            prfstate: status ? status : '02',
-        }).toString();
+        dispatch({ type: types.PERFORMANCELIST_GET_REQUEST })
 
-        // ['01', '02'].forEach(state => queryParams.append('prfstate', state));
+        const params = new URLSearchParams({ ...query, ...settingQuery });
+        let url = `https://corsproxy.io/?http://www.kopis.or.kr/openApi/restful/pblprfr?${params.toString()}`
 
-        let url = `https://corsproxy.io/?http://www.kopis.or.kr/openApi/restful/pblprfr?${queryParams.toString()}`
-        setLoading(true)
-
-        console.log('call url:', url)
+        console.log('url', url)
 
         const response = await fetch(url)
-        if (!response.ok) throw new Error("Failed to fetch data");
-        const xmlText = await response.text();
-        // console.log("xmlText:", xmlText)
 
+        if (response.status !== 200) throw new Error(response.error)
+
+        const xmlText = await response.text();
         const domParser = new DOMParser();
         const XmlNode = domParser.parseFromString(xmlText, 'text/xml');
         const jsonData = xmlToJson(XmlNode)
@@ -109,29 +139,11 @@ const getPerformanceList = async ({ setLoading, setPerformanceListData, setError
         const cleanedData = cleanUp(jsonData);
         // console.log("Cleaned json data:", cleanedData.dbs.db); // 불필요한거 지우기
 
-        setPerformanceListData(cleanedData.dbs.db)
-        setLoading(false)
+        dispatch({ type: types.PERFORMANCELIST_GET_SUCCESS, payload: cleanedData.dbs.db })
     } catch (error) {
-        setErrorMsg(error)
-        console.log("get data error:", error)
-        setLoading(false)
+        dispatch({ type: types.PERFORMANCELIST_GET_FAIL, payload: error.message })
     }
-}
-
-// const getPerformanceList = (query) => async (dispatch) => {
-//     try {
-//         dispatch({ type: types.PRODUCT_GET_REQUEST })
-//         const response = await api.get("/product", {
-//             params: { ...query }
-//         })
-//         console.log("response data", response)
-//         if (response.status !== 200) throw new Error(response.error)
-//         dispatch({ type: types.PRODUCT_GET_SUCCESS, payload: response.data })
-//         // console.log("product data", response.data.data)
-//     } catch (error) {
-//         dispatch({ type: types.PRODUCT_GET_FAIL, payload: error.error })
-//     }
-// };
+};
 
 // 상세 정보 호출
 const getPerformanceDetail = async ({ setLoading, setErrorMsg, id, setDetailData }) => {
