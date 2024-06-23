@@ -25,6 +25,26 @@
 .ListPageMainBox {
   border-top: #bbb 2px solid;
 
+  .sort_topButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 0;
+
+    .sortButtons {
+      display: flex;
+      justify-content: end;
+      padding: 0;
+
+      div {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+        cursor: pointer;
+      }
+    }
+  }
+
   .statusButtons {
     padding: 0;
     margin: 20px 0;
@@ -83,6 +103,78 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+
+        .state {
+          width: fit-content;
+          border-radius: 10px;
+          padding: 5px 10px;
+          font-size: 1em;
+          text-align: center;
+          border: 1px solid black;
+          margin-top: 10px;
+        }
+
+        .status_run {
+          color: white;
+          background-color: black;
+        }
+
+        .status_over {
+          background-color: #bbb;
+          color: white;
+          border-color: #bbb;
+        }
+      }
+    }
+  }
+
+  .LegionDropContainer {
+    display: flex;
+    justify-content: end;
+    height: fit-content;
+
+    .regionDrop {
+      border: solid 1px black;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      padding: 0;
+      width: fit-content;
+      padding: 5px 10px;
+
+      position: relative;
+
+      svg {
+        margin-left: 5px;
+      }
+
+      ul {
+        padding: 0;
+        margin: 0;
+      }
+
+      .liBox {
+        position: absolute;
+        border: solid 1px black;
+        width: 100%;
+        left: 0;
+        top: 20px;
+        background-color: white;
+        border-radius: 8px;
+        animation: slideDown 0.8s forwards;
+
+        li {
+          list-style: none;
+          cursor: pointer;
+          padding: 2px 0;
+        }
+
+        li:hover {
+          background-color: black;
+          color: white;
+        }
       }
     }
   }
