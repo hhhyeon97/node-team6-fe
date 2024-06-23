@@ -125,7 +125,7 @@ const getPerformanceList = (query, settingQuery) => async (dispatch) => {
         const params = new URLSearchParams({ ...query, ...settingQuery });
         let url = `https://corsproxy.io/?http://www.kopis.or.kr/openApi/restful/pblprfr?${params.toString()}`
 
-        console.log('url', url)
+        // console.log('url', url)
 
         const response = await fetch(url)
 
@@ -146,62 +146,57 @@ const getPerformanceList = (query, settingQuery) => async (dispatch) => {
 };
 
 // 상세 정보 호출
-const getPerformanceDetail = async ({ setLoading, setErrorMsg, id, setDetailData }) => {
+const getPerformanceDetail = (id, settingQuery) => async (dispatch) => {
     try {
-        const queryParams = new URLSearchParams({
-            service: REACT_APP_YEJIN_SERVICE_KEY,
-            newsql: 'Y'
-        }).toString();
+        dispatch({ type: types.GET_PERFORMANCE_DETAIL_REQUEST })
 
-        let url = `https://corsproxy.io/?http://www.kopis.or.kr/openApi/restful/pblprfr/${id}/?${queryParams.toString()}`
-        setLoading(true)
+        const params = new URLSearchParams({ ...settingQuery });
+
+        let url = `https://corsproxy.io/?http://www.kopis.or.kr/openApi/restful/pblprfr/${id}/?${params.toString()}`
 
         const response = await fetch(url)
-        if (!response.ok) throw new Error("Failed to fetch data");
-        const xmlText = await response.text();
 
+        if (!response.ok) throw new Error("Failed to fetch data");
+
+        const xmlText = await response.text();
         const domParser = new DOMParser();
         const XmlNode = domParser.parseFromString(xmlText, 'text/xml');
         const jsonData = xmlToJson(XmlNode)
 
         const cleanedData = cleanUp(jsonData);
 
-        setDetailData(cleanedData.dbs.db)
-        setLoading(false)
+        dispatch({ type: types.GET_PERFORMANCE_DETAIL_SUCCESS, payload: cleanedData.dbs.db })
+
     } catch (error) {
-        setErrorMsg(error)
-        console.log("get detail data error:", error)
-        setLoading(false)
+        dispatch({ type: types.GET_PERFORMANCE_DETAIL_FAIL, payload: error.message })
     }
 }
 
-const getLocationLatLot = async ({ setLoading, setErrorMsg, location, setLat, setLot }) => {
+const getLocationLatLot = (location, settingQuery) => async (dispatch) => {
     try {
-        const queryParams = new URLSearchParams({
-            service: REACT_APP_YEJIN_SERVICE_KEY,
-            newsql: 'Y'
-        }).toString();
+        dispatch({ type: types.GET_LOCATIONLATLOT_REQUEST })
 
-        let url = `https://corsproxy.io/?http://www.kopis.or.kr/openApi/restful/prfplc/${location}/?${queryParams.toString()}`
-        setLoading(true)
+        const params = new URLSearchParams({ ...settingQuery });
+
+        let url = `https://corsproxy.io/?http://www.kopis.or.kr/openApi/restful/prfplc/${location}/?${params.toString()}`
 
         const response = await fetch(url)
-        if (!response.ok) throw new Error("Failed to fetch data");
-        const xmlText = await response.text();
 
+        if (!response.ok) throw new Error("Failed to fetch data");
+
+        const xmlText = await response.text();
         const domParser = new DOMParser();
         const XmlNode = domParser.parseFromString(xmlText, 'text/xml');
         const jsonData = xmlToJson(XmlNode)
 
         const cleanedData = cleanUp(jsonData);
 
-        setLat(cleanedData.dbs.db.la)
-        setLot(cleanedData.dbs.db.lo)
-        setLoading(false)
+        dispatch({ type: types.GET_LOCATIONLATLOT_DETAIL_SUCCESS, payload: cleanedData.dbs.db })
+
+        // setLat(cleanedData.dbs.db.la)
+        // setLot(cleanedData.dbs.db.lo)
     } catch (error) {
-        setErrorMsg(error)
-        console.log("get location data error:", error)
-        setLoading(false)
+        dispatch({ type: types.GET_LOCATIONLATLOT_DETAIL_FAIL, payload: error.message })
     }
 }
 
