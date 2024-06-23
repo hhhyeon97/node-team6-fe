@@ -4,6 +4,7 @@ const initialState = {
   user: null,
   error: '',
   userList: [],
+  totalPageNum: 1,
 };
 
 function userReducer(state = initialState, action) {
@@ -22,7 +23,9 @@ function userReducer(state = initialState, action) {
     case types.KAKAO_LOGIN_SUCCESS:
       return { ...state, loading: false, user: payload.user };
     case types.GET_USER_LIST_SUCCESS:
-      return { ...state, loading: false, userList: payload };
+      return {  ...state, loading: false, 
+                userList: payload.data,
+                totalPageNum: payload.totalPageNum,  };
     case types.REGISTER_USER_FAIL:
     case types.LOGIN_FAIL:
     case types.LOGIN_WITH_TOKEN_FAIL:

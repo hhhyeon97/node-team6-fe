@@ -107,14 +107,15 @@ const logout = () => async (dispatch) => {
 };
 
 // 회원 리스트 가져오기 (admin)
-const getUserList = () => async (dispatch) => {
+const getUserList = (query) => async (dispatch) => {
   try {
     dispatch({ type: types.GET_USER_LIST_REQUEST });
-    const response = await api.get('/user');
+    const params = { ...query };
+    const response = await api.get('/user', { params });
     if (response.status !== 200) throw new Error(response.error);
     dispatch({
       type: types.GET_USER_LIST_SUCCESS,
-      payload: response.data.data,
+      payload: response.data,
     });
   } catch (error) {
     dispatch({ type: types.GET_USER_LIST_FAIL, payload: error.error });
