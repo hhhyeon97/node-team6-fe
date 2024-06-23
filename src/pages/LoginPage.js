@@ -3,7 +3,7 @@ import { Container, Form, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../action/userAction';
-import { GoogleLogin } from '@react-oauth/google';
+import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 import '../style/css/LoginPage.css';
 import SocialKakao from '../component/SocialKakao';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -30,9 +30,22 @@ const LoginPage = () => {
     dispatch(userActions.loginWithEmail({ email, password }));
   };
 
-  const handleGoogleLogin = async (googleData) => {
-    dispatch(userActions.loginWithGoogle(googleData.credential));
+  // const handleGoogleLogin = async (googleData) => {
+  //   dispatch(userActions.loginWithGoogle(googleData.credential));
+  // };
+
+  const handleGoogleLoginSuccess = (response) => {
+    dispatch(userActions.loginWithGoogle(response.access_token));
   };
+
+  const handleGoogleLoginError = () => {
+    console.log('Login Failed');
+  };
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: handleGoogleLoginSuccess,
+    onError: handleGoogleLoginError,
+  });
 
   const handleKakaoLogin = async (kakaoData) => {
     dispatch(userActions.loginWithKakao(kakaoData));
@@ -110,17 +123,21 @@ const LoginPage = () => {
               - &nbsp;<strong>SNS</strong> 계정으로 로그인하기 &nbsp;-
             </p>
             <div className="sns_btn_wrap">
-              <GoogleLogin
+              {/* <GoogleLogin
+                  onSuccess={handleGoogleLogin}
+                  onError={() => {
+                    console.log('Login Failed');
+                  }}
+                /> */}
+              {/* <button className="custom_google_btn" onClick={googleLogin}>
+                <img src="testImage/google.png" alt="구글" />
+              </button> */}
+              <button
                 className="custom_google_btn"
-                onSuccess={handleGoogleLogin}
-                onError={() => {
-                  console.log('Login Failed');
-                }}
-              />
-              <button className="custom_google_btn">
+                onClick={() => googleLogin()}
+              >
                 <img src="testImage/google.png" alt="구글" />
               </button>
-              {/*카카오 로그인 버튼*/}
               <SocialKakao
                 onSuccess={handleKakaoLogin}
                 onError={() => {

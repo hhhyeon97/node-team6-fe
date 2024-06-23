@@ -77,12 +77,16 @@
   align-items: center;
   justify-content: center;
 }
+.login_area .custom_google_btn img {
+  width: 20px;
+  height: 20px;
+}
 .login_area .sns_btn_wrap {
   display: flex;
   margin-bottom: 30px;
 }
 .login_area .sns_btn_area button {
-  margin: auto 5px;
+  margin: auto 10px;
 }
 .login_area .password_input_wrap {
   position: relative;
