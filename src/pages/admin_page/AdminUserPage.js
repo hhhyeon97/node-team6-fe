@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { Col, Row, Container } from "react-bootstrap";
+import { Col, Row, Container, Button } from "react-bootstrap";
 import * as types from "../../constants/user.constants";
 import AdminPageLayout from '../../Layout/AdminPageLayout';
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import LinedTitle from '../../component/LinedTitle';
 import Pagination from '../../component/Pagination';
 import UserTable from '../../component/admin_page/UserTable';
 import UserDetailDialog from '../../component/admin_page/UserDetailDialog';
+import SearchBox from '../../component/SearchBox';
 
 const AdminUserPage = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const AdminUserPage = () => {
   // [ userList 가져오기 ]
   useEffect(() => {
     dispatch(userActions.getUserList({ ...searchQuery }));
-  }, [query]);
+  }, [query, dispatch]);
 
   // [ 검색어나 페이지가 바뀌면 url바꿔주기 ]
   useEffect(() => {
@@ -48,6 +49,14 @@ const AdminUserPage = () => {
     setSearchQuery({...searchQuery, page: selected +1});
   };
 
+    // [ 검색 초기화 (All) ]
+    const resetSearch = () => {
+      setSearchQuery({
+        page: 1,
+        name: ""
+      });
+    };
+
   // [ 회원 정보 수정 form 열기 ]
   const openEditForm = (user) => {
     setOpen(true);
@@ -62,18 +71,15 @@ const AdminUserPage = () => {
   return(
     <AdminPageLayout>
       <div className="admin_user_container">
-        <LinedTitle title='회원관리' cap='회원 정보를 조회하고 회원등급을 수정할 수 있습니다'/>
-        {/* <ul>
-          {userList.map((user) => (
-            <li key={user.id} className='user_item'>
-              <div>{user.name}</div>
-              <div>{user.level}</div>
-              <div>{user.email}</div>
-              <div>{user.contact}</div>
-              <div>{user.createdAt}</div>
-            </li>
-          ))}
-        </ul> */}
+        <SearchBox
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            placeholder="회원명으로 검색해주세요"
+            field="name"
+        />
+        <Button onClick={resetSearch} variant="secondary">All</Button>
+
+        <LinedTitle title='회원관리' cap='회원 정보를 조회하고 회원등급을 수정할 수 있습니다'/>=
 
         <UserTable
           header={tableHeader}
