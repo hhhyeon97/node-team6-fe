@@ -17,7 +17,7 @@
   }
   .register_title {
     font-family: 'Gsans_B';
-    font-size: 40px;
+    font-size: 35px;
     letter-spacing: 3px;
     border-bottom: 5px solid #181818;
     padding-bottom: 15px;
@@ -37,5 +37,22 @@
   }
   .register_btn:hover {
     background-color: #505253;
+  }
+  .password_input_wrap {
+    position: relative;
+  }
+
+  .password_toggle_icon {
+    position: absolute;
+    top: 65%;
+    right: 15px;
+    transform: translateY(-65%);
+    cursor: pointer;
+    color: #bbb;
+  }
+
+  .form-control.is-invalid ~ .password_toggle_icon {
+    // right: 30px;
+    display: none;
   }
 }

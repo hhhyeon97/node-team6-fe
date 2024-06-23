@@ -1,5 +1,4 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 const KakaoLogin = () => {
   const KAKAO_REST_API_KEY = process.env.REACT_APP_KAKAO_REST_API_KEY;
   const KAKAO_REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI;
@@ -11,7 +10,7 @@ const KakaoLogin = () => {
   return (
     <div>
       <a href={kakaoToken} onClick={handleKakaoLogin}>
-        카카오 로그인
+        {/* 카카오 로그인 */}
       </a>
     </div>
   );

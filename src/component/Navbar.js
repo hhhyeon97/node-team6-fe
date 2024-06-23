@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { userActions } from '../action/userAction';
 import { useDispatch } from 'react-redux';
 // import '../style/Navbar2.css';
 import '../style/css/Navbar.css'
-import { faDoorOpen, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faDoorOpen, faHeart, faUnlock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Col, Container, Row } from 'react-bootstrap';
 const Navbar = ({ user }) => {
   const dispatch = useDispatch();
@@ -32,6 +32,10 @@ const Navbar = ({ user }) => {
           </a>
         </Col>
         <Col className="nav_user_menu nav_icon">
+          {user && user.level ? (
+            <div onClick={()=>navigate('/admin')}>
+              <FontAwesomeIcon icon={faUnlock} className='nav_user_icon'/>ADMIN
+            </div>):''}
           {user?(
             <div onClick={()=>navigate('/mypage')}>
               <FontAwesomeIcon icon={faUser} className='nav_user_icon'/> MY PAGE

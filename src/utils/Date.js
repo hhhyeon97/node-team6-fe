@@ -13,6 +13,23 @@ const Dateformat = (value) => {
     }
 }
 
+const mongodbTime = (value) => {
+    if (value) {
+        const date = new Date(value);
+        date.setHours(date.getHours() + 9);
+
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        // 월은 0부터 시작하므로 +1, padStart는 2자리를 기준으로 1자리만 들어오면 0으로 채우겠다는 의미
+
+        const formattedDate = `${year}.${month}.${day}`;
+
+        return formattedDate
+    }
+    return null
+}
+
 const StringDateformat = (value) => {
     if (value) {
         const date = value
@@ -42,4 +59,6 @@ const EndDateformat = (value) => {
     }
 
 }
+
+
 export { Dateformat, StringDateformat, EndDateformat };

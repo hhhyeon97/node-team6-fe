@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { userActions } from '../action/userAction';
 import '../style/css/RegisterPage.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash, faSlash } from '@fortawesome/free-solid-svg-icons';
 const RegisterPage = () => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -15,7 +17,14 @@ const RegisterPage = () => {
   });
   const navigate = useNavigate();
   const [passwordError, setPasswordError] = useState('');
+  const [contactError, setContactError] = useState('');
+  const [formError, setFormError] = useState('');
+  const [passwordValid, setPasswordValid] = useState(false);
+  const [emailError, setEmailError] = useState('');
   const error = useSelector((state) => state.user.error);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const register = (event) => {
     event.preventDefault();
     const { email, name, password, confirmPassword, contact } = formData;
@@ -24,9 +33,21 @@ const RegisterPage = () => {
       setPasswordError('비밀번호 중복 확인이 일치하지 않습니다 !');
       return;
     }
-    // FormData에 있는 값을 가지고 백엔드로 넘겨주기
+
+    // 전화번호 유효성 검사
+    const cleanedContact = contact.replace(/\D/g, '');
+    if (cleanedContact.length !== 11) {
+      setContactError('전화번호는 11자리 숫자여야 합니다.');
+      return;
+    }
+
     setPasswordError('');
-    setPasswordError(false);
+    setContactError('');
+    setFormError('');
+    setEmailError('');
+    // setPasswordError(false);
+
+    // FormData에 있는 값을 가지고 백엔드로 넘겨주기
     dispatch(
       userActions.registerUser({ name, email, password, contact }, navigate),
     );
@@ -36,12 +57,24 @@ const RegisterPage = () => {
   const handleChange = (event) => {
     event.preventDefault();
     // 값을 읽어서 FormData에 넣어주기
-    const { id, value, checked } = event.target;
-    // console.log(id, checked);
+    const { id, value } = event.target;
     const formattedValue = id === 'contact' ? formatPhoneNumber(value) : value;
 
     // setFormData({ ...formData, [id]: value });
     setFormData({ ...formData, [id]: formattedValue });
+
+    if (id === 'contact') {
+      const cleanedContact = formattedValue.replace(/\D/g, '');
+      if (cleanedContact.length === 11) {
+        setContactError('');
+      }
+    }
+
+    if (id === 'email') {
+      setEmailError('');
+      setFormError('');
+      dispatch(userActions.resetError());
+    }
   };
 
   const formatPhoneNumber = (value) => {
@@ -65,16 +98,30 @@ const RegisterPage = () => {
     dispatch(userActions.resetError());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (error) {
+      setEmailError(error);
+    }
+  }, [error]);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
   return (
     <Container className="register_area d-flex justify-content-center align-items-center">
-      <h2 className="register_title">JOIN</h2>
-      {error && (
+      <h2 className="register_title">회원가입</h2>
+      {/* {error && (
         <div className="register_error_message">
           <Alert variant="danger" className="error-message">
             {error}
           </Alert>
         </div>
-      )}
+      )} */}
       <Form className="register_form" onSubmit={register}>
         <Form.Group className="mb-3">
           <Form.Label>Email</Form.Label>
@@ -84,7 +131,11 @@ const RegisterPage = () => {
             placeholder="Email"
             onChange={handleChange}
             required
+            isInvalid={!!emailError}
           />
+          <Form.Control.Feedback type="invalid">
+            {emailError}
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>
@@ -105,31 +156,63 @@ const RegisterPage = () => {
             value={formData.contact}
             onChange={handleChange}
             required
+            isInvalid={!!contactError}
           />
+          <Form.Control.Feedback type="invalid">
+            {contactError}
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            id="password"
-            placeholder="Password"
-            onChange={handleChange}
-            required
-          />
+          <div className="password_input_wrap">
+            <Form.Control
+              type={showPassword ? 'text' : 'password'}
+              id="password"
+              placeholder="Password"
+              onChange={handleChange}
+              required
+            />
+            <span
+              className="password_toggle_icon"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? (
+                <FontAwesomeIcon icon={faEye} />
+              ) : (
+                <FontAwesomeIcon icon={faEyeSlash} />
+              )}
+            </span>
+          </div>
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type="password"
-            id="confirmPassword"
-            placeholder="Confirm Password"
-            onChange={handleChange}
-            required
-            isInvalid={!!passwordError}
-          />
-          <Form.Control.Feedback type="invalid">
-            {passwordError}
-          </Form.Control.Feedback>
+          <div className="password_input_wrap">
+            <Form.Control
+              type={showConfirmPassword ? 'text' : 'password'}
+              id="confirmPassword"
+              placeholder="Confirm Password"
+              onChange={handleChange}
+              required
+              isInvalid={!!passwordError}
+              onFocus={() => setPasswordError('')}
+            />
+            <span
+              className="password_toggle_icon"
+              onClick={toggleConfirmPasswordVisibility}
+            >
+              {showConfirmPassword ? (
+                <FontAwesomeIcon icon={faEye} />
+              ) : (
+                <FontAwesomeIcon icon={faEyeSlash} />
+              )}
+            </span>
+            <Form.Control.Feedback type="invalid" className="d-block">
+              {passwordError}
+            </Form.Control.Feedback>
+          </div>
+          {/* <Form.Control.Feedback type="valid">
+            비밀번호가 일치합니다.
+          </Form.Control.Feedback> */}
         </Form.Group>
         <button type="submit" className="register_btn">
           회원가입

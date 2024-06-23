@@ -1,28 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import KakaoLogin from 'react-kakao-login';
 import { userActions } from '../action/userAction';
 import { useDispatch } from 'react-redux';
+import '../style/css/LoginPage.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faComment } from '@fortawesome/free-solid-svg-icons';
 
 const SocialKakao = () => {
   const dispatch = useDispatch();
 
   const KAKAO_JAVA_SCRIPT_KEY = process.env.REACT_APP_KAKAO_JAVA_SCRIPT_KEY;
-  const kakaoOnSuccess = async (data) => {
-    console.log('데이터!', data);
-    const idToken = data.response.access_token; // 엑세스 토큰 백엔드로 전달
-    dispatch(userActions.loginWithKakao(idToken));
+
+  useEffect(() => {
+    // Kakao SDK 초기화
+    if (!window.Kakao.isInitialized()) {
+      window.Kakao.init(KAKAO_JAVA_SCRIPT_KEY);
+    }
+  }, [KAKAO_JAVA_SCRIPT_KEY]);
+
+  const handleKakaoLogin = () => {
+    window.Kakao.Auth.login({
+      success: function (authObj) {
+        const idToken = authObj.access_token;
+        dispatch(userActions.loginWithKakao(idToken));
+      },
+      fail: function (err) {
+        console.error(err);
+      },
+    });
   };
-  const kakaoOnFailure = (error) => {
-    console.log(error);
-  };
+
   return (
-    <>
-      <KakaoLogin
-        token={KAKAO_JAVA_SCRIPT_KEY}
-        onSuccess={kakaoOnSuccess}
-        onFail={kakaoOnFailure}
-      />
-    </>
+    <button className="custom_kakao_btn" onClick={handleKakaoLogin}>
+      <FontAwesomeIcon icon={faComment} className="kakao_icon" />
+    </button>
   );
 };
 
