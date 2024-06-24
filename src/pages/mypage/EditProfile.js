@@ -55,68 +55,78 @@ const EditProfile = () => {
   const uploadImage = (url) => {
     setFormData({...formData, image: url});
   };
+
+  // [ 저장하기(submit) ]
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(userActions.editUser({ ...formData }));
+  };
   
   return (
     <MyPageLayout title="나의 계정" cap="회원정보 수정">
-        <div>
-          <Form className='edit_user_form_container'>
+      <div>
+        <Form className='edit_user_form_container' onSubmit={handleSubmit}>
           <Form.Group as={Col} controlId="image">
               <Form.Label>프로필 이미지</Form.Label>
               <CloudinaryUploadWidget uploadImage={uploadImage} />
-              <img
-                id="uploadedimage"
-                src={formData.image}
-                className="upload-image mt-2"
-                alt="uploadedimage"
-              ></img>
+              <div class="edit_image_box">
+                <img
+                  id="uploadedimage"
+                  src={formData.image}
+                  className="upload-image mt-2"
+                  alt="uploadedimage"
+                ></img>
+              </div>
           </Form.Group>
-          
+
           <Form.Group as={Col} controlId="image">
-              <Form.Label>이메일</Form.Label>
-              <Form.Control
-                onChange={handleChange}
-                type="text"
-                placeholder="2자이상 10자 이하로 입력해주세요"
-                required
-                defaultValue={formData.email}
-                />
-            </Form.Group>
-
-            <Form.Group as={Col} controlId="name">
-              <Form.Label>이름</Form.Label>
-              <Form.Control
-                onChange={handleChange}
-                type="text"
-                placeholder="2자이상 10자 이하로 입력해주세요"
-                required
-                defaultValue={formData.name}
+            <Form.Label>이메일</Form.Label>
+            <Form.Control
+              onChange={handleChange}
+              type="text"
+              placeholder="2자이상 10자 이하로 입력해주세요"
+              required
+              defaultValue={formData.email}
               />
-            </Form.Group>
+          </Form.Group>
 
-            <Form.Group as={Col} controlId="name">
-              <Form.Label>이메일</Form.Label>
-              <Form.Control
-                onChange={handleChange}
-                type="text"
-                placeholder="2자이상 10자 이하로 입력해주세요"
-                required
-                defaultValue={formData.email}
-                />
-            </Form.Group>
+          <Form.Group as={Col} controlId="name">
+            <Form.Label>이름</Form.Label>
+            <Form.Control
+              onChange={handleChange}
+              type="text"
+              placeholder="2자이상 10자 이하로 입력해주세요"
+              required
+              defaultValue={formData.name}
+            />
+          </Form.Group>
 
-            <Form.Group as={Col} controlId="name">
-              <Form.Label>연락처</Form.Label>
-              <Form.Control
-                onChange={handleChange}
-                type="text"
-                placeholder="2자이상 10자 이하로 입력해주세요"
-                required
-                defaultValue={formData.contact}
-                />
-            </Form.Group>
+          <Form.Group as={Col} controlId="name">
+            <Form.Label>이메일</Form.Label>
+            <Form.Control
+              onChange={handleChange}
+              type="text"
+              placeholder="2자이상 10자 이하로 입력해주세요"
+              required
+              defaultValue={formData.email}
+              />
+          </Form.Group>
 
-          </Form>
-        </div>
+          <Form.Group as={Col} controlId="name">
+            <Form.Label>연락처</Form.Label>
+            <Form.Control
+              onChange={handleChange}
+              type="text"
+              placeholder="2자이상 10자 이하로 입력해주세요"
+              required
+              defaultValue={formData.contact}
+              />
+          </Form.Group>
+          <button className='edit_submit_btn' type="submit">
+            저장하기
+          </button>
+        </Form>
+      </div>
     </MyPageLayout>
   )
 }
