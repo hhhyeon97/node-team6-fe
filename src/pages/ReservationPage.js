@@ -5,7 +5,9 @@ import CalenderBox from '../component/CalenderBox';
 import '../style/css/ReservationPage.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
-import { Dateformat, numformat, priceformat } from '../utils/Date'
+import { Dateformat, cc_expires_format, numformat, priceformat } from '../utils/Date'
+import Cards from 'react-credit-cards-2';
+import PaymentForm from '../component/PaymentForm';
 
 const ReservationPage = () => {
     const { detailData } = useSelector(state => state.list)
@@ -19,6 +21,31 @@ const ReservationPage = () => {
     console.log('reservation page user:', user)
 
     const ticketNumList = [1, 2, 3, 4, 5]
+
+    // 카드 정보
+    const [cardValue, setCardValue] = useState({
+        number: '',
+        expiry: '',
+        cvc: '',
+        name: '',
+        focus: '',
+    });
+
+    const handlePaymentInfoChange = (event) => {
+        const { name, value } = event.target;
+
+        if (name === 'expiry') {
+            let newValue = cc_expires_format(value)
+            setCardValue({ ...cardValue, [name]: newValue });
+            return
+        }
+
+        setCardValue({ ...cardValue, [name]: value });
+    }
+
+    const handleInputFocus = (e) => {
+        setCardValue({ ...cardValue, focus: e.target.name })
+    }
 
     function Dropdown() {
         return (
@@ -36,16 +63,17 @@ const ReservationPage = () => {
         <Container className='wrap-container reservationPage'>
             {detailData ? (
                 <Row className='ReservationContainer'>
-                    <Col lg={6} md={6} sm={12}>
+                    <Col lg={7} md={7} sm={12} className='reservation_Right_Box'>
                         <div>
                             <div className='title'>관람일자 선택</div>
                             <CalenderBox selectDate={reservationDate} setSelectDate={setReservationDate} />
                         </div>
                         <div>
                             <div className='title'>결제정보</div>
+                            <PaymentForm cardValue={cardValue} handleInputFocus={handleInputFocus} handlePaymentInfoChange={handlePaymentInfoChange} />
                         </div>
                     </Col>
-                    <Col lg={6} md={6} sm={12} className='reservation_Info_Box'>
+                    <Col lg={5} md={5} sm={12} className='reservation_Info_Box'>
                         <div className='subTitle'>상품 정보</div>
                         <div className='Info_TopBox_performance under_line'>
                             <div className='poster_img'>

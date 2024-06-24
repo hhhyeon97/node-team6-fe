@@ -58,12 +58,19 @@
       min-height: 200px;
     }
   }
+  .reservation_Right_Box {
+    max-width: 56%;
+
+    .creditCard {
+      justify-content: space-between;
+    }
+  }
 
   .reservation_Info_Box {
     border: solid 4px black;
     margin-top: 40px;
     padding: 25px 25px;
-    max-width: 46%;
+    // max-width: 46%;
 
     .subTitle {
       font-size: 20px;

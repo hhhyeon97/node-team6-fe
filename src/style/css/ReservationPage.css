@@ -49,11 +49,16 @@
   min-width: 100%;
   min-height: 200px;
 }
+.reservationPage .reservation_Right_Box {
+  max-width: 56%;
+}
+.reservationPage .reservation_Right_Box .creditCard {
+  justify-content: space-between;
+}
 .reservationPage .reservation_Info_Box {
   border: solid 4px black;
   margin-top: 40px;
   padding: 25px 25px;
-  max-width: 46%;
 }
 .reservationPage .reservation_Info_Box .subTitle {
   font-size: 20px;
