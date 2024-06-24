@@ -3,7 +3,6 @@ import { Table, Badge } from "react-bootstrap";
 import { convertToKST } from "../../utils/Date";
 
 const NoticeTable = ({ header, noticeList, openEditForm }) => {
-  // console.log('noticeList', noticeList)
   return (
     <div className="overflow-x">
       <Table striped bordered hover>

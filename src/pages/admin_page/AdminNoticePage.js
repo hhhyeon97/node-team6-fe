@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import * as types from "../../constants/notice.constants";
 import { Col, Row, Container, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { noticeAction } from '../../action/noticeAction';
 import LinedTitle from '../../component/LinedTitle';
 import Pagination from '../../component/Pagination';
 import NoticeTable from '../../component/admin_page/NoticeTable';
-// import NoticeDetailDialog from '../../component/admin_page/NoticeDetailDialog';
+import NoticeDetailDialog from '../../component/admin_page/NoticeDetailDialog';
 import SearchBox from '../../component/SearchBox';
 
 const AdminNoticePage = () => {
@@ -32,7 +33,6 @@ const AdminNoticePage = () => {
     dispatch(noticeAction.getNoticeList({ ...searchQuery }));
   }, [query, dispatch]);
 
-  console.log('noticeList', noticeList)
 
   // [ 검색어나 페이지가 바뀌면 url바꿔주기 ]
   useEffect(() => {
@@ -60,7 +60,8 @@ const AdminNoticePage = () => {
   // [ 공지사항 수정 form 열기 ]
   const openEditForm = (notice) => {
     setOpen(true);
-    // dispatch({ type: types.SET_SELECTED_NOTICE, payload: notice });
+    console.log('click', notice);
+    dispatch({ type: types.SET_SELECTED_NOTICE, payload: notice });
   };
 
   // [ UserDetailDialog 닫기 ]
@@ -92,7 +93,7 @@ const AdminNoticePage = () => {
           onPageChange={onPageChange}
         />
 
-      {/* { open && <NoticeDetailDialog open={open} handleClose={handleClose} setSearchQuery={setSearchQuery} />} */}
+      { open && <NoticeDetailDialog open={open} handleClose={handleClose} setSearchQuery={setSearchQuery} />}
     </div>
   );
 }

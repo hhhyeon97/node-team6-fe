@@ -20,6 +20,8 @@ function noticeReducer(state = initialState, action) {
       }
     case types.GET_NOTICE_LIST_FAIL:
       return { ...state, loading: false, error: payload }
+    case types.SET_SELECTED_NOTICE:
+      return { ...state, selectedNotice: payload };
     default:
       return state;
   }
