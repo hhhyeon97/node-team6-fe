@@ -16,6 +16,7 @@ import AdminReviewPage from '../pages/admin_page/AdminReviewPage';
 import AdminNoticePage from '../pages/admin_page/AdminNoticePage';
 import MainPage from '../pages/MainPage';
 import ReservationPage from '../pages/ReservationPage';
+import SearchPage from '../pages/SearchPage';
 
 const AppRouter = () => {
   const navigate = useNavigate();
@@ -52,6 +53,7 @@ const AppRouter = () => {
       <Route path="/admin/user" element={<AdminUserPage />} />
       <Route path="/admin/review" element={<AdminReviewPage />} />
       <Route path="/admin/notice" element={<AdminNoticePage />} />
+      <Route path="/search" element={<SearchPage />} />
     </Routes>
   );
 };

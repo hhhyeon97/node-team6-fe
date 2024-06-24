@@ -14,7 +14,6 @@
   display: flex;
   justify-content: end;
   align-items: end;
-  margin-right: 25px;
   margin-bottom: 30px;
   font-size: 0.5rem;
 }
@@ -42,4 +41,21 @@
   margin-left: 6px;
   position: relative;
   bottom: 1px;
+}
+.nav_area .nav_input_area {
+  display: flex;
+  justify-content: end;
+}
+.nav_area .nav_input_area input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid black;
+}
+.nav_area .nav_input_area button {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid black;
+  background-color: transparent;
 }
