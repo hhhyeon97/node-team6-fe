@@ -36,11 +36,14 @@
   display: flex;
   flex-direction: column;
 }
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .row {
+  margin-bottom: 10px;
+}
 .DetailPageAllBox .DetailTopBox .DetailInfoBox .LikeShare {
   display: flex;
   justify-content: end;
   align-items: center;
-  margin-top: 10px;
+  margin: 10px 0;
 }
 .DetailPageAllBox .DetailTopBox .DetailInfoBox .LikeShare svg,
 .DetailPageAllBox .DetailTopBox .DetailInfoBox .LikeShare button {
@@ -56,11 +59,6 @@
 .DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailInfo {
   flex-grow: 1;
   display: flex;
-}
-.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailInfo div {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
 }
 .DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox {
   display: flex;

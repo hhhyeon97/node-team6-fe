@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import CalenderBox from '../component/CalenderBox';
 import '../style/css/ReservationPage.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
-import { Dateformat, cc_expires_format, numformat, priceformat } from '../utils/Date'
+import { Dateformat, numformat, cc_expires_format, priceformat } from '../utils/Date'
 import Cards from 'react-credit-cards-2';
 import PaymentForm from '../component/PaymentForm';
 import { useLocation } from 'react-router-dom';
@@ -14,12 +14,13 @@ const ReservationPage = () => {
     const { detailData } = useSelector(state => state.list)
     const { user } = useSelector(state => state.user)
 
-    const [reservationDate, setReservationDate] = useState(new Date(detailData ? detailData.prfpdfrom : null))
+    const [reservationDate, setReservationDate] = useState(new Date())
     const [ticketNum, setTicketNum] = useState(1)
     const [view, setView] = useState(false);
 
     const location = useLocation();
     const { cost } = location.state || { cost: [] };
+    const costAsString = String(cost); // cost를 문자열로 변환하여 저장
     console.log('cost:', cost)
 
     console.log('reservation page detailData:', detailData)
@@ -35,6 +36,24 @@ const ReservationPage = () => {
         name: '',
         focus: '',
     });
+
+    useEffect(() => {
+        if (detailData && detailData.prfpdfrom) {
+            const prfpdfromDate = new Date(detailData.prfpdfrom);
+            const today = new Date();
+
+            if (isNaN(prfpdfromDate)) {
+                console.error("Invalid date format in detailData.prfpdfrom:", detailData.prfpdfrom);
+                return;
+            }
+
+            if (prfpdfromDate < today) {
+                setReservationDate(today);
+            } else {
+                setReservationDate(prfpdfromDate);
+            }
+        }
+    }, [detailData])
 
     const handlePaymentInfoChange = (event) => {
         const { name, value } = event.target;
@@ -61,8 +80,6 @@ const ReservationPage = () => {
             </div>
         );
     }
-
-    console.log("reservationDate:", reservationDate)
 
     return (
         <Container className='wrap-container reservationPage'>
@@ -91,7 +108,7 @@ const ReservationPage = () => {
                                 <Row>
                                     <Col lg={6} md={12} sm={12} className='ticketnumleft_box'>
                                         <div>{detailData.prfruntime}</div>
-                                        <div>{detailData.cost}</div>
+                                        <div>{costAsString}</div>
                                     </Col>
                                     <Col lg={5} md={12} sm={12} className='ticketnum_box'>
                                         <ul onClick={() => { setView(!view) }} className="NumDrop">
@@ -111,21 +128,21 @@ const ReservationPage = () => {
                             <div className='subTitle'>결제금액</div>
                             <div className='detail_cost'>
                                 <div>총 상품금액</div>
-                                <div>{priceformat(numformat(cost) * ticketNum)}원</div>
+                                <div>{priceformat(numformat(costAsString) * ticketNum)}원</div>
                             </div>
                             {user.level === 'gold' ? (
                                 <div className='detail_cost'>
                                     <div>GOLD 할인 혜택(10%)</div>
-                                    <div className='discount'>{priceformat(numformat(cost) * ticketNum * 0.1)}원</div>
+                                    <div className='discount'>{priceformat(numformat(costAsString) * ticketNum * 0.1)}원</div>
                                 </div>
                             ) : ('')}
                         </div>
                         <div>
                             <div className='subTitle'>총 결제금액</div>
                             {user.level === 'gold' ? (
-                                <div className='finallyCost'>{priceformat(numformat(cost) * ticketNum - numformat(cost) * ticketNum * 0.1)}</div>
+                                <div className='finallyCost'>{priceformat(numformat(costAsString) * ticketNum - numformat(costAsString) * ticketNum * 0.1)}</div>
                             ) : (
-                                <div className='finallyCost'>{priceformat(numformat(cost) * ticketNum)}</div>
+                                <div className='finallyCost'>{priceformat(numformat(costAsString) * ticketNum)}</div>
                             )}
                         </div>
                         <button className='pay_button'>결제하기</button>
