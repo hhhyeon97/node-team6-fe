@@ -110,7 +110,7 @@ const logout = () => async (dispatch) => {
 const getUser = () => async (dispatch) => {
   try{
     dispatch({ type: types.GET_USER_REQUEST });
-    const response = await api.get('/me');
+    const response = await api.get('/user/me');
     console.log('rrr', response.data);
     if (response.status !== 200) throw new Error(response.error);
     dispatch({
@@ -123,16 +123,17 @@ const getUser = () => async (dispatch) => {
 }
 
 // 회원 정보 수정하기
-const editUser = (formData) => async (dispatch) => {
+const editUser = (formData, naviagate) => async (dispatch) => {
   try{
     dispatch({ type: types.EDIT_USER_REQUEST });
-    const response = await api.put('/me', formData);
+    const response = await api.put('/user/me', formData);
     console.log('rrr', response.data);
     if (response.status !== 200) throw new Error(response.error);
     dispatch({
       type: types.EDIT_USER_SUCCESS,
       payload: response.data,
     });
+    naviagate("/mypage/reservations/by-date");
   }catch(error){
     dispatch({ type: types.EDIT_USER_FAIL, payload: error.error });
   }
