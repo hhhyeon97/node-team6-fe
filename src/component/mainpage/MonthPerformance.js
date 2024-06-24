@@ -11,7 +11,7 @@ const MonthPerformance = () => {
     const [selectDate,setSelectDate] = useState(new Date());
     const [errorMsg, setErrorMsg] = useState();
     const [status, setStatus] = useState('02');
-    const [showPage, setShowPage] = useState(1)
+    const [showPage, setShowPage] = useState(1);
     
     const settingQuery = {
         service: REACT_APP_YEJIN_SERVICE_KEY,

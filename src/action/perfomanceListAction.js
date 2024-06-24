@@ -227,9 +227,37 @@ const getPerformanceListWithStatus = (query, settingQuery) => async (dispatch) =
     }
 };
 
+const getRankingPerformance = (query, settingQuery) => async (dispatch) => {
+    try {
+        dispatch({ type: types.GET_RANKING_PERFORMANCE_REQUEST })
+
+        const params = new URLSearchParams({ ...query, ...settingQuery });
+        let url = `https://corsproxy.io/?http://www.kopis.or.kr/openApi/restful/boxoffice?${params.toString()}`
+
+        console.log('url', url)
+
+        const response = await fetch(url)
+
+        if (response.status !== 200) throw new Error(response.error)
+
+        const xmlText = await response.text();
+        const domParser = new DOMParser();
+        const XmlNode = domParser.parseFromString(xmlText, 'text/xml');
+        const jsonData = xmlToJson(XmlNode)
+        // console.log("json",jsonData)
+        const cleanedData = cleanUp(jsonData);
+        // console.log("Cleaned json data:", cleanedData.boxofs.boxof); // 불필요한거 지우기
+
+        dispatch({ type: types.GET_RANKING_PERFORMANCE_SUCCESS, payload: cleanedData.boxofs.boxof })
+    } catch (error) {
+        dispatch({ type: types.GET_RANKING_PERFORMANCE_FAIL, payload: error.message })
+    }
+};
+
 export const perfomanceListAction = {
     getPerformanceList,
     getPerformanceDetail,
     getLocationLatLot,
     getPerformanceListWithStatus,
+    getRankingPerformance,
 }

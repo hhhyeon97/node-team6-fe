@@ -1,15 +1,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { userActions } from '../action/userAction';
 import { useDispatch } from 'react-redux';
-// import '../style/Navbar2.css';
 import '../style/css/Navbar.css'
-import { faDoorOpen, faHeart, faUnlock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faDoorOpen, faHeart, faMagnifyingGlass, faUnlock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Col, Container, Row } from 'react-bootstrap';
 const Navbar = ({ user }) => {
+  const [keyword, setKeyword] = useState('');
   const dispatch = useDispatch();
   let navigate = useNavigate();
+
   const menuList = [
     { name: '뮤지컬', code: 'GGGA' },
     { name: '콘서트', code: 'CCCD' },
@@ -27,6 +28,16 @@ const Navbar = ({ user }) => {
     navigate(`/performance?category=${code}`)
   }
 
+  const searchByKeyword = (event) =>{
+    event.preventDefault();
+    navigate(`/search?keyword=${keyword}`)
+    setKeyword('')
+  }
+
+  const onCheckEnter = (event) => {
+    if(event.key === 'Enter') searchByKeyword(event);
+  }
+
   return (
     <Container className='wrap-container nav_area'>
       <Row>
@@ -36,9 +47,9 @@ const Navbar = ({ user }) => {
           </a>
         </Col>
         <Col className="nav_user_menu nav_icon">
-          {user && user.level ? (
+          {user && user.level === 'admin' ? (
             <div onClick={() => navigate('/admin')}>
-              <FontAwesomeIcon icon={faUnlock} className='nav_user_icon' />ADMIN
+              <FontAwesomeIcon icon={faUnlock} className='nav_user_icon' /> ADMIN
             </div>) : ''}
           {user ? (
             <div onClick={() => navigate('/mypage')}>
@@ -74,6 +85,19 @@ const Navbar = ({ user }) => {
               </li>
             ))}
           </ul>
+        </Col>
+        <Col md={4} className='nav_input_area'>
+            <form onSubmit={searchByKeyword}>
+              <input 
+                type='text'
+                value={keyword}
+                onChange={(event)=>setKeyword(event.target.value)}
+                onKeyDown={onCheckEnter}
+              />
+              <button type='submit'>
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+              </button>
+            </form>
         </Col>
       </Row>
     </Container>

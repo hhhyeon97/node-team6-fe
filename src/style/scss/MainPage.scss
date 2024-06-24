@@ -1,11 +1,43 @@
+.main_banner_area{
+    background-color: rgb(182, 182, 182);
+    width: 100%;
+    height: 40vh;
+    margin-bottom: 4.5rem;
+}
+
 .month_performance_area{
-    margin-top: 2rem;
+    margin-bottom: 5rem;
+
    .month_performance_row{
         width: 100%;
         overflow: hidden;
         display: flex;
         justify-content: space-between;
     } 
+    .genre_btn_area{
+        margin-bottom: 0.8rem;
+        button{
+            background-color: white;
+            border-radius: 0.8rem;
+            margin-right: 0.4rem;
+            width: 5rem;
+            height: 2.3rem;
+            line-height: 2.1rem;
+            border-style: solid;
+        }
+        button:hover{
+            background-color: black;
+            color: white;
+        }
+        button:active{
+            background-color: black;
+            color: white;
+        }
+        .active{
+            background-color: black;
+            color: white;
+        }
+    }
 }
 
 .performance_card_area{
@@ -20,6 +52,7 @@
         height: 29vh;
         border-radius: 0.5rem;
         margin-bottom: 0.4rem;
+        position: relative;
     }
     .performance_card_img{
         height: 100%;
@@ -28,10 +61,12 @@
     h3 {
         font-size: 0.95rem;
         font-weight: 600;
+        margin-top: 0.5rem;
+        margin-bottom: 0.2rem;
     }
 
     h4 {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         margin-bottom: 0.15rem;
     }
 
@@ -46,10 +81,18 @@
         bottom: 0.5rem;
         color: gray;
     }
-
     .like-heart:hover {
         color: #D61F1F;
         transition: 0.5s;
+    }
+
+    .ranking_num{
+        position: absolute;
+        left: 0.8rem;
+        bottom: -0.5rem;
+        font-size: 5rem;
+        color: white;
+        text-shadow: 3px 4px 5px rgba(0, 0, 0, 0.192);
     }
 }
 
@@ -60,7 +103,7 @@
     align-items: center;
     padding-top: 1.4rem;
     padding-bottom: 5rem;
-    margin-top: 3rem;
+    margin-bottom: 5.5rem;
 
     h2{ color: whitesmoke; margin: 2.3rem 0rem; }
 }
@@ -116,16 +159,12 @@
     }
 }
 
-.month_performance_area{
-    margin-top: 6rem;
-    margin-bottom: 5rem;
-}
-
 .event_banner{
     width: 100%;
     background-color: gainsboro;
     text-align: center;
     padding: 3rem 0rem;
+    margin-bottom: 5rem;
 
     button{
         border: black;
