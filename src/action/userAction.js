@@ -122,6 +122,22 @@ const getUser = () => async (dispatch) => {
   }
 }
 
+// 회원 정보 수정하기
+const editUser = (formData) => async (dispatch) => {
+  try{
+    dispatch({ type: types.EDIT_USER_REQUEST });
+    const response = await api.put('/me', formData);
+    console.log('rrr', response.data);
+    if (response.status !== 200) throw new Error(response.error);
+    dispatch({
+      type: types.EDIT_USER_SUCCESS,
+      payload: response.data,
+    });
+  }catch(error){
+    dispatch({ type: types.EDIT_USER_FAIL, payload: error.error });
+  }
+}
+
 // 회원 리스트 가져오기 (admin)
 const getUserList = (query) => async (dispatch) => {
   try {
@@ -166,6 +182,7 @@ export const userActions = {
   logout,
   getUserList,
   getUser,
+  editUser,
   loginWithKakao,
   loginWithKakaoCode,
   updateUserLevel,
