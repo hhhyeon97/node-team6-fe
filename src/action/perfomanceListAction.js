@@ -164,7 +164,8 @@ const getPerformanceDetail = (id, settingQuery) => async (dispatch) => {
         const jsonData = xmlToJson(XmlNode)
 
         const cleanedData = cleanUp(jsonData);
-        
+        // console.log("Cleaned json data:", cleanedData.dbs); // 불필요한거 지우기
+
         dispatch({ type: types.GET_PERFORMANCE_DETAIL_SUCCESS, payload: cleanedData.dbs.db })
 
     } catch (error) {
