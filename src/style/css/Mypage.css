@@ -1,5 +1,7 @@
+@charset "UTF-8";
 .mypage-container {
   display: flex;
+  justify-content: space-between;
   /* < mypage-left > */
   /* < mypage-right > */
 }
@@ -17,15 +19,14 @@
   color: inherit;
 }
 .mypage-container .mypage-left {
-  border: 2px solid green;
-  width: 10%;
+  width: 14%;
   display: flex;
   flex-flow: column;
+  align-items: flex-start;
   /* [ side-bar ] */
   /* [ user-profile ] */
 }
 .mypage-container .mypage-left .mypage_sidebar {
-  border: 1px solid red;
   padding-top: 40px;
   color: #919191;
 }
@@ -50,13 +51,12 @@
 }
 .mypage-container .mypage-right {
   display: flex;
-  width: 90%;
+  width: 86%;
   flex-flow: column;
-  border: 2px solid green;
   /* [ user_level_section ] */
+  /* [ 회원정보 수정 페이지 ] */
 }
 .mypage-container .mypage-right .user_level_section {
-  border: 1px solid blue;
   display: flex;
   padding: 10px;
   background-color: #000;
@@ -68,11 +68,45 @@
   display: flex;
   align-items: center;
   padding: 0 10px;
-  font-size: 12px;
+  font-size: 10px;
   color: #fff;
 }
 .mypage-container .mypage-right .user_level_section .user_level_info h5 {
   font-family: Gsans_B;
   font-size: 12px;
   color: #bbb;
+}
+.mypage-container .mypage-right .user_level_section .user_level_info .level_bdg {
+  font-family: Gsans_B;
+  padding: 7px 10px;
+  border-radius: 50px;
+}
+.mypage-container .mypage-right .user_level_section .user_level_info .normal {
+  background-color: #fff;
+  color: #000;
+}
+.mypage-container .mypage-right .user_level_section .user_level_info .gold {
+  border: 0.5px solid rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+.mypage-container .mypage-right .user_level_section .user_level_info .suspend {
+  background-color: #bbb;
+  color: rgb(255, 255, 255);
+}
+.mypage-container .mypage-right .user_level_section .user_level_info .admin {
+  background-color: #f44f08;
+  color: rgb(255, 255, 255);
+}
+.mypage-container .mypage-right .edit_user_form_container .edit_image_box {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid #bbb;
+  overflow: hidden;
+}
+.mypage-container .mypage-right .edit_user_form_container .upload-image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }

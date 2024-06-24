@@ -3,13 +3,22 @@ import { Col, Row, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faPencil, faBullhorn } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "../../action/userAction";
 import UserProfile from '../UserProfile';
 
 const AdminSidebar = () => {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
+
+  // [ 유저 정보 받아오기 ]
+  useEffect(() => {
+    dispatch(userActions.getUser());
+  }, [dispatch]);
 
   return (
     <div className='admin_sidebar'>
-      <UserProfile />
+      <UserProfile user={user}/>
       <ul className='link_menu'>
         <li>
           <Link to="/admin/user">
