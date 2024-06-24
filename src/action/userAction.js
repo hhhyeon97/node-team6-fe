@@ -123,17 +123,16 @@ const getUser = () => async (dispatch) => {
 }
 
 // 회원 정보 수정하기
-const editUser = (formData, naviagate) => async (dispatch) => {
+const editUser = (formData, navigate) => async (dispatch) => {
   try{
     dispatch({ type: types.EDIT_USER_REQUEST });
     const response = await api.put('/user/me', formData);
-    console.log('rrr', response.data);
     if (response.status !== 200) throw new Error(response.error);
     dispatch({
       type: types.EDIT_USER_SUCCESS,
       payload: response.data,
     });
-    naviagate("/mypage/reservations/by-date");
+    navigate("/mypage/reservations/by-date");
   }catch(error){
     dispatch({ type: types.EDIT_USER_FAIL, payload: error.error });
   }
