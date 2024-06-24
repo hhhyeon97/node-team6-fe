@@ -77,7 +77,7 @@ const AdminUserPage = () => {
         />
         <Button onClick={resetSearch} variant="secondary">All</Button>
 
-        <LinedTitle title='회원관리' cap='회원 정보를 조회하고 회원등급을 수정할 수 있습니다'/>=
+        <LinedTitle title='회원관리' cap='회원 정보를 조회하고 회원등급을 수정할 수 있습니다'/>
 
         <UserTable
           header={tableHeader}
