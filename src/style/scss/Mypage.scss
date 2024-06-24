@@ -20,7 +20,7 @@
   /* < mypage-left > */
   .mypage-left{
     border: 2px solid green;
-    width: 10%;
+    width: 14%;
     display: flex;
     flex-flow: column;
 
@@ -48,20 +48,7 @@
           padding: 8px 0 0 5px;
           cursor: pointer;
         }
-
-
-
-        // li{
-        //   padding: 10px 0;
-        //   padding-left: 5px;
-        // }
       }
-
-      // .link_menu:first-child{
-      //   a:first-child{
-      //     padding: 10px 0 0 5px;
-      //   }
-      // }
     }
 
     /* [ user-profile ] */
@@ -94,13 +81,35 @@
         display: flex;
         align-items: center;
         padding: 0 10px;
-        font-size: 12px;
+        font-size: 10px;
         color: #fff;
 
         h5{
           font-family: Gsans_B;
           font-size: 12px;
           color: #bbb;
+        }
+        .level_bdg{
+          font-family: Gsans_B;
+          padding: 7px 10px;
+          border-radius: 50px;
+        }
+        .normal{
+          background-color: #fff;
+          color: #000;
+        }
+        .gold{
+          border: 0.5px solid rgb(255, 255, 255);
+          background-color: rgb(0, 0, 0);
+          color: rgb(255, 255, 255);
+        }
+        .suspend{
+          background-color: #bbb;
+          color: rgb(255, 255, 255);
+        }
+        .admin{
+          background-color: #f44f08;
+          color: rgb(255, 255, 255);
         }
       }
     }

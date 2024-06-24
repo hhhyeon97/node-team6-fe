@@ -18,7 +18,7 @@
 }
 .mypage-container .mypage-left {
   border: 2px solid green;
-  width: 10%;
+  width: 14%;
   display: flex;
   flex-flow: column;
   /* [ side-bar ] */
@@ -68,11 +68,33 @@
   display: flex;
   align-items: center;
   padding: 0 10px;
-  font-size: 12px;
+  font-size: 10px;
   color: #fff;
 }
 .mypage-container .mypage-right .user_level_section .user_level_info h5 {
   font-family: Gsans_B;
   font-size: 12px;
   color: #bbb;
+}
+.mypage-container .mypage-right .user_level_section .user_level_info .level_bdg {
+  font-family: Gsans_B;
+  padding: 7px 10px;
+  border-radius: 50px;
+}
+.mypage-container .mypage-right .user_level_section .user_level_info .normal {
+  background-color: #fff;
+  color: #000;
+}
+.mypage-container .mypage-right .user_level_section .user_level_info .gold {
+  border: 0.5px solid rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+.mypage-container .mypage-right .user_level_section .user_level_info .suspend {
+  background-color: #bbb;
+  color: rgb(255, 255, 255);
+}
+.mypage-container .mypage-right .user_level_section .user_level_info .admin {
+  background-color: #f44f08;
+  color: rgb(255, 255, 255);
 }
