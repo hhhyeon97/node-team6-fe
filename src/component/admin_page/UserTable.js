@@ -1,8 +1,6 @@
 import React from "react";
 import { Table, Badge } from "react-bootstrap";
 import { convertToKST } from "../../utils/Date";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 const UserTable = ({ header, userList, openEditForm }) => {
   return (

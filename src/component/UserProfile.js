@@ -9,22 +9,22 @@ const UserProfile = ({ user }) => {
       <div class="user_profile">
         <div className="user_img">
           {/* 토큰으로 user정보 가져오는거 되면 수정 */}
-          {user.image ? (
+          {user?.image ? (
             <img 
-              src={user.image}
-              alt={user.name} 
+              src={user?.image}
+              alt={user?.name} 
               style={{ width: '75px', height: '75px', objectFit: 'cover' }} 
               onError={(e) => e.target.src = 'https://iconspng.com/_next/image?url=https%3A%2F%2Ficonspng.com%2Fimages%2Fabstract-user-icon-3%2Fabstract-user-icon-3.jpg&w=1080&q=75'}
             />
           ) : (
             <img 
               src='https://iconspng.com/_next/image?url=https%3A%2F%2Ficonspng.com%2Fimages%2Fabstract-user-icon-3%2Fabstract-user-icon-3.jpg&w=1080&q=75'
-              alt={user.name} 
+              alt={user?.name} 
               style={{ width: '75px', height: '75px', objectFit: 'cover' }} 
             />
           )}
         </div>
-        <div className='user_name'>{user.name}</div>
+        <div className='user_name'>{user?.name}</div>
       </div>
     </div>
   )
