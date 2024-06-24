@@ -6,6 +6,7 @@ const initialState = {          // 초기화 값 입력
     user: null,
     error: "",
     PerformanceListData: [],
+    PerformanceListDataWithStatus: [],
     selectDate: '',
     detailData: null,
     locationLat: '',
@@ -25,12 +26,16 @@ function listReducer(state = initialState, action) {
 
     switch (type) {
         case types.PERFORMANCELIST_GET_REQUEST:
+        case types.PERFORMANCELISTWITHSTATUS_GET_REQUEST:
         case types.GET_PERFORMANCE_DETAIL_REQUEST:
         case types.GET_LOCATIONLATLOT_REQUEST:
             return { ...state, loading: true }
 
         case types.PERFORMANCELIST_GET_SUCCESS:
             return { ...state, loading: false, PerformanceListData: payload }
+
+        case types.PERFORMANCELISTWITHSTATUS_GET_SUCCESS:
+            return { ...state, loading: false, PerformanceListDataWithStatus: payload }
 
         case types.GET_PERFORMANCE_DETAIL_SUCCESS:
             return { ...state, loading: false, detailData: payload }
@@ -39,6 +44,7 @@ function listReducer(state = initialState, action) {
             return { ...state, loading: false, locationLat: payload.la, locationLot: payload.lo }
 
         case types.PERFORMANCELIST_GET_FAIL:
+        case types.PERFORMANCELISTWITHSTATUS_GET_FAIL:
         case types.GET_PERFORMANCE_DETAIL_FAIL:
         case types.GET_LOCATIONLATLOT_DETAIL_FAIL:
             return { ...state, loading: false, error: payload }

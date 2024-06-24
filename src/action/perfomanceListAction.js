@@ -200,8 +200,36 @@ const getLocationLatLot = (location, settingQuery) => async (dispatch) => {
     }
 }
 
+const getPerformanceListWithStatus = (query, settingQuery) => async (dispatch) => {
+    try {
+        dispatch({ type: types.PERFORMANCELISTWITHSTATUS_GET_REQUEST })
+
+        const params = new URLSearchParams({ ...query, ...settingQuery });
+        let url = `https://corsproxy.io/?http://www.kopis.or.kr/openApi/restful/pblprfr?${params.toString()}`
+
+        // console.log('url', url)
+
+        const response = await fetch(url)
+
+        if (response.status !== 200) throw new Error(response.error)
+
+        const xmlText = await response.text();
+        const domParser = new DOMParser();
+        const XmlNode = domParser.parseFromString(xmlText, 'text/xml');
+        const jsonData = xmlToJson(XmlNode)
+
+        const cleanedData = cleanUp(jsonData);
+        // console.log("Cleaned json data:", cleanedData.dbs.db); // 불필요한거 지우기
+
+        dispatch({ type: types.PERFORMANCELISTWITHSTATUS_GET_SUCCESS, payload: cleanedData.dbs.db })
+    } catch (error) {
+        dispatch({ type: types.PERFORMANCELISTWITHSTATUS_GET_FAIL, payload: error.message })
+    }
+};
+
 export const perfomanceListAction = {
     getPerformanceList,
     getPerformanceDetail,
     getLocationLatLot,
+    getPerformanceListWithStatus,
 }

@@ -10,4 +10,10 @@ const EndDate = (date) => {
     return formattedDate;
 }
 
-export {StartDate, EndDate};
+const DateChangeToNum = (date) => {
+    const [year, month, day] = date.split('.');
+    const formattedDate = `${year}${month}${day}`
+    return formattedDate
+}
+
+export {StartDate, EndDate, DateChangeToNum};

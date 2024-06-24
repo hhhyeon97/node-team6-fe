@@ -15,7 +15,7 @@ const MonthPerformance = () => {
     
     const settingQuery = {
         service: REACT_APP_YEJIN_SERVICE_KEY,
-        rows: 10,
+        rows: 15,
         signgucode: '',
         prfstate: status,
     }
@@ -30,7 +30,7 @@ const MonthPerformance = () => {
         console.log("receive PerformanceListData: ", PerformanceListData)
     },[selectDate])
 
-    const { PerformanceListData, loading, error } = useSelector(state => state.list)
+    const { PerformanceListData, loading, error } = useSelector(state => state.list);
 
   return (
     <div className='month_performance_area'>
