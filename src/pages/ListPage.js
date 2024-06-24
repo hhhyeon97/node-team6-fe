@@ -44,7 +44,7 @@ const ListPage = () => {
             cpage: showPage
         }, settingQuery))
         console.log("receive PerformanceListData: ", PerformanceListData)
-    }, [selectDate, status, selectedRegion])
+    }, [selectDate, status, selectedRegion, categoryQurery])
 
     const { PerformanceListData } = useSelector(state => state.list)
 

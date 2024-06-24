@@ -125,7 +125,7 @@ const getPerformanceList = (query, settingQuery) => async (dispatch) => {
         const params = new URLSearchParams({ ...query, ...settingQuery });
         let url = `https://corsproxy.io/?http://www.kopis.or.kr/openApi/restful/pblprfr?${params.toString()}`
 
-        // console.log('url', url)
+        console.log('url', url)
 
         const response = await fetch(url)
 
