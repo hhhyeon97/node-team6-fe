@@ -8,6 +8,7 @@ import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
 import { Dateformat, cc_expires_format, numformat, priceformat } from '../utils/Date'
 import Cards from 'react-credit-cards-2';
 import PaymentForm from '../component/PaymentForm';
+import { useLocation } from 'react-router-dom';
 
 const ReservationPage = () => {
     const { detailData } = useSelector(state => state.list)
@@ -16,6 +17,10 @@ const ReservationPage = () => {
     const [reservationDate, setReservationDate] = useState(new Date(detailData ? detailData.prfpdfrom : null))
     const [ticketNum, setTicketNum] = useState(1)
     const [view, setView] = useState(false);
+
+    const location = useLocation();
+    const { cost } = location.state || { cost: [] };
+    console.log('cost:', cost)
 
     console.log('reservation page detailData:', detailData)
     console.log('reservation page user:', user)
@@ -86,7 +91,7 @@ const ReservationPage = () => {
                                 <Row>
                                     <Col lg={6} md={12} sm={12} className='ticketnumleft_box'>
                                         <div>{detailData.prfruntime}</div>
-                                        <div>{detailData.pcseguidance}</div>
+                                        <div>{detailData.cost}</div>
                                     </Col>
                                     <Col lg={5} md={12} sm={12} className='ticketnum_box'>
                                         <ul onClick={() => { setView(!view) }} className="NumDrop">
@@ -106,21 +111,21 @@ const ReservationPage = () => {
                             <div className='subTitle'>결제금액</div>
                             <div className='detail_cost'>
                                 <div>총 상품금액</div>
-                                <div>{priceformat(numformat(detailData.pcseguidance) * ticketNum)}원</div>
+                                <div>{priceformat(numformat(cost) * ticketNum)}원</div>
                             </div>
                             {user.level === 'gold' ? (
                                 <div className='detail_cost'>
                                     <div>GOLD 할인 혜택(10%)</div>
-                                    <div className='discount'>-3,000원</div>
+                                    <div className='discount'>{priceformat(numformat(cost) * ticketNum * 0.1)}원</div>
                                 </div>
                             ) : ('')}
                         </div>
                         <div>
                             <div className='subTitle'>총 결제금액</div>
                             {user.level === 'gold' ? (
-                                <div className='finallyCost'>{priceformat(numformat(detailData.pcseguidance) * ticketNum - 3000)}</div>
+                                <div className='finallyCost'>{priceformat(numformat(cost) * ticketNum - numformat(cost) * ticketNum * 0.1)}</div>
                             ) : (
-                                <div className='finallyCost'>{priceformat(numformat(detailData.pcseguidance) * ticketNum)}</div>
+                                <div className='finallyCost'>{priceformat(numformat(cost) * ticketNum)}</div>
                             )}
                         </div>
                         <button className='pay_button'>결제하기</button>
