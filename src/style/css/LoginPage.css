@@ -2,6 +2,7 @@
   height: 100vh;
   flex-direction: column;
   width: 450px;
+  margin-top: 30px;
   /* .info_register_message a {
       text-decoration: underline;
       color: rgb(45, 111, 233);
@@ -97,5 +98,18 @@
   right: 15px;
   transform: translateY(-65%);
   cursor: pointer;
+  color: #bbb;
+}
+.login_area .find_password_btn,
+.login_area .register_btn {
+  border: 2px solid #000;
+  background-color: white;
+  border-radius: 4px;
+  padding: 4px 12px;
+}
+.login_area .find_password_btn:hover {
+  color: #bbb;
+}
+.login_area .register_btn:hover {
   color: #bbb;
 }

@@ -106,9 +106,25 @@ const logout = () => async (dispatch) => {
   localStorage.removeItem('token');
 };
 
-// 유저 정보 가져오기 
+// 비밀번호 재발급 요청
+const forgotPassword =
+  ({ email }, navigate) =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: types.FORGOT_PASSWORD_REQUEST });
+      const response = await api.post('/password/forgot-password', { email });
+      if (response.status !== 200) throw new Error(response.error);
+      dispatch({ type: types.FORGOT_PASSWORD_SUCCESS });
+      alert('비밀번호 재설정 이메일이 발송되었습니다 !');
+      navigate('/');
+    } catch (error) {
+      dispatch({ type: types.FORGOT_PASSWORD_FAIL, payload: error.error });
+    }
+  };
+
+// 유저 정보 가져오기
 const getUser = () => async (dispatch) => {
-  try{
+  try {
     dispatch({ type: types.GET_USER_REQUEST });
     const response = await api.get('/user/me');
     console.log('rrr', response.data);
@@ -117,14 +133,14 @@ const getUser = () => async (dispatch) => {
       type: types.GET_USER_SUCCESS,
       payload: response.data,
     });
-  }catch(error){
+  } catch (error) {
     dispatch({ type: types.GET_USER_FAIL, payload: error.error });
   }
-}
+};
 
 // 회원 정보 수정하기
 const editUser = (formData, navigate) => async (dispatch) => {
-  try{
+  try {
     dispatch({ type: types.EDIT_USER_REQUEST });
     const response = await api.put('/user/me', formData);
     if (response.status !== 200) throw new Error(response.error);
@@ -132,11 +148,11 @@ const editUser = (formData, navigate) => async (dispatch) => {
       type: types.EDIT_USER_SUCCESS,
       payload: response.data,
     });
-    navigate("/mypage/reservations/by-date");
-  }catch(error){
+    navigate('/mypage/reservations/by-date');
+  } catch (error) {
     dispatch({ type: types.EDIT_USER_FAIL, payload: error.error });
   }
-}
+};
 
 // 회원 리스트 가져오기 (admin)
 const getUserList = (query) => async (dispatch) => {
@@ -186,4 +202,5 @@ export const userActions = {
   loginWithKakao,
   loginWithKakaoCode,
   updateUserLevel,
+  forgotPassword,
 };

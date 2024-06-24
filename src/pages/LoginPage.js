@@ -115,7 +115,9 @@ const LoginPage = () => {
             </button>
             <div className="info_register_message">
               아직 계정이 없으신가요? &nbsp;
-              <Link to="/register">회원가입 하기</Link>{' '}
+              <Link to="/register">
+                <button className="register_btn">회원가입 하기</button>
+              </Link>{' '}
             </div>
           </div>
           <div className="sns_btn_area">
@@ -147,6 +149,11 @@ const LoginPage = () => {
             </div>
           </div>
         </Form>
+        <div>
+          <Link to="/find-password">
+            <button className="find_password_btn">비밀번호 찾기</button>
+          </Link>{' '}
+        </div>
       </Container>
     </>
   );
