@@ -1,27 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CalenderBox from '../component/CalenderBox';
 import '../style/css/ReservationPage.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
+import { faCaretDown, faCaretUp, faDisplay } from '@fortawesome/free-solid-svg-icons'
 import { Dateformat, numformat, cc_expires_format, priceformat } from '../utils/Date'
 import Cards from 'react-credit-cards-2';
 import PaymentForm from '../component/PaymentForm';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { reservationAction } from '../action/reservationAction';
 
 const ReservationPage = () => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch();
     const { detailData } = useSelector(state => state.list)
     const { user } = useSelector(state => state.user)
 
     const [reservationDate, setReservationDate] = useState(new Date())
     const [ticketNum, setTicketNum] = useState(1)
     const [view, setView] = useState(false);
+    const [blockDate, setBlockDate] = useState('')
+    const blockMaxDate = new Date(detailData?.prfpdto)
+
+    const [totalPrice, setTotalPrice] = useState(0)
 
     const location = useLocation();
     const { cost } = location.state || { cost: [] };
     const costAsString = String(cost); // cost를 문자열로 변환하여 저장
-    console.log('cost:', cost)
 
     console.log('reservation page detailData:', detailData)
     console.log('reservation page user:', user)
@@ -49,11 +55,23 @@ const ReservationPage = () => {
 
             if (prfpdfromDate < today) {
                 setReservationDate(today);
+                setBlockDate(today)
             } else {
                 setReservationDate(prfpdfromDate);
+                setBlockDate(prfpdfromDate)
             }
         }
     }, [detailData])
+
+    useEffect(() => {
+        if (detailData) {
+            if (user.level === 'gold') {
+                setTotalPrice(numformat(costAsString) * ticketNum - numformat(costAsString) * ticketNum * 0.1)
+            } else {
+                setTotalPrice(numformat(costAsString) * ticketNum)
+            }
+        }
+    }, [ticketNum])
 
     const handlePaymentInfoChange = (event) => {
         const { name, value } = event.target;
@@ -81,6 +99,28 @@ const ReservationPage = () => {
         );
     }
 
+    const handleReserve = () => {
+        console.log('send reservationDate:', reservationDate)
+        console.log('send cost', costAsString)
+        const data = {
+            totalPrice,
+            ticketNum,
+            reservationDate: reservationDate.toString(),
+            SeqPrice: numformat(costAsString),
+
+            ticket: {
+                SeqId: detailData.mt20id,
+                SeqImage: detailData.poster,
+                SeqTitle: detailData.prfnm,
+                SeqLocation: detailData.fcltynm,
+                SeqFrom: detailData.prfpdfrom,
+                SeqTo: detailData.prfpdto,
+            }
+        }
+
+        dispatch(reservationAction.createReservation(data, navigate))
+    }
+
     return (
         <Container className='wrap-container reservationPage'>
             {detailData ? (
@@ -88,7 +128,7 @@ const ReservationPage = () => {
                     <Col lg={7} md={7} sm={12} className='reservation_Right_Box'>
                         <div>
                             <div className='title'>관람일자 선택</div>
-                            <CalenderBox selectDate={reservationDate} setSelectDate={setReservationDate} />
+                            <CalenderBox selectDate={reservationDate} setSelectDate={setReservationDate} blockDate={blockDate} blockMaxDate={blockMaxDate} />
                         </div>
                         <div>
                             <div className='title'>결제정보</div>
@@ -145,7 +185,7 @@ const ReservationPage = () => {
                                 <div className='finallyCost'>{priceformat(numformat(costAsString) * ticketNum)}</div>
                             )}
                         </div>
-                        <button className='pay_button'>결제하기</button>
+                        <button className='pay_button' onClick={handleReserve}>결제하기</button>
                     </Col>
                 </Row>
             ) : (<div>데이터 준비중</div>)}
