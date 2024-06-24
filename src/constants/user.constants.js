@@ -13,6 +13,14 @@ export const GOOGLE_LOGIN_SUCCESS = 'GOOGLE_LOGIN_SUCCESS';
 export const GOOGLE_LOGIN_FAIL = 'GOOGLE_LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const RESET_ERROR = 'RESET_ERROR';
+// 유저 정보 가져오기
+export const GET_USER_REQUEST = 'GET_USER_REQUEST';
+export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
+export const GET_USER_FAIL = 'GET_USER_FAIL';
+// 유저 정보 수정하기
+export const EDIT_USER_REQUEST = 'EDIT_USER_REQUEST';
+export const EDIT_USER_SUCCESS = 'EDIT_USER_SUCCESS';
+export const EDIT_USER_FAIL = 'EDIT_USER_FAIL';
 // 회원 리스트 가져오기 (admin)
 export const GET_USER_LIST_REQUEST = 'GET_USER_LIST_REQUEST';
 export const GET_USER_LIST_SUCCESS = 'GET_USER_LIST_SUCCESS';

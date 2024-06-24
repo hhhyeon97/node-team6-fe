@@ -53,10 +53,10 @@ const loginWithToken = () => async (dispatch) => {
   }
 };
 
-const loginWithGoogle = (token) => async (dispatch) => {
+const loginWithGoogle = (accessToken) => async (dispatch) => {
   try {
     dispatch({ type: types.GOOGLE_LOGIN_REQUEST });
-    const response = await api.post('/auth/google', { token });
+    const response = await api.post('/auth/google', { token: accessToken });
     if (response.status !== 200) throw new Error(response.error);
     localStorage.setItem('token', response.data.token);
     dispatch({ type: types.GOOGLE_LOGIN_SUCCESS, payload: response.data });
@@ -106,6 +106,38 @@ const logout = () => async (dispatch) => {
   localStorage.removeItem('token');
 };
 
+// 유저 정보 가져오기 
+const getUser = () => async (dispatch) => {
+  try{
+    dispatch({ type: types.GET_USER_REQUEST });
+    const response = await api.get('/user/me');
+    console.log('rrr', response.data);
+    if (response.status !== 200) throw new Error(response.error);
+    dispatch({
+      type: types.GET_USER_SUCCESS,
+      payload: response.data,
+    });
+  }catch(error){
+    dispatch({ type: types.GET_USER_FAIL, payload: error.error });
+  }
+}
+
+// 회원 정보 수정하기
+const editUser = (formData, navigate) => async (dispatch) => {
+  try{
+    dispatch({ type: types.EDIT_USER_REQUEST });
+    const response = await api.put('/user/me', formData);
+    if (response.status !== 200) throw new Error(response.error);
+    dispatch({
+      type: types.EDIT_USER_SUCCESS,
+      payload: response.data,
+    });
+    navigate("/mypage/reservations/by-date");
+  }catch(error){
+    dispatch({ type: types.EDIT_USER_FAIL, payload: error.error });
+  }
+}
+
 // 회원 리스트 가져오기 (admin)
 const getUserList = (query) => async (dispatch) => {
   try {
@@ -123,19 +155,19 @@ const getUserList = (query) => async (dispatch) => {
 };
 
 // 회원 레벨 수정하기 (admin)
-const updateUserLevel = ( id, level, setSearchQuery ) => async (dispatch) => {
-  try{
+const updateUserLevel = (id, level, setSearchQuery) => async (dispatch) => {
+  try {
     dispatch({ type: types.UPDATE_LEVEL_REQUEST });
-    const response = await api.put(`/user/${id}`, {level});
+    const response = await api.put(`/user/${id}`, { level });
     if (response.status !== 200) throw new Error(response.error);
     dispatch({ type: types.UPDATE_LEVEL_SUCCESS });
     // 수정 반영 위해 다시 productList 전체 갖고 오기
-    dispatch(getUserList({page:1, name:""}));
-    setSearchQuery({page:1, name:""})
-  }catch(error){
+    dispatch(getUserList({ page: 1, name: '' }));
+    setSearchQuery({ page: 1, name: '' });
+  } catch (error) {
     dispatch({ type: types.UPDATE_LEVEL_FAIL, payload: error.error });
   }
-}
+};
 
 export const resetError = () => ({
   type: types.RESET_ERROR,
@@ -149,6 +181,8 @@ export const userActions = {
   loginWithGoogle,
   logout,
   getUserList,
+  getUser,
+  editUser,
   loginWithKakao,
   loginWithKakaoCode,
   updateUserLevel,

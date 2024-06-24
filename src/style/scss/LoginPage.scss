@@ -78,11 +78,28 @@
     align-items: center;
     justify-content: center;
   }
+
+  .custom_google_btn img {
+    width: 20px;
+    height: 20px;
+  }
   .sns_btn_wrap {
     display: flex;
     margin-bottom: 30px;
   }
   .sns_btn_area button {
-    margin: auto 5px;
+    margin: auto 10px;
+  }
+  .password_input_wrap {
+    position: relative;
+  }
+
+  .password_toggle_icon {
+    position: absolute;
+    top: 65%;
+    right: 15px;
+    transform: translateY(-65%);
+    cursor: pointer;
+    color: #bbb;
   }
 }

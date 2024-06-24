@@ -14,7 +14,8 @@ function App() {
         <AppRouter />
       </AppLayout>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
+
