@@ -3,7 +3,7 @@ import React from 'react'
 const MainBanner = () => {
   return (
     <div className='main_banner_area'>
-      오?!
+      메인 배너 예정
     </div>
   )
 }
