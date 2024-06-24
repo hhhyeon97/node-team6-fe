@@ -22,7 +22,7 @@ const PerformanceDetail = () => {
     const { error } = useSelector(state => state.list)
 
     const { detailData } = useSelector(state => state.list)
-
+    
     const [selectTicketNum, setSelectTicketNum] = useState(1)
     const { id } = useParams()
 
@@ -123,7 +123,7 @@ const PerformanceDetail = () => {
                         <li>{detailData.dtguidance}</li>
 
                         <div className="subTitle">캐스팅</div>
-                        <li>{detailData.prfcast}</li>
+                        <li>{detailData.prfcast.toString()}</li>
 
                         <div className="subTitle">공연 상세</div>
                         <div className="DetailBox">
