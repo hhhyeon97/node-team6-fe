@@ -171,6 +171,7 @@ const RegisterPage = () => {
               placeholder="Password"
               onChange={handleChange}
               required
+              onFocus={() => setPasswordError('')}
             />
             <span
               className="password_toggle_icon"
