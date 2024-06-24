@@ -1,5 +1,6 @@
 
 .admin_page_container{
+  display: flex;
 
   h1,h2,h3,h4,h5,p {
     margin: 0;
@@ -17,7 +18,41 @@
     color: inherit; 
   }
 
-  display: flex;
+  // < admin_top_nav >
+  .admin_top_nav{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 20px 30px;
+    border-bottom: 1px solid #bbb;
+
+    .go_to_home_btn img{
+      width: 150px;
+    }
+  }
+
+  .search-box{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px 30px;
+  }
+
+  .search-box svg{
+    position: absolute;
+    padding: 10px;
+    font-size: 25px;
+    color: #bbb;
+  }
+
+  .search-box input{
+    width: 400px;
+    height: 40px;
+    padding: 0 35px;
+    padding-left: 47px;
+    border: none;
+  }
 
   // < admin_sidebar >
   .admin_sidebar{
@@ -62,8 +97,10 @@
     }
   }
 
-  // < admin_main_section >
-
+  // < admin_main_container >
+  .admin_main_container{
+    width: 100%;
+  }
 
   // 회원관리 페이지
   .admin_user_container{
