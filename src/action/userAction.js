@@ -106,6 +106,22 @@ const logout = () => async (dispatch) => {
   localStorage.removeItem('token');
 };
 
+// 유저 정보 가져오기 
+const getUser = () => async (dispatch) => {
+  try{
+    dispatch({ type: types.GET_USER_REQUEST });
+    const response = await api.get('/me');
+    console.log('rrr', response.data);
+    if (response.status !== 200) throw new Error(response.error);
+    dispatch({
+      type: types.GET_USER_SUCCESS,
+      payload: response.data,
+    });
+  }catch(error){
+    dispatch({ type: types.GET_USER_FAIL, payload: error.error });
+  }
+}
+
 // 회원 리스트 가져오기 (admin)
 const getUserList = (query) => async (dispatch) => {
   try {
@@ -149,6 +165,7 @@ export const userActions = {
   loginWithGoogle,
   logout,
   getUserList,
+  getUser,
   loginWithKakao,
   loginWithKakaoCode,
   updateUserLevel,
