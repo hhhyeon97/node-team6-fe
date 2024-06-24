@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, Button, Container, Form } from 'react-bootstrap';
 import '../style/css/FindPasswordPage.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,6 +18,10 @@ const FindPasswordPage = () => {
   const handleEmailFocus = () => {
     dispatch(userActions.resetError()); // 에러 상태 초기화 액션 디스패치
   };
+
+  useEffect(() => {
+    dispatch(userActions.resetError());
+  }, [dispatch]);
 
   return (
     <Container className="find_password_area  d-flex justify-content-center align-items-center">

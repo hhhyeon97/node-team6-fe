@@ -20,6 +20,7 @@ import SearchPage from '../pages/SearchPage';
 import PrivateRoute from './PrivateRoute';
 import ReservationCompletePage from '../pages/ReservationCompletePage';
 import FindPasswordPage from '../pages/FindPasswordPage';
+import ResetPasswordPage from '../pages/ResetPasswordPage';
 
 const AppRouter = () => {
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ const AppRouter = () => {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/find-password" element={<FindPasswordPage />} />
+      <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
       <Route
         path="/mypage/reservations/by-date"
         element={<ReservationByDate />}
@@ -59,8 +61,11 @@ const AppRouter = () => {
       <Route path="/admin/notice" element={<AdminNoticePage />} />
       <Route path="/search" element={<SearchPage />} />
 
-      <Route path='/reservation/:id' element={<PrivateRoute />} />
-      <Route path='/reservation/success' element={<ReservationCompletePage />} />
+      <Route path="/reservation/:id" element={<PrivateRoute />} />
+      <Route
+        path="/reservation/success"
+        element={<ReservationCompletePage />}
+      />
     </Routes>
   );
 };
