@@ -56,16 +56,6 @@ const ListPage = () => {
         setStatus(status)
     }
 
-    // const hadleSort = (sort) => {
-    //     if (sort === 'local') {
-    //         setSort('local')
-    //         setSelectDate(new Date())
-    //     } else if (sort === 'date') {
-    //         setSort('date')
-    //         setSelectedRegion('')
-    //     }
-    // }
-
     const RegionParam = (local) => {
         setSelectedRegion(local)
     }
@@ -118,16 +108,6 @@ const ListPage = () => {
                         <div className="status_yet" onClick={() => { handleStatus('01') }}>공연예정</div>
                         {/* <div className="status_over" onClick={() => { handleStatus('03') }}>공연완료</div> */}
                     </Col>
-                    {/* <Col className="sortButtons">
-                        <div onClick={() => hadleSort('date')}>
-                            <FontAwesomeIcon icon={faCalendar} />
-                            <div>캘린더</div>
-                        </div>
-                        <div onClick={() => hadleSort('local')}>
-                            <FontAwesomeIcon icon={faMap} />
-                            <div>지역별</div>
-                        </div>
-                    </Col> */}
                 </Row>
 
                 <Col lg={7} md={7} sm={6} className="ListItemsBox">

@@ -63,6 +63,16 @@
 
     .creditCard {
       justify-content: space-between;
+
+      .form-area {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .card_textInfo {
+          margin-bottom: 15px;
+        }
+      }
     }
   }
 
