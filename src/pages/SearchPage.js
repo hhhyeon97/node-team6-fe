@@ -17,7 +17,7 @@ const SearchPage = () => {
   const [showPage, setShowPage] = useState(1);
   const [query] = useSearchParams();
   const [keyword, setKeyword] = useState(query.get('keyword')||'');
-  
+  console.log(keyword)
   const settingQuery = {
       service: REACT_APP_YEJIN_SERVICE_KEY,
       rows: 10,
@@ -34,7 +34,11 @@ const SearchPage = () => {
           shprfnm: keyword,
       }, settingQuery))
       console.log("서치데이터 ", PerformanceListData)
-  },[selectDate])
+  },[selectDate,keyword])
+
+  useEffect(()=>{
+    setKeyword(query.get('keyword'))
+  },[query])
 
   const { PerformanceListData, loading, error } = useSelector(state => state.list);
 

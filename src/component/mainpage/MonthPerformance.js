@@ -31,7 +31,7 @@ const MonthPerformance = () => {
     },[selectDate])
 
     const { PerformanceListData, loading, error } = useSelector(state => state.list);
-
+    
   return (
     <div className='month_performance_area'>
       <h2>이달의 공연</h2>
