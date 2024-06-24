@@ -21,6 +21,8 @@ function userReducer(state = initialState, action) {
     case types.UPDATE_LEVEL_REQUEST:
     case types.EDIT_USER_REQUEST:
     case types.FORGOT_PASSWORD_REQUEST:
+    case types.RESET_PASSWORD_REQUEST:
+    case types.CHECK_RESET_TOKEN_REQUEST:
       return { ...state, loading: true };
     case types.LOGIN_SUCCESS:
     case types.LOGIN_WITH_TOKEN_SUCCESS:
@@ -38,12 +40,12 @@ function userReducer(state = initialState, action) {
         totalPageNum: payload.totalPageNum,
       };
     case types.UPDATE_LEVEL_SUCCESS:
-    case types.FORGOT_PASSWORD_SUCCESS:
       return {
         ...state,
         loading: false,
         error: '',
       };
+
     case types.REGISTER_USER_FAIL:
     case types.LOGIN_FAIL:
     case types.LOGIN_WITH_TOKEN_FAIL:
@@ -54,6 +56,15 @@ function userReducer(state = initialState, action) {
     case types.EDIT_USER_FAIL:
     case types.FORGOT_PASSWORD_FAIL:
       return { ...state, loading: false, error: payload };
+    case types.RESET_PASSWORD_FAIL:
+    case types.CHECK_RESET_TOKEN_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error:
+          payload ||
+          '토큰이 만료되었습니다.\n비밀번호 재설정 링크를 다시 받아주세요.',
+      };
     case types.RESET_ERROR:
       return {
         ...state,
