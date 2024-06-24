@@ -1,5 +1,6 @@
 .mypage-container{
   display: flex;
+  justify-content: space-between;
 
   h1,h2,h3,h4,h5,p {
     margin: 0;
@@ -19,14 +20,15 @@
 
   /* < mypage-left > */
   .mypage-left{
-    border: 2px solid green;
+    // border: 2px solid green;
     width: 14%;
     display: flex;
     flex-flow: column;
+    align-items: flex-start;
 
     /* [ side-bar ] */
     .mypage_sidebar{
-      border: 1px solid red;
+      // border: 1px solid red;
       padding-top: 40px;
       color: #919191;
 
@@ -62,13 +64,13 @@
   /* < mypage-right > */
   .mypage-right{
     display: flex;
-    width: 90%;
+    width: 86%;
     flex-flow: column;
-    border: 2px solid green;
+    // border: 2px solid green;
 
     /* [ user_level_section ] */
     .user_level_section{
-      border: 1px solid blue;
+      // border: 1px solid blue;
       display: flex;
       padding: 10px;
       background-color: #000;
