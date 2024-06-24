@@ -132,7 +132,11 @@ const PerformanceDetail = () => {
                         <li>{detailData.dtguidance}</li>
 
                         <div className="subTitle">캐스팅</div>
+<<<<<<< HEAD
                         <li>{detailData.prfcast.length > 1 ? detailData.prfcast : '없음'}</li>
+=======
+                        {detailData.prfcast.length==null?'':(<li>{detailData.prfcast.toString()}</li>)}
+>>>>>>> f958095fbbd901582c4a2e0235f085c46004ca9c
 
                         <div className="subTitle">공연 상세</div>
                         <div className="DetailBox">
