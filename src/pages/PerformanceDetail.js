@@ -123,7 +123,7 @@ const PerformanceDetail = () => {
                         <li>{detailData.dtguidance}</li>
 
                         <div className="subTitle">캐스팅</div>
-                        <li>{detailData.prfcast.toString()}</li>
+                        {detailData.prfcast.length==null?'':(<li>{detailData.prfcast.toString()}</li>)}
 
                         <div className="subTitle">공연 상세</div>
                         <div className="DetailBox">
