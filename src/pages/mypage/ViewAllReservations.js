@@ -1,11 +1,13 @@
 import React from "react";
 import { useEffect, useState } from 'react';
 import MyPageLayout from '../../Layout/MyPageLayout';
+import * as types from "../../constants/reservation.constants";
 import { reservationAction } from '../../action/reservationAction';
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import MyReserveList from '../../component/mypage/MyReserveList';
 import Pagination from '../../component/Pagination';
+import ReviewDialog from './ReviewDialog';
 
 
 // 나의 예매 모두 보기 컴포넌트
@@ -17,13 +19,15 @@ const ViewAllReservations = () => {
   const [searchQuery, setSearchQuery] = useState({
     page: query.get("page") || 1,
   });
+  const [showDialog, setShowDialog] = useState(false);
+  // const [mode, setMode] = useState("new");
 
 	// [ 나의예매 정보 받아오기 ]
 	useEffect(() => {
 		dispatch(reservationAction.getMyReserve({ ...searchQuery }));
 	}, [query, dispatch]);
 
-	console.log('reserveList',reserveList, totalPageNum)
+	// console.log('reserveList',reserveList, totalPageNum)
 
   // [ 페이지가 바뀌면 url바꿔주기 ]
   useEffect(() => {
@@ -37,16 +41,33 @@ const ViewAllReservations = () => {
     setSearchQuery({...searchQuery, page: selected +1});
   };
 
+  // [ 상품 수정하기 form 열기 ] 
+  const openReviewForm = (reserve) => {
+    dispatch({type: types.SET_SELECTED_RESERVATION, payload: reserve});
+    setShowDialog(true);
+  };
+
+
 	return (
 			<MyPageLayout title="나의 예매" cap="전체 조회">
 					<div className='my_reserve_all_container'>
-						<MyReserveList reserveList={reserveList} />
+						<MyReserveList 
+              reserveList={reserveList} 
+              openReviewForm={openReviewForm}
+            />
 					</div>
 
 					<Pagination 
           totalPageNum={totalPageNum}
           forcePage={searchQuery.page-1}
           onPageChange={onPageChange}
+        />
+
+        <ReviewDialog
+          // mode={mode}
+          showDialog={showDialog}
+          setShowDialog={setShowDialog}
+          setSearchQuery={setSearchQuery}
         />
 			</MyPageLayout>
 
