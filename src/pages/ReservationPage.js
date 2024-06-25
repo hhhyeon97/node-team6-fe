@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CalenderBox from '../component/CalenderBox';
 import '../style/css/ReservationPage.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faCaretUp, faDisplay } from '@fortawesome/free-solid-svg-icons'
+import { faCaretDown, faCaretUp, faDisplay, faL } from '@fortawesome/free-solid-svg-icons'
 import { Dateformat, numformat, cc_expires_format, priceformat } from '../utils/Date'
 import Cards from 'react-credit-cards-2';
 import PaymentForm from '../component/PaymentForm';
@@ -102,6 +102,7 @@ const ReservationPage = () => {
     const handleReserve = () => {
         console.log('send reservationDate:', reservationDate)
         console.log('send cost', costAsString)
+
         const data = {
             totalPrice,
             ticketNum,
@@ -120,6 +121,7 @@ const ReservationPage = () => {
 
         dispatch(reservationAction.createReservation(data, navigate))
     }
+
 
     return (
         <Container className='wrap-container reservationPage'>
@@ -146,7 +148,7 @@ const ReservationPage = () => {
                                 <div>{detailData.fcltynm}</div>
                                 <div>{detailData.prfpdfrom} ~ {detailData.prfpdto}</div>
                                 <Row>
-                                    <Col lg={6} md={12} sm={12} className='ticketnumleft_box'>
+                                    <Col lg={7} md={12} sm={12} className='ticketnumleft_box'>
                                         <div>{detailData.prfruntime}</div>
                                         <div>{costAsString}</div>
                                     </Col>
@@ -180,9 +182,9 @@ const ReservationPage = () => {
                         <div>
                             <div className='subTitle'>총 결제금액</div>
                             {user.level === 'gold' ? (
-                                <div className='finallyCost'>{priceformat(numformat(costAsString) * ticketNum - numformat(costAsString) * ticketNum * 0.1)}</div>
+                                <div className='finallyCost'>{priceformat(numformat(costAsString) * ticketNum - numformat(costAsString) * ticketNum * 0.1)}원</div>
                             ) : (
-                                <div className='finallyCost'>{priceformat(numformat(costAsString) * ticketNum)}</div>
+                                <div className='finallyCost'>{priceformat(numformat(costAsString) * ticketNum)}원</div>
                             )}
                         </div>
                         <button className='pay_button' onClick={handleReserve}>결제하기</button>

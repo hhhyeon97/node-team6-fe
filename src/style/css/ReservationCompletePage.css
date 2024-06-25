@@ -1,0 +1,31 @@
+@charset "UTF-8";
+.completePageBox {
+  margin-top: 10vh;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 30em;
+}
+.completePageBox .completeTitle {
+  font-size: 3.5em;
+  font-family: "Gsans_M";
+}
+.completePageBox .completeTitle::before {
+  content: "";
+  display: block;
+  width: 100px; /* 원하는 길이 설정 */
+  border-top: 4px solid black;
+  margin-bottom: 30px;
+}
+.completePageBox .completeInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: end;
+}
+.completePageBox .completeInfo div {
+  width: fit-content;
+  font-size: 1.2em;
+  font-family: "Gsans_M";
+  margin-bottom: 10px;
+}
