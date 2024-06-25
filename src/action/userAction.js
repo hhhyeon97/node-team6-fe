@@ -121,6 +121,38 @@ const forgotPassword =
       dispatch({ type: types.FORGOT_PASSWORD_FAIL, payload: error.error });
     }
   };
+const resetPassword =
+  ({ password, token }, navigate) =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: types.RESET_PASSWORD_REQUEST });
+      const response = await api.post(`/password/reset-password/${token}`, {
+        password,
+      });
+      if (response.status !== 200) throw new Error(response.error);
+      dispatch({ type: types.RESET_PASSWORD_SUCCESS });
+      alert('새 비밀번호가 설정되었습니다!');
+      navigate('/login');
+    } catch (error) {
+      const errorMessage = error.response?.data?.error || error.message;
+      dispatch({ type: types.RESET_PASSWORD_FAIL, payload: errorMessage });
+      alert('토큰이 만료되었습니다.\n비밀번호 재설정 링크를 다시 받아주세요.');
+      navigate('/find-password');
+    }
+  };
+
+// 비밀번호 재설정 토큰 만료 체크
+// const checkResetToken = (token) => async (dispatch) => {
+//   try {
+//     dispatch({ type: types.CHECK_RESET_TOKEN_REQUEST });
+//     const response = await api.get(`/password/check-reset-token/${token}`);
+//     if (response.status !== 200) throw new Error(response.error);
+//     dispatch({ type: types.CHECK_RESET_TOKEN_SUCCESS });
+//   } catch (error) {
+//     const errorMessage = error.response?.data?.error || error.message;
+//     dispatch({ type: types.CHECK_RESET_TOKEN_FAIL, payload: errorMessage });
+//   }
+// };
 
 // 유저 정보 가져오기
 const getUser = () => async (dispatch) => {
@@ -203,4 +235,6 @@ export const userActions = {
   loginWithKakaoCode,
   updateUserLevel,
   forgotPassword,
+  resetPassword,
+  // checkResetToken,
 };

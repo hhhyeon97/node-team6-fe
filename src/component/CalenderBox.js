@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Calendar from 'react-calendar';
 
-const CalenderBox = ({ selectDate, setSelectDate }) => {
+const CalenderBox = ({ selectDate, setSelectDate, blockDate, blockMaxDate }) => {
     const [activeStartDate, setActiveStartDate] = useState(selectDate);
 
     const formatDate = (date) => {
@@ -19,6 +19,7 @@ const CalenderBox = ({ selectDate, setSelectDate }) => {
 
     return (
         <Calendar
+            key={selectDate.getTime()}
             onChange={handleDateChange}
             value={selectDate}
             formatDay={(locale, date) => formatDate(date, 'dd')}
@@ -28,12 +29,13 @@ const CalenderBox = ({ selectDate, setSelectDate }) => {
             showNeighboringMonth={false}
             defaultView="month"
             minDetail="year"
+            minDate={new Date(blockDate)}
+            maxDate={blockMaxDate}
 
             activeStartDate={activeStartDate}
 
             onActiveStartDateChange={handleActiveStartDateChange}
         >
-
         </Calendar >
     )
 

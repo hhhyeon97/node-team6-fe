@@ -9,6 +9,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import KaKaoMap from "../component/KaKaoMap";
 import CopyClipButton from "../component/CopyClipButton";
 import { useDispatch, useSelector } from "react-redux";
+import LoadingText from "../component/LoadingText"
 
 import KakaoClipButton from "../component/KakaoClipButton";
 
@@ -81,7 +82,9 @@ const PerformanceDetail = () => {
 
     return (
         <Container className="wrap-container">
-            {detailData ? (
+            {loading ? (
+                <div><LoadingText /></div>
+            ) : (detailData ? (
                 <div className="DetailPageAllBox">
                     <div className="DetailStatus">
                         <span>
@@ -100,21 +103,26 @@ const PerformanceDetail = () => {
                                 {/* <KakaoClipButton detailData={detailData} /> */}
                             </Row>
                             <Row className="DetailInfo">
-                                <Col lg={3} md={3} sm={3}>
-                                    <div>장소</div>
-                                    <div>공연기간</div>
-                                    <div>공연 런타임</div>
-                                    <div>관람 연령</div>
-                                    <div>가격</div>
-                                </Col>
-                                <Col lg={9} md={9} sm={9}>
-                                    <div>{detailData.fcltynm}</div>
-                                    <div>{detailData.prfpdfrom} ~ {detailData.prfpdto}</div>
-                                    <div>{detailData.prfruntime}</div>
-                                    <div>{detailData.prfage}</div>
-                                    <div>{costArray.length > 1 ? (costArray) : (detailData.pcseguidance)}
-                                    </div>
-                                </Col>
+                                <Row>
+                                    <Col lg={4} md={4} sm={4}>장소</Col>
+                                    <Col lg={8} md={8} sm={8}>{detailData.fcltynm}</Col>
+                                </Row>
+                                <Row>
+                                    <Col lg={4} md={4} sm={4}>공연기간</Col>
+                                    <Col lg={8} md={8} sm={8}>{detailData.prfpdfrom} ~ {detailData.prfpdto}</Col>
+                                </Row>
+                                <Row>
+                                    <Col lg={4} md={4} sm={4}>공연 런타임</Col>
+                                    <Col lg={8} md={8} sm={8}>{detailData.prfruntime}</Col>
+                                </Row>
+                                <Row>
+                                    <Col lg={4} md={4} sm={4}>관람 연령</Col>
+                                    <Col lg={8} md={8} sm={8}>{detailData.prfage}</Col>
+                                </Row>
+                                <Row>
+                                    <Col lg={4} md={4} sm={4}>가격</Col>
+                                    <Col lg={8} md={8} sm={8}>{costArray.length > 1 ? (costArray) : (detailData.pcseguidance)}</Col>
+                                </Row>
                             </Row>
                             <Row className="DetailButtonBox">
                                 <div className="reservationBtnBox">
@@ -159,9 +167,10 @@ const PerformanceDetail = () => {
                         }
                     </div>
 
-                </div>
-            ) : (<div>데이터 로딩 중</div>)
-            }
+                </div>) : (
+                <div><LoadingText /></div>
+            )
+            )}
         </Container >
     )
 }

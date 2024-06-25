@@ -68,7 +68,7 @@
     flex-flow: column;
     // border: 2px solid green;
 
-    /* [ user_level_section ] */
+    /* [ 회원 등급 정보 ] */
     .user_level_section{
       // border: 1px solid blue;
       display: flex;
@@ -115,6 +115,22 @@
         }
       }
     }
+
+    /* [ 나의 예매_전체조회 ]*/
+    .my_reserve_card_container{
+      .poster_box{
+        width: 6em;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 0.5px solid #bbb;
+        background-color: #bbb;
+      }
+      .poster_img{
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
     /* [ 회원정보 수정 페이지 ] */
     .edit_user_form_container{
 
