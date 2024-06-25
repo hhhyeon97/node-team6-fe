@@ -23,7 +23,6 @@ const createReview = (formData, reserveId, setShowDialog, setSearchQuery) => asy
   try{
     dispatch({ type: types.CREATE_REVIEW_REQUEST });
     const response = await api.post("/review", { ...formData, reserveId });
-    console.log('rrr', response.data)
     if (response.status !== 200) throw new Error(response.error);
     dispatch({ type: types.CREATE_REVIEW_SUCCESS });
     setShowDialog(false);
@@ -31,8 +30,23 @@ const createReview = (formData, reserveId, setShowDialog, setSearchQuery) => asy
     dispatch({ type: types.CREATE_REVIEW_FAIL });
   }
 }
+// [ 리뷰를 작성한 예매인지 체크하기 ]
+const checkReviewed = (reserveId) => async (dispatch) => {
+  try{
+    console.log("예약아이디",reserveId)
+    dispatch({ type: types.CHECKE_REVIEWED_RESERVATION_REQUEST });
+    const response = await api.get(`/review/check/${reserveId}`);
+    console.log('rrr', response.data);
+    if (response.status !== 200) throw new Error(response.error);
+    dispatch({ type: types.CHECKE_REVIEWED_RESERVATION_SUCCESS,
+                payload: response.data });
+  }catch(error){
+    dispatch({ type: types.CHECKE_REVIEWED_RESERVATION_FAIL});
+  }
+}
 
 export const reviewAction = {
   getReviewList,
-  createReview
+  createReview,
+  checkReviewed
 }
