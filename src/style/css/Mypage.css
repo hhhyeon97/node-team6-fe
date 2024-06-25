@@ -55,6 +55,7 @@
   flex-flow: column;
   /* [ user_level_section ] */
   /* [ 회원정보 수정 페이지 ] */
+  /* 나의 찜 페이지 */
 }
 .mypage-container .mypage-right .user_level_section {
   display: flex;
@@ -109,4 +110,67 @@
   object-fit: cover;
   width: 100%;
   height: 100%;
+}
+.mypage-container .mypage-right .mylike_card_area {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 25Vh;
+  border: 1px solid gray;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+.mypage-container .mypage-right .mylike_card_area .mylike_card_image_box {
+  width: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.mypage-container .mypage-right .mylike_card_area .mylike_card_image {
+  width: 100%;
+}
+.mypage-container .mypage-right .mylike_card_area .filter_gray {
+  filter: grayscale(75%);
+}
+.mypage-container .mypage-right .mylike_card_area .mylike_card_text_box {
+  width: 65%;
+  padding: 1.5rem;
+}
+.mypage-container .mypage-right .mylike_card_area .mylike_card_text_box h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: gray;
+  margin-bottom: 0.4rem;
+}
+.mypage-container .mypage-right .mylike_card_area .mylike_card_text_box h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.mypage-container .mypage-right .mylike_card_area .mylike_card_text_box h5 {
+  font-size: 0.9rem;
+}
+.mypage-container .mypage-right .mylike_card_area .mylike_card_text_box button {
+  margin-top: 1rem;
+  width: 6rem;
+  height: 2.8rem;
+  line-height: 2.8rem;
+  border: 1px solid black;
+  background-color: black;
+  color: white;
+  border-radius: 0.5rem;
+}
+.mypage-container .mypage-right .mylike_card_area .mylike_card_text_box .before_perf {
+  background-color: white;
+  color: black;
+}
+.mypage-container .mypage-right .mylike_card_area .like_heart {
+  position: absolute;
+  right: 1rem;
+  bottom: 0.5rem;
+  font-size: 1.5rem;
+  color: #D61F1F;
 }

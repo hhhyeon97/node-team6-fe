@@ -131,6 +131,73 @@
         height: 100%;
       }
     }
+
+    /* 나의 찜 페이지 */
+    .mylike_card_area{
+      position: relative;
+      display: flex;
+      width: 100%;
+      height: 25Vh;
+      border: 1px solid gray;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      // .filter_gray{
+      //   background-color: #919191;
+      // }
+      .mylike_card_image_box{
+        width: 35%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden; 
+      }
+      .mylike_card_image{ width: 100%;}
+      .filter_gray{
+        filter: grayscale(75%);
+      }
+      
+      .mylike_card_text_box{
+        width: 65%;
+        padding: 1.5rem;
+
+          h4{
+            font-size: 1rem;
+            font-weight: 600;
+            color: gray;
+            margin-bottom: 0.4rem;
+          }
+          h3{
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+          }
+          h5{ font-size: 0.9rem; }
+
+          button {
+            margin-top: 1rem;
+            width: 6rem;
+            height: 2.8rem;
+            line-height: 2.8rem;
+            border: 1px solid black;
+            background-color: black;
+            color: white;
+            border-radius: 0.5rem;
+          }
+          .before_perf{
+            background-color: white;
+            color: black;
+          }
+      }
+      .like_heart{
+        position: absolute;
+        right: 1rem;
+        bottom: 0.5rem;
+        font-size: 1.5rem;
+        color: #D61F1F;
+      }
+    }
   }
 }
 

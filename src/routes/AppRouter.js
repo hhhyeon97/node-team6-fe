@@ -18,6 +18,7 @@ import MainPage from '../pages/MainPage';
 import ReservationPage from '../pages/ReservationPage';
 import SearchPage from '../pages/SearchPage';
 import FindPasswordPage from '../pages/FindPasswordPage';
+import MyLike from '../pages/mypage/MyLike';
 
 const AppRouter = () => {
   const navigate = useNavigate();
@@ -51,6 +52,7 @@ const AppRouter = () => {
         element={<ViewAllReservations />}
       />
       <Route path="/mypage/reviews" element={<MyReviews />} />
+      <Route path="/mypage/like" element={<MyLike />} />
       <Route path="/mypage/edit-profile" element={<EditProfile />} />
       <Route path="/admin/user" element={<AdminUserPage />} />
       <Route path="/admin/review" element={<AdminReviewPage />} />

@@ -15,7 +15,7 @@ const MypageSidebar = () => {
         <h3>나의 활동</h3>
           <ul className='link_menu'>
           <li><Link to="/mypage/reviews">나의 리뷰</Link></li>
-          <li><Link to="/mypage/reviews">나의 찜</Link></li>
+          <li><Link to="/mypage/like">나의 찜</Link></li>
           </ul>
         <h3>나의 계정</h3>
           <ul className='link_menu'>

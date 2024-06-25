@@ -3,10 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { StartDate, EndDate } from '../../utils/MainCartDate'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { likeAction } from '../../action/likeAction'
 
 const RankingCard = ({item,key}) => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const imgUrL = 'http://www.kopis.or.kr/';
+    const { likeList } = useSelector(state=>state.like);
+    const checkLike = likeList.find(like=>like.seqId === item.mt20id);
     const sliceOpenDate = (date) => {
         const [openDate, closeDate] = date.split('~');
         return openDate
@@ -14,6 +20,20 @@ const RankingCard = ({item,key}) => {
     const sliceClosenDate = (date) => {
         const [openDate, closeDate] = date.split('~');
         return closeDate
+    }
+
+    const addLike = (item) => {
+        dispatch(likeAction.addLikeToList({
+            seqId:item.mt20id,
+            seqImage:`${imgUrL}${item.poster}`,
+            seqTo:sliceClosenDate(item.prfpd),
+            seqFrom:sliceOpenDate(item.prfpd),
+            seqLocation:item.prfplcnm,
+            seqTitle:item.prfnm,
+          }))        
+    }
+    const deleteLike = (item) => {
+        dispatch(likeAction.deleteLikeItem({id:checkLike._id}));
     }
 
   return (
@@ -27,7 +47,9 @@ const RankingCard = ({item,key}) => {
             <h4>{item.prfplcnm}</h4>
             <h5>{StartDate(sliceOpenDate(item.prfpd))} ~ {EndDate(sliceClosenDate(item.prfpd))}</h5>
         </div>
-        <div className='like-heart'><FontAwesomeIcon icon={faHeart} /></div>
+        {checkLike?(<div className='like_heart_red' onClick={()=>deleteLike(item)}><FontAwesomeIcon icon={fas.faHeart} /></div>)
+        :(<div className='like-heart' onClick={()=>addLike(item)}><FontAwesomeIcon icon={faHeart} /></div>)}
+        
     </div>
   )
 }

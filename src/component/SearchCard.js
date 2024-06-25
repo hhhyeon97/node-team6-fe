@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Col } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 import { EndDate, StartDate } from '../utils/MainCartDate'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-regular-svg-icons'
-import { useDispatch } from 'react-redux';
+import { faHeart, far } from '@fortawesome/free-regular-svg-icons'
+import { useDispatch, useSelector } from 'react-redux';
 import { likeAction } from '../action/likeAction';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
 const SearchCard = ({item}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { likeList } = useSelector(state=>state.like);
+  const checkLike = likeList.find(like=>like.seqId === item.mt20id);
 
-  const getLike = (item) => {
+  const addLike = (item) => {
     dispatch(likeAction.addLikeToList({
       seqId:item.mt20id,
       seqImage:item.poster,
@@ -20,6 +23,10 @@ const SearchCard = ({item}) => {
       seqLocation:item.fcltynm,
       seqTitle:item.prfnm,
     }))
+  }
+
+  const deleteLike = (item) => {
+    dispatch(likeAction.deleteLikeItem({id:checkLike._id}));
   }
 
   return (
@@ -33,7 +40,9 @@ const SearchCard = ({item}) => {
                 <h4>{item.fcltynm}</h4>
                 <h5>{StartDate(item.prfpdfrom)} ~ {EndDate(item.prfpdto)}</h5>
             </div>
-            <div className='like-heart' onClick={()=>getLike(item)}><FontAwesomeIcon icon={faHeart} /></div>    
+            {checkLike?(<div className='like-heart-red' onClick={()=>deleteLike(item)}><FontAwesomeIcon icon={fas.faHeart} /></div>):(
+            <div className='like-heart' onClick={()=>addLike(item)}><FontAwesomeIcon icon={far.faHeart} /></div>  
+            )}
         </div>
     </Col>
   )
