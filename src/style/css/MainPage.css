@@ -81,6 +81,12 @@
   color: #D61F1F;
   transition: 0.5s;
 }
+.performance_card_area .like_heart_red {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  color: #D61F1F;
+}
 .performance_card_area .ranking_num {
   position: absolute;
   left: 0.8rem;
@@ -145,6 +151,13 @@
 }
 .planned_card_area .like-heart:hover {
   color: #D61F1F;
+}
+.planned_card_area .like_heart_red {
+  position: absolute;
+  color: #D61F1F;
+  font-size: 1.2rem;
+  top: 0.8rem;
+  right: 0.5rem;
 }
 .planned_card_area .planned_text_box {
   padding: 0.5rem 0.5rem 0rem 0.5rem;

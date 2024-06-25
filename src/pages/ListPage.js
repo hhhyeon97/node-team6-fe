@@ -10,6 +10,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMap, faCalendar } from '@fortawesome/free-regular-svg-icons'
 import { faCaretDown, faCaretUp, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { useSearchParams } from "react-router-dom";
+import LoadingText from "../component/LoadingText";
+import Pagination from "../component/Pagination";
 
 const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
 
@@ -25,26 +27,33 @@ const ListPage = () => {
 
     const [showPage, setShowPage] = useState(1)
     const [status, setStatus] = useState('02')
+    const [totalPageNum, setTotalPageNum] = useState(1)
 
     const [query] = useSearchParams();
     const categoryQurery = query.get('category') || ''
 
     const settingQuery = {
         service: REACT_APP_YEJIN_SERVICE_KEY,
-        rows: 10,
         signgucode: selectedRegion ? selectedRegion.code : '',
         prfstate: status,
     }
+
+    // [ 쿼리에 페이지값 바꿔주기 ]
+    const onPageChange = () => {
+        setShowPage(showPage + 1)
+    };
+
 
     useEffect(() => {
         dispatch(perfomanceListAction.getPerformanceList({
             stdate: StringDateformat(selectDate),
             shcate: categoryQurery,
             eddate: EndDateformat(selectDate),
-            cpage: showPage
+            cpage: showPage,
+            rows: 10,
         }, settingQuery))
         console.log("receive PerformanceListData: ", PerformanceListData)
-    }, [selectDate, status, selectedRegion, categoryQurery])
+    }, [selectDate, status, selectedRegion, categoryQurery, showPage])
 
     const { PerformanceListData } = useSelector(state => state.list)
 
@@ -55,16 +64,6 @@ const ListPage = () => {
     const handleStatus = async (status) => {
         setStatus(status)
     }
-
-    // const hadleSort = (sort) => {
-    //     if (sort === 'local') {
-    //         setSort('local')
-    //         setSelectDate(new Date())
-    //     } else if (sort === 'date') {
-    //         setSort('date')
-    //         setSelectedRegion('')
-    //     }
-    // }
 
     const RegionParam = (local) => {
         setSelectedRegion(local)
@@ -118,20 +117,10 @@ const ListPage = () => {
                         <div className="status_yet" onClick={() => { handleStatus('01') }}>공연예정</div>
                         {/* <div className="status_over" onClick={() => { handleStatus('03') }}>공연완료</div> */}
                     </Col>
-                    {/* <Col className="sortButtons">
-                        <div onClick={() => hadleSort('date')}>
-                            <FontAwesomeIcon icon={faCalendar} />
-                            <div>캘린더</div>
-                        </div>
-                        <div onClick={() => hadleSort('local')}>
-                            <FontAwesomeIcon icon={faMap} />
-                            <div>지역별</div>
-                        </div>
-                    </Col> */}
                 </Row>
 
                 <Col lg={7} md={7} sm={6} className="ListItemsBox">
-                    {loading ? <p>공연 리스트를 불러오는 중입니다...</p> :
+                    {loading ? <LoadingText /> :
                         (Array.isArray(PerformanceListData) && PerformanceListData.length > 0 ? (
                             PerformanceListData.map((item, index) => (
                                 <ListItem key={index} item={item} />
@@ -152,6 +141,9 @@ const ListPage = () => {
                         </div>
                     </div>
                 </Col>
+            </Row>
+            <Row className="ListPagePagination">
+                <Pagination totalPageNum={10} forcePage={showPage - 1} onPageChange={onPageChange} />
             </Row>
         </Container>
     )

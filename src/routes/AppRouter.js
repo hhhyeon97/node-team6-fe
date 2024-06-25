@@ -17,6 +17,11 @@ import AdminNoticePage from '../pages/admin_page/AdminNoticePage';
 import MainPage from '../pages/MainPage';
 import ReservationPage from '../pages/ReservationPage';
 import SearchPage from '../pages/SearchPage';
+import PrivateRoute from './PrivateRoute';
+import ReservationCompletePage from '../pages/ReservationCompletePage';
+import FindPasswordPage from '../pages/FindPasswordPage';
+import ResetPasswordPage from '../pages/ResetPasswordPage';
+import MyLike from '../pages/mypage/MyLike';
 
 const AppRouter = () => {
   const navigate = useNavigate();
@@ -37,9 +42,11 @@ const AppRouter = () => {
       <Route path="/" element={<MainPage />} />
       <Route path="/performance" element={<ListPage />} />
       <Route path="/performance/:id" element={<PerformanceDetail />} />
-      <Route path='/reservation/:id' element={<ReservationPage />} />
+
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/find-password" element={<FindPasswordPage />} />
+      <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
       <Route
         path="/mypage/reservations/by-date"
         element={<ReservationByDate />}
@@ -49,11 +56,18 @@ const AppRouter = () => {
         element={<ViewAllReservations />}
       />
       <Route path="/mypage/reviews" element={<MyReviews />} />
+      <Route path="/mypage/like" element={<MyLike />} />
       <Route path="/mypage/edit-profile" element={<EditProfile />} />
       <Route path="/admin/user" element={<AdminUserPage />} />
       <Route path="/admin/review" element={<AdminReviewPage />} />
       <Route path="/admin/notice" element={<AdminNoticePage />} />
       <Route path="/search" element={<SearchPage />} />
+
+      <Route path="/reservation/:id" element={<PrivateRoute />} />
+      <Route
+        path="/reservation/success"
+        element={<ReservationCompletePage />}
+      />
     </Routes>
   );
 };

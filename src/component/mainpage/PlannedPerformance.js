@@ -10,6 +10,7 @@ import { EndDate, StartDate } from '../../utils/MainCartDate';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import PlannedCard from './PlannedCard';
 
 const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
 
@@ -39,7 +40,7 @@ const PlannedPerformance = () => {
 
     },[selectDate])
 
-    const { PerformanceListDataWithStatus, loading, error } = useSelector(state => state.list)
+    const { PerformanceListDataWithStatus, loading, error } = useSelector(state => state.list);
 
     const settings = {
         dots: true,
@@ -62,23 +63,7 @@ const PlannedPerformance = () => {
                 <Slider {...settings} className='slider'>
                     {PerformanceListDataWithStatus && PerformanceListDataWithStatus.length>0?
                     PerformanceListDataWithStatus.map((item,index)=>(
-                        <div key={index} className='planned_card_box' onClick={()=>navigate(`/performance/${item.mt20id}`)}>
-                            <div className='planned_card'>
-                                <div className='planned_card_img_box'>
-                                    <img src={item.poster} className='planned_card_img'/>
-                                    <div className='like-heart'><FontAwesomeIcon icon={faHeart} /></div>
-                                </div>
-                                <div className='planned_text_box'>
-                                    <div>
-                                        <h3>{item.prfnm}</h3>
-                                        <h4>{item.fcltynm}</h4>  
-                                    </div>
-                                    <div>
-                                        <h5>{StartDate(item.prfpdfrom)} ~ {EndDate(item.prfpdto)}</h5>    
-                                    </div>
-                                </div>    
-                            </div>
-                        </div>
+                        <PlannedCard key={index} item={item}/>
                     )):''}
                 </Slider>
             </div>    

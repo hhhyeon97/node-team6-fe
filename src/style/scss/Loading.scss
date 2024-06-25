@@ -1,0 +1,57 @@
+.contain {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 30px 0;
+  height: 90%;
+
+  .back {
+    margin: 1em auto;
+    font-family: "Gsans_B";
+
+    span {
+      font-size: 2em;
+      color: black;
+      display: table-cell;
+      box-shadow: inset 0 0 0px, 0 5px 0 #ccc;
+      padding: 0 10px;
+      line-height: 70px;
+      animation: jumb 2s infinite;
+    }
+
+    span:nth-child(1) {
+      animation-delay: 0s;
+    }
+    span:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+    span:nth-child(3) {
+      animation-delay: 0.2s;
+    }
+    span:nth-child(4) {
+      animation-delay: 0.3s;
+    }
+    span:nth-child(5) {
+      animation-delay: 0.4s;
+    }
+    span:nth-child(6) {
+      animation-delay: 0.5s;
+    }
+    span:nth-child(7) {
+      animation-delay: 0.6s;
+    }
+  }
+
+  @keyframes jumb {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-30px);
+      box-shadow: 0 5px 0 #f44f08;
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+}

@@ -52,6 +52,9 @@
   border-right: none;
   border-bottom: 2px solid black;
 }
+.nav_area .nav_input_area input:focus-visible {
+  outline: none;
+}
 .nav_area .nav_input_area button {
   border-top: none;
   border-left: none;

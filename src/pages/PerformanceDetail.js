@@ -9,6 +9,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import KaKaoMap from "../component/KaKaoMap";
 import CopyClipButton from "../component/CopyClipButton";
 import { useDispatch, useSelector } from "react-redux";
+import LoadingText from "../component/LoadingText"
 
 import KakaoClipButton from "../component/KakaoClipButton";
 
@@ -30,6 +31,7 @@ const PerformanceDetail = () => {
     const [posterList, setPosterList] = useState([]);
     const [hidden, setHidden] = useState(true)
     const [location, setLocation] = useState('')
+    const [costArray, setCostArray] = useState([])
 
     const { locationLat } = useSelector(state => state.list)
     const { locationLot } = useSelector(state => state.list)
@@ -49,8 +51,22 @@ const PerformanceDetail = () => {
         if (detailData) {
             setPosterList(detailData.styurls)
             setLocation(detailData.mt10id)
+
+            const array = detailData.pcseguidance.split(', ')
+            console.log('array', array)
+
+            if (array.length > 1) {
+                const [name, cost] = array[array.length - 1].split(' ')
+                setCostArray(`전석 ${cost}`)
+            } else {
+                setCostArray([detailData.pcseguidance])
+            }
         }
     }, [detailData])
+
+    useEffect(() => {
+        console.log('costArray:', costArray)
+    }, [costArray])
 
     useEffect(() => {
         dispatch(perfomanceListAction.getLocationLatLot(location, settingQuery))
@@ -61,12 +77,14 @@ const PerformanceDetail = () => {
     }
 
     const movePage = (detailData) => {
-        navigate(`/reservation/${id}`)
+        navigate(`/reservation/${id}`, { state: { cost: costArray } })
     }
 
     return (
         <Container className="wrap-container">
-            {detailData ? (
+            {loading ? (
+                <div><LoadingText /></div>
+            ) : (detailData ? (
                 <div className="DetailPageAllBox">
                     <div className="DetailStatus">
                         <span>
@@ -85,29 +103,28 @@ const PerformanceDetail = () => {
                                 {/* <KakaoClipButton detailData={detailData} /> */}
                             </Row>
                             <Row className="DetailInfo">
-                                <Col lg={3} md={3} sm={3}>
-                                    <div>장소</div>
-                                    <div>공연기간</div>
-                                    <div>공연 런타임</div>
-                                    <div>관람 연령</div>
-                                    <div>가격</div>
-                                </Col>
-                                <Col lg={9} md={9} sm={9}>
-                                    <div>{detailData.fcltynm}</div>
-                                    <div>{detailData.prfpdfrom} ~ {detailData.prfpdto}</div>
-                                    <div>{detailData.prfruntime}</div>
-                                    <div>{detailData.prfage}</div>
-                                    <div>{detailData.pcseguidance}</div>
-                                </Col>
+                                <Row>
+                                    <Col lg={4} md={4} sm={4}>장소</Col>
+                                    <Col lg={8} md={8} sm={8}>{detailData.fcltynm}</Col>
+                                </Row>
+                                <Row>
+                                    <Col lg={4} md={4} sm={4}>공연기간</Col>
+                                    <Col lg={8} md={8} sm={8}>{detailData.prfpdfrom} ~ {detailData.prfpdto}</Col>
+                                </Row>
+                                <Row>
+                                    <Col lg={4} md={4} sm={4}>공연 런타임</Col>
+                                    <Col lg={8} md={8} sm={8}>{detailData.prfruntime}</Col>
+                                </Row>
+                                <Row>
+                                    <Col lg={4} md={4} sm={4}>관람 연령</Col>
+                                    <Col lg={8} md={8} sm={8}>{detailData.prfage}</Col>
+                                </Row>
+                                <Row>
+                                    <Col lg={4} md={4} sm={4}>가격</Col>
+                                    <Col lg={8} md={8} sm={8}>{costArray.length > 1 ? (costArray) : (detailData.pcseguidance)}</Col>
+                                </Row>
                             </Row>
                             <Row className="DetailButtonBox">
-                                {/* <Col lg={3} md={3} sm={3} className="ticketNum">
-                                    <ul onClick={() => { setView(!view) }}>
-                                        수량 {selectTicketNum}개 {""}
-                                        {view ? <FontAwesomeIcon icon={faCaretUp} /> : <FontAwesomeIcon icon={faCaretDown} />}
-                                        {view && <Dropdown />}
-                                    </ul>
-                                </Col> */}
                                 <div className="reservationBtnBox">
                                     <button className="reserveBtn" onClick={() => { movePage(detailData) }}>예매하기</button>
                                 </div>
@@ -123,8 +140,7 @@ const PerformanceDetail = () => {
                         <li>{detailData.dtguidance}</li>
 
                         <div className="subTitle">캐스팅</div>
-                        <li>{detailData.prfcast}</li>
-
+                        <li>{detailData.prfcast.length > 1 ? detailData.prfcast : '없음'}</li>
                         <div className="subTitle">공연 상세</div>
                         <div className="DetailBox">
                             <div className="postersBox" id={hidden.toString()}>
@@ -151,9 +167,10 @@ const PerformanceDetail = () => {
                         }
                     </div>
 
-                </div>
-            ) : (<div>데이터 로딩 중</div>)
-            }
+                </div>) : (
+                <div><LoadingText /></div>
+            )
+            )}
         </Container >
     )
 }

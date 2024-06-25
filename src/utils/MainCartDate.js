@@ -16,4 +16,13 @@ const DateChangeToNum = (date) => {
     return formattedDate
 }
 
-export {StartDate, EndDate, DateChangeToNum};
+const DateToReturn = (date) => {
+    const parts = date.split('.');
+    const year = parts[0];
+    const month = parts[1].padStart(2,0);
+    const day = parts[2].padStart(2,0);
+    const formattedDate = `${year}${month}${day}`
+    return formattedDate
+}
+
+export {StartDate, EndDate, DateChangeToNum, DateToReturn};

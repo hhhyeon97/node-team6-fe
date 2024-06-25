@@ -6,6 +6,7 @@
   position: relative;
   width: 100%;
   margin-bottom: 3rem;
+  cursor: pointer;
 }
 .search_card_area .search_card_img_box {
   display: flex;
@@ -20,6 +21,7 @@
   width: 100%;
 }
 .search_card_area .search_card_text {
+  height: 7.5rem;
   margin-top: 0.3rem;
 }
 .search_card_area h3 {
@@ -36,12 +38,19 @@
 }
 .search_card_area .like-heart {
   position: absolute;
-  right: 0.5rem;
-  bottom: 0.3rem;
+  right: 0.3rem;
+  bottom: 0.2rem;
   color: gray;
   font-size: 1.2rem;
 }
 .search_card_area .like-heart:hover {
   color: #D61F1F;
   transition: 0.5s;
+}
+.search_card_area .like-heart-red {
+  position: absolute;
+  right: 0.3rem;
+  bottom: 0.2rem;
+  color: #D61F1F;
+  font-size: 1.2rem;
 }

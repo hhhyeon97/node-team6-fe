@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { userActions } from '../action/userAction';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import '../style/css/Navbar.css'
 import { faDoorOpen, faHeart, faMagnifyingGlass, faUnlock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Col, Container, Row } from 'react-bootstrap';
@@ -25,18 +25,22 @@ const Navbar = ({ user }) => {
   };
 
   const sendCategory = (code) => {
-    navigate(`/performance?category=${code}`)
+    navigate(`/performance?category=${code}`
+
+    )
   }
 
-  const searchByKeyword = (event) =>{
+  const searchByKeyword = (event) => {
     event.preventDefault();
     navigate(`/search?keyword=${keyword}`)
     setKeyword('')
   }
 
   const onCheckEnter = (event) => {
-    if(event.key === 'Enter') searchByKeyword(event);
+    if (event.key === 'Enter') searchByKeyword(event);
   }
+
+  const {likeQty} = useSelector(state=>state.like);
 
   return (
     <Container className='wrap-container nav_area'>
@@ -59,8 +63,15 @@ const Navbar = ({ user }) => {
             <div onClick={() => navigate('/register')}>
               <FontAwesomeIcon icon={faUser} className='nav_user_icon' /> JOIN US
             </div>)}
-
-          <div><FontAwesomeIcon icon={faHeart} className='nav_user_icon' /> {user ? '' : 'MY LIKE'}</div>
+          {user?(
+            <div onClick={() => navigate('/mypage/like')}>
+              <FontAwesomeIcon icon={faHeart} className='nav_user_icon' /> {`LIKE ${likeQty}`}
+            </div>
+          ):(
+            <div onClick={() => navigate('/login')}>
+              <FontAwesomeIcon icon={faHeart} className='nav_user_icon' /> MY LIKE
+            </div>  
+          )}
           {user ? (
             <div onClick={logout}>
               <FontAwesomeIcon icon={faDoorOpen} className='nav_user_icon' />
@@ -87,17 +98,17 @@ const Navbar = ({ user }) => {
           </ul>
         </Col>
         <Col md={4} className='nav_input_area'>
-            <form onSubmit={searchByKeyword}>
-              <input 
-                type='text'
-                value={keyword}
-                onChange={(event)=>setKeyword(event.target.value)}
-                onKeyDown={onCheckEnter}
-              />
-              <button type='submit'>
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </button>
-            </form>
+          <form onSubmit={searchByKeyword}>
+            <input
+              type='text'
+              value={keyword}
+              onChange={(event) => setKeyword(event.target.value)}
+              onKeyDown={onCheckEnter}
+            />
+            <button type='submit'>
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </button>
+          </form>
         </Col>
       </Row>
     </Container>

@@ -32,6 +32,7 @@ const PaymentForm = ({
                         maxLength={16}
                         minLength={16}
                         value={cardValue.number}
+                        className="card_textInfo"
                     />
 
                     <Form.Control
@@ -42,6 +43,7 @@ const PaymentForm = ({
                         onFocus={handleInputFocus}
                         required
                         value={cardValue.name}
+                        className="card_textInfo"
                     />
                     <Row>
                         <Col>
@@ -54,6 +56,7 @@ const PaymentForm = ({
                                 required
                                 value={cardValue.expiry}
                                 maxLength={7}
+                                className="card_textInfo"
                             />
                         </Col>
                         <Col>
@@ -66,6 +69,7 @@ const PaymentForm = ({
                                 required
                                 maxLength={3}
                                 value={cardValue.cvc}
+                                className="card_textInfo"
                             />
                         </Col>
                     </Row>

@@ -1,6 +1,7 @@
 .register_area {
   flex-direction: column;
   width: 450px;
+  margin-top: 40px;
 }
 .register_area .register_form {
   width: 100%;

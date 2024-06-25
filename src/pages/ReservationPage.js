@@ -1,21 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CalenderBox from '../component/CalenderBox';
 import '../style/css/ReservationPage.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
-import { Dateformat, cc_expires_format, numformat, priceformat } from '../utils/Date'
+import { faCaretDown, faCaretUp, faDisplay } from '@fortawesome/free-solid-svg-icons'
+import { Dateformat, numformat, cc_expires_format, priceformat } from '../utils/Date'
 import Cards from 'react-credit-cards-2';
 import PaymentForm from '../component/PaymentForm';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { reservationAction } from '../action/reservationAction';
 
 const ReservationPage = () => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch();
     const { detailData } = useSelector(state => state.list)
     const { user } = useSelector(state => state.user)
 
-    const [reservationDate, setReservationDate] = useState(new Date(detailData ? detailData.prfpdfrom : null))
+    const [reservationDate, setReservationDate] = useState(new Date())
     const [ticketNum, setTicketNum] = useState(1)
     const [view, setView] = useState(false);
+    const [blockDate, setBlockDate] = useState('')
+    const blockMaxDate = new Date(detailData?.prfpdto)
+
+    const [totalPrice, setTotalPrice] = useState(0)
+
+    const location = useLocation();
+    const { cost } = location.state || { cost: [] };
+    const costAsString = String(cost); // cost를 문자열로 변환하여 저장
 
     console.log('reservation page detailData:', detailData)
     console.log('reservation page user:', user)
@@ -30,6 +42,36 @@ const ReservationPage = () => {
         name: '',
         focus: '',
     });
+
+    useEffect(() => {
+        if (detailData && detailData.prfpdfrom) {
+            const prfpdfromDate = new Date(detailData.prfpdfrom);
+            const today = new Date();
+
+            if (isNaN(prfpdfromDate)) {
+                console.error("Invalid date format in detailData.prfpdfrom:", detailData.prfpdfrom);
+                return;
+            }
+
+            if (prfpdfromDate < today) {
+                setReservationDate(today);
+                setBlockDate(today)
+            } else {
+                setReservationDate(prfpdfromDate);
+                setBlockDate(prfpdfromDate)
+            }
+        }
+    }, [detailData])
+
+    useEffect(() => {
+        if (detailData) {
+            if (user.level === 'gold') {
+                setTotalPrice(numformat(costAsString) * ticketNum - numformat(costAsString) * ticketNum * 0.1)
+            } else {
+                setTotalPrice(numformat(costAsString) * ticketNum)
+            }
+        }
+    }, [ticketNum])
 
     const handlePaymentInfoChange = (event) => {
         const { name, value } = event.target;
@@ -57,7 +99,27 @@ const ReservationPage = () => {
         );
     }
 
-    console.log("reservationDate:", reservationDate)
+    const handleReserve = () => {
+        console.log('send reservationDate:', reservationDate)
+        console.log('send cost', costAsString)
+        const data = {
+            totalPrice,
+            ticketNum,
+            reservationDate: reservationDate.toString(),
+            SeqPrice: numformat(costAsString),
+
+            ticket: {
+                SeqId: detailData.mt20id,
+                SeqImage: detailData.poster,
+                SeqTitle: detailData.prfnm,
+                SeqLocation: detailData.fcltynm,
+                SeqFrom: detailData.prfpdfrom,
+                SeqTo: detailData.prfpdto,
+            }
+        }
+
+        dispatch(reservationAction.createReservation(data, navigate))
+    }
 
     return (
         <Container className='wrap-container reservationPage'>
@@ -66,7 +128,7 @@ const ReservationPage = () => {
                     <Col lg={7} md={7} sm={12} className='reservation_Right_Box'>
                         <div>
                             <div className='title'>관람일자 선택</div>
-                            <CalenderBox selectDate={reservationDate} setSelectDate={setReservationDate} />
+                            <CalenderBox selectDate={reservationDate} setSelectDate={setReservationDate} blockDate={blockDate} blockMaxDate={blockMaxDate} />
                         </div>
                         <div>
                             <div className='title'>결제정보</div>
@@ -86,7 +148,7 @@ const ReservationPage = () => {
                                 <Row>
                                     <Col lg={6} md={12} sm={12} className='ticketnumleft_box'>
                                         <div>{detailData.prfruntime}</div>
-                                        <div>{detailData.pcseguidance}</div>
+                                        <div>{costAsString}</div>
                                     </Col>
                                     <Col lg={5} md={12} sm={12} className='ticketnum_box'>
                                         <ul onClick={() => { setView(!view) }} className="NumDrop">
@@ -106,24 +168,24 @@ const ReservationPage = () => {
                             <div className='subTitle'>결제금액</div>
                             <div className='detail_cost'>
                                 <div>총 상품금액</div>
-                                <div>{priceformat(numformat(detailData.pcseguidance) * ticketNum)}원</div>
+                                <div>{priceformat(numformat(costAsString) * ticketNum)}원</div>
                             </div>
                             {user.level === 'gold' ? (
                                 <div className='detail_cost'>
                                     <div>GOLD 할인 혜택(10%)</div>
-                                    <div className='discount'>-3,000원</div>
+                                    <div className='discount'>{priceformat(numformat(costAsString) * ticketNum * 0.1)}원</div>
                                 </div>
                             ) : ('')}
                         </div>
                         <div>
                             <div className='subTitle'>총 결제금액</div>
                             {user.level === 'gold' ? (
-                                <div className='finallyCost'>{priceformat(numformat(detailData.pcseguidance) * ticketNum - 3000)}</div>
+                                <div className='finallyCost'>{priceformat(numformat(costAsString) * ticketNum - numformat(costAsString) * ticketNum * 0.1)}</div>
                             ) : (
-                                <div className='finallyCost'>{priceformat(numformat(detailData.pcseguidance) * ticketNum)}</div>
+                                <div className='finallyCost'>{priceformat(numformat(costAsString) * ticketNum)}</div>
                             )}
                         </div>
-                        <button className='pay_button'>결제하기</button>
+                        <button className='pay_button' onClick={handleReserve}>결제하기</button>
                     </Col>
                 </Row>
             ) : (<div>데이터 준비중</div>)}

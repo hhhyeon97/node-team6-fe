@@ -55,6 +55,15 @@
 .reservationPage .reservation_Right_Box .creditCard {
   justify-content: space-between;
 }
+.reservationPage .reservation_Right_Box .creditCard .form-area {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.reservationPage .reservation_Right_Box .creditCard .form-area .card_textInfo {
+  margin-bottom: 15px;
+}
 .reservationPage .reservation_Info_Box {
   border: solid 4px black;
   margin-top: 40px;

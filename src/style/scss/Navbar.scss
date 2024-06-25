@@ -60,6 +60,9 @@
         border-right: none;
         border-bottom: 2px solid black;
       }
+      input:focus-visible{
+        outline:none;
+      }
       button {
         border-top: none;
         border-left: none;
