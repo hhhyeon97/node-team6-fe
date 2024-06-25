@@ -11,7 +11,11 @@ import MyReserveList from '../../component/mypage/MyReserveList';
 const ViewAllReservations = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const { reserveList } = useSelector((state) => state.reservation);
+	const { reserveList, totalPageNum } = useSelector((state) => state.reservation);
+	const [query, setQuery] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState({
+    page: query.get("page") || 1,
+  });
 
 	// [ 나의예매 정보 받아오기 ]
 	useEffect(() => {
