@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-regular-svg-icons'
 
 const ListItem = ({ item }) => {
     const navigate = useNavigate();
@@ -30,6 +31,9 @@ const ListItem = ({ item }) => {
                 <div>{item.prfnm}</div>
                 <div>기간: {item.prfpdfrom} ~ {item.prfpdto}</div>
                 <div className={`state ${getStatusClassName()}`}>{item.prfstate}</div>
+                <div>
+                    <FontAwesomeIcon icon={faHeart} />
+                </div>
             </Col>
         </Row>
     )
