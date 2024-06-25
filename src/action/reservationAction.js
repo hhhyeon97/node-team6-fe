@@ -16,16 +16,16 @@ const createReservation = (payload, navigate) => async (dispatch) => {
     }
 }
 
-// [ 나의예매 정보 가져오기]
+// [ 나의예매 정보 가져오기 ]
 const getMyReserve = () => async (dispatch) => {
 	try{
 			dispatch({ type: types.GET_MY_RESERVATION_REQUEST })
 			const response = await api.get('/reserve/me');
 			console.log('rrr', response.data)
 			if (response.status !== 200) throw new Error(response.error)
-			dispatch({ type: types.GET_MY_RESERVATION_SUCCESS, payloade: response.data })
+			dispatch({ type: types.GET_MY_RESERVATION_SUCCESS, payload: response.data })
 	}catch(error){
-			dispatch({ type: types.POST_RESERVATION_FAIL, payload: error.error })
+			dispatch({ type: types.GET_MY_RESERVATION_FAIL, payload: error.error })
 	}
 }
 
