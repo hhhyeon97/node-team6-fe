@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import MyReserveList from '../../component/mypage/MyReserveList';
 import Pagination from '../../component/Pagination';
-import ReviewDialog from './ReviewDialog';
+import ReviewDialog from '../mypage/ReviewDialog';
 
 
 // 나의 예매 모두 보기 컴포넌트
