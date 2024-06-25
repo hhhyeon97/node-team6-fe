@@ -54,7 +54,7 @@
   width: 86%;
   flex-flow: column;
   /* [ 회원 등급 정보 ] */
-  /* [ 나의 예매_전체조회 ]*/
+  /* [ 나의 예매_전체조회 카드 ]*/
   /* [ 회원정보 수정 페이지 ] */
   /* 나의 찜 페이지 */
 }
@@ -100,8 +100,40 @@
   background-color: #f44f08;
   color: rgb(255, 255, 255);
 }
+.mypage-container .mypage-right .my_reserve_card_container {
+  border: 0.5px solid #bbb;
+  border-radius: 8px;
+  padding: 20px 15px;
+  margin: 13px 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+.mypage-container .mypage-right .my_reserve_card_container .card_top {
+  display: flex;
+  justify-content: space-between;
+}
+.mypage-container .mypage-right .my_reserve_card_container .info_group {
+  display: flex;
+}
+.mypage-container .mypage-right .my_reserve_card_container .info_item {
+  display: flex;
+  font-size: 0.7em;
+}
+.mypage-container .mypage-right .my_reserve_card_container .book_date > strong {
+  font-family: Gsans_B;
+  font-size: 1.2em;
+}
+.mypage-container .mypage-right .my_reserve_card_container .card_main {
+  display: flex;
+  align-items: center;
+}
+.mypage-container .mypage-right .my_reserve_card_container .card_title h5 {
+  font-family: "Gsans_B";
+  font-size: 1em;
+}
 .mypage-container .mypage-right .my_reserve_card_container .poster_box {
   width: 6em;
+  margin-right: 20px;
   border-radius: 8px;
   overflow: hidden;
   border: 0.5px solid #bbb;
