@@ -6,6 +6,7 @@ const initialState = {
     error: null,
     reserveList: [],
     totalPageNum: 1,
+    selectedReserve: null,
 }
 
 function reservationReducer(state = initialState, action) {
@@ -26,6 +27,8 @@ function reservationReducer(state = initialState, action) {
         case types.POST_RESERVATION_FAIL:
         case types.GET_MY_RESERVATION_FAIL:
             return { ...state, loading: false, error: payload }
+        case types.SET_SELECTED_RESERVATION:
+            return { ...state, selectedReserve: payload };
         default:
             return state
     }
