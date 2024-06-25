@@ -28,7 +28,6 @@ const getLikeList = () => async(dispatch) => {
     try{
         dispatch({type:types.GET_LIKE_REQUEST});
         const response = await api.get('/like');
-        console.log(response)
         dispatch({type:types.GET_LIKE_SUCCESS,payload:response.data.data})
     }catch(error){
         dispatch({type:types.GET_LIKE_FAIL,error:error})
