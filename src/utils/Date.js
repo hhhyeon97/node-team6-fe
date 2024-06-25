@@ -43,6 +43,7 @@ const EndDateformat = (value) => {
 
 }
 
+// createdAt -> 한국 시간대, 2024.02.14 형식으로 포맷팅
 const convertToKST = (utcDate) => {
     if (utcDate) {
 
@@ -96,8 +97,22 @@ const cc_expires_format = (string) => {
         );
 };
 
+// 예약날짜 포맷 함수 -> 2024.06.28(금)
+const reserveFormat = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    
+    const days = ['일', '월', '화', '수', '목', '금', '토'];
+    const dayOfWeek = days[date.getDay()]; // 요일 구하기
+    
+    return `${year}.${month}.${day}(${dayOfWeek})`;
+    };
+
+
 export {
     Dateformat, StringDateformat, EndDateformat,
     convertToKST, numformat, priceformat,
-    cc_expires_format
+    cc_expires_format, reserveFormat
 };
