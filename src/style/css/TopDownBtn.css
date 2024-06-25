@@ -1,0 +1,31 @@
+.TopDownBtn {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  right: 20px;
+  top: 70vh;
+  display: none;
+}
+.TopDownBtn .Btn {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: black;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+.TopDownBtn .TopButton {
+  border-radius: 50% 50% 0 0;
+  border-bottom: solid 1px #bbb;
+}
+.TopDownBtn .DownButton {
+  border-radius: 0 0 50% 50%;
+}
+
+.on {
+  display: block;
+}

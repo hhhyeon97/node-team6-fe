@@ -7,6 +7,7 @@ const PaymentForm = ({
     handleInputFocus,
     cardValue,
     handlePaymentInfoChange,
+    showState,
 }) => {
 
     return (
@@ -74,6 +75,7 @@ const PaymentForm = ({
                         </Col>
                     </Row>
                 </div>
+                <div className={`off ${showState} ? 'on' :'' `}>결제 정보를 모두 입력해주세요!</div>
             </Col>
         </Row>
     );
