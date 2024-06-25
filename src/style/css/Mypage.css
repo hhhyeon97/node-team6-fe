@@ -53,7 +53,8 @@
   display: flex;
   width: 86%;
   flex-flow: column;
-  /* [ user_level_section ] */
+  /* [ 회원 등급 정보 ] */
+  /* [ 나의 예매_전체조회 ]*/
   /* [ 회원정보 수정 페이지 ] */
 }
 .mypage-container .mypage-right .user_level_section {
@@ -97,6 +98,17 @@
 .mypage-container .mypage-right .user_level_section .user_level_info .admin {
   background-color: #f44f08;
   color: rgb(255, 255, 255);
+}
+.mypage-container .mypage-right .my_reserve_card_container .poster_box {
+  width: 6em;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 0.5px solid #bbb;
+  background-color: #bbb;
+}
+.mypage-container .mypage-right .my_reserve_card_container .poster_img {
+  width: 100%;
+  object-fit: cover;
 }
 .mypage-container .mypage-right .edit_user_form_container .edit_image_box {
   width: 100px;
