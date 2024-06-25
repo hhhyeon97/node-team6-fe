@@ -25,17 +25,19 @@ const Navbar = ({ user }) => {
   };
 
   const sendCategory = (code) => {
-    navigate(`/performance?category=${code}`)
+    navigate(`/performance?category=${code}`
+
+    )
   }
 
-  const searchByKeyword = (event) =>{
+  const searchByKeyword = (event) => {
     event.preventDefault();
     navigate(`/search?keyword=${keyword}`)
     setKeyword('')
   }
 
   const onCheckEnter = (event) => {
-    if(event.key === 'Enter') searchByKeyword(event);
+    if (event.key === 'Enter') searchByKeyword(event);
   }
 
   return (
@@ -87,17 +89,17 @@ const Navbar = ({ user }) => {
           </ul>
         </Col>
         <Col md={4} className='nav_input_area'>
-            <form onSubmit={searchByKeyword}>
-              <input 
-                type='text'
-                value={keyword}
-                onChange={(event)=>setKeyword(event.target.value)}
-                onKeyDown={onCheckEnter}
-              />
-              <button type='submit'>
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </button>
-            </form>
+          <form onSubmit={searchByKeyword}>
+            <input
+              type='text'
+              value={keyword}
+              onChange={(event) => setKeyword(event.target.value)}
+              onKeyDown={onCheckEnter}
+            />
+            <button type='submit'>
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </button>
+          </form>
         </Col>
       </Row>
     </Container>

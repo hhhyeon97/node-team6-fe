@@ -9,6 +9,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import KaKaoMap from "../component/KaKaoMap";
 import CopyClipButton from "../component/CopyClipButton";
 import { useDispatch, useSelector } from "react-redux";
+import LoadingText from "../component/LoadingText"
 
 import KakaoClipButton from "../component/KakaoClipButton";
 
@@ -81,7 +82,9 @@ const PerformanceDetail = () => {
 
     return (
         <Container className="wrap-container">
-            {detailData ? (
+            {loading ? (
+                <div><LoadingText /></div>
+            ) : (detailData ? (
                 <div className="DetailPageAllBox">
                     <div className="DetailStatus">
                         <span>
@@ -164,9 +167,10 @@ const PerformanceDetail = () => {
                         }
                     </div>
 
-                </div>
-            ) : (<div>데이터 로딩 중</div>)
-            }
+                </div>) : (
+                <div><LoadingText /></div>
+            )
+            )}
         </Container >
     )
 }

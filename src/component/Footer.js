@@ -4,9 +4,9 @@ import { Container } from 'react-bootstrap'
 const Footer = () => {
   return (
     <div>
-        <Container>
-            
-        </Container>
+      <Container>
+
+      </Container>
       footer
     </div>
   )

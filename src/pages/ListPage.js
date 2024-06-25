@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMap, faCalendar } from '@fortawesome/free-regular-svg-icons'
 import { faCaretDown, faCaretUp, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { useSearchParams } from "react-router-dom";
+import LoadingText from "../component/LoadingText";
 
 const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
 
@@ -31,7 +32,6 @@ const ListPage = () => {
 
     const settingQuery = {
         service: REACT_APP_YEJIN_SERVICE_KEY,
-        rows: 10,
         signgucode: selectedRegion ? selectedRegion.code : '',
         prfstate: status,
     }
@@ -41,7 +41,8 @@ const ListPage = () => {
             stdate: StringDateformat(selectDate),
             shcate: categoryQurery,
             eddate: EndDateformat(selectDate),
-            cpage: showPage
+            cpage: showPage,
+            rows: 10,
         }, settingQuery))
         console.log("receive PerformanceListData: ", PerformanceListData)
     }, [selectDate, status, selectedRegion, categoryQurery])
@@ -111,7 +112,7 @@ const ListPage = () => {
                 </Row>
 
                 <Col lg={7} md={7} sm={6} className="ListItemsBox">
-                    {loading ? <p>공연 리스트를 불러오는 중입니다...</p> :
+                    {loading ? <LoadingText /> :
                         (Array.isArray(PerformanceListData) && PerformanceListData.length > 0 ? (
                             PerformanceListData.map((item, index) => (
                                 <ListItem key={index} item={item} />
