@@ -25,7 +25,7 @@ const FindPasswordPage = () => {
 
   return (
     <Container className="find_password_area  d-flex justify-content-center align-items-center">
-      <h2 className="title">비밀번호 재발급</h2>
+      <h2 className="title">비밀번호 찾기</h2>
       <Form className="find_password_form" onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>이메일 주소</Form.Label>

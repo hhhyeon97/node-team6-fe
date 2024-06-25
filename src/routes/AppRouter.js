@@ -22,6 +22,7 @@ import ReservationCompletePage from '../pages/ReservationCompletePage';
 import FindPasswordPage from '../pages/FindPasswordPage';
 import ResetPasswordPage from '../pages/ResetPasswordPage';
 import MyLike from '../pages/mypage/MyLike';
+import NoticePage from '../pages/NoticePage';
 
 const AppRouter = () => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const AppRouter = () => {
       <Route path="/" element={<MainPage />} />
       <Route path="/performance" element={<ListPage />} />
       <Route path="/performance/:id" element={<PerformanceDetail />} />
-
+      <Route path="/notice" element={<NoticePage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/find-password" element={<FindPasswordPage />} />
