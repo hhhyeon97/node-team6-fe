@@ -131,6 +131,9 @@
   font-family: "Gsans_L";
   font-weight: lighter;
 }
+.DetailPageAllBox .reviewText {
+  border-bottom: solid 3px black;
+}
 .DetailPageAllBox #true1 {
   display: block;
 }

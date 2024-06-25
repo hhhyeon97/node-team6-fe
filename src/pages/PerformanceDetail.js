@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import LoadingText from "../component/LoadingText"
 
 import KakaoClipButton from "../component/KakaoClipButton";
+import { reviewAction } from "../action/reviewAction";
 
 const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
 
@@ -44,6 +45,7 @@ const PerformanceDetail = () => {
 
     useEffect(() => {
         dispatch(perfomanceListAction.getPerformanceDetail(id, settingQuery))
+        dispatch(reviewAction.getReviewList())
     }, [id])
 
     useEffect(() => {
@@ -165,8 +167,9 @@ const PerformanceDetail = () => {
                         {
                             locationLat && locationLot ? (<KaKaoMap lat={locationLat} lot={locationLot} />) : null
                         }
-                    </div>
 
+                        <div className="subTitle reviewText">리뷰</div>
+                    </div>
                 </div>) : (
                 <div><LoadingText /></div>
             )
