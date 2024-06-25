@@ -11,6 +11,7 @@ import { faMap, faCalendar } from '@fortawesome/free-regular-svg-icons'
 import { faCaretDown, faCaretUp, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { useSearchParams } from "react-router-dom";
 import LoadingText from "../component/LoadingText";
+import Pagination from "../component/Pagination";
 
 const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
 
@@ -26,6 +27,7 @@ const ListPage = () => {
 
     const [showPage, setShowPage] = useState(1)
     const [status, setStatus] = useState('02')
+    const [totalPageNum, setTotalPageNum] = useState(1)
 
     const [query] = useSearchParams();
     const categoryQurery = query.get('category') || ''
@@ -36,6 +38,12 @@ const ListPage = () => {
         prfstate: status,
     }
 
+    // [ 쿼리에 페이지값 바꿔주기 ]
+    const onPageChange = () => {
+        setShowPage(showPage + 1)
+    };
+
+
     useEffect(() => {
         dispatch(perfomanceListAction.getPerformanceList({
             stdate: StringDateformat(selectDate),
@@ -45,7 +53,7 @@ const ListPage = () => {
             rows: 10,
         }, settingQuery))
         console.log("receive PerformanceListData: ", PerformanceListData)
-    }, [selectDate, status, selectedRegion, categoryQurery])
+    }, [selectDate, status, selectedRegion, categoryQurery, showPage])
 
     const { PerformanceListData } = useSelector(state => state.list)
 
@@ -133,6 +141,9 @@ const ListPage = () => {
                         </div>
                     </div>
                 </Col>
+            </Row>
+            <Row className="ListPagePagination">
+                <Pagination totalPageNum={10} forcePage={showPage - 1} onPageChange={onPageChange} />
             </Row>
         </Container>
     )
