@@ -10,9 +10,9 @@ import KaKaoMap from "../component/KaKaoMap";
 import CopyClipButton from "../component/CopyClipButton";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingText from "../component/LoadingText"
+import { reviewAction } from "../action/reviewAction";
 
 import KakaoClipButton from "../component/KakaoClipButton";
-import { reviewAction } from "../action/reviewAction";
 
 const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
 
@@ -24,6 +24,7 @@ const PerformanceDetail = () => {
     const { error } = useSelector(state => state.list)
 
     const { detailData } = useSelector(state => state.list)
+    const { reviewAllList } = useSelector(state => state.review)
 
     const [selectTicketNum, setSelectTicketNum] = useState(1)
     const { id } = useParams()
@@ -45,23 +46,32 @@ const PerformanceDetail = () => {
 
     useEffect(() => {
         dispatch(perfomanceListAction.getPerformanceDetail(id, settingQuery))
-        dispatch(reviewAction.getReviewList())
     }, [id])
 
+
     useEffect(() => {
-        console.log('detailData: ', detailData)
+        console.log("next reviewAllList:", reviewAllList)
+    }, [reviewAllList])
+
+    useEffect(() => {
+        // console.log('detailData: ', detailData)
         if (detailData) {
+            dispatch(reviewAction.getAllReview({ Id: detailData.mt20id }))
+
             setPosterList(detailData.styurls)
             setLocation(detailData.mt10id)
 
             const array = detailData.pcseguidance.split(', ')
-            console.log('array', array)
 
             if (array.length > 1) {
                 const [name, cost] = array[array.length - 1].split(' ')
                 setCostArray(`전석 ${cost}`)
             } else {
-                setCostArray([detailData.pcseguidance])
+                if (detailData.pcseguidance === '전석무료') {
+                    setCostArray('전석 0원(무료)')
+                } else {
+                    setCostArray([detailData.pcseguidance])
+                }
             }
         }
     }, [detailData])
