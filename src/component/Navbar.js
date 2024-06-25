@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { userActions } from '../action/userAction';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import '../style/css/Navbar.css'
 import { faDoorOpen, faHeart, faMagnifyingGlass, faUnlock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Col, Container, Row } from 'react-bootstrap';
@@ -40,6 +40,8 @@ const Navbar = ({ user }) => {
     if (event.key === 'Enter') searchByKeyword(event);
   }
 
+  const {likeQty} = useSelector(state=>state.like);
+
   return (
     <Container className='wrap-container nav_area'>
       <Row>
@@ -61,8 +63,15 @@ const Navbar = ({ user }) => {
             <div onClick={() => navigate('/register')}>
               <FontAwesomeIcon icon={faUser} className='nav_user_icon' /> JOIN US
             </div>)}
-
-          <div><FontAwesomeIcon icon={faHeart} className='nav_user_icon' /> {user ? '' : 'MY LIKE'}</div>
+          {user?(
+            <div onClick={() => navigate('/mypage/like')}>
+              <FontAwesomeIcon icon={faHeart} className='nav_user_icon' /> {`LIKE ${likeQty}`}
+            </div>
+          ):(
+            <div onClick={() => navigate('/login')}>
+              <FontAwesomeIcon icon={faHeart} className='nav_user_icon' /> MY LIKE
+            </div>  
+          )}
           {user ? (
             <div onClick={logout}>
               <FontAwesomeIcon icon={faDoorOpen} className='nav_user_icon' />

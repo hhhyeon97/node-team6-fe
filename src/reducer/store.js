@@ -4,6 +4,7 @@ import userReducer from './userReducer';
 import reviewReducer from './reviewReducer';
 import reservationReducer from './reservationReducer'
 import noticeReducer from './noticeReducer';
+import likeReducer from './likeReducer';
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     review: reviewReducer,
     reservation: reservationReducer,
     notice: noticeReducer,
+    like:likeReducer,
   },
 });
 export default store;
