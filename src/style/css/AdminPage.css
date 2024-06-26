@@ -104,3 +104,6 @@
 .notice-form-container #content {
   height: 18em;
 }
+.notice-form-container .error-message {
+  color: red;
+}
