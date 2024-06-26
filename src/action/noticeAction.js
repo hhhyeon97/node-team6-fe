@@ -33,7 +33,22 @@ const createNotice = (formData, setShowDialog, setSearchQuery) => async (dispatc
   }
 }
 
+// [ 공자사항 수정 ]
+const editNotice = (formData, id, setShowDialog, setSearchQuery) => async (dispatch) => {
+  try{
+    dispatch({ type: types.EDIT_NOTICE_REQUEST });
+    const response = await api.put(`/notice/${id}`, formData);
+    if(response.status !== 200) throw new Error (response.error);
+    dispatch({ type: types.EDIT_NOTICE_SUCCESS });
+    setShowDialog(false);
+    dispatch(getNoticeList({page:1, title:""}));
+  }catch(error){
+    dispatch({ type: types.EDIT_NOTICE_FAIL, payload: error.error });
+  }
+}
+
 export const noticeAction = {
   getNoticeList,
-  createNotice
+  createNotice,
+  editNotice,
 };

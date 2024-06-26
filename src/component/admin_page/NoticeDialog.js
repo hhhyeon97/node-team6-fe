@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Modal, Button, Col, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { noticeAction } from '../../action/noticeAction';
@@ -6,31 +6,60 @@ import CloudinaryUploadWidget from "../../utils/CloudinaryUploadWidget";
 
 const InitialFormData = {
   title: "",
-  image: "",
+  img: "",
   content: "",
   isImportant: false,
 };
 
 const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
   const dispatch = useDispatch();
-  const selectedNotice = useSelector((state) => state.notice.selectedNotice);
+  // const selectedNotice = useSelector((state) => state.notice.selectedNotice);
+  const { selectedNotice, error } = useSelector((state) => state.notice);
+  const [contentError, setContentError] = useState(false)
   const [checkImportant, setCheckImportant] = useState(false)
   const [formData, setFormData] = useState(
     mode === "new" ? { ...InitialFormData } : selectedNotice
   );
-  console.log("mode:", mode)
+
   // [ 다이얼로그 닫기 ]
   const handleClose = () => {
-    setFormData({...InitialFormData});
+    setFormData({ ...InitialFormData });
     setShowDialog(false);
+    setCheckImportant(false);
   };
+
+  useEffect(() => {
+    if (showDialog && selectedNotice) {
+      if (mode === "edit") {
+        setFormData({
+          title: selectedNotice.title,
+          img: selectedNotice.img,
+          content: selectedNotice.content,
+          isImportant: selectedNotice.isImportant
+        });
+      }else {
+        setFormData({ ...InitialFormData });
+      }
+    }
+  }, [showDialog, selectedNotice]);
 
   // [ form에 데이터 넣어주기 ]
   const handleChange = (event) => {
     event.preventDefault();
-    const { id, value, type, checked } = event.target;
+    const { id, value } = event.target;
     setFormData({ ...formData, [id]: value});
-    // console.log("formData",formData)
+    if (id === "content") {
+      checkContentLength(value);
+    }
+  };
+
+  // [ content 길이 확인 및 에러 처리 ]
+  const checkContentLength = (value) => {
+    if (value.length < 15) {
+      setContentError(true);
+    } else {
+      setContentError(false);
+    }
   };
 
   // [ 중요표시 토글 ]
@@ -47,13 +76,13 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
       dispatch(noticeAction.createNotice({ ...formData },setShowDialog, setSearchQuery));
     } else{
       // 상품 수정하기
-      // dispatch(productActions.editProduct({...formData, stock: totalStock}, selectedProduct._id, setShowDialog, setSearchQuery))
+      dispatch(noticeAction.editNotice({ ...formData }, selectedNotice._id, setShowDialog, setSearchQuery))
     } 
   };
 
   // [ 이미지 업로드 ]
   const uploadImage = (url) => {
-    setFormData({...formData, image: url});
+    setFormData({...formData, img: url});
   };
 
   // [ 이미지 깨질때 ]
@@ -61,16 +90,13 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
     event.target.style.display = 'none';
   };
 
-  console.log("checkIm",checkImportant)
-  console.log('form:',formData)
-
   if (!selectedNotice) {
     return <></>;
   }
   
   return (
     <Modal show={showDialog} onHide={handleClose}>
-      <Modal.Header closeButton>
+      <Modal.Header closeButton onClick={handleClose}>
         {mode === "new" ? (
           <Modal.Title>공지사항 작성</Modal.Title>
         ) : (
@@ -88,7 +114,7 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
                 type="string"
                 placeholder="최소 4자 이상 작성해주세요"
                 required
-                value={formData.name}
+                value={formData.title}
               />
             </Form.Group>
 
@@ -98,7 +124,7 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
                 label="중요표시"
                 // onChange={handleChange}
                 name="isImportant"
-                checked={checkImportant}
+                checked={formData.isImportant}
                 onChange={handleCheckboxChange}
               />
             </Form.Group>
@@ -106,19 +132,22 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
             <Form.Group className="mb-3" controlId="image" required>
               <Form.Label>사진</Form.Label>
               <CloudinaryUploadWidget uploadImage={uploadImage} />
-                <div class="upload_img_box">
+                <div className='upload_img_box'>
                   <img
                   id="uploadedimage"
-                  src={formData.image ? formData.image : ""}
+                  src={formData.img}
                   className="upload-image"
                   alt="uploadedimage"
-                  // onError={handleImageError}
+                  onError={handleImageError}
                   ></img>
                 </div>
             </Form.Group>
 
             <Form.Group as={Col} controlId="content">
               <Form.Label>내용</Form.Label>
+              {contentError && (
+                <span className="error-message">15자 이상 입력하세요</span>
+              )}
               <Form.Control
                 className='notice_content'
                 as="textarea"

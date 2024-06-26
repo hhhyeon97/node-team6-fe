@@ -64,22 +64,12 @@ const AdminNoticePage = () => {
   const openEditForm = (notice) => {
     //edit모드로 설정하고
     setMode("edit");
-    console.log('click', notice);
     dispatch({ type: types.SET_SELECTED_NOTICE, payload: notice });
     setShowDialog(true);
   };
 
-  // [ NoticeDetailDialog 닫기 ]
-  const handleClose = () => {
-    //new 모드로 설정하고 (비어있는 폼)
-    setMode("new");
-    // 다이얼로그 열어주기
-    setShowDialog(true);
-  };
-
-  // [ NoticeDetailDialog 열기 ]
+  // [ handleNewNotice 열기 ]
   const handleNewNotice = () => {
-    console.log("작성")
     setMode("new");
     setShowDialog(true);
   }
@@ -111,7 +101,6 @@ const AdminNoticePage = () => {
         showDialog={showDialog}
         setShowDialog={setShowDialog}
         setSearchQuery={setSearchQuery}
-        handleClose={handleClose}
       />
 
       <Pagination 
@@ -120,7 +109,6 @@ const AdminNoticePage = () => {
         onPageChange={onPageChange}
       />
 
-      {/* { open && <EditNoticeDialog showDialog={showDialog} handleClose={handleClose} setSearchQuery={setSearchQuery} />} */}
     </div>
   );
 }
