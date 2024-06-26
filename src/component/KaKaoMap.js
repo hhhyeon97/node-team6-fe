@@ -35,8 +35,8 @@ const KaKaoMap = ({ lat, lot }) => {
 
     return (
         <div>
-            <div>{address}</div>
-            <div id="map" style={{ width: '500px', height: '400px' }}></div>
+            <div className="detailAddress">{address}</div>
+            <div id="map" style={{ width: '100%', height: '400px' }}></div>
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown, faChevronUp, faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import '../style/css/TopDownBtn.css'
 
 const TopDownBtn = () => {
@@ -36,10 +36,12 @@ const TopDownBtn = () => {
     return (
         <div className={`TopDownBtn ${btnShow ? "on" : ""}`}>
             <div className="Btn TopButton" onClick={moveTop}>
-                <FontAwesomeIcon icon={faCaretUp} size="xl" />
+                <FontAwesomeIcon icon={faChevronUp} />
+                {/* <FontAwesomeIcon icon={faCaretUp} /> */}
             </div>
             <div className="Btn DownButton" onClick={moveDown}>
-                <FontAwesomeIcon icon={faCaretDown} size="xl" />
+                <FontAwesomeIcon icon={faChevronDown} />
+                {/* <FontAwesomeIcon icon={faCaretDown} /> */}
             </div>
         </div>
     );
