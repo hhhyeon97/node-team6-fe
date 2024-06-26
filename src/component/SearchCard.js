@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 import { EndDate, StartDate } from '../utils/MainCartDate'
@@ -11,7 +11,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 const SearchCard = ({item}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { likeList } = useSelector(state=>state.like);
+  const { likeList,error } = useSelector(state=>state.like);
   const checkLike = likeList.find(like=>like.seqId === item.mt20id);
 
   const addLike = (item) => {
@@ -28,6 +28,10 @@ const SearchCard = ({item}) => {
   const deleteLike = (item) => {
     dispatch(likeAction.deleteLikeItem({id:checkLike._id}));
   }
+
+  useEffect(()=>{
+    if(error&&error==='Invalid token') navigate('/login')
+  },[error])
 
   return (
     <Col lg={3}>
