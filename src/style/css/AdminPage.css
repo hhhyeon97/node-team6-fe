@@ -87,6 +87,7 @@
 .admin_page_container .admin_user_container .user_item {
   display: flex;
   justify-content: space-between;
+
 }
 
 .notice-form-container .upload_img_box {
@@ -107,3 +108,6 @@
 .notice-form-container .error-message {
   color: red;
 }
+
+}
+

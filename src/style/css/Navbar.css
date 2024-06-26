@@ -1,3 +1,8 @@
+.nav_underline {
+  width: 100%;
+  border-bottom: 1px solid #bbb;
+}
+
 .nav_area .nav_icon {
   cursor: pointer;
 }
@@ -27,15 +32,40 @@
   display: flex;
   font-size: 1.3rem;
   padding-left: 0;
+  margin-bottom: 0.7rem;
 }
 .nav_area .nav_category li {
   list-style: none;
 }
-.nav_area .nav_category button {
+.nav_area .nav_menu_under_bar {
+  position: absolute;
+  width: 100%;
+  height: 0.3rem;
+  background-color: black;
+  bottom: -0.7rem;
+  transition: 0.5s;
+}
+.nav_area .nav_category_button {
+  position: relative;
   border: none;
   background-color: transparent;
-  margin-right: 2rem;
+  margin-right: 2.5rem;
   padding-left: 0;
+  padding-right: 0;
+}
+.nav_area .nav_category_button .hidden_under_bar {
+  position: absolute;
+  width: 100%;
+  height: 0.3rem;
+  background-color: black;
+  bottom: -0.7rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.nav_area .nav_category_button:hover .hidden_under_bar {
+  opacity: 1;
+  visibility: visible;
 }
 .nav_area .nav_icon span {
   margin-left: 6px;
@@ -61,4 +91,4 @@
   border-right: none;
   border-bottom: 2px solid black;
   background-color: transparent;
-}
+}/*# sourceMappingURL=Navbar.css.map */
