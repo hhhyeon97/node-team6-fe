@@ -218,6 +218,9 @@
   font-size: 1.5rem;
   color: #D61F1F;
 }
+.mypage-container .canceled {
+  opacity: 0.5;
+}
 
 .reserve-detail-container {
   border: 2px solid red;
