@@ -75,7 +75,13 @@ const ReservationDetail = () => {
                     <strong>{reserveFormat(selectedReserve.reservationDate)}</strong>
                   </div>
                 </ul>
-                <Button onClick={handleCancle}>예매취소</Button>
+                {!selectedReserve.isCanceled ? (
+                  <Button onClick={handleCancle}>예매취소</Button>
+                  ):(
+                  <Button style={{ pointerEvents: 'none', background:'#bbb', border: '#bbb' }}>예매취소</Button>
+                  )
+                }
+                
               </section>
 
               <section className="my-buyer">
