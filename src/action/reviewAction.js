@@ -48,18 +48,17 @@ const createReview = (formData, reserveId, setShowDialog, setSearchQuery) => asy
   } catch {
     dispatch({ type: types.CREATE_REVIEW_FAIL });
   }
-}
+}    
 // [ 리뷰를 작성한 예매인지 체크하기 ]
-const checkReviewed = (reserveId) => async (dispatch) => {
+const checkReviewed = (reserveTitle, reserveId) => async (dispatch) => {
   try {
-    console.log("예약아이디", reserveId)
     dispatch({ type: types.CHECKE_REVIEWED_RESERVATION_REQUEST });
     const response = await api.get(`/review/check/${reserveId}`);
-    console.log('rrr', response.data);
+    // console.log('action:', reserveTitle, '리뷰결과:',response.data.data);
     if (response.status !== 200) throw new Error(response.error);
     dispatch({
       type: types.CHECKE_REVIEWED_RESERVATION_SUCCESS,
-      payload: response.data
+      payload: response.data.data
     });
   } catch (error) {
     dispatch({ type: types.CHECKE_REVIEWED_RESERVATION_FAIL });
