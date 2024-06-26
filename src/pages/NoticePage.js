@@ -5,43 +5,36 @@ import '../style/css/NoticePage.css';
 const NoticePage = () => {
   const notices = [
     {
-      id: 1,
+      id: 'No.1',
       title: '공지사항 1',
       description:
         '공지사항 내용 1입니다. 와 같은 글쓰기 플랫폼을 소개해드리고자 합니다.공통적인 장점에는 이런 것들이 있습니다.글쓰기 플랫폼에서는 쉽게 글을 작성하고 발행할 수 있는 환경을 제공합니다. 또, 글쓰기 플랫폼은 작가들이 자신이 작성한 글을 다른 사람들과 쉽게 공유할 수 있도록 돕습니다.작가들은 자신의 글을 발행한 후에도 플랫폼 내에서 쉽게 수정하거나 삭제할 수 있습니다. 그리고, 자신의 글에 대한 통계 정보를 확인할 수 있어서 글의 성과를 파악할 수 있습니다.',
       date: '2023-06-01',
     },
     {
-      id: 2,
+      id: 'No.2',
       title: '공지사항 2',
       description: '공지사항 내용 2입니다.',
       date: '2023-06-15',
     },
     {
-      id: 3,
+      id: 'No.3',
       title: '공지사항 3',
       description: '공지사항 내용 3입니다.',
       date: '2023-07-01',
     },
     {
-      id: 4,
+      id: 'No.4',
       title: '공지사항 4',
       description: '공지사항 내용 4입니다.',
       date: '2023-06-01',
     },
     {
-      id: 5,
+      id: 'No.5',
       title: '공지사항 5',
       description: '공지사항 내용 5입니다.',
       date: '2023-06-01',
     },
-    {
-      id: 6,
-      title: '공지사항 6',
-      description: '공지사항 내용 6입니다.',
-      date: '2023-06-01',
-    },
-    // 추가 공지사항을 여기에 추가
   ];
 
   const breakTextOnDot = (text) => {
@@ -63,6 +56,7 @@ const NoticePage = () => {
     <Container className="notice_page_area d-flex justify-content-center align-items-center">
       <div className="notice_content_area">
         <h2 className="notice_top_title">공지사항</h2>
+        {/* <div>번호 제목 등록일</div> */}
         <Accordion defaultActiveKey="0" className="notice_accordion">
           {notices.map((notice, idx) => (
             <Card key={notice.id} className="notice_card">
