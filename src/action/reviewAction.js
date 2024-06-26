@@ -58,7 +58,10 @@ const checkReviewed = (reserveTitle, reserveId) => async (dispatch) => {
     if (response.status !== 200) throw new Error(response.error);
     dispatch({
       type: types.CHECKE_REVIEWED_RESERVATION_SUCCESS,
-      payload: response.data.data
+      payload: {
+        reserveId,
+        reviewed: !!response.data.data // 예매 항목에 대한 리뷰가 있는지 여부를 boolean으로 변환
+      }
     });
   } catch (error) {
     dispatch({ type: types.CHECKE_REVIEWED_RESERVATION_FAIL });

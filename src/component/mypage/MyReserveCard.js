@@ -8,7 +8,7 @@ import { reserveFormat } from '../../utils/Date';
 import { priceformat } from '../../utils/Date';
 import { convertToKST } from '../../utils/Date';
 
-const MyReserveCard = ({ item, onClick, openReviewForm}) => {
+const MyReserveCard = ({ item, onClick, openReviewForm, isReviewed}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // const { reviewedReserve } = useSelector((state) => state.review);
@@ -19,6 +19,7 @@ const MyReserveCard = ({ item, onClick, openReviewForm}) => {
 	// }, [item._id, dispatch]);
 
   // console.log('reviewed?',reviewedReserve._id )
+  // console.log("여기서 찍자", isReviewed)
   return(
     <div className='my_reserve_card_container' onClick={onClick}>
     <div className="card_top">
@@ -45,9 +46,16 @@ const MyReserveCard = ({ item, onClick, openReviewForm}) => {
       <div><strong>{priceformat(item.totalPrice)}원</strong> / 티켓수량 <strong>{item.ticketNum}</strong></div>
     </div>
     {/* 리뷰쓰기 버튼 */}
-      <Button size="sm" onClick={() => openReviewForm(item)}>
+      {/* <Button size="sm" onClick={() => openReviewForm(item)}>
         리뷰쓰기
-      </Button>
+      </Button> */}
+      {/* {!isReviewed ? (
+        <Button size="sm" onClick={() => openReviewForm(item)}>
+          리뷰쓰기
+        </Button>
+      ) : (
+        <p>이미 씀</p>
+      )} */}
   </div>
     
   )
