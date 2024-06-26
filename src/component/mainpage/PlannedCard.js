@@ -1,6 +1,6 @@
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { EndDate, StartDate } from '../../utils/MainCartDate';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +10,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 const PlannedCard = ({item}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { likeList } = useSelector(state=>state.like);
+    const { likeList,error } = useSelector(state=>state.like);
     const checkLike = likeList.find(like=>like.seqId===item.mt20id);
 
     const addLike = (item) => {
@@ -26,6 +26,10 @@ const PlannedCard = ({item}) => {
     const deleteLike = (item) => {
         dispatch(likeAction.deleteLikeItem({id:checkLike._id}));
     }
+
+    useEffect(()=>{
+        if(error&&error==='Invalid token') navigate('/login')
+    },[error])
 
   return (
     <div className='planned_card_box'>

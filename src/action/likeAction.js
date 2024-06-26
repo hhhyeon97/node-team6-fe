@@ -10,7 +10,7 @@ const addLikeToList = ({seqId,seqImage,seqTo,seqFrom,seqLocation,seqTitle}) => a
         console.log("추가",response.data.data.items);
         dispatch({type:types.ADD_LIKE_SUCCESS,payload:response.data.data.items});
     }catch(error){
-        dispatch({type:types.ADD_LIKE_FAIL,error:error})
+        dispatch({type:types.ADD_LIKE_FAIL,payload:error.error})
     }
 }
 
@@ -34,8 +34,13 @@ const getLikeList = () => async(dispatch) => {
     }
 }
 
+const resetLikeList = () => async(dispatch) => {
+    dispatch({type:types.RESET_LIKE});
+}
+
 export const likeAction = {
     addLikeToList,
     deleteLikeItem,
     getLikeList,
+    resetLikeList,
 };
