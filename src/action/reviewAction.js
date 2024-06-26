@@ -52,7 +52,6 @@ const createReview = (formData, reserveId, setShowDialog, setSearchQuery) => asy
 // [ 리뷰를 작성한 예매인지 체크하기 ]
 const checkReviewed = (reserveId) => async (dispatch) => {
   try {
-    console.log("예약아이디", reserveId)
     dispatch({ type: types.CHECKE_REVIEWED_RESERVATION_REQUEST });
     const response = await api.get(`/review/check/${reserveId}`);
     console.log('rrr', response.data);
