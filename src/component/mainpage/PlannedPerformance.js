@@ -11,8 +11,31 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import PlannedCard from './PlannedCard';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
+
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style}}
+      onClick={onClick}
+    ><FontAwesomeIcon icon={faChevronRight} /></div>
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style}}
+      onClick={onClick}
+    ><FontAwesomeIcon icon={faChevronLeft} /></div>
+  );
+}
 
 const PlannedPerformance = () => {
     const navigate = useNavigate();
@@ -36,7 +59,6 @@ const PlannedPerformance = () => {
             eddate: EndDateformat(selectDate),
             cpage: showPage
         }, settingQuery))
-        console.log("오픈예정 ", PerformanceListDataWithStatus)
 
     },[selectDate])
 
@@ -48,10 +70,12 @@ const PlannedPerformance = () => {
         slidesToShow: 3,
         slidesToScroll: 3,
         autoplay: true,
-        speed: 2000,
+        speed: 800,
         autoplaySpeed: 7000,
-        arrows: false,
-        cssEase: "linear"
+        // arrows: false,
+        cssEase: "linear",
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />,
       };
 
   return (

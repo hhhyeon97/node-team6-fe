@@ -3,6 +3,7 @@
     width: 100%;
     height: 40vh;
     margin-bottom: 4.5rem;
+    margin-top: -1px;
 }
 
 .month_performance_area{
@@ -53,6 +54,7 @@
         border-radius: 0.5rem;
         margin-bottom: 0.4rem;
         position: relative;
+        border: 1px solid #e4e4e4;
     }
     .performance_card_img{
         height: 100%;
@@ -122,6 +124,7 @@
     .slider{
         width: 78%;
     }
+    
     .planned_card_box{
         width: 100%;
         padding: 0rem 3%;
@@ -169,6 +172,32 @@
     h5{ font-size: 1.15rem; font-weight: 600; color: #f44f08; text-align: end;}
     .slick-dots li button:before {
         color: white !important;
+    }
+    .slick-prev{
+        font-size: 2rem;
+        color: white;
+        opacity: 30%;
+        left: -4rem;
+    }
+    .slick-prev:hover{
+        color: white;
+        opacity: 90%;
+    }
+    .slick-prev:before{
+        content: none;
+    }
+    .slick-next{
+        font-size: 2rem;
+        color: white;
+        opacity: 30%;
+        right: -4rem;
+    }
+    .slick-next:hover{
+        color: white;
+        opacity: 90%;
+    }
+    .slick-next:before{
+        content: none;
     }
 }
 

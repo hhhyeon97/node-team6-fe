@@ -1,14 +1,22 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
-import { Container } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 
 const Footer = () => {
   return (
     <div>
-      <Container>
+      <Row>
+        <div>
+          {/* <div><FontAwesomeIcon icon={fagithu} /></div> */}
+        </div>
+      </Row>
+      <Row>     
 
-      </Container>
-      footer
-    </div>
+      </Row>
+      <Row>     
+
+      </Row>
+    </div>      
   )
 }
 
