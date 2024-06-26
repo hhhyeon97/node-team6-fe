@@ -37,6 +37,12 @@ const MyReserveCard = ({ item,  openReviewForm, isReviewed }) => {
     canceled ='canceled';
   }
 
+  // [ 리뷰쓰기 버튼 클릭 처리 ]
+  const handleReviewButtonClick = (event) => {
+    event.stopPropagation(); // 클릭 이벤트의 전파를 막음
+    openReviewForm(item); // 리뷰쓰기 폼 열기
+  };
+
   return(
     <div className={`${canceled} my_reserve_card_container`}
     onClick={() => navigate(`/mypage/reservations/${item._id}`)}>
@@ -68,7 +74,7 @@ const MyReserveCard = ({ item,  openReviewForm, isReviewed }) => {
         리뷰쓰기
       </Button> */}
       {!isReviewed ? (
-        <Button size="sm" onClick={() => openReviewForm(item)}>
+        <Button size="sm" onClick={handleReviewButtonClick}>
           리뷰쓰기
         </Button>
       ) : (
