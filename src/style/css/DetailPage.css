@@ -151,7 +151,7 @@
 .DetailPageAllBox .review .detailReviewTop .starName {
   display: flex;
 }
-.DetailPageAllBox .review .detailReviewTop .starName div {
+.DetailPageAllBox .review .detailReviewTop .starName .review_nickname {
   margin-left: 10px;
 }
 .DetailPageAllBox #true1 {
