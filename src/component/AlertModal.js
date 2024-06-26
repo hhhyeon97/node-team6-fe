@@ -16,7 +16,7 @@ const AlertModal = ({showModal, setShowModal,selectedId, selectedName, selectedD
   const handleDelete = () => {
     if (btnText === '예매취소') {
       console.log('예매취소')
-      dispatch(reservationAction.deleteReservation(selectedId, navigate));
+      dispatch(reservationAction.cancelReservation(selectedId, navigate));
       setShowModal(false);
     }
   }

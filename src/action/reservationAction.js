@@ -45,9 +45,9 @@ const getReservationDetail = (id) => async (dispatch) => {
 const cancelReservation = (id, navigate) => async (dispatch) => {
     try{
         dispatch({ type: types.CANCEL_RESERVATION_REQUEST });
-        const response = await api.put(`/cancel/${id}`);
+        const response = await api.put(`/reserve/cancel/me/${id}`);
         if (response.status !== 200) throw new Error(response.error)
-        dispatch({ type: types.CANCEL_RESERVATION_SUCCESS,  payload: response.data})
+        dispatch({ type: types.CANCEL_RESERVATION_SUCCESS })
         // 예매취소 반영
         dispatch(reservationAction.getReservationDetail(id));
     }catch(error){

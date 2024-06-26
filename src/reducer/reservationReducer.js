@@ -30,8 +30,7 @@ function reservationReducer(state = initialState, action) {
             return { ...state, loading: false, error: null,
                     selectedReserve: payload.data}
         case types.CANCEL_RESERVATION_SUCCESS:
-            return { ...state, loading: false, 
-                reserveList: payload.data }
+            return { ...state, loading: false, error: null, }
         case types.POST_RESERVATION_FAIL:
         case types.GET_MY_RESERVATION_FAIL:
         case types.GET_MY_RESERVE_DETAIL_FAIL:

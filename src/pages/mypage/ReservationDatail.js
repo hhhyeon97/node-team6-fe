@@ -22,7 +22,7 @@ const ReservationDetail = () => {
     dispatch(reservationAction.getReservationDetail(id));
   }, [id])
 
-  console.log("id", id)
+  console.log(selectedReserve)
 
   if (loading) {
     return <LoadingText />;
@@ -47,6 +47,8 @@ const ReservationDetail = () => {
       <Row>
         <Col>
             <div className="reserve-detail-container">
+            {selectedReserve.isCanceled ? (<h1>예매취소됨</h1>):(<h1>예매중</h1>)}
+              
               <section className="my-order">
                 <h3>예매상세내역</h3>
                 <ul className='order-info'>
