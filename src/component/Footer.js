@@ -13,9 +13,9 @@ const Footer = () => {
       <div className='footer_size'>
         <Row className='under_line'>
           <div className='footer_link_box'>
-            <div className='git_fe_button'><FontAwesomeIcon icon={faGithub} /></div>
-            <div className='git_be_button'><FontAwesomeIcon icon={faGit} /></div>
-            <div className='noona_button'>{noona}</div>
+            <a className='git_fe_button' href='https://github.com/hhhyeon97/node-team6-fe' target='_blank'><FontAwesomeIcon icon={faGithub} /></a>
+            <a className='git_be_button' href='https://github.com/hhhyeon97/node-team6-be' target='_blank'><FontAwesomeIcon icon={faGit} /></a>
+            <a className='noona_button' href='https://codingnoona.thinkific.com/' target='_blank'>{noona}</a>
           </div>
         </Row>
         <Row className='under_line'>     

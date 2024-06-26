@@ -15,7 +15,7 @@
         display: flex;
         justify-content: end;
         margin-bottom: 0.5rem;
-        div{
+        a{
             margin-left: 0.5rem;
             display: flex;
             align-items: center;
@@ -23,9 +23,11 @@
             width: 2rem;
             height: 2rem;
             border-radius: 500px;
+            text-decoration-line: none;
         }
         .git_fe_button{
-            font-size: 2rem; 
+            font-size: 2rem;
+            color: black;
         }
         .git_be_button{
             background-color: black;
