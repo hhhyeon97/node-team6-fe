@@ -1,5 +1,6 @@
 import api from '../utils/api';
 import * as types from '../constants/review.constants';
+import { reservationAction } from './reservationAction';
 
 // [ 전체 리뷰 리스트 가져오기 (admin) ]
 const getReviewList = (query) => async (dispatch) => {
@@ -45,20 +46,24 @@ const createReview = (formData, reserveId, setShowDialog, setSearchQuery) => asy
     if (response.status !== 200) throw new Error(response.error);
     dispatch({ type: types.CREATE_REVIEW_SUCCESS });
     setShowDialog(false);
+    dispatch(reservationAction.getMyReserve({ page: 1 }));
   } catch {
     dispatch({ type: types.CREATE_REVIEW_FAIL });
   }
-}
+}    
 // [ 리뷰를 작성한 예매인지 체크하기 ]
-const checkReviewed = (reserveId) => async (dispatch) => {
+const checkReviewed = (reserveTitle, reserveId) => async (dispatch) => {
   try {
     dispatch({ type: types.CHECKE_REVIEWED_RESERVATION_REQUEST });
     const response = await api.get(`/review/check/${reserveId}`);
-    console.log('rrr', response.data);
+    // console.log('action:', reserveTitle, '리뷰결과:',response.data.data);
     if (response.status !== 200) throw new Error(response.error);
     dispatch({
       type: types.CHECKE_REVIEWED_RESERVATION_SUCCESS,
-      payload: response.data
+      payload: {
+        reserveId,
+        reviewed: !!response.data.data // 예매 항목에 대한 리뷰가 있는지 여부를 boolean으로 변환
+      }
     });
   } catch (error) {
     dispatch({ type: types.CHECKE_REVIEWED_RESERVATION_FAIL });

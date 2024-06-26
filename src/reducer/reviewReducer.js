@@ -6,7 +6,7 @@ const initialState = {
   reviewList: [],
   totalPageNum: 1,
   selectedReview: null,
-  reviewedReserve: null,
+  reviewedReserve: {},
   reviewAllList: []
 };
 
@@ -28,7 +28,14 @@ function reviewReducer(state = initialState, action) {
     case types.CREATE_REVIEW_SUCCESS:
       return { ...state, loading: false, error: '' }
     case types.CHECKE_REVIEWED_RESERVATION_SUCCESS:
-      return { ...state, loading: false, error: '', reviewedReserve: payload.data }
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        reviewedReserve: {
+          [payload.reserveId]: payload.reviewed
+        }
+      };
     case types.GET_REVIEW_LIST_FAIL:
     case types.CREATE_REVIEW_FAIL:
     case types.CHECKE_REVIEWED_RESERVATION_FAIL:
