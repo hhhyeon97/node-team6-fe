@@ -19,6 +19,21 @@ const getNoticeList = (query) => async (dispatch) => {
   }
 }
 
+// [ 공지사항 작성 ]
+const createNotice = (formData, setShowDialog, setSearchQuery) => async (dispatch) => {
+  try{
+    dispatch({ type: types.CREATE_NOTICE_REQUEST });
+    const response = await api.post("/notice", formData);
+    if(response.status !== 200) throw new Error (response.error);
+    dispatch({ type: types.CREATE_NOTICE_SUCCESS });
+    setShowDialog(false);
+    dispatch(getNoticeList({page:1, title:""}));
+  }catch(error){
+    dispatch({ type: types.CREATE_NOTICE_FAIL, payload: error.error });
+  }
+}
+
 export const noticeAction = {
-  getNoticeList
+  getNoticeList,
+  createNotice
 };

@@ -7,19 +7,22 @@ import { noticeAction } from '../../action/noticeAction';
 import LinedTitle from '../../component/LinedTitle';
 import Pagination from '../../component/Pagination';
 import NoticeTable from '../../component/admin_page/NoticeTable';
-import NoticeDetailDialog from '../../component/admin_page/NoticeDetailDialog';
+import NoticeDialog from '../../component/admin_page/NoticeDialog';
 import SearchBox from '../../component/SearchBox';
+import NewNoticeDialog from '../../component/admin_page/NewNoticeDialog';
+import "../../style/css/AdminPage.css";
 
 const AdminNoticePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { noticeList, totalPageNum } = useSelector((state) => state.notice);
   const [query, setQuery] = useSearchParams();
+  const [showDialog, setShowDialog] = useState(false);
+  const [mode, setMode] = useState("new");
   const [searchQuery, setSearchQuery] = useState({
     page: query.get("page") || 1,
     title: query.get("title") || "",
   });
-  const [open, setOpen] = useState(false);
   const tableHeader = [
     "작성자",
     "제목",
@@ -59,15 +62,27 @@ const AdminNoticePage = () => {
 
   // [ 공지사항 수정 form 열기 ]
   const openEditForm = (notice) => {
-    setOpen(true);
+    //edit모드로 설정하고
+    setMode("edit");
     console.log('click', notice);
     dispatch({ type: types.SET_SELECTED_NOTICE, payload: notice });
+    setShowDialog(true);
   };
 
-  // [ UserDetailDialog 닫기 ]
+  // [ NoticeDetailDialog 닫기 ]
   const handleClose = () => {
-    setOpen(false);
+    //new 모드로 설정하고 (비어있는 폼)
+    setMode("new");
+    // 다이얼로그 열어주기
+    setShowDialog(true);
   };
+
+  // [ NoticeDetailDialog 열기 ]
+  const handleNewNotice = () => {
+    console.log("작성")
+    setMode("new");
+    setShowDialog(true);
+  }
 
   return(
     <div className="admin_notice_container">
@@ -81,19 +96,31 @@ const AdminNoticePage = () => {
 
       <LinedTitle title='공지사항관리' cap='공지사항을 작성하고 관리할 수 있습니다'/>
 
+      <Button className="" onClick={handleNewNotice}>
+          + 공지사항 작성
+      </Button>
+
       <NoticeTable
           header={tableHeader}
           noticeList={noticeList}
           openEditForm={openEditForm}
         />
 
-        <Pagination 
-          totalPageNum={totalPageNum}
-          forcePage={searchQuery.page-1}
-          onPageChange={onPageChange}
-        />
+      <NoticeDialog
+        mode={mode}
+        showDialog={showDialog}
+        setShowDialog={setShowDialog}
+        setSearchQuery={setSearchQuery}
+        handleClose={handleClose}
+      />
 
-      { open && <NoticeDetailDialog open={open} handleClose={handleClose} setSearchQuery={setSearchQuery} />}
+      <Pagination 
+        totalPageNum={totalPageNum}
+        forcePage={searchQuery.page-1}
+        onPageChange={onPageChange}
+      />
+
+      {/* { open && <EditNoticeDialog showDialog={showDialog} handleClose={handleClose} setSearchQuery={setSearchQuery} />} */}
     </div>
   );
 }

@@ -12,13 +12,17 @@ function noticeReducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case types.GET_NOTICE_LIST_REQUEST:
+    case types.CREATE_NOTICE_REQUEST:
       return { ...state, loading: true };
     case types.GET_NOTICE_LIST_SUCCESS:
       return { ...state, loading: false, error: '',
               noticeList: payload.data,
               totalPageNum: payload.totalPageNum,
       }
+    case types.CREATE_NOTICE_SUCCESS:
+      return { ...state, loading: false, error: ""};
     case types.GET_NOTICE_LIST_FAIL:
+    case types.CREATE_NOTICE_FAIL:
       return { ...state, loading: false, error: payload }
     case types.SET_SELECTED_NOTICE:
       return { ...state, selectedNotice: payload };
