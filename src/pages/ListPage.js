@@ -130,6 +130,10 @@ const ListPage = () => {
                             <p>공연정보가 없습니다.</p>
                         ))
                     }
+
+                    <Row className="ListPagePagination">
+                        <Pagination totalPageNum={10} forcePage={showPage - 1} onPageChange={onPageChange} />
+                    </Row>
                 </Col>
 
                 <Col lg={5} md={5} sm={6} className="CalenderBox">
@@ -142,9 +146,6 @@ const ListPage = () => {
                         </div>
                     </div>
                 </Col>
-            </Row>
-            <Row className="ListPagePagination">
-                <Pagination totalPageNum={10} forcePage={showPage - 1} onPageChange={onPageChange} />
             </Row>
         </Container>
     )

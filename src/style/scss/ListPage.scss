@@ -184,6 +184,8 @@
   .CalenderBox {
     // border: solid 1px blue;
     padding: 20px;
+    padding-top: 0;
+    margin-bottom: 80px;
 
     .stickyBox {
       position: sticky;
@@ -263,7 +265,7 @@
 
 .ListPagePagination {
   .nc_pagination {
-    margin-top: 40px;
+    margin-top: 20px;
     li {
       list-style: none;
     }

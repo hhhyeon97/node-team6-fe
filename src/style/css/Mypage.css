@@ -5,11 +5,17 @@
   /* < mypage-left > */
   /* < mypage-right > */
 }
-.mypage-container h1, .mypage-container h2, .mypage-container h3, .mypage-container h4, .mypage-container h5, .mypage-container p {
+.mypage-container h1,
+.mypage-container h2,
+.mypage-container h3,
+.mypage-container h4,
+.mypage-container h5,
+.mypage-container p {
   margin: 0;
   padding: 0;
 }
-.mypage-container ul, .mypage-container li {
+.mypage-container ul,
+.mypage-container li {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -159,7 +165,7 @@
   position: relative;
   display: flex;
   width: 100%;
-  height: 25Vh;
+  height: 25vh;
   border: 1px solid gray;
   border-radius: 0.5rem;
   overflow: hidden;
@@ -225,7 +231,7 @@
   right: 1rem;
   bottom: 0.5rem;
   font-size: 1.5rem;
-  color: #D61F1F;
+  color: #d61f1f;
 }
 .mypage-container .canceled {
   opacity: 0.5;
@@ -241,4 +247,9 @@
   pointer-events: none;
   background-color: #bbb !important;
   border: #bbb;
-}/*# sourceMappingURL=Mypage.css.map */
+}
+
+.ByDateReservationItem {
+  border: solid 1px blue;
+  margin-bottom: 10px;
+}
