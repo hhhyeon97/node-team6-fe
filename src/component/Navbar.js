@@ -24,9 +24,8 @@ const Navbar = ({ user }) => {
     dispatch(userActions.logout());
   };
 
-  const sendCategory = (code) => {
-    navigate(`/performance?category=${code}`
-
+  const sendCategory = (category) => {
+    navigate(`/performance?category=${category.code}&categoryName=${category.name}`
     )
   }
 
@@ -40,7 +39,7 @@ const Navbar = ({ user }) => {
     if (event.key === 'Enter') searchByKeyword(event);
   }
 
-  const {likeQty} = useSelector(state=>state.like);
+  const { likeQty } = useSelector(state => state.like);
 
   return (
     <Container className='wrap-container nav_area'>
@@ -63,14 +62,14 @@ const Navbar = ({ user }) => {
             <div onClick={() => navigate('/register')}>
               <FontAwesomeIcon icon={faUser} className='nav_user_icon' /> JOIN US
             </div>)}
-          {user?(
+          {user ? (
             <div onClick={() => navigate('/mypage/like')}>
               <FontAwesomeIcon icon={faHeart} className='nav_user_icon' /> {`LIKE ${likeQty}`}
             </div>
-          ):(
+          ) : (
             <div onClick={() => navigate('/login')}>
               <FontAwesomeIcon icon={faHeart} className='nav_user_icon' /> MY LIKE
-            </div>  
+            </div>
           )}
           {user ? (
             <div onClick={logout}>
@@ -90,7 +89,7 @@ const Navbar = ({ user }) => {
           <ul className='nav_category'>
             {menuList.map((menu, index) => (
               <li key={index}>
-                <button onClick={() => sendCategory(menu.code)}>
+                <button onClick={() => sendCategory(menu)}>
                   {menu.name}
                 </button>
               </li>

@@ -131,6 +131,29 @@
   font-family: "Gsans_L";
   font-weight: lighter;
 }
+.DetailPageAllBox .reviewText {
+  border-bottom: solid 3px black;
+}
+.DetailPageAllBox .review {
+  border: solid 1px #bbb;
+  border-radius: 5px;
+  padding: 20px 10px;
+  margin-bottom: 10px;
+}
+.DetailPageAllBox .review .detailReviewTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #737373;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.DetailPageAllBox .review .detailReviewTop .starName {
+  display: flex;
+}
+.DetailPageAllBox .review .detailReviewTop .starName div {
+  margin-left: 10px;
+}
 .DetailPageAllBox #true1 {
   display: block;
 }
@@ -165,6 +188,20 @@
 .DetailPageAllBox #false {
   overflow: show;
   height: fit-content;
+}
+.DetailPageAllBox .locationTitle {
+  display: flex;
+  margin-bottom: 10px;
+}
+.DetailPageAllBox .locationTitle div {
+  margin-left: 5px;
+  font-family: "Gsans_B";
+}
+.DetailPageAllBox .detailAddress {
+  margin-bottom: 10px;
+}
+.DetailPageAllBox #map {
+  border: solid 1px #bbb;
 }
 
 @media screen and (max-width: 768px) {

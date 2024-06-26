@@ -10,16 +10,25 @@ const InitialFormData = {
   reviewText: "",
 };
 
+
+
 const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQuery }) => {
   const dispatch = useDispatch();
   const { selectedReserve } = useSelector((state) => state.reservation);
   const { selectedReview } = useSelector((state) => state.review);
-  const { error } = useSelector((state) => state.reservation);
+  // const { error } = useSelector((state) => state.reservation);
   const [formData, setFormData] = useState({ ...InitialFormData });
-  
-  // const [formData, setFormData] = useState(
-  //   mode === "new" ? { ...InitialFormData } : selectedReview
-  // );
+  const { error } = useSelector((state) => state.review);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+
+  useEffect(() => {
+    if (error) {
+      setErrorMessage(error); // Redux store의 error 상태가 변경되면 로컬 상태에 에러 메시지를 업데이트합니다.
+    } else {
+      setErrorMessage(null); // 에러가 없을 경우 초기화합니다.
+    }
+  }, [error]);
 
   // [ 리뷰 창 닫기 ]
   const handleClose = () => {
@@ -30,16 +39,11 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
   // [ submit 버튼 ]
   const handleSubmit = (event) => {
     event.preventDefault();
-
     // 리뷰 작성하기
     dispatch(reviewAction.createReview({ ...formData }, 
       selectedReserve._id, 
       setShowDialog, setSearchQuery));
-    // if (mode === "new") {
-    // } else{
-      // 리뷰 수정하기
-      // dispatch(productActions.editProduct({...formData, stock: totalStock}, selectedProduct._id, setShowDialog, setSearchQuery))
-    //} 
+
   };
 
   // [ form에 데이터 넣어주기 ]
@@ -57,11 +61,8 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
   return (
     <Modal show={showDialog} onHide={handleClose}>
       <Modal.Header closeButton onClick={handleClose}>
-        {mode === "new" ? (
-          <Modal.Title>Create New Product</Modal.Title>
-        ) : (
-          <Modal.Title>Edit Product</Modal.Title>
-        )}
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
+        <Modal.Title>리뷰</Modal.Title>
       </Modal.Header>
 
       {/* 별점 */}

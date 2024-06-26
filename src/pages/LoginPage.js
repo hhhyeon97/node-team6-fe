@@ -73,7 +73,7 @@ const LoginPage = () => {
         <h2 className="login_title">로그인</h2>
         {error && (
           <div className="login_error_message">
-            <Alert variant="danger">{error}</Alert>
+            <span className="error_message">💡 {error}</span>
           </div>
         )}
         <Form className="login_form" onSubmit={loginWithEmail}>

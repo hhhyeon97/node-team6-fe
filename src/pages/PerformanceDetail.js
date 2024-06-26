@@ -10,8 +10,11 @@ import KaKaoMap from "../component/KaKaoMap";
 import CopyClipButton from "../component/CopyClipButton";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingText from "../component/LoadingText"
+import { reviewAction } from "../action/reviewAction";
+import { convertToKST } from '../utils/Date'
 
 import KakaoClipButton from "../component/KakaoClipButton";
+import Star from "../component/Star";
 
 const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
 
@@ -23,6 +26,7 @@ const PerformanceDetail = () => {
     const { error } = useSelector(state => state.list)
 
     const { detailData } = useSelector(state => state.list)
+    const { reviewAllList } = useSelector(state => state.review)
 
     const [selectTicketNum, setSelectTicketNum] = useState(1)
     const { id } = useParams()
@@ -47,26 +51,32 @@ const PerformanceDetail = () => {
     }, [id])
 
     useEffect(() => {
-        console.log('detailData: ', detailData)
+        // console.log('detailData: ', detailData)
         if (detailData) {
+            dispatch(reviewAction.getAllReview({ Id: detailData.mt20id }))
+
             setPosterList(detailData.styurls)
             setLocation(detailData.mt10id)
 
             const array = detailData.pcseguidance.split(', ')
-            console.log('array', array)
 
             if (array.length > 1) {
                 const [name, cost] = array[array.length - 1].split(' ')
                 setCostArray(`전석 ${cost}`)
             } else {
-                setCostArray([detailData.pcseguidance])
+                if (detailData.pcseguidance === '전석무료') {
+                    setCostArray('전석 0원(무료)')
+                } else {
+                    setCostArray([detailData.pcseguidance])
+                }
             }
         }
     }, [detailData])
 
     useEffect(() => {
         console.log('costArray:', costArray)
-    }, [costArray])
+        console.log('review allList', reviewAllList)
+    }, [costArray, reviewAllList])
 
     useEffect(() => {
         dispatch(perfomanceListAction.getLocationLatLot(location, settingQuery))
@@ -159,18 +169,39 @@ const PerformanceDetail = () => {
                             <button className="detailHiddenBtn" id={hidden.toString() + 1} onClick={() => showDetail()}>공연 상세 더보기</button>
                         </div>
                         <div className="subTitle">위치 정보</div>
-                        <div>
-                            <FontAwesomeIcon icon={faLocationDot} size="xl" />{detailData.fcltynm}
+                        <div className="locationTitle">
+                            <FontAwesomeIcon icon={faLocationDot} size="xl" />
+                            <div>
+                                {detailData.fcltynm}
+                            </div>
                         </div>
                         {
                             locationLat && locationLot ? (<KaKaoMap lat={locationLat} lot={locationLot} />) : null
                         }
-                    </div>
 
+                        <div className="subTitle reviewText">리뷰</div>
+                        {reviewAllList && reviewAllList.length === 0 ? (
+                            <div>아직 리뷰가 없습니다</div>
+                        ) : (
+                            reviewAllList.map(review => (
+                                <div className="review">
+                                    <div className="detailReviewTop">
+                                        <div className="starName">
+                                            <div>{review.starRate}</div>
+                                            <div>{review.nickName}</div>
+                                        </div>
+                                        <div>{convertToKST(review.createdAt)}</div>
+                                    </div>
+                                    <div>{review.reviewText}</div>
+                                </div>
+                            ))
+                        )}
+                    </div>
                 </div>) : (
                 <div><LoadingText /></div>
             )
             )}
+            <Star />
         </Container >
     )
 }

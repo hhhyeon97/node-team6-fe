@@ -155,6 +155,34 @@
     }
   }
 
+  .reviewText {
+    border-bottom: solid 3px black;
+  }
+
+  .review {
+    border: solid 1px #bbb;
+    border-radius: 5px;
+    padding: 20px 10px;
+    margin-bottom: 10px;
+
+    .detailReviewTop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #737373;
+      font-size: 13px;
+      margin-bottom: 10px;
+
+      .starName {
+        display: flex;
+
+        div {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
   #true1 {
     display: block;
   }
@@ -196,6 +224,24 @@
   #false {
     overflow: show;
     height: fit-content;
+  }
+
+  .locationTitle {
+    display: flex;
+    margin-bottom: 10px;
+
+    div {
+      margin-left: 5px;
+      font-family: "Gsans_B";
+    }
+  }
+
+  .detailAddress {
+    margin-bottom: 10px;
+  }
+
+  #map {
+    border: solid 1px #bbb;
   }
 }
 

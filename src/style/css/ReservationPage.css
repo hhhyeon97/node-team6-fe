@@ -64,6 +64,12 @@
 .reservationPage .reservation_Right_Box .creditCard .form-area .card_textInfo {
   margin-bottom: 15px;
 }
+.reservationPage .reservation_Right_Box .creditCard .off {
+  display: none;
+}
+.reservationPage .reservation_Right_Box .creditCard .on {
+  display: block;
+}
 .reservationPage .reservation_Info_Box {
   border: solid 4px black;
   margin-top: 40px;

@@ -218,3 +218,18 @@
   font-size: 1.5rem;
   color: #D61F1F;
 }
+.mypage-container .canceled {
+  opacity: 0.5;
+}
+
+.reserve-detail-container {
+  border: 2px solid red;
+}
+.reserve-detail-container .okCancel {
+  background-color: #000;
+}
+.reserve-detail-container .disableCancel {
+  pointer-events: none;
+  background-color: #bbb !important;
+  border: #bbb;
+}
