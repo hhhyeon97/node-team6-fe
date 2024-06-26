@@ -194,20 +194,29 @@
       //   background-color: #919191;
       // }
       .mylike_card_image_box{
-        width: 35%;
+        width: 25%;
         display: flex;
         justify-content: center;
         align-items: center;
         overflow: hidden; 
       }
-      .mylike_card_image{ width: 100%;}
+      .mylike_care_image_size{
+        height: 90%;
+        border-radius: 0.5rem;
+        overflow: hidden;
+      }
+      .mylike_card_image{ height: 100%;}
       .filter_gray{
         filter: grayscale(75%);
       }
 
       .mylike_card_text_box{
-        width: 65%;
+        width: 75%;
+        height: 100%;
         padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
           h4{
             font-size: 1rem;

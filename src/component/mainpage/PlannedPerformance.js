@@ -70,7 +70,7 @@ const PlannedPerformance = () => {
         slidesToShow: 3,
         slidesToScroll: 3,
         autoplay: true,
-        speed: 800,
+        speed: 300,
         autoplaySpeed: 7000,
         // arrows: false,
         cssEase: "linear",

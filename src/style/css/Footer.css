@@ -1,0 +1,74 @@
+.footer_area {
+  width: 100%;
+  margin-top: 10rem;
+  display: flex;
+  justify-content: center;
+}
+.footer_area .footer_size {
+  width: 90%;
+}
+.footer_area .row > * {
+  padding: 0;
+}
+.footer_area .row {
+  padding: 0;
+  margin: 0;
+}
+.footer_area .footer_link_box {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 0.5rem;
+}
+.footer_area .footer_link_box div {
+  margin-left: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 500px;
+}
+.footer_area .footer_link_box .git_fe_button {
+  font-size: 2rem;
+}
+.footer_area .footer_link_box .git_be_button {
+  background-color: black;
+  color: white;
+}
+.footer_area .footer_link_box .noona_button {
+  background-color: black;
+  color: white;
+  padding-top: 0.5rem;
+  padding-bottom: 0.2rem;
+  font-size: 1rem;
+}
+.footer_area .footer_nav_area h3 {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.footer_area .footer_nav_area h4 {
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.footer_area .footer_info_box {
+  margin-bottom: 1rem;
+}
+.footer_area .footer_info_box h4 {
+  margin-bottom: 0.3rem;
+  font-size: 0.6rem;
+}
+.footer_area .footer_info_box span {
+  margin-right: 0.5rem;
+}
+.footer_area .footer_info_box h3 {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.footer_area .footer_info_link_front_blank {
+  margin-left: 0.5rem;
+}
+.footer_area .under_line {
+  border-bottom: 1px solid #bbb;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
