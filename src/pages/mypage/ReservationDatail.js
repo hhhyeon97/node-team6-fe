@@ -6,7 +6,7 @@ import { reserveFormat } from '../../utils/Date';
 import { priceformat } from '../../utils/Date';
 import { convertToKST } from '../../utils/Date';
 import { reservationAction } from '../../action/reservationAction';
-import "../../style/css/Mypage.css";
+import "../../style/css/Mypage.css"
 import LoadingText from '../../component/LoadingText';
 import AlertModal from '../../component/AlertModal';
 
@@ -17,29 +17,40 @@ const ReservationDetail = () => {
   console.log("id", id)
   const { selectedReserve, loading, error } = useSelector(state => state.reservation);
   const [showModal, setShowModal] = useState(false);
+  const [cancelBtnClass, setCancelBtnClass] = useState('');
 
   useEffect(() => {
     dispatch(reservationAction.getReservationDetail(id));
   }, [id])
 
-  console.log(selectedReserve)
+
+  // [ 관람 당일 이후거나 이미 예매취소했으면 예매취소 불가능 ]
+  useEffect(() => {
+
+    const reservationDate = new Date(selectedReserve?.reservationDate);
+    const currentDate = new Date();
+
+    if (reservationDate > currentDate && !selectedReserve.isCanceled) {
+      setCancelBtnClass('okCancel');
+    } else {
+      setCancelBtnClass('disableCancel');
+    }
+  }, [selectedReserve]);
+
+  // [ 예매 취소 ]
+  const handleCancle = () => {
+    setShowModal(true);
+  }
+
 
   if (loading) {
     return <LoadingText />;
   }
-
   if (error) {
     return <div>Error: {error}</div>;
   }
-
   if (!selectedReserve) {
     return <div>No reservation details found.</div>;
-  }
-  // [ 예매 취소 ]
-  const handleCancle = (e) => {
-    console.log("취소")
-    setShowModal(true);
-    // dispatch(reservationAction.deleteReservation(id));
   }
 
   return(
@@ -75,12 +86,8 @@ const ReservationDetail = () => {
                     <strong>{reserveFormat(selectedReserve.reservationDate)}</strong>
                   </div>
                 </ul>
-                {!selectedReserve.isCanceled ? (
-                  <Button onClick={handleCancle}>예매취소</Button>
-                  ):(
-                  <Button style={{ pointerEvents: 'none', background:'#bbb', border: '#bbb' }}>예매취소</Button>
-                  )
-                }
+
+                <Button onClick={handleCancle} className={cancelBtnClass}>예매취소</Button>
                 
               </section>
 
