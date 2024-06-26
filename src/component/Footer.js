@@ -43,7 +43,7 @@ const Footer = () => {
               </Col>
               <Col lg={3}>
                 <h3>도움말</h3>
-                <h4>공지사항</h4>
+                <h4 onClick={()=>navigate('/notice')}>공지사항</h4>
                 <h4>FAQ</h4>
                 <h4>고객의 소리</h4>
               </Col>
