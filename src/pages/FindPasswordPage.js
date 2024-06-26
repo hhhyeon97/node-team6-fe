@@ -9,6 +9,7 @@ const FindPasswordPage = () => {
   const { error, loading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { user } = useSelector((state) => state.user);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,12 +24,21 @@ const FindPasswordPage = () => {
     dispatch(userActions.resetError());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
+
   return (
     <Container className="find_password_area  d-flex justify-content-center align-items-center">
       <h2 className="title">비밀번호 찾기</h2>
       <Form className="find_password_form" onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
-          <Form.Label>이메일 주소</Form.Label>
+          <Form.Label>
+            가입한 이메일을 입력해주세요.
+            <br /> 비밀번호 재설정 링크를 통해 비밀번호를 변경합니다.
+          </Form.Label>
           <Form.Control
             type="email"
             placeholder="이메일을 입력하세요"

@@ -18,16 +18,25 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   const [passwordError, setPasswordError] = useState('');
   const [contactError, setContactError] = useState('');
+  const [gapMessage, setGapMessage] = useState('');
   const [formError, setFormError] = useState('');
   const [passwordValid, setPasswordValid] = useState(false);
   const [emailError, setEmailError] = useState('');
   const error = useSelector((state) => state.user.error);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { user } = useSelector((state) => state.user);
 
   const register = (event) => {
     event.preventDefault();
     const { email, name, password, confirmPassword, contact } = formData;
+
+    // 비밀번호에 공백이 있는지 확인
+    if (password.includes(' ')) {
+      setGapMessage('비밀번호에는 공백을 포함할 수 없습니다.');
+      return;
+    }
+
     // 비번 중복 확인 일치하는지 확인
     if (password !== confirmPassword) {
       setPasswordError('비밀번호 중복 확인이 일치하지 않습니다 !');
@@ -112,6 +121,12 @@ const RegisterPage = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
+
   return (
     <Container className="register_area d-flex justify-content-center align-items-center">
       <h2 className="register_title">회원가입</h2>
@@ -163,7 +178,8 @@ const RegisterPage = () => {
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Password</Form.Label>
+          {gapMessage && <span className="gap_message">💡 {gapMessage}</span>}
+          {gapMessage ? null : <Form.Label>Password</Form.Label>}
           <div className="password_input_wrap">
             <Form.Control
               type={showPassword ? 'text' : 'password'}
@@ -171,7 +187,10 @@ const RegisterPage = () => {
               placeholder="Password"
               onChange={handleChange}
               required
-              onFocus={() => setPasswordError('')}
+              onFocus={() => {
+                setPasswordError('');
+                setGapMessage('');
+              }}
             />
             <span
               className="password_toggle_icon"
@@ -195,7 +214,10 @@ const RegisterPage = () => {
               onChange={handleChange}
               required
               isInvalid={!!passwordError}
-              onFocus={() => setPasswordError('')}
+              onFocus={() => {
+                setPasswordError('');
+                setGapMessage('');
+              }}
             />
             <span
               className="password_toggle_icon"
