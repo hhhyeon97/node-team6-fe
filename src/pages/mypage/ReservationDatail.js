@@ -8,6 +8,7 @@ import { convertToKST } from '../../utils/Date';
 import { reservationAction } from '../../action/reservationAction';
 import "../../style/css/Mypage.css";
 import LoadingText from '../../component/LoadingText';
+import AlertModal from '../../component/AlertModal';
 
 const ReservationDetail = () => {
   const dispatch = useDispatch();
@@ -15,12 +16,13 @@ const ReservationDetail = () => {
   const { id } = useParams();
   console.log("id", id)
   const { selectedReserve, loading, error } = useSelector(state => state.reservation);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     dispatch(reservationAction.getReservationDetail(id));
   }, [id])
 
-  console.log(selectedReserve)
+  console.log("id", id)
 
   if (loading) {
     return <LoadingText />;
@@ -33,10 +35,15 @@ const ReservationDetail = () => {
   if (!selectedReserve) {
     return <div>No reservation details found.</div>;
   }
+  // [ 예매 취소 ]
+  const handleCancle = (e) => {
+    console.log("취소")
+    setShowModal(true);
+    // dispatch(reservationAction.deleteReservation(id));
+  }
 
   return(
     <Container className="wrap-container">
-      <h1>예매상세내역</h1>
       <Row>
         <Col>
             <div className="reserve-detail-container">
@@ -66,6 +73,7 @@ const ReservationDetail = () => {
                     <strong>{reserveFormat(selectedReserve.reservationDate)}</strong>
                   </div>
                 </ul>
+                <Button onClick={handleCancle}>예매취소</Button>
               </section>
 
               <section className="my-buyer">
@@ -93,8 +101,17 @@ const ReservationDetail = () => {
                   <h5>₩ { priceformat(selectedReserve.totalPrice)}원</h5>
                 </div>
               </section>
-
             </div>
+
+            <AlertModal 
+              showModal={showModal}
+              setShowModal={setShowModal}
+              selectedId={id}
+              selectedName={selectedReserve.ticket.SeqTitle}
+              selectedDate={reserveFormat(selectedReserve.reservationDate)}
+              alertMessage="해당 공연의 예매를 정말로 취소하시겠습니까?(예매취소는 관람일 하루 전날까지만 가능합니다)"
+              btnText="예매취소"
+            />
         </Col>
       </Row>
     </Container>
