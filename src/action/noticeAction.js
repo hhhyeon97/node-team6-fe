@@ -19,6 +19,51 @@ const getNoticeList = (query) => async (dispatch) => {
   }
 }
 
+// [ 공지사항 작성 ]
+const createNotice = (formData, setShowDialog, setSearchQuery) => async (dispatch) => {
+  try{
+    dispatch({ type: types.CREATE_NOTICE_REQUEST });
+    const response = await api.post("/notice", formData);
+    if(response.status !== 200) throw new Error (response.error);
+    dispatch({ type: types.CREATE_NOTICE_SUCCESS });
+    setShowDialog(false);
+    dispatch(getNoticeList({page:1, title:""}));
+  }catch(error){
+    dispatch({ type: types.CREATE_NOTICE_FAIL, payload: error.error });
+  }
+}
+
+// [ 공자사항 수정 ]
+const editNotice = (formData, id, setShowDialog, setSearchQuery) => async (dispatch) => {
+  try{
+    dispatch({ type: types.EDIT_NOTICE_REQUEST });
+    const response = await api.put(`/notice/${id}`, formData);
+    if(response.status !== 200) throw new Error (response.error);
+    dispatch({ type: types.EDIT_NOTICE_SUCCESS });
+    setShowDialog(false);
+    dispatch(getNoticeList({page:1, title:""}));
+  }catch(error){
+    dispatch({ type: types.EDIT_NOTICE_FAIL, payload: error.error });
+  }
+}
+
+// [ 공지사항 삭제 ]
+const deleteNotice = (id, setSearchQuery, navigate) => async (dispatch) => {
+  try{
+    dispatch({ type: types.DELETE_NOTICE_REQUEST });
+    const response = await api.delete(`/notice/${id}`);
+    if(response.status !== 200) throw new Error (response.error);
+    dispatch({type: types.DELETE_NOTICE_SUCCESS});
+    dispatch(getNoticeList({page:1, title:""}));
+    setSearchQuery({page:1, name:""})
+  }catch(error){
+    dispatch({ type: types.DELETE_NOTICE_FAIL, payload: error.error });
+  }
+}
+
 export const noticeAction = {
-  getNoticeList
+  getNoticeList,
+  createNotice,
+  editNotice,
+  deleteNotice
 };

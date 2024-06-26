@@ -79,3 +79,11 @@ body {
   color: #bbb;
   pointer-events: none;
 }
+
+/* 이미지 업로드 버튼 */
+.upload_img_btn{
+  background: #000;
+  border: none;
+  padding: 7px 9px;
+  font-size: 0.7em;
+}
