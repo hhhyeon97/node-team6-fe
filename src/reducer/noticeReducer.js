@@ -14,6 +14,7 @@ function noticeReducer(state = initialState, action) {
     case types.GET_NOTICE_LIST_REQUEST:
     case types.CREATE_NOTICE_REQUEST:
     case types.EDIT_NOTICE_REQUEST:
+    case types.DELETE_NOTICE_REQUEST:
       return { ...state, loading: true };
     case types.GET_NOTICE_LIST_SUCCESS:
       return { ...state, loading: false, error: '',
@@ -22,10 +23,12 @@ function noticeReducer(state = initialState, action) {
       }
     case types.CREATE_NOTICE_SUCCESS:
     case types.EDIT_NOTICE_SUCCESS:
+    case types.DELETE_NOTICE_SUCCESS:
       return { ...state, loading: false, error: ""};
     case types.GET_NOTICE_LIST_FAIL:
     case types.CREATE_NOTICE_FAIL:
     case types.EDIT_NOTICE_FAIL:
+    case types.DELETE_NOTICE_FAIL:
       return { ...state, loading: false, error: payload }
     case types.SET_SELECTED_NOTICE:
       return { ...state, selectedNotice: payload };

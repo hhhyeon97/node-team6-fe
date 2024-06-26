@@ -9,6 +9,7 @@ import Pagination from '../../component/Pagination';
 import NoticeTable from '../../component/admin_page/NoticeTable';
 import NoticeDialog from '../../component/admin_page/NoticeDialog';
 import SearchBox from '../../component/SearchBox';
+import AlertModal from '../../component/AlertModal';
 import NewNoticeDialog from '../../component/admin_page/NewNoticeDialog';
 import "../../style/css/AdminPage.css";
 
@@ -19,6 +20,9 @@ const AdminNoticePage = () => {
   const [query, setQuery] = useSearchParams();
   const [showDialog, setShowDialog] = useState(false);
   const [mode, setMode] = useState("new");
+  const [showModal, setShowModal] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+  const [selectedName, setSelectedName] = useState("");
   const [searchQuery, setSearchQuery] = useState({
     page: query.get("page") || 1,
     title: query.get("title") || "",
@@ -74,6 +78,13 @@ const AdminNoticePage = () => {
     setShowDialog(true);
   }
 
+  // [ 아이템 삭제하기 ] 
+  const deleteItem = (id, name) => {
+    setSelectedId(id);
+    setSelectedName(name);
+    setShowModal(true);
+  };
+
   return(
     <div className="admin_notice_container">
       <SearchBox
@@ -93,6 +104,7 @@ const AdminNoticePage = () => {
       <NoticeTable
           header={tableHeader}
           noticeList={noticeList}
+          deleteItem={deleteItem}
           openEditForm={openEditForm}
         />
 
@@ -107,6 +119,15 @@ const AdminNoticePage = () => {
         totalPageNum={totalPageNum}
         forcePage={searchQuery.page-1}
         onPageChange={onPageChange}
+      />
+
+      <AlertModal 
+        showModal={showModal}
+        setShowModal={setShowModal}
+        selectedId={selectedId}
+        selectedName={selectedName}
+        alertMessage="해당 공지사항을 정말로 삭제하시겠습니까?"
+        btnText="공지삭제"
       />
 
     </div>

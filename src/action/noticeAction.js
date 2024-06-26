@@ -47,8 +47,23 @@ const editNotice = (formData, id, setShowDialog, setSearchQuery) => async (dispa
   }
 }
 
+// [ 공지사항 삭제 ]
+const deleteNotice = (id, setSearchQuery, navigate) => async (dispatch) => {
+  try{
+    dispatch({ type: types.DELETE_NOTICE_REQUEST });
+    const response = await api.delete(`/notice/${id}`);
+    if(response.status !== 200) throw new Error (response.error);
+    dispatch({type: types.DELETE_NOTICE_SUCCESS});
+    dispatch(getNoticeList({page:1, title:""}));
+    setSearchQuery({page:1, name:""})
+  }catch(error){
+    dispatch({ type: types.DELETE_NOTICE_FAIL, payload: error.error });
+  }
+}
+
 export const noticeAction = {
   getNoticeList,
   createNotice,
   editNotice,
+  deleteNotice
 };

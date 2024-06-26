@@ -2,7 +2,7 @@ import React from "react";
 import { Table, Badge, Button } from "react-bootstrap";
 import { convertToKST } from "../../utils/Date";
 
-const NoticeTable = ({ header, noticeList, openEditForm }) => {
+const NoticeTable = ({ header, noticeList, deleteItem, openEditForm }) => {
   return (
     <div className="overflow-x">
       <Table striped bordered hover>
@@ -26,6 +26,14 @@ const NoticeTable = ({ header, noticeList, openEditForm }) => {
                 <Button size="sm" onClick={() => openEditForm(notice)}>
                   Edit
                 </Button>
+                <Button
+                  size="sm"
+                  variant="danger"
+                  onClick={() => deleteItem(notice._id, notice.title)}
+                  className="mr-1"
+                >
+                    -
+                  </Button>               
               </th>
               </tr>
             ))
