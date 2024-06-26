@@ -45,7 +45,7 @@ const Navbar = ({ user }) => {
     if (event.key === 'Enter') searchByKeyword(event);
   }
 
-  const {likeQty} = useSelector(state=>state.like);
+  const { likeQty } = useSelector(state => state.like);
 
   return (
     <div className='nav_underline'>
@@ -69,14 +69,14 @@ const Navbar = ({ user }) => {
             <div onClick={() => navigate('/register')}>
               <FontAwesomeIcon icon={faUser} className='nav_user_icon' /> JOIN US
             </div>)}
-          {user?(
+          {user ? (
             <div onClick={() => navigate('/mypage/like')}>
               <FontAwesomeIcon icon={faHeart} className='nav_user_icon' /> {`LIKE ${likeQty}`}
             </div>
-          ):(
+          ) : (
             <div onClick={() => navigate('/login')}>
               <FontAwesomeIcon icon={faHeart} className='nav_user_icon' /> MY LIKE
-            </div>  
+            </div>
           )}
           {user ? (
             <div onClick={logout}>

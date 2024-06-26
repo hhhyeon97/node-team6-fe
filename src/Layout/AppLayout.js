@@ -9,6 +9,7 @@ import AdminSidebar from '../component/admin_page/AdminSidebar';
 import "../style/css/AdminPage.css";
 import logoImg from "../assets/img/logo.png";
 import { Link } from "react-router-dom";
+import TopDownBtn from '../component/TopDownBtn';
 
 const AppLayout = ({ children }) => {
   const location = useLocation(); // 사용자의 현재 url 주소 받아옴
@@ -43,7 +44,8 @@ const AppLayout = ({ children }) => {
       ) : (
         <>
           <Navbar user={user} />
-            {children}
+          <TopDownBtn />
+          {children}
           <Footer />
         </>
       )}

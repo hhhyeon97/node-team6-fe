@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { Col, Row, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { reviewActions } from '../../action/reviewAction';
+import { reviewAction } from '../../action/reviewAction';
 import LinedTitle from '../../component/LinedTitle';
 
 const AdminReviewPage = () => {
@@ -17,7 +17,7 @@ const AdminReviewPage = () => {
 
   // [ reviewList 가져오기 ]
   useEffect(() => {
-    dispatch(reviewActions.getReviewList({ ...searchQuery }));
+    dispatch(reviewAction.getReviewList({ ...searchQuery }));
   }, [query, dispatch]);
 
   console.log("reviewList", reviewList )

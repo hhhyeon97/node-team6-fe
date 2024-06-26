@@ -220,3 +220,10 @@
   font-weight: normal;
   font-size: 14px;
 }
+
+.ListPagePagination .nc_pagination {
+  margin-top: 40px;
+}
+.ListPagePagination .nc_pagination li {
+  list-style: none;
+}

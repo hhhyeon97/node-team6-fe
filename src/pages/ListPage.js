@@ -11,6 +11,7 @@ import { faMap, faCalendar } from '@fortawesome/free-regular-svg-icons'
 import { faCaretDown, faCaretUp, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { useSearchParams } from "react-router-dom";
 import LoadingText from "../component/LoadingText";
+import Pagination from "../component/Pagination";
 
 const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
 
@@ -26,9 +27,11 @@ const ListPage = () => {
 
     const [showPage, setShowPage] = useState(1)
     const [status, setStatus] = useState('02')
+    const [totalPageNum, setTotalPageNum] = useState(1)
 
     const [query] = useSearchParams();
-    const categoryQurery = query.get('category') || ''
+    const category = query.get('category') || ''
+    const categoryName = query.get('categoryName') || ''
 
     const settingQuery = {
         service: REACT_APP_YEJIN_SERVICE_KEY,
@@ -36,16 +39,22 @@ const ListPage = () => {
         prfstate: status,
     }
 
+    // [ 쿼리에 페이지값 바꿔주기 ]
+    const onPageChange = () => {
+        setShowPage(showPage + 1)
+    };
+
+
     useEffect(() => {
         dispatch(perfomanceListAction.getPerformanceList({
             stdate: StringDateformat(selectDate),
-            shcate: categoryQurery,
+            shcate: category,
             eddate: EndDateformat(selectDate),
             cpage: showPage,
             rows: 10,
         }, settingQuery))
         console.log("receive PerformanceListData: ", PerformanceListData)
-    }, [selectDate, status, selectedRegion, categoryQurery])
+    }, [selectDate, status, selectedRegion, category, showPage])
 
     const { PerformanceListData } = useSelector(state => state.list)
 
@@ -91,8 +100,8 @@ const ListPage = () => {
         <Container className="wrap-container">
             <Row className="ListPageTitle">
                 <Col>
-                    <h1>공연</h1>
-                    <div>Noona Culture로 가장 빠르게 알아보는 컬쳐소식</div>
+                    <h1>{categoryName}</h1>
+                    <div>Noona Culture로 가장 빠르게 알아보는 {categoryName}소식</div>
                 </Col>
                 <Col lg={5} md={5} sm={6} className="LegionDropContainer">
                     <ul onClick={() => { setView(!view) }} className="regionDrop">
@@ -133,6 +142,9 @@ const ListPage = () => {
                         </div>
                     </div>
                 </Col>
+            </Row>
+            <Row className="ListPagePagination">
+                <Pagination totalPageNum={10} forcePage={showPage - 1} onPageChange={onPageChange} />
             </Row>
         </Container>
     )
