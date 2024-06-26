@@ -23,6 +23,7 @@ function userReducer(state = initialState, action) {
     case types.FORGOT_PASSWORD_REQUEST:
     case types.RESET_PASSWORD_REQUEST:
     case types.CHECK_RESET_TOKEN_REQUEST:
+    case types.USER_CHANGE_PASSWORD_REQUEST:
       return { ...state, loading: true };
     case types.LOGIN_SUCCESS:
     case types.LOGIN_WITH_TOKEN_SUCCESS:
@@ -31,6 +32,8 @@ function userReducer(state = initialState, action) {
     case types.GET_USER_SUCCESS:
     case types.EDIT_USER_SUCCESS:
       return { ...state, loading: false, user: payload.user, error: '' };
+    case types.USER_CHANGE_PASSWORD_SUCCESS:
+      return { loading: false, success: true };
     case types.GET_USER_LIST_SUCCESS:
       return {
         ...state,
@@ -55,6 +58,7 @@ function userReducer(state = initialState, action) {
     case types.KAKAO_LOGIN_FAIL:
     case types.EDIT_USER_FAIL:
     case types.FORGOT_PASSWORD_FAIL:
+    case types.USER_CHANGE_PASSWORD_FAIL:
       return { ...state, loading: false, error: payload };
     case types.RESET_PASSWORD_FAIL:
     case types.CHECK_RESET_TOKEN_FAIL:
