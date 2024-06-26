@@ -108,7 +108,6 @@
   border-color: #bbb;
 }
 .ListPageMainBox .ListItemsBox {
-  border: solid 1px green;
   cursor: pointer;
 }
 .ListPageMainBox .ListItemsBox .ListItem {
@@ -155,7 +154,6 @@
   border-color: #bbb;
 }
 .ListPageMainBox .CalenderBox {
-  border: solid 1px blue;
   padding: 20px;
 }
 .ListPageMainBox .CalenderBox .stickyBox {

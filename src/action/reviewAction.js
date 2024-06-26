@@ -50,7 +50,7 @@ const createReview = (formData, reserveId, setShowDialog, setSearchQuery) => asy
   } catch {
     dispatch({ type: types.CREATE_REVIEW_FAIL });
   }
-}    
+}
 // [ 리뷰를 작성한 예매인지 체크하기 ]
 const checkReviewed = (reserveTitle, reserveId) => async (dispatch) => {
   try {

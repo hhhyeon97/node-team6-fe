@@ -24,7 +24,7 @@ function reviewReducer(state = initialState, action) {
         totalPageNum: payload.totalPageNum
       };
     case types.GET_ALL_REVIEW_LIST_SUCCESS:
-      return { ...state, loading: false, error: '', reviewAllList: payload.data }
+      return { ...state, loading: false, error: '', reviewAllList: payload.matchingData }
     case types.CREATE_REVIEW_SUCCESS:
       return { ...state, loading: false, error: '' }
     case types.CHECKE_REVIEWED_RESERVATION_SUCCESS:
