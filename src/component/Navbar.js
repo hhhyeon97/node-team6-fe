@@ -6,10 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import '../style/css/Navbar.css'
 import { faDoorOpen, faHeart, faMagnifyingGlass, faUnlock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Col, Container, Row } from 'react-bootstrap';
+import { likeAction } from '../action/likeAction';
 const Navbar = ({ user }) => {
   const [keyword, setKeyword] = useState('');
+  const [category, setCategory] = useState('');
   const dispatch = useDispatch();
   let navigate = useNavigate();
+  let categoryIndex = null; 
 
   const menuList = [
     { name: '뮤지컬', code: 'GGGA' },
@@ -22,11 +25,14 @@ const Navbar = ({ user }) => {
 
   const logout = () => {
     dispatch(userActions.logout());
+    dispatch(likeAction.resetLikeList());
+    navigate('/')
   };
 
-  const sendCategory = (category) => {
-    navigate(`/performance?category=${category.code}&categoryName=${category.name}`
-    )
+  const sendCategory = (code) => {
+    categoryIndex = menuList.findIndex(menu=>menu.code === code);
+    setCategory(categoryIndex)
+    navigate(`/performance?category=${code}`)
   }
 
   const searchByKeyword = (event) => {
@@ -42,6 +48,7 @@ const Navbar = ({ user }) => {
   const { likeQty } = useSelector(state => state.like);
 
   return (
+    <div className='nav_underline'>
     <Container className='wrap-container nav_area'>
       <Row>
         <Col className='nav_logo_area'>
@@ -89,8 +96,10 @@ const Navbar = ({ user }) => {
           <ul className='nav_category'>
             {menuList.map((menu, index) => (
               <li key={index}>
-                <button onClick={() => sendCategory(menu)}>
+                <button onClick={() => sendCategory(menu.code)} className='nav_category_button'>
                   {menu.name}
+                  <div className='hidden_under_bar'></div>
+                  {category===index?(<div className='nav_menu_under_bar'></div>):''}
                 </button>
               </li>
             ))}
@@ -111,6 +120,7 @@ const Navbar = ({ user }) => {
         </Col>
       </Row>
     </Container>
+    </div>
   );
 };
 

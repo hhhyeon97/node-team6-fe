@@ -1,6 +1,6 @@
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StartDate, EndDate } from '../../utils/MainCartDate'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,8 +11,8 @@ const RankingCard = ({item,key}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const imgUrL = 'http://www.kopis.or.kr/';
-    const { likeList } = useSelector(state=>state.like);
-    const checkLike = likeList.find(like=>like.seqId === item.mt20id);
+    const { likeList,error } = useSelector(state=>state.like);
+    const checkLike = likeList&&likeList.find(like=>like.seqId === item.mt20id);
     const sliceOpenDate = (date) => {
         const [openDate, closeDate] = date.split('~');
         return openDate
@@ -36,6 +36,10 @@ const RankingCard = ({item,key}) => {
         dispatch(likeAction.deleteLikeItem({id:checkLike._id}));
     }
 
+    useEffect(()=>{
+        if(error&&error==='Invalid token') navigate('/login')
+    },[error])
+
   return (
     <div key={key} className='performance_card_area'>
         <div className='performance_card_img_box' onClick={()=>navigate(`/performance/${item.mt20id}`)}>
@@ -49,7 +53,6 @@ const RankingCard = ({item,key}) => {
         </div>
         {checkLike?(<div className='like_heart_red' onClick={()=>deleteLike(item)}><FontAwesomeIcon icon={fas.faHeart} /></div>)
         :(<div className='like-heart' onClick={()=>addLike(item)}><FontAwesomeIcon icon={faHeart} /></div>)}
-        
     </div>
   )
 }
