@@ -15,6 +15,8 @@ function reservationReducer(state = initialState, action) {
     switch (type) {
         case types.POST_RESERVATION_REQUEST:
         case types.GET_MY_RESERVATION_REQUEST:
+        case types.GET_MY_RESERVE_DETAIL_REQUEST:
+        case types.CANCEL_RESERVATION_REQUEST:
             return { ...state, loading: true }
 
         case types.POST_RESERVATION_SUCCESS:
@@ -24,8 +26,15 @@ function reservationReducer(state = initialState, action) {
                     reserveList: payload.data, 
                     totalPageNum: payload.totalPageNum,
                     error: null }
+        case types.GET_MY_RESERVE_DETAIL_SUCCESS:
+            return { ...state, loading: false, error: null,
+                    selectedReserve: payload.data}
+        case types.CANCEL_RESERVATION_SUCCESS:
+            return { ...state, loading: false, error: null, }
         case types.POST_RESERVATION_FAIL:
         case types.GET_MY_RESERVATION_FAIL:
+        case types.GET_MY_RESERVE_DETAIL_FAIL:
+        case types.CANCEL_RESERVATION_FAIL:
             return { ...state, loading: false, error: payload }
         case types.SET_SELECTED_RESERVATION:
             return { ...state, selectedReserve: payload };

@@ -247,6 +247,18 @@
     }
   }
 }
+// [ 나의예매 디테일 페이지 ]
+.reserve-detail-container{
+  border: 2px solid red;
+  .okCancel{
+    background-color: #000;
+  }
+  .disableCancel{
+    pointer-events: none;
+    background-color: #bbb !important;
+    border: #bbb;
+  }
+}
 
 
 
