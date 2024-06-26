@@ -51,3 +51,6 @@
 .register_area .form-control.is-invalid ~ .password_toggle_icon {
   display: none;
 }
+.register_area .gap_message {
+  color: #919090;
+}
