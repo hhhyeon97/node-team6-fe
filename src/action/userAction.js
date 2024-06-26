@@ -217,6 +217,26 @@ const updateUserLevel = (id, level, setSearchQuery) => async (dispatch) => {
   }
 };
 
+const changePassword =
+  (currentPassword, newPassword, navigate) => async (dispatch) => {
+    try {
+      dispatch({ type: types.USER_CHANGE_PASSWORD_REQUEST });
+      const response = await api.put('/password/change-password', {
+        currentPassword,
+        newPassword,
+      });
+      if (response.status !== 200) throw new Error(response.error);
+      dispatch({ type: types.USER_CHANGE_PASSWORD_SUCCESS });
+      alert('비밀번호 변경이 완료되었습니다!\n재로그인 후 이용해주세요.');
+      navigate('/login');
+    } catch (error) {
+      dispatch({
+        type: types.USER_CHANGE_PASSWORD_FAIL,
+        payload: error.error,
+      });
+    }
+  };
+
 export const resetError = () => ({
   type: types.RESET_ERROR,
 });
@@ -236,5 +256,5 @@ export const userActions = {
   updateUserLevel,
   forgotPassword,
   resetPassword,
-  // checkResetToken,
+  changePassword,
 };
