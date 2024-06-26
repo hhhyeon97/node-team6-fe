@@ -45,15 +45,9 @@ const MyReserveCard = ({ item, onClick, openReviewForm, reviewed }) => {
       <div><strong>{priceformat(item.totalPrice)}원</strong> / 티켓수량 <strong>{item.ticketNum}</strong></div>
     </div>
     {/* 리뷰쓰기 버튼 */}
-    {reviewed === false ? (
-        <Button size="sm" onClick={() => openReviewForm(item)}>
+    <Button size="sm" onClick={() => openReviewForm(item)}>
           리뷰쓰기
-        </Button>
-      ) : reviewed === true ? (
-        <div>리뷰를 이미 작성하셨습니다</div>
-      ) : (
-        <div>리뷰 상태를 확인 중입니다...</div>
-      )}
+    </Button>
   </div>
     
   )
