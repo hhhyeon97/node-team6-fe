@@ -10,7 +10,6 @@ import NoticeTable from '../../component/admin_page/NoticeTable';
 import NoticeDialog from '../../component/admin_page/NoticeDialog';
 import SearchBox from '../../component/SearchBox';
 import AlertModal from '../../component/AlertModal';
-import NewNoticeDialog from '../../component/admin_page/NewNoticeDialog';
 import "../../style/css/AdminPage.css";
 
 const AdminNoticePage = () => {
