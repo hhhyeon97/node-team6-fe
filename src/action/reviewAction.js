@@ -1,5 +1,6 @@
 import api from '../utils/api';
 import * as types from '../constants/review.constants';
+import { reservationAction } from './reservationAction';
 
 // [ 전체 리뷰 리스트 가져오기 (admin) ]
 const getReviewList = (query) => async (dispatch) => {
@@ -45,6 +46,7 @@ const createReview = (formData, reserveId, setShowDialog, setSearchQuery) => asy
     if (response.status !== 200) throw new Error(response.error);
     dispatch({ type: types.CREATE_REVIEW_SUCCESS });
     setShowDialog(false);
+    dispatch(reservationAction.getMyReserve({ page: 1 }));
   } catch {
     dispatch({ type: types.CREATE_REVIEW_FAIL });
   }

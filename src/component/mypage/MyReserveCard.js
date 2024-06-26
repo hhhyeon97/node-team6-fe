@@ -7,11 +7,13 @@ import { Button } from "react-bootstrap";
 import { reserveFormat } from '../../utils/Date';
 import { priceformat } from '../../utils/Date';
 import { convertToKST } from '../../utils/Date';
+import { Alert } from "react-bootstrap";
 
-const MyReserveCard = ({ item, onClick, openReviewForm, isReviewed}) => {
+const MyReserveCard = ({ item, onClick, openReviewForm, isReviewed }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const { reviewedReserve } = useSelector((state) => state.review);
+
+  // console.log("리뷰됬나요", item.ticket.SeqTitle, ":", isReviewed)
 
 	// [ 리뷰를 남긴 예매인지 체크하기 ]
 	// useEffect(() => {
@@ -20,6 +22,9 @@ const MyReserveCard = ({ item, onClick, openReviewForm, isReviewed}) => {
 
   // console.log('reviewed?',reviewedReserve._id )
   // console.log("여기서 찍자", isReviewed)
+
+  // console.log("item._id", item._id, ": isReviewed_id", isReviewed)
+
   return(
     <div className='my_reserve_card_container' onClick={onClick}>
     <div className="card_top">
@@ -49,13 +54,13 @@ const MyReserveCard = ({ item, onClick, openReviewForm, isReviewed}) => {
       {/* <Button size="sm" onClick={() => openReviewForm(item)}>
         리뷰쓰기
       </Button> */}
-      {/* {!isReviewed ? (
+      {!isReviewed ? (
         <Button size="sm" onClick={() => openReviewForm(item)}>
           리뷰쓰기
         </Button>
       ) : (
         <p>이미 씀</p>
-      )} */}
+      )}
   </div>
     
   )
