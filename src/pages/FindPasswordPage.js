@@ -4,6 +4,7 @@ import '../style/css/FindPasswordPage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../action/userAction';
 import { useNavigate } from 'react-router-dom';
+import LoadingText from '../component/LoadingText';
 const FindPasswordPage = () => {
   const [email, setEmail] = useState('');
   const { error, loading } = useSelector((state) => state.user);
@@ -29,6 +30,10 @@ const FindPasswordPage = () => {
       navigate('/');
     }
   }, [user, navigate]);
+
+  if (loading) {
+    <LoadingText />;
+  }
 
   return (
     <Container className="find_password_area  d-flex justify-content-center align-items-center">

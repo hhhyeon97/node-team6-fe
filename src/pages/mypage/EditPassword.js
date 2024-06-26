@@ -1,51 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { Alert, Button, Container, Form, Spinner } from 'react-bootstrap';
-import '../style/css/ResetPasswordPage.css';
+import React, { useEffect, useState } from 'react';
+import LoadingText from '../../component/LoadingText';
 import { useDispatch, useSelector } from 'react-redux';
-import { userActions } from '../action/userAction';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import MyPageLayout from '../../Layout/MyPageLayout';
+import { Alert, Button, Container, Form, Spinner } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye } from '@fortawesome/free-regular-svg-icons';
-import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import LoadingText from '../component/LoadingText';
-const ResetPasswordPage = () => {
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const { error, loading } = useSelector((state) => state.user);
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { userActions } from '../../action/userAction';
+
+const EditPassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { token } = useParams();
-  const { user } = useSelector((state) => state.user);
+  const { user, error, loading, success } = useSelector((state) => state.user);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [gapMessage, setGapMessage] = useState('');
-  //   useEffect(() => {
-  //     dispatch(userActions.checkResetToken(token));
-  //   }, [dispatch, token]);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 비밀번호에 공백이 있는지 확인
-    if (password.includes(' ')) {
+    if (newPassword.includes(' ')) {
       setGapMessage('비밀번호에는 공백을 포함할 수 없습니다.');
       return;
     }
 
-    if (password !== confirmPassword) {
+    if (newPassword !== confirmPassword) {
       setErrorMessage('비밀번호가 일치하지 않습니다.');
       return;
     }
 
-    dispatch(userActions.resetPassword({ password, token }, navigate));
+    dispatch(
+      userActions.changePassword({ currentPassword, newPassword }, navigate),
+    );
   };
-
-  useEffect(() => {
-    if (user) {
-      navigate('/');
-    }
-  }, [user, navigate]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -55,46 +46,39 @@ const ResetPasswordPage = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  if (loading) {
-    <LoadingText />;
-  }
-
   return (
-    <Container className="reset_password_area d-flex justify-content-center align-items-center">
-      <h2 className="title">비밀번호 재설정</h2>
+    <MyPageLayout title="나의 계정" cap="비밀번호 변경">
       {gapMessage && (
-        <span className="gap_message">
-          {' '}
-          <svg
-            className="svg_icon"
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="none"
-            viewBox="0 0 24 24"
-            class="icon-md"
-            style={{ color: 'rgb(226, 197, 65)', marginBottom: '3px' }}
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M15 19a3 3 0 1 1-6 0M15.865 16A7.54 7.54 0 0 0 19.5 9.538C19.5 5.375 16.142 2 12 2S4.5 5.375 4.5 9.538A7.54 7.54 0 0 0 8.135 16m7.73 0h-7.73m7.73 0v3h-7.73v-3"
-            ></path>
-          </svg>
-          {gapMessage}
-        </span>
+        <div>
+          <Alert variant="danger" className="error_message">
+            {gapMessage}
+          </Alert>
+        </div>
       )}
       <Form className="reset_password_form" onSubmit={handleSubmit}>
+        {error && (
+          <Alert variant="danger" className="error_message">
+            {error}
+          </Alert>
+        )}
+        <Form.Group controlId="formBasicCurrentPassword">
+          <Form.Label>현재 비밀번호</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="현재 비밀번호를 입력하세요"
+            value={currentPassword}
+            onChange={(e) => setCurrentPassword(e.target.value)}
+            required
+          />
+        </Form.Group>
         <Form.Group controlId="formBasicPassword">
-          <Form.Label>새 비밀번호</Form.Label>
+          <Form.Label>비밀번호</Form.Label>
           <div className="password_input_wrap">
             <Form.Control
               type={showPassword ? 'text' : 'password'}
-              placeholder="새 비밀번호를 입력하세요"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              placeholder="변경할 비밀번호를 입력하세요"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
               required
               onFocus={() => {
                 setErrorMessage('');
@@ -114,11 +98,11 @@ const ResetPasswordPage = () => {
           </div>
         </Form.Group>
         <Form.Group controlId="formBasicConfirmPassword">
-          <Form.Label>새 비밀번호 재확인</Form.Label>
+          <Form.Label>비밀번호 재확인</Form.Label>
           <div className="password_input_wrap">
             <Form.Control
               type={showConfirmPassword ? 'text' : 'password'}
-              placeholder="새 비밀번호를 다시 입력하세요"
+              placeholder="변경할 비밀번호를 다시 입력하세요"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
@@ -143,12 +127,15 @@ const ResetPasswordPage = () => {
             </Form.Control.Feedback>
           </div>
         </Form.Group>
-        <button className="submit_btn" type="submit">
-          비밀번호 재설정
+        {/* <button className="submit_btn" type="submit">
+          비밀번호 변경하기
+        </button> */}
+        <button className="submit_btn" type="submit" disabled={loading}>
+          {loading ? '변경 중...' : '비밀번호 재설정'}
         </button>
       </Form>
-    </Container>
+    </MyPageLayout>
   );
 };
 
-export default ResetPasswordPage;
+export default EditPassword;

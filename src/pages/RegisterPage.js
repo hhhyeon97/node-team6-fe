@@ -6,6 +6,7 @@ import { userActions } from '../action/userAction';
 import '../style/css/RegisterPage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faSlash } from '@fortawesome/free-solid-svg-icons';
+import LoadingText from '../component/LoadingText';
 const RegisterPage = () => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -25,7 +26,7 @@ const RegisterPage = () => {
   const error = useSelector((state) => state.user.error);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { user } = useSelector((state) => state.user);
+  const { user, loading } = useSelector((state) => state.user);
 
   const register = (event) => {
     event.preventDefault();
@@ -126,6 +127,10 @@ const RegisterPage = () => {
       navigate('/');
     }
   }, [user, navigate]);
+
+  if (loading) {
+    <LoadingText />;
+  }
 
   return (
     <Container className="register_area d-flex justify-content-center align-items-center">

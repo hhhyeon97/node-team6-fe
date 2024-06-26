@@ -51,7 +51,7 @@ const PerformanceDetail = () => {
     }, [id])
 
     useEffect(() => {
-        // console.log('detailData: ', detailData)
+        console.log('detailData: ', detailData)
         if (detailData) {
             dispatch(reviewAction.getAllReview({ Id: detailData.mt20id }))
 
@@ -187,8 +187,10 @@ const PerformanceDetail = () => {
                                 <div className="review">
                                     <div className="detailReviewTop">
                                         <div className="starName">
-                                            <div>{review.starRate}</div>
-                                            <div>{review.nickName}</div>
+                                            <div>
+                                                <Star startNum={review.starRate} />
+                                            </div>
+                                            <div className="review_nickname">{review.nickName}</div>
                                         </div>
                                         <div>{convertToKST(review.createdAt)}</div>
                                     </div>
@@ -201,7 +203,6 @@ const PerformanceDetail = () => {
                 <div><LoadingText /></div>
             )
             )}
-            <Star />
         </Container >
     )
 }
