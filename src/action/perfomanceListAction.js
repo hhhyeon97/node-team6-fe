@@ -129,11 +129,13 @@ const getPerformanceDetail = (id, settingQuery) => async (dispatch) => {
 const getLocationLatLot = (location, settingQuery) => async (dispatch) => {
     try {
         dispatch({ type: types.GET_LOCATIONLATLOT_REQUEST })
+        console.log('location', location)
 
         const params = new URLSearchParams({ ...settingQuery });
 
         let url = `https://corsproxy.io/?http://www.kopis.or.kr/openApi/restful/prfplc/${location}/?${params.toString()}`
 
+        console.log('latlot url:', url)
         const response = await fetch(url)
 
         if (!response.ok) throw new Error("Failed to fetch data");
@@ -144,6 +146,8 @@ const getLocationLatLot = (location, settingQuery) => async (dispatch) => {
         const jsonData = xmlToJson(XmlNode)
 
         const cleanedData = cleanUp(jsonData);
+
+        console.log('cleanedData lat lot:', cleanedData)
 
         dispatch({ type: types.GET_LOCATIONLATLOT_DETAIL_SUCCESS, payload: cleanedData.dbs.db })
 
