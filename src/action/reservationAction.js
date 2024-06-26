@@ -22,7 +22,6 @@ const getMyReserve = (query) => async (dispatch) => {
 			dispatch({ type: types.GET_MY_RESERVATION_REQUEST })
 			const params = { ...query };
 			const response = await api.get('/reserve/me', { params });
-			console.log('rrr', response)
 			if (response.status !== 200) throw new Error(response.error)
 			dispatch({ type: types.GET_MY_RESERVATION_SUCCESS, payload: response.data})
 	}catch(error){
@@ -30,7 +29,21 @@ const getMyReserve = (query) => async (dispatch) => {
 	}
 }
 
+// [ 나의 예매상세 가져오기 ]
+const getReservationDetail = (id) => async (dispatch) => {
+    try{
+        dispatch({ type: types.GET_MY_RESERVE_DETAIL_REQUEST })
+        const response = await api.get(`/reserve/me/${id}`);
+        if (response.status !== 200) throw new Error(response.error)
+        console.log('rrr', response.data)
+        dispatch({ type: types.GET_MY_RESERVE_DETAIL_SUCCESS, payload: response.data})
+    }catch(error){
+        dispatch({ type: types.GET_MY_RESERVE_DETAIL_FAIL, payload: error.error })
+    }
+}
+
 export const reservationAction = {
     createReservation,
     getMyReserve,
+    getReservationDetail
 }

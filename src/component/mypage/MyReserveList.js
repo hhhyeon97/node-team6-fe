@@ -20,7 +20,7 @@ const MyReserveList = ({ reserveList, openReviewForm }) => {
   }, [dispatch, reserveList]);
   
 
-  console.log("isReviewed?",reviewedReserve)
+  // console.log("isReviewed?",reviewedReserve)
 
 
   return (

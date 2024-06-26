@@ -9,7 +9,7 @@ import { priceformat } from '../../utils/Date';
 import { convertToKST } from '../../utils/Date';
 import { Alert } from "react-bootstrap";
 
-const MyReserveCard = ({ item, onClick, openReviewForm, isReviewed }) => {
+const MyReserveCard = ({ item,  openReviewForm, isReviewed }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -25,8 +25,15 @@ const MyReserveCard = ({ item, onClick, openReviewForm, isReviewed }) => {
 
   // console.log("item._id", item._id, ": isReviewed_id", isReviewed)
 
+  // [ 포스터를 누르면 해당 공연 디테일 페이지로 이동 ]
+  const handlePosterClick = (event) => {
+    event.stopPropagation(); // 클릭 이벤트의 전파를 막음
+    navigate(`/performance/${item.ticket.SeqId}`);
+  };
+
   return(
-    <div className='my_reserve_card_container' onClick={onClick}>
+    <div className='my_reserve_card_container'
+    onClick={() => navigate(`/mypage/reservations/${item._id}`)}>
     <div className="card_top">
       <div class="info_group">
         <div className='info_item'><p>예매번호</p>{item.reservationId}</div>
@@ -38,9 +45,8 @@ const MyReserveCard = ({ item, onClick, openReviewForm, isReviewed }) => {
       </div>
     </div>
     <div className="card_main">
-      <div className='poster_box'>
+      <div className='poster_box' onClick={handlePosterClick} >
         <img
-          onClick={() => navigate(`/performance/${item.ticket.SeqId}`)} 
           className='poster_img'
           src={item.ticket.SeqImage}
           style={{ width: '6em' }}

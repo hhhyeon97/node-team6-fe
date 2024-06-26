@@ -23,6 +23,7 @@ import FindPasswordPage from '../pages/FindPasswordPage';
 import ResetPasswordPage from '../pages/ResetPasswordPage';
 import MyLike from '../pages/mypage/MyLike';
 import NoticePage from '../pages/NoticePage';
+import ReservationDetail from '../pages/mypage/ReservationDatail';
 
 const AppRouter = () => {
   const navigate = useNavigate();
@@ -56,6 +57,7 @@ const AppRouter = () => {
         path="/mypage/reservations/view-all"
         element={<ViewAllReservations />}
       />
+      <Route path="/mypage/reservations/:id" element={<ReservationDetail />} />
       <Route path="/mypage/reviews" element={<MyReviews />} />
       <Route path="/mypage/like" element={<MyLike />} />
       <Route path="/mypage/edit-profile" element={<EditProfile />} />
