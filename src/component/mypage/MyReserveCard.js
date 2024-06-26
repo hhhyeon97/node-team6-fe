@@ -12,6 +12,7 @@ import { Alert } from "react-bootstrap";
 const MyReserveCard = ({ item,  openReviewForm, isReviewed }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  let canceled = '';
 
   // console.log("리뷰됬나요", item.ticket.SeqTitle, ":", isReviewed)
 
@@ -31,8 +32,19 @@ const MyReserveCard = ({ item,  openReviewForm, isReviewed }) => {
     navigate(`/performance/${item.ticket.SeqId}`);
   };
 
+  // [ 예매취소된 예매일 경우 연하게 보이게 ]
+  if(item.isCanceled){
+    canceled ='canceled';
+  }
+
+  // [ 리뷰쓰기 버튼 클릭 처리 ]
+  const handleReviewButtonClick = (event) => {
+    event.stopPropagation(); // 클릭 이벤트의 전파를 막음
+    openReviewForm(item); // 리뷰쓰기 폼 열기
+  };
+
   return(
-    <div className='my_reserve_card_container'
+    <div className={`${canceled} my_reserve_card_container`}
     onClick={() => navigate(`/mypage/reservations/${item._id}`)}>
     <div className="card_top">
       <div class="info_group">
@@ -55,13 +67,14 @@ const MyReserveCard = ({ item,  openReviewForm, isReviewed }) => {
       </div>
       <div className='card_title'><h5>{item.ticket.SeqTitle}</h5></div>
       <div><strong>{priceformat(item.totalPrice)}원</strong> / 티켓수량 <strong>{item.ticketNum}</strong></div>
+      {item.isCanceled ? (<div>예매취소됨</div>):("")}
     </div>
     {/* 리뷰쓰기 버튼 */}
       {/* <Button size="sm" onClick={() => openReviewForm(item)}>
         리뷰쓰기
       </Button> */}
       {!isReviewed ? (
-        <Button size="sm" onClick={() => openReviewForm(item)}>
+        <Button size="sm" onClick={handleReviewButtonClick}>
           리뷰쓰기
         </Button>
       ) : (
