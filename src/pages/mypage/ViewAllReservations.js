@@ -20,7 +20,7 @@ const ViewAllReservations = () => {
     page: query.get("page") || 1,
   });
   const [showDialog, setShowDialog] = useState(false);
-  // const [mode, setMode] = useState("new");
+  const [mode, setMode] = useState("new");
 
 	// [ 나의예매 정보 받아오기 ]
 	useEffect(() => {
@@ -64,7 +64,7 @@ const ViewAllReservations = () => {
         />
 
         <ReviewDialog
-          // mode={mode}
+          mode={mode}
           showDialog={showDialog}
           setShowDialog={setShowDialog}
           setSearchQuery={setSearchQuery}
