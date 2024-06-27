@@ -13,7 +13,6 @@ const InitialFormData = {
 
 const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
   const dispatch = useDispatch();
-  // const selectedNotice = useSelector((state) => state.notice.selectedNotice);
   const { selectedNotice, error } = useSelector((state) => state.notice);
   const [contentError, setContentError] = useState(false)
   const [checkImportant, setCheckImportant] = useState(false)
@@ -29,19 +28,20 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
   };
 
   useEffect(() => {
-    if (showDialog && selectedNotice) {
-      if (mode === "edit") {
+    if (showDialog) {
+      if (mode === "edit" && selectedNotice) {
         setFormData({
           title: selectedNotice.title,
           img: selectedNotice.img,
           content: selectedNotice.content,
           isImportant: selectedNotice.isImportant
         });
-      }else {
+      } else {
         setFormData({ ...InitialFormData });
       }
     }
-  }, [showDialog, selectedNotice]);
+  }, [showDialog, selectedNotice, mode]);
+  
 
   // [ form에 데이터 넣어주기 ]
   const handleChange = (event) => {

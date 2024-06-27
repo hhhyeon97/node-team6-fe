@@ -16,7 +16,8 @@ const NoticeTable = ({ header, noticeList, deleteItem, openEditForm }) => {
           <tbody>
           {noticeList?.length > 0 ? (
             noticeList?.map((notice, index) => (
-              <tr className="notice-table-item">
+              <tr className="notice-table-item" onClick={() => openEditForm(notice)}>
+              <th>{notice.isImportant ? (<p>중요</p>):("")}</th>
               <th>{notice.userId.name}</th>
               <th>{notice.title}</th>
               <th>{notice.content}</th>
