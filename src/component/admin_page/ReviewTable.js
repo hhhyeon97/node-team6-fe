@@ -22,6 +22,7 @@ const ReviewTable = ({ header, reviewList, openEditForm }) => {
                 <th>{review.userId.level.toUpperCase()}</th>
                 <th>{review.reviewText}</th>
                 <th>{convertToKST(review.createdAt)}</th>
+                <th>{review.isSuspended ? (<p>숨김</p>):("")}</th>
               </tr>
             ))
           ) : (

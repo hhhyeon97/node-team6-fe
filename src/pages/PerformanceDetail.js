@@ -184,18 +184,22 @@ const PerformanceDetail = () => {
                             <div>아직 리뷰가 없습니다</div>
                         ) : (
                             reviewAllList.map(review => (
-                                <div className="review">
-                                    <div className="detailReviewTop">
-                                        <div className="starName">
-                                            <div>
-                                                <Star startNum={review.starRate} />
+                                !review.isSuspended ? (
+                                    <div className="review">
+                                        <div className="detailReviewTop">
+                                            <div className="starName">
+                                                <div>
+                                                    <Star startNum={review.starRate} />
+                                                </div>
+                                                <div className="review_nickname">{review.nickName}</div>
                                             </div>
-                                            <div className="review_nickname">{review.nickName}</div>
+                                            <div>{convertToKST(review.createdAt)}</div>
                                         </div>
-                                        <div>{convertToKST(review.createdAt)}</div>
+                                        <div>{review.reviewText}</div>
                                     </div>
-                                    <div>{review.reviewText}</div>
-                                </div>
+                                ):(
+                                    <div>아직 리뷰가 없습니다</div>
+                                )
                             ))
                         )}
                     </div>

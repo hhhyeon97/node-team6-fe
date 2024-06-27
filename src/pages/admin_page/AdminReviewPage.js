@@ -26,6 +26,7 @@ const AdminReviewPage = () => {
     "회원등급",
     "리뷰내용",
     "등록일자",
+    "상태"
   ];
 
   // [ reviewList 가져오기 ]
