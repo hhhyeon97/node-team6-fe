@@ -7,6 +7,7 @@ const getReviewList = (query) => async (dispatch) => {
   try {
     dispatch({ type: types.GET_REVIEW_LIST_REQUEST });
     const params = { ...query };
+    console.log('params', params)
     const response = await api.get('/review', { params });
     console.log('rrr', response.data)
     if (response.status !== 200) throw new Error(response.error);
