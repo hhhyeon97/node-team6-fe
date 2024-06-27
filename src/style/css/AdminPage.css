@@ -1,19 +1,29 @@
 .admin_page_container {
   display: flex;
 }
-.admin_page_container h1, .admin_page_container h2, .admin_page_container h3, .admin_page_container h4, .admin_page_container h5, .admin_page_container p {
+
+.admin_page_container h1,
+.admin_page_container h2,
+.admin_page_container h3,
+.admin_page_container h4,
+.admin_page_container h5,
+.admin_page_container p {
   margin: 0;
   padding: 0;
 }
-.admin_page_container ul, .admin_page_container li {
+
+.admin_page_container ul,
+.admin_page_container li {
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
 .admin_page_container a {
   text-decoration: none;
   color: inherit;
 }
+
 .admin_page_container .admin_top_nav {
   position: relative;
   width: 100%;
@@ -22,21 +32,25 @@
   padding: 20px 30px;
   border-bottom: 1px solid #bbb;
 }
+
 .admin_page_container .admin_top_nav .go_to_home_btn img {
   width: 150px;
 }
+
 .admin_page_container .search-box {
   position: absolute;
   top: 0;
   right: 0;
   padding: 20px 30px;
 }
+
 .admin_page_container .search-box svg {
   position: absolute;
   padding: 10px;
   font-size: 25px;
   color: #bbb;
 }
+
 .admin_page_container .search-box input {
   width: 400px;
   height: 40px;
@@ -44,6 +58,7 @@
   padding-left: 47px;
   border: none;
 }
+
 .admin_page_container .admin_sidebar {
   background-color: #1e1e1e;
   height: 100vh;
@@ -55,22 +70,27 @@
   align-items: center;
   padding-top: 70px;
 }
+
 .admin_page_container .admin_sidebar .user_img {
   color: #bbb;
 }
+
 .admin_page_container .admin_sidebar .user_name {
   color: #fff;
 }
+
 .admin_page_container .admin_sidebar .link_menu {
   display: flex;
   flex-flow: column;
   width: 100%;
   color: #bbb;
 }
+
 .admin_page_container .admin_sidebar .link_menu li {
   border: 1px solid #fff;
   padding: 10px 0;
 }
+
 .admin_page_container .admin_sidebar .link_menu a {
   border: 1px solid red;
   display: flex;
@@ -78,12 +98,15 @@
   align-items: center;
   padding: 10px 0;
 }
+
 .admin_page_container .admin_sidebar .link_menu a:hover {
   color: #fff;
 }
+
 .admin_page_container .admin_main_container {
   width: 100%;
 }
+
 .admin_page_container .admin_user_container .user_item {
   display: flex;
   justify-content: space-between;
@@ -97,17 +120,17 @@
   border: 0.5px solid #bbb;
   border-radius: 8px;
 }
+
 .notice-form-container .upload_img_box img {
   object-fit: cover;
   width: 100%;
   height: 100%;
 }
+
 .notice-form-container #content {
   height: 18em;
 }
+
 .notice-form-container .error-message {
   color: red;
 }
-
-}
-

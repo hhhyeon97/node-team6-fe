@@ -15,6 +15,7 @@ const ReservationByDate = () => {
 
 	useEffect(() => {
 		const formatDate = selectDate.toString()
+		console.log("formatDate", formatDate)
 		dispatch(reservationAction.getMyReserveByDate({ formatDate }))
 		console.log('prev reservationByDateList', reservationByDateList)
 	}, [selectDate, dispatch])
