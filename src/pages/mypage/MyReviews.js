@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MyPageLayout from '../../Layout/MyPageLayout';
+import * as types from "../../constants/review.constants";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { reviewAction } from "../../action/reviewAction";
@@ -19,7 +20,8 @@ const MyReviews = () => {
   const [searchQuery, setSearchQuery] = useState({
     page: query.get("page") || 1,
   });
-
+	// const mode = "edit"
+  const [mode, setMode] = useState("edit");
 
 	useEffect(() => {
 			dispatch(reviewAction.getMyReview())
@@ -44,7 +46,7 @@ const MyReviews = () => {
 	// [ 상품 수정하기 form 열기 ] 
 	const openReviewForm = (review) => {
 		console.log("open")
-		// dispatch({type: types.SET_SELECTED_RESERVATION, payload: reserve});
+		dispatch({type: types.SET_SELECTED_REVIEW, payload: review });
 		setShowDialog(true);
 	};
 
@@ -57,6 +59,7 @@ const MyReviews = () => {
 		<MyPageLayout title="나의 활동" cap="나의 리뷰">
 			<div className='my_review_all_container'>
 				<MyReviewList 
+					mode={mode}
 					myReviewList={myReviewList} 
 					openReviewForm={openReviewForm}
 				/>
@@ -69,7 +72,7 @@ const MyReviews = () => {
 			/>
 				*/}
 			<ReviewDialog
-				// mode={mode}
+				mode={mode}
 				showDialog={showDialog}
 				setShowDialog={setShowDialog}
 				setSearchQuery={setSearchQuery}

@@ -26,22 +26,17 @@ const MyReviewCard = ({ review,  openReviewForm }) => {
   //   canceled ='canceled';
   // }
 
-  // // [ 리뷰쓰기 버튼 클릭 처리 ]
-  // const handleReviewButtonClick = (event) => {
-  //   event.stopPropagation(); // 클릭 이벤트의 전파를 막음
-  //   openReviewForm(item); // 리뷰쓰기 폼 열기
-  // };
+  // [ 리뷰쓰기 버튼 클릭 처리 ]
+  const handleReviewButtonClick = (event) => {
+    event.stopPropagation(); // 클릭 이벤트의 전파를 막음
+    openReviewForm(review); // 리뷰쓰기 폼 열기
+  };
 
   // [ 이미지 깨질때 ]
 	const handleImageError = (event) => {
     event.target.style.display = 'none';
   };
 
-  // [ 리뷰쓰기 버튼 클릭 처리 ]
-  const handleReviewButtonClick = (event) => {
-    event.stopPropagation(); // 클릭 이벤트의 전파를 막음
-    openReviewForm(review); // 리뷰쓰기 폼 열기
-  };
 
   return(
     <div>

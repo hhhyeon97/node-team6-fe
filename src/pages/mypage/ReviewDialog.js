@@ -10,17 +10,19 @@ const InitialFormData = {
   reviewText: "",
 };
 
-
-
 const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQuery }) => {
   const dispatch = useDispatch();
   const { selectedReserve } = useSelector((state) => state.reservation);
   const { selectedReview } = useSelector((state) => state.review);
   // const { error } = useSelector((state) => state.reservation);
-  const [formData, setFormData] = useState({ ...InitialFormData });
   const { error } = useSelector((state) => state.review);
   const [errorMessage, setErrorMessage] = useState(null);
-
+  // const [formData, setFormData] = useState({ ...InitialFormData });
+  const [formData, setFormData] = useState(
+    mode === "new" ? { ...InitialFormData } : selectedReview
+  );
+  console.log('mode', mode)
+  console.log("selectedReview", selectedReview)
 
   useEffect(() => {
     if (error) {
@@ -29,6 +31,20 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
       setErrorMessage(null); // 에러가 없을 경우 초기화합니다.
     }
   }, [error]);
+
+  useEffect(() => {
+    if (showDialog) {
+      if (mode === "edit" && selectedReview) {
+        setFormData({
+          starRate: selectedReview.starRate,
+          image: selectedReview.image,
+          reviewText: selectedReview.reviewText
+        });
+      } else {
+        setFormData({ ...InitialFormData });
+      }
+    }
+  }, [showDialog, selectedReview, mode]);
 
   // [ 리뷰 창 닫기 ]
   const handleClose = () => {
@@ -43,7 +59,6 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
     dispatch(reviewAction.createReview({ ...formData }, 
       selectedReserve._id, 
       setShowDialog, setSearchQuery));
-
   };
 
   // [ form에 데이터 넣어주기 ]
@@ -74,7 +89,7 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
               type="Number"
               placeholder="별점을 입력하세요"
               required
-              value={formData.starRate}
+              value={formData?.starRate}
             />
           </Form.Group>
 
@@ -84,7 +99,7 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
             <CloudinaryUploadWidget uploadImage={uploadImage} />
             <img
               id="uploadedimage"
-              src={formData.image}
+              src={formData?.image}
               className="upload-image mt-2"
               alt="uploadedimage"
               style={{ width: '30%' }}
@@ -99,7 +114,7 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
               type="text"
               placeholder="최소 15자 이상 입력해주세요"
               required
-              value={formData.reviewText}
+              value={formData?.reviewText}
             />
           </Form.Group>
             
