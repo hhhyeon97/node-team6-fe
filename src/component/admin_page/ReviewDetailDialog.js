@@ -7,18 +7,20 @@ import { convertToKST } from "../../utils/Date";
 const ReviewDetailDialog = ({ open, handleClose, setSearchQuery }) => {
   const dispatch = useDispatch();
   const { selectedReview } = useSelector((state) => state.review);
-  const [checkSuspend, setCheckSuspend] = useState(false)
+  const [isSuspended, setIsSuspended] = useState(false)
+  const [reviewState, setReviewState] = useState(selectedReview.isSuspended);
 
 
   // [ 리뷰 상태 바꾸기 ]
   const handleCheckboxChange = () => {
-    setCheckSuspend(prevState => !prevState); // 이전 상태 값을 사용하여 토글
+    setIsSuspended(prevState => !prevState); // 이전 상태 값을 사용하여 토글
+    setReviewState({ reviewState : !isSuspended });
   };
-  console.log("check",checkSuspend)
+  console.log("check",isSuspended)
 
   // [ 리뷰 상태 수정 ]
   const submitStatus = () => {
-    dispatch(reviewAction.updateReviewState(selectedReview._id, checkSuspend, setSearchQuery));
+    dispatch(reviewAction.updateReviewState(selectedReview._id, isSuspended, setSearchQuery));
     handleClose();
   };
 
@@ -35,7 +37,7 @@ const ReviewDetailDialog = ({ open, handleClose, setSearchQuery }) => {
         <div>공연정보 : {selectedReview.reservationId.ticket.SeqTitle}</div>
         <div>작성자 : {selectedReview.userId.name}</div>
         <div>회원등급 : {selectedReview.userId.level.toUpperCase()}</div>
-        <div>리뷰내용 : {selectedReview.userId.email}</div>
+        <div>리뷰내용 : {selectedReview.reviewText}</div>
         <div>등록일자 : {convertToKST(selectedReview.createdAt)}</div>
           
         <Form onSubmit={submitStatus}>
@@ -44,7 +46,7 @@ const ReviewDetailDialog = ({ open, handleClose, setSearchQuery }) => {
                 type="checkbox"
                 label="리뷰숨김"
                 name="isSuspend"
-                checked={checkSuspend}
+                checked={reviewState}
                 onChange={handleCheckboxChange}
               />
           </Form.Group>
