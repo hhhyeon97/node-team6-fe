@@ -10,6 +10,7 @@ import MainBanner from '../component/mainpage/MainBanner';
 import { useDispatch } from 'react-redux';
 import { likeAction } from '../action/likeAction';
 import { perfomanceListAction } from '../action/perfomanceListAction';
+import Review from '../component/mainpage/Review';
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const MainPage = () => {
   }, [])
   return (
     <div>
-      <MainBanner />
+      {/* <MainBanner />
       <Container className='wrap-container'>
         <RankingPerformance />
       </Container>
@@ -29,8 +30,11 @@ const MainPage = () => {
       <PlannedPerformance />
       <Container className='wrap-container'>
         <ClosingPerformance />
-      </Container>
+      </Container> */}
       <EventBanner />
+      <Container className='wrap-container'>
+        <Review />  
+      </Container>
     </div>
 
   );
