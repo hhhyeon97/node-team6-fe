@@ -38,6 +38,25 @@ const getAllReview = (query) => async (dispatch) => {
   }
 }
 
+// [ 전체 리뷰 리스트 가져오기 (my) ]
+const getMyReview = (query) => async (dispatch) => {
+  try {
+    dispatch({ type: types.GET_MY_REVIEW_LIST_REQUEST });
+    const params = { ...query };
+    const response = await api.get('/review/my', { params });
+    console.log('recive reviewMyList: ', response.data.data)
+
+    if (response.status !== 200) throw new Error(response.error);
+    dispatch({
+      type: types.GET_MY_REVIEW_LIST_SUCCESS,
+      payload: response.data.data,
+    });
+  } catch (error) {
+    console.log('Error: ', error);
+    dispatch({ type: types.GET_MY_REVIEW_LIST_FAIL, payload: error.error });
+  }
+}
+
 // [ 리뷰 작성하기 ]
 const createReview = (formData, reserveId, setShowDialog, setSearchQuery) => async (dispatch) => {
   try {
@@ -75,4 +94,5 @@ export const reviewAction = {
   createReview,
   checkReviewed,
   getAllReview,
+  getMyReview,
 }
