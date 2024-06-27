@@ -4,8 +4,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { perfomanceListAction } from "../action/perfomanceListAction";
 import '../style/css/DetailPage.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
-import { faHeart } from '@fortawesome/free-regular-svg-icons'
+import { faLocationDot, fas } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, far } from '@fortawesome/free-regular-svg-icons'
 import KaKaoMap from "../component/KaKaoMap";
 import CopyClipButton from "../component/CopyClipButton";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,13 +15,14 @@ import { convertToKST } from '../utils/Date'
 
 import KakaoClipButton from "../component/KakaoClipButton";
 import Star from "../component/Star";
+import { likeAction } from "../action/likeAction";
 
 const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
 
 const PerformanceDetail = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    let checkLike = null;
     const { loading } = useSelector(state => state.list)
     const { error } = useSelector(state => state.list)
 
@@ -70,6 +71,7 @@ const PerformanceDetail = () => {
                     setCostArray([detailData.pcseguidance])
                 }
             }
+            checkLike = likeList.find(like=>like.seqId===detailData.mt20id);
         }
     }, [detailData])
 
@@ -90,6 +92,22 @@ const PerformanceDetail = () => {
         navigate(`/reservation/${id}`, { state: { cost: costArray } })
     }
 
+    //찜기능
+    const { likeList } = useSelector(state=>state.like);
+    const addLike = (item) =>{
+        dispatch(likeAction.addLikeToList({
+          seqId:item.mt20id,
+          seqImage:item.poster,
+          seqTo:item.prfpdto,
+          seqFrom:item.prfpdfrom,
+          seqLocation:item.fcltynm,
+          seqTitle:item.prfnm,
+        }))
+      }
+    const deleteLikeItem = () => {
+        dispatch(likeAction.deleteLikeItem({id:checkLike._id}))
+    }
+
     return (
         <Container className="wrap-container">
             {loading ? (
@@ -108,8 +126,9 @@ const PerformanceDetail = () => {
                         </Col>
                         <Col lg={7} md={7} sm={12} className="DetailInfoBox">
                             <Row className="LikeShare">
-                                <FontAwesomeIcon icon={faHeart} />
-                                <CopyClipButton detailData={detailData} />
+                                {/* {!loading && checkLike != null || undefined ?(<FontAwesomeIcon icon={fas.faHeart} className="like_heart_red" onClick={()=>deleteLikeItem()}/>
+                                ):(<FontAwesomeIcon icon={far.faHeart} className="like_heart" onClick={()=>addLike(detailData)}/>)}
+                                <CopyClipButton detailData={detailData} /> */}
                                 {/* <KakaoClipButton detailData={detailData} /> */}
                             </Row>
                             <Row className="DetailInfo">

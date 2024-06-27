@@ -56,6 +56,12 @@
   padding: 5px;
   border-radius: 8px;
 }
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .LikeShare .like_heart:hover {
+  color: #D61F1F;
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .LikeShare .like_heart_red {
+  color: #D61F1F;
+}
 .DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailInfo {
   flex-grow: 1;
   display: flex;

@@ -53,7 +53,7 @@
   cursor: pointer;
 }
 .footer_area .footer_info_box {
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 }
 .footer_area .footer_info_box h4 {
   margin-bottom: 0.3rem;
@@ -72,5 +72,5 @@
 .footer_area .under_line {
   border-bottom: 1px solid #bbb;
   margin-top: 1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
