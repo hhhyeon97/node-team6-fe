@@ -21,12 +21,15 @@ const RegisterPage = () => {
   const [contactError, setContactError] = useState('');
   const [gapMessage, setGapMessage] = useState('');
   const [formError, setFormError] = useState('');
-  const [passwordValid, setPasswordValid] = useState(false);
+  const [passwordValid, setPasswordValid] = useState('');
   const [emailError, setEmailError] = useState('');
   const error = useSelector((state) => state.user.error);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { user, loading } = useSelector((state) => state.user);
+
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   const register = (event) => {
     event.preventDefault();
@@ -35,6 +38,14 @@ const RegisterPage = () => {
     // 비밀번호에 공백이 있는지 확인
     if (password.includes(' ')) {
       setGapMessage('비밀번호에는 공백을 포함할 수 없습니다.');
+      return;
+    }
+
+    // 비밀번호 유효성 검사
+    if (!passwordRegex.test(password)) {
+      setGapMessage(
+        '비밀번호는 최소 8자 이상, 하나의 대문자, 소문자, 숫자 및 특수문자를 포함해야 합니다.',
+      );
       return;
     }
 
@@ -206,7 +217,31 @@ const RegisterPage = () => {
               {gapMessage}
             </span>
           )}
+          {/* {passwordValid && (
+            <span className="gap_message">
+              <svg
+                className="svg_icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="none"
+                viewBox="0 0 24 24"
+                class="icon-md"
+                style={{ color: 'rgb(226, 197, 65)', marginBottom: '3px' }}
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19a3 3 0 1 1-6 0M15.865 16A7.54 7.54 0 0 0 19.5 9.538C19.5 5.375 16.142 2 12 2S4.5 5.375 4.5 9.538A7.54 7.54 0 0 0 8.135 16m7.73 0h-7.73m7.73 0v3h-7.73v-3"
+                ></path>
+              </svg>{' '}
+              {passwordValid}
+            </span>
+          )} */}
           {gapMessage ? null : <Form.Label>Password</Form.Label>}
+          {passwordValid}
           <div className="password_input_wrap">
             <Form.Control
               type={showPassword ? 'text' : 'password'}
@@ -216,6 +251,7 @@ const RegisterPage = () => {
               required
               onFocus={() => {
                 setPasswordError('');
+                // setPasswordValid('');
                 setGapMessage('');
               }}
             />
