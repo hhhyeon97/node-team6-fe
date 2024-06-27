@@ -5,6 +5,9 @@ import Pagination from '../component/Pagination';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { noticeAction } from '../action/noticeAction';
+import { convertToKST } from '../utils/Date';
+import { faStar, faThumbTack } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NoticePage = () => {
   const dispatch = useDispatch();
@@ -15,6 +18,9 @@ const NoticePage = () => {
   const [searchQuery, setSearchQuery] = useState({
     page: query.get('page') || 1,
   });
+
+  const PAGE_SIZE = 5;
+
   // [ noticeList 가져오기 ]
   useEffect(() => {
     dispatch(noticeAction.getUserNoticeList({ ...searchQuery }));
@@ -47,19 +53,44 @@ const NoticePage = () => {
     <Container className="notice_page_area d-flex justify-content-center align-items-center">
       <div className="notice_content_area">
         <h2 className="notice_top_title">공지사항</h2>
-        <div>번호 제목 등록일</div>
-        <Accordion defaultActiveKey="0" className="notice_accordion">
+
+        {/* <Accordion defaultActiveKey="0" className="notice_accordion"> */}
+        <Accordion className="notice_accordion">
+          <div className="notice_menu_wrap">
+            <span className="notice_menu">번호</span>
+            <span className="notice_menu">제목</span>
+            <span className="notice_menu">등록일</span>
+          </div>
           {noticeList.map((notice, idx) => (
-            <Card key={notice._id} className="notice_card">
+            // <Card key={notice._id} className="notice_card">
+            <Card
+              key={notice._id}
+              className={`notice_card ${notice.isImportant ? 'important' : ''}`}
+            >
               <Accordion.Item eventKey={idx.toString()}>
                 <Accordion.Header className="d-flex justify-content-between align-items-center">
                   <div className="d-flex align-items-center">
-                    <span className="notice_id">{idx + 1}</span>
-                    <span className="notice_title">{notice.title}</span>
+                    {/* <span className="notice_id">{'No.' + (idx + 1)}</span> */}
+                    <span className="notice_id">
+                      {'No.' + ((searchQuery.page - 1) * PAGE_SIZE + (idx + 1))}
+                    </span>
+                    {/* <span className="notice_title">{notice.title}</span> */}
+                    {notice.isImportant && (
+                      <FontAwesomeIcon
+                        className="star_icon"
+                        icon={faThumbTack}
+                        style={{ marginRight: '10px' }}
+                      ></FontAwesomeIcon>
+                    )}
+                    {notice.title}
                   </div>
-                  <span className="notice_date">{notice.createdAt}</span>
+                  <span className="notice_date">
+                    {convertToKST(notice.createdAt)}
+                  </span>
                 </Accordion.Header>
                 <Accordion.Body className="desc_wrap">
+                  <div>작성자 : {notice.userId.name}</div>
+                  <br />
                   {breakTextOnDot(notice.content)}
                 </Accordion.Body>
               </Accordion.Item>
