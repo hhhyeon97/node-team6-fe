@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import LoadingText from '../component/LoadingText';
 const ResetPasswordPage = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -19,9 +20,9 @@ const ResetPasswordPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [gapMessage, setGapMessage] = useState('');
-  //   useEffect(() => {
-  //     dispatch(userActions.checkResetToken(token));
-  //   }, [dispatch, token]);
+
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,6 +30,14 @@ const ResetPasswordPage = () => {
     // 비밀번호에 공백이 있는지 확인
     if (password.includes(' ')) {
       setGapMessage('비밀번호에는 공백을 포함할 수 없습니다.');
+      return;
+    }
+
+    // 비밀번호 유효성 검사
+    if (!passwordRegex.test(password)) {
+      setGapMessage(
+        '비밀번호는 최소 8자 이상, 하나의 대문자, 소문자, 숫자 및 특수문자를 포함해야 합니다.',
+      );
       return;
     }
 
@@ -53,6 +62,10 @@ const ResetPasswordPage = () => {
   const toggleConfirmPasswordVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
+
+  if (loading) {
+    <LoadingText />;
+  }
 
   return (
     <Container className="reset_password_area d-flex justify-content-center align-items-center">

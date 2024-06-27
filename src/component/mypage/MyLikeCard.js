@@ -31,10 +31,12 @@ const MyLikeCard = ({item}) => {
   return (
     <div className='mylike_card_area'>
       <div className='mylike_card_image_box' onClick={()=>navigate(`/performance/${item.seqId}`)}>
-        <img
-            src={item.seqImage}
-            className={`mylike_card_image ${filterStyle}`}
-        />
+        <div className='mylike_care_image_size'>
+          <img
+              src={item.seqImage}
+              className={`mylike_card_image ${filterStyle}`}
+          />  
+        </div>
       </div>
       <div className='mylike_card_text_box' onClick={()=>navigate(`/performance/${item.seqId}`)}>
         <h4>{StartDate(item.seqFrom)} ~ {StartDate(item.seqTo)}</h4>

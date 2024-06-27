@@ -7,7 +7,8 @@ const initialState = {
   totalPageNum: 1,
   selectedReview: null,
   reviewedReserve: {},
-  reviewAllList: []
+  reviewAllList: [],
+  myReviewList: [],
 };
 
 function reviewReducer(state = initialState, action) {
@@ -16,6 +17,8 @@ function reviewReducer(state = initialState, action) {
     case types.GET_REVIEW_LIST_REQUEST:
     case types.CREATE_REVIEW_REQUEST:
     case types.GET_ALL_REVIEW_LIST_REQUEST:
+    case types.GET_MY_REVIEW_LIST_REQUEST:
+    case types.EDIT_REVIEW_STATE_REQUEST:
       return { ...state, loading: true };
     case types.GET_REVIEW_LIST_SUCCESS:
       return {
@@ -26,6 +29,7 @@ function reviewReducer(state = initialState, action) {
     case types.GET_ALL_REVIEW_LIST_SUCCESS:
       return { ...state, loading: false, error: '', reviewAllList: payload.matchingData }
     case types.CREATE_REVIEW_SUCCESS:
+    case types.EDIT_REVIEW_STATE_SUCCESS:
       return { ...state, loading: false, error: '' }
     case types.CHECKE_REVIEWED_RESERVATION_SUCCESS:
       return {
@@ -36,10 +40,14 @@ function reviewReducer(state = initialState, action) {
           [payload.reserveId]: payload.reviewed
         }
       };
+    case types.GET_MY_REVIEW_LIST_SUCCESS:
+      return { ...state, loading: false, error: '', myReviewList: payload }
     case types.GET_REVIEW_LIST_FAIL:
     case types.CREATE_REVIEW_FAIL:
     case types.CHECKE_REVIEWED_RESERVATION_FAIL:
     case types.GET_ALL_REVIEW_LIST_FAIL:
+    case types.GET_MY_REVIEW_LIST_FAIL:
+    case types.EDIT_REVIEW_STATE_FAIL:
       return { ...state, loading: false, error: payload }
     case types.SET_SELECTED_REVIEW:
       return { ...state, selectedReview: payload };

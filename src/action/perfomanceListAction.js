@@ -2,6 +2,7 @@ import api from "../utils/api";
 import * as types from "../constants/performanceList.constants";
 import { useEffect } from 'react';
 import { StringDateformat, EndDateformat } from '../utils/Date'
+import { faDisplay } from "@fortawesome/free-solid-svg-icons";
 
 const { DOMParser } = require('xmldom');
 
@@ -129,11 +130,13 @@ const getPerformanceDetail = (id, settingQuery) => async (dispatch) => {
 const getLocationLatLot = (location, settingQuery) => async (dispatch) => {
     try {
         dispatch({ type: types.GET_LOCATIONLATLOT_REQUEST })
+        console.log('location', location)
 
         const params = new URLSearchParams({ ...settingQuery });
 
         let url = `https://corsproxy.io/?http://www.kopis.or.kr/openApi/restful/prfplc/${location}/?${params.toString()}`
 
+        console.log('latlot url:', url)
         const response = await fetch(url)
 
         if (!response.ok) throw new Error("Failed to fetch data");
@@ -143,7 +146,9 @@ const getLocationLatLot = (location, settingQuery) => async (dispatch) => {
         const XmlNode = domParser.parseFromString(xmlText, 'text/xml');
         const jsonData = xmlToJson(XmlNode)
 
-        const cleanedData = cleanUp(jsonData);
+        const cleanedData = await cleanUp(jsonData);
+
+        console.log('cleanedData lat lot:', cleanedData)
 
         dispatch({ type: types.GET_LOCATIONLATLOT_DETAIL_SUCCESS, payload: cleanedData.dbs.db })
 
@@ -208,10 +213,15 @@ const getRankingPerformance = (query, settingQuery) => async (dispatch) => {
     }
 };
 
+const removeDetailData = () => async (dispatch) => {
+    dispatch({ type: types.REMOVE_DETAIL_DATA })
+}
+
 export const perfomanceListAction = {
     getPerformanceList,
     getPerformanceDetail,
     getLocationLatLot,
     getPerformanceListWithStatus,
     getRankingPerformance,
+    removeDetailData
 }

@@ -9,32 +9,31 @@ import MyReserveCard from './MyReserveCard';
 const MyReserveList = ({ reserveList, openReviewForm }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { reviewedReserve, reviewList,  loading } = useSelector((state) => state.review);
+  // const { reviewedReserve, reviewList,  loading } = useSelector((state) => state.review);
+  const { reviewList,  loading } = useSelector((state) => state.review);
   
-
   // // [ 각 예약 항목에 대해 리뷰 여부 확인 ]
-  useEffect(() => {
-    reserveList?.forEach((item) => {
-      dispatch(reviewAction.checkReviewed(item.ticket.SeqTitle, item._id));
-    });
-  }, [dispatch, reserveList]);
+  // useEffect(() => {
+  //   reserveList?.forEach((item) => {
+  //     dispatch(reviewAction.checkReviewed(item.ticket.SeqTitle, item._id));
+  //   });
+  // }, [dispatch, reserveList]);
   
 
   // console.log("isReviewed?",reviewedReserve)
-
 
   return (
     <div>
     {reserveList?.map((item) => (
       <div key={item._id}>
         <div>{item.ticket.SeqTitle}의 리뷰는 
-        {reviewedReserve[item._id] ? (<p>리뷰됨</p>) : (<p>리뷰안됨</p>)}
+        {item.ticket.isReview ? (<p>리뷰됨</p>) : (<p>리뷰안됨</p>)}
       </div>
 
         <MyReserveCard
           item={item}
           openReviewForm={openReviewForm}
-          isReviewed={reviewedReserve[item._id]} 
+          isReviewed={item.ticket.isReview} 
         />
       </div>
     ))}

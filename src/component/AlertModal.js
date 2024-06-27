@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { reservationAction } from '../action/reservationAction';
+import { noticeAction } from '../action/noticeAction';
 
 const AlertModal = ({showModal, setShowModal,selectedId, selectedName, selectedDate, alertMessage, btnText}) => {
   const dispatch = useDispatch();
@@ -18,6 +19,10 @@ const AlertModal = ({showModal, setShowModal,selectedId, selectedName, selectedD
       console.log('예매취소')
       dispatch(reservationAction.cancelReservation(selectedId, navigate));
       setShowModal(false);
+    }else if(btnText === '공지삭제'){
+      console.log('공지삭제')
+      dispatch(noticeAction.deleteNotice(selectedId, navigate));
+      setShowModal(false);
     }
   }
 
@@ -25,7 +30,7 @@ const AlertModal = ({showModal, setShowModal,selectedId, selectedName, selectedD
   <>
       <Modal show={showModal} onHide={handleClose}>
       <Modal.Header closeButton>
-          <Modal.Title>{selectedName} 관람일자: {selectedDate}</Modal.Title>
+          <Modal.Title>{selectedName} {selectedDate}</Modal.Title>
       </Modal.Header>
       <Modal.Body>{alertMessage}</Modal.Body>
       <Modal.Footer>

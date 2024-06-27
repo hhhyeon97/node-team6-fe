@@ -56,6 +56,12 @@
   padding: 5px;
   border-radius: 8px;
 }
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .LikeShare .like_heart:hover {
+  color: #D61F1F;
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .LikeShare .like_heart_red {
+  color: #D61F1F;
+}
 .DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailInfo {
   flex-grow: 1;
   display: flex;
@@ -151,7 +157,7 @@
 .DetailPageAllBox .review .detailReviewTop .starName {
   display: flex;
 }
-.DetailPageAllBox .review .detailReviewTop .starName div {
+.DetailPageAllBox .review .detailReviewTop .starName .review_nickname {
   margin-left: 10px;
 }
 .DetailPageAllBox #true1 {
@@ -166,7 +172,8 @@
   align-items: center;
 }
 .DetailPageAllBox .DetailBox .postersBox {
-  height: 2000px;
+  max-height: 1500px;
+  overflow: hidden;
 }
 .DetailPageAllBox .DetailBox .postersBox .posters {
   text-align: center;
@@ -188,6 +195,7 @@
 .DetailPageAllBox #false {
   overflow: show;
   height: fit-content;
+  max-height: none;
 }
 .DetailPageAllBox .locationTitle {
   display: flex;

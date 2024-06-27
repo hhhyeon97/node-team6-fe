@@ -1,25 +1,31 @@
-.mypage-container{
+.mypage-container {
   display: flex;
   justify-content: space-between;
 
-  h1,h2,h3,h4,h5,p {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  p {
     margin: 0;
     padding: 0;
   }
-  
-  ul, li{
+
+  ul,
+  li {
     list-style: none;
     margin: 0;
     padding: 0;
   }
-  
+
   a {
-    text-decoration: none; 
-    color: inherit; 
+    text-decoration: none;
+    color: inherit;
   }
 
   /* < mypage-left > */
-  .mypage-left{
+  .mypage-left {
     // border: 2px solid green;
     width: 14%;
     display: flex;
@@ -27,25 +33,25 @@
     align-items: flex-start;
 
     /* [ side-bar ] */
-    .mypage_sidebar{
+    .mypage_sidebar {
       // border: 1px solid red;
       padding-top: 40px;
       color: #919191;
 
-      h3{
+      h3 {
         font-size: 20px;
         color: #000;
       }
 
-      a:hover{
+      a:hover {
         color: #000;
       }
 
-      .link_menu{
+      .link_menu {
         margin-bottom: 30px;
         font-size: 13px;
 
-        a{
+        a {
           display: inline-block;
           padding: 8px 0 0 5px;
           cursor: pointer;
@@ -54,62 +60,62 @@
     }
 
     /* [ user-profile ] */
-    .user_profile_container{
-      .user_name{
+    .user_profile_container {
+      .user_name {
         font-family: Gsans_B;
       }
     }
   }
 
   /* < mypage-right > */
-  .mypage-right{
+  .mypage-right {
     display: flex;
     width: 86%;
     flex-flow: column;
     // border: 2px solid green;
 
     /* [ 회원 등급 정보 ] */
-    .user_level_section{
+    .user_level_section {
       // border: 1px solid blue;
       display: flex;
       padding: 10px;
       background-color: #000;
 
-      .vertical_bar{
+      .vertical_bar {
         color: #4b4b4b;
       }
 
-      .user_level_info{
+      .user_level_info {
         display: flex;
         align-items: center;
         padding: 0 10px;
         font-size: 10px;
         color: #fff;
 
-        h5{
+        h5 {
           font-family: Gsans_B;
           font-size: 12px;
           color: #bbb;
         }
-        .level_bdg{
+        .level_bdg {
           font-family: Gsans_B;
           padding: 7px 10px;
           border-radius: 50px;
         }
-        .normal{
+        .normal {
           background-color: #fff;
           color: #000;
         }
-        .gold{
+        .gold {
           border: 0.5px solid rgb(255, 255, 255);
           background-color: rgb(0, 0, 0);
           color: rgb(255, 255, 255);
         }
-        .suspend{
+        .suspend {
           background-color: #bbb;
           color: rgb(255, 255, 255);
         }
-        .admin{
+        .admin {
           background-color: #f44f08;
           color: rgb(255, 255, 255);
         }
@@ -117,7 +123,7 @@
     }
 
     /* [ 나의 예매_전체조회 카드 ]*/
-    .my_reserve_card_container{
+    .my_reserve_card_container {
       border: 0.5px solid #bbb;
       border-radius: 8px;
       padding: 20px 15px;
@@ -125,30 +131,30 @@
       overflow: hidden;
       cursor: pointer;
 
-      .card_top{
+      .card_top {
         display: flex;
         justify-content: space-between;
       }
-      .info_group{
+      .info_group {
         display: flex;
       }
-      .info_item{
+      .info_item {
         display: flex;
         font-size: 0.7em;
       }
-      .book_date > strong{
-          font-family: Gsans_B;
-          font-size: 1.2em;
+      .book_date > strong {
+        font-family: Gsans_B;
+        font-size: 1.2em;
       }
-      .card_main{
+      .card_main {
         display: flex;
         align-items: center;
       }
-      .card_title h5{
-        font-family: 'Gsans_B';
+      .card_title h5 {
+        font-family: "Gsans_B";
         font-size: 1em;
       }
-      .poster_box{
+      .poster_box {
         width: 6em;
         margin-right: 20px;
         border-radius: 8px;
@@ -156,23 +162,22 @@
         border: 0.5px solid #bbb;
         background-color: #bbb;
       }
-      .poster_img{
+      .poster_img {
         width: 100%;
         object-fit: cover;
       }
     }
 
     /* [ 회원정보 수정 페이지 ] */
-    .edit_user_form_container{
-
-      .edit_image_box{
+    .edit_user_form_container {
+      .edit_image_box {
         width: 100px;
         height: 100px;
         border-radius: 50%;
         border: 1px solid #bbb;
         overflow: hidden;
       }
-      .upload-image{
+      .upload-image {
         object-fit: cover;
         width: 100%;
         height: 100%;
@@ -180,11 +185,11 @@
     }
 
     /* 나의 찜 페이지 */
-    .mylike_card_area{
+    .mylike_card_area {
       position: relative;
       display: flex;
       width: 100%;
-      height: 25Vh;
+      height: 25vh;
       border: 1px solid gray;
       border-radius: 0.5rem;
       overflow: hidden;
@@ -193,80 +198,91 @@
       // .filter_gray{
       //   background-color: #919191;
       // }
-      .mylike_card_image_box{
-        width: 35%;
+      .mylike_card_image_box {
+        width: 25%;
         display: flex;
         justify-content: center;
         align-items: center;
-        overflow: hidden; 
+        overflow: hidden;
       }
-      .mylike_card_image{ width: 100%;}
-      .filter_gray{
+      .mylike_care_image_size {
+        height: 90%;
+        border-radius: 0.5rem;
+        overflow: hidden;
+      }
+      .mylike_card_image {
+        height: 100%;
+      }
+      .filter_gray {
         filter: grayscale(75%);
       }
-      
-      .mylike_card_text_box{
-        width: 65%;
+
+      .mylike_card_text_box {
+        width: 75%;
+        height: 100%;
         padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
-          h4{
-            font-size: 1rem;
-            font-weight: 600;
-            color: gray;
-            margin-bottom: 0.4rem;
-          }
-          h3{
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-          }
-          h5{ font-size: 0.9rem; }
+        h4 {
+          font-size: 1rem;
+          font-weight: 600;
+          color: gray;
+          margin-bottom: 0.4rem;
+        }
+        h3 {
+          font-size: 1.3rem;
+          font-weight: 600;
+          margin-bottom: 0.3rem;
+        }
+        h5 {
+          font-size: 0.9rem;
+        }
 
-          button {
-            margin-top: 1rem;
-            width: 6rem;
-            height: 2.8rem;
-            line-height: 2.8rem;
-            border: 1px solid black;
-            background-color: black;
-            color: white;
-            border-radius: 0.5rem;
-          }
-          .before_perf{
-            background-color: white;
-            color: black;
-          }
+        button {
+          margin-top: 1rem;
+          width: 6rem;
+          height: 2.8rem;
+          line-height: 2.8rem;
+          border: 1px solid black;
+          background-color: black;
+          color: white;
+          border-radius: 0.5rem;
+        }
+        .before_perf {
+          background-color: white;
+          color: black;
+        }
       }
-      .like_heart{
+      .like_heart {
         position: absolute;
         right: 1rem;
         bottom: 0.5rem;
         font-size: 1.5rem;
-        color: #D61F1F;
+        color: #d61f1f;
       }
     }
   }
-  .canceled{
+  .canceled {
     opacity: 0.5;
   }
 }
 // [ 나의예매 디테일 페이지 ]
-.reserve-detail-container{
+.reserve-detail-container {
   border: 2px solid red;
-  .okCancel{
+  .okCancel {
     background-color: #000;
   }
-  .disableCancel{
+  .disableCancel {
     pointer-events: none;
     background-color: #bbb !important;
     border: #bbb;
   }
 }
 
-
-
-
-
-
-
-
+// 나의 예매 날짜로 조회
+.ByDateReservationItem {
+  border: solid 1px blue;
+  margin-bottom: 10px;
+}

@@ -63,6 +63,13 @@
           padding: 5px;
           border-radius: 8px;
         }
+
+        .like_heart:hover{
+          color: #D61F1F;
+        }
+        .like_heart_red{
+          color: #D61F1F;
+        }
       }
 
       .DetailInfo {
@@ -176,7 +183,7 @@
       .starName {
         display: flex;
 
-        div {
+        .review_nickname {
           margin-left: 10px;
         }
       }
@@ -196,7 +203,8 @@
     flex-direction: column;
     align-items: center;
     .postersBox {
-      height: 2000px;
+      max-height: 1500px;
+      overflow: hidden;
 
       .posters {
         text-align: center;
@@ -224,6 +232,7 @@
   #false {
     overflow: show;
     height: fit-content;
+    max-height: none;
   }
 
   .locationTitle {

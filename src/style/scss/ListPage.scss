@@ -177,6 +177,13 @@
           color: white;
           border-color: #bbb;
         }
+
+        .like_heart:hover{
+          color:#D61F1F;
+        }
+        .like_heart_red{
+          color:#D61F1F;
+        }
       }
     }
   }
@@ -184,6 +191,8 @@
   .CalenderBox {
     // border: solid 1px blue;
     padding: 20px;
+    padding-top: 0;
+    margin-bottom: 80px;
 
     .stickyBox {
       position: sticky;
@@ -263,7 +272,7 @@
 
 .ListPagePagination {
   .nc_pagination {
-    margin-top: 40px;
+    margin-top: 20px;
     li {
       list-style: none;
     }

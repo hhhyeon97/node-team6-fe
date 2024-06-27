@@ -1,8 +1,8 @@
 import React from "react";
-import { Table, Badge } from "react-bootstrap";
+import { Table, Badge, Button } from "react-bootstrap";
 import { convertToKST } from "../../utils/Date";
 
-const NoticeTable = ({ header, noticeList, openEditForm }) => {
+const NoticeTable = ({ header, noticeList, deleteItem, openEditForm }) => {
   return (
     <div className="overflow-x">
       <Table striped bordered hover>
@@ -16,12 +16,26 @@ const NoticeTable = ({ header, noticeList, openEditForm }) => {
           <tbody>
           {noticeList?.length > 0 ? (
             noticeList?.map((notice, index) => (
-              <tr onClick={() => openEditForm(notice)} className="notice-table-item">
+              <tr className="notice-table-item" onClick={() => openEditForm(notice)}>
+              <th>{notice.isImportant ? (<p>중요</p>):("")}</th>
               <th>{notice.userId.name}</th>
               <th>{notice.title}</th>
               <th>{notice.content}</th>
               <th>{notice.view ? notice.view : 0}</th>
               <th>{convertToKST(notice.createdAt)}</th>
+              <th>
+                <Button size="sm" onClick={() => openEditForm(notice)}>
+                  Edit
+                </Button>
+                <Button
+                  size="sm"
+                  variant="danger"
+                  onClick={() => deleteItem(notice._id, notice.title)}
+                  className="mr-1"
+                >
+                    -
+                  </Button>               
+              </th>
               </tr>
             ))
           ) : (
