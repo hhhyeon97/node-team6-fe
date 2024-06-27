@@ -12,14 +12,6 @@ const initialState = {          // 초기화 값 입력
     detailData: null,
     locationLat: '',
     locationLot: '',
-    // stdate: StringDateformat(new Date()),
-    // eddate: EndDateformat(new Date()),
-    // cpage: 1,
-    // rows: 10,
-    // signgucode: '',
-    // prfstate: '02',
-    // shcate: '',
-    // signgucode: '',
 };
 
 function listReducer(state = initialState, action) {
@@ -46,14 +38,17 @@ function listReducer(state = initialState, action) {
             return { ...state, loading: false, locationLat: payload.la, locationLot: payload.lo }
 
         case types.GET_RANKING_PERFORMANCE_SUCCESS:
-            return {...state, loading: false, RankingList: payload }
-        
+            return { ...state, loading: false, RankingList: payload }
+
         case types.PERFORMANCELIST_GET_FAIL:
         case types.PERFORMANCELISTWITHSTATUS_GET_FAIL:
         case types.GET_PERFORMANCE_DETAIL_FAIL:
         case types.GET_LOCATIONLATLOT_DETAIL_FAIL:
         case types.GET_RANKING_PERFORMANCE_FAIL:
             return { ...state, loading: false, error: payload }
+
+        case types.REMOVE_DETAIL_DATA:
+            return { ...state, detailData: null }
 
         default:
             return state
