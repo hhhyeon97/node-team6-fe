@@ -71,28 +71,39 @@ const createReview = (formData, reserveId, setShowDialog, setSearchQuery) => asy
   }
 }
 // [ 리뷰를 작성한 예매인지 체크하기 ]
-const checkReviewed = (reserveTitle, reserveId) => async (dispatch) => {
-  try {
-    dispatch({ type: types.CHECKE_REVIEWED_RESERVATION_REQUEST });
-    const response = await api.get(`/review/check/${reserveId}`);
-    // console.log('action:', reserveTitle, '리뷰결과:',response.data.data);
-    if (response.status !== 200) throw new Error(response.error);
-    dispatch({
-      type: types.CHECKE_REVIEWED_RESERVATION_SUCCESS,
-      payload: {
-        reserveId,
-        reviewed: !!response.data.data // 예매 항목에 대한 리뷰가 있는지 여부를 boolean으로 변환
-      }
-    });
-  } catch (error) {
-    dispatch({ type: types.CHECKE_REVIEWED_RESERVATION_FAIL });
+// const checkReviewed = (reserveTitle, reserveId) => async (dispatch) => {
+//   try {
+//     dispatch({ type: types.CHECKE_REVIEWED_RESERVATION_REQUEST });
+//     const response = await api.get(`/review/check/${reserveId}`);
+//     // console.log('action:', reserveTitle, '리뷰결과:',response.data.data);
+//     if (response.status !== 200) throw new Error(response.error);
+//     dispatch({
+//       type: types.CHECKE_REVIEWED_RESERVATION_SUCCESS,
+//       payload: {
+//         reserveId,
+//         reviewed: !!response.data.data // 예매 항목에 대한 리뷰가 있는지 여부를 boolean으로 변환
+//       }
+//     });
+//   } catch (error) {
+//     dispatch({ type: types.CHECKE_REVIEWED_RESERVATION_FAIL });
+//   }
+// }
+
+const getMainPageReview = ({starRate,reviewQty}) => async(dispatch) =>{
+  try{
+    dispatch({type:types.GET_MAIN_PAGE_REVIEW_REQUEST});
+    const response = await api.get(`/review/main?starRate=${starRate}&reviewQty=${reviewQty}`);
+    dispatch({type:types.GET_MAIN_PAGE_REVIEW_SUCCESS,payload:response.data.data})
+  }catch(error){
+    dispatch({type:types.GET_MAIN_PAGE_REVIEW_FAIL});
   }
 }
 
 export const reviewAction = {
   getReviewList,
   createReview,
-  checkReviewed,
+  // checkReviewed,
   getAllReview,
   getMyReview,
+  getMainPageReview
 }

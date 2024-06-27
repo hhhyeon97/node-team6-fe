@@ -76,6 +76,9 @@ const AdminNoticePage = () => {
     setMode("new");
     setShowDialog(true);
   }
+  useEffect(()=>{
+    console.log(showDialog);
+  },[showDialog])
 
   // [ 아이템 삭제하기 ] 
   const deleteItem = (id, name) => {
