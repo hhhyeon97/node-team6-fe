@@ -35,6 +35,11 @@ const ReviewDetailDialog = ({ open, handleClose, setSearchQuery }) => {
     navigate(`/performance/${selectedReview.ticket.SeqId}`);
   };
 
+  // [ 이미지 깨질때 ]
+  const handleImageError = (event) => {
+    event.target.style.display = 'none';
+  };
+
   if (!selectedReview) {
     return <></>;
   }
@@ -56,6 +61,15 @@ const ReviewDetailDialog = ({ open, handleClose, setSearchQuery }) => {
         </div>
         <div>작성자 : {selectedReview.userId.name}</div>
         <div>회원등급 : {selectedReview.userId.level.toUpperCase()}</div>
+        <div className='poster_box' onClick={handlePosterClick} >
+          <img
+            className='poster_img'
+            src={selectedReview.image}
+            style={{ width: '6em' }}
+            alt='리뷰사진'
+            onError={handleImageError}
+            />
+        </div>
         <div>리뷰내용 : {selectedReview.reviewText}</div>
         <div>등록일자 : {convertToKST(selectedReview.createdAt)}</div>
           
