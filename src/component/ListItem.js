@@ -2,10 +2,15 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-regular-svg-icons'
+import { faHeart, far } from '@fortawesome/free-regular-svg-icons'
+import { useDispatch, useSelector } from "react-redux";
+import { likeAction } from "../action/likeAction";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 
 const ListItem = ({ item }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { likeList } = useSelector(state=>state.like);
     const showPerformance = (id) => {
         navigate(`/performance/${id}`)
     }
@@ -22,6 +27,22 @@ const ListItem = ({ item }) => {
         return '';
     };
 
+    //찜 기능
+    const checkLike = likeList.find(like=>like.seqId === item.mt20id);
+    const addLike = (item) =>{
+        dispatch(likeAction.addLikeToList({
+          seqId:item.mt20id,
+          seqImage:item.poster,
+          seqTo:item.prfpdto,
+          seqFrom:item.prfpdfrom,
+          seqLocation:item.fcltynm,
+          seqTitle:item.prfnm,
+        }))
+      }
+    const deleteLikeItem = (item) => {
+        dispatch(likeAction.deleteLikeItem({id:checkLike._id}))
+    }
+
     return (
         <Row className="ListItem">
             <Col lg={5} md={6} sm={6} className="image_col" onClick={() => showPerformance(item.mt20id)}>
@@ -32,7 +53,8 @@ const ListItem = ({ item }) => {
                 <div>기간: {item.prfpdfrom} ~ {item.prfpdto}</div>
                 <div className={`state ${getStatusClassName()}`}>{item.prfstate}</div>
                 <div>
-                    <FontAwesomeIcon icon={faHeart} />
+                    {checkLike?(<FontAwesomeIcon icon={fas.faHeart} className="like_heart_red" onClick={()=>deleteLikeItem()}/>)
+                    :(<FontAwesomeIcon icon={far.faHeart} className="like_heart" onClick={()=>addLike(item)}/>)}  
                 </div>
             </Col>
         </Row>

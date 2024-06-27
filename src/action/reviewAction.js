@@ -8,7 +8,6 @@ const getReviewList = (query) => async (dispatch) => {
     dispatch({ type: types.GET_REVIEW_LIST_REQUEST });
     const params = { ...query };
     const response = await api.get('/review', { params });
-    console.log('rrr', response.data)
     if (response.status !== 200) throw new Error(response.error);
     dispatch({
       type: types.GET_REVIEW_LIST_SUCCESS,
@@ -16,6 +15,24 @@ const getReviewList = (query) => async (dispatch) => {
     });
   } catch (error) {
     dispatch({ type: types.GET_REVIEW_LIST_FAIL, payload: error.error });
+  }
+}
+
+// [ 리뷰 상태 수정하기 (admin)]
+const updateReviewState = (id, isSuspended, setSearchQuery) => async (dispatch) => {
+  try{
+    console.log("isSuspended", isSuspended)
+    dispatch({ type: types.EDIT_REVIEW_STATE_REQUEST });
+    const response = await api.put(`/review/${id}`, {isSuspended});
+    console.log('rrrr', response.data)
+    if (response.status !== 200) throw new Error(response.error);
+    dispatch({ 
+      type: types.EDIT_REVIEW_STATE_SUCCESS,
+      payload: response.data
+    });
+    dispatch(reviewAction.getReviewList({page:1, name:""}));  
+  }catch(error){
+    dispatch({ type: types.EDIT_REVIEW_STATE_FAIL, payload: error.error });
   }
 }
 
@@ -95,4 +112,5 @@ export const reviewAction = {
   checkReviewed,
   getAllReview,
   getMyReview,
+  updateReviewState
 }
