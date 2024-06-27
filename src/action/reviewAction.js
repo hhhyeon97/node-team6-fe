@@ -142,5 +142,6 @@ export const reviewAction = {
   getAllReview,
   getMyReview,
   updateReviewState,
-  editReview
+  editReview,
+  deleteReview
 }
