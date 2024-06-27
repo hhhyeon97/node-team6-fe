@@ -8,6 +8,7 @@ import LinedTitle from '../../component/LinedTitle';
 import ReviewTable from '../../component/admin_page/ReviewTable';
 import SearchBox from '../../component/SearchBox';
 import Pagination from '../../component/Pagination';
+import ReviewDetailDialog from '../../component/admin_page/ReviewDetailDialog';
 
 const AdminReviewPage = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const AdminReviewPage = () => {
   });
   const tableHeader = [
     "공연정보",
-    "회원명",
+    "작성자",
     "회원등급",
     "리뷰내용",
     "등록일자",
@@ -32,8 +33,8 @@ const AdminReviewPage = () => {
     dispatch(reviewAction.getReviewList({ ...searchQuery }));
   }, [query, dispatch]);
 
-  console.log("reviewList", reviewList )
-  console.log("reviewPage", totalPageNum)
+  // console.log("reviewList", reviewList )
+  // console.log("reviewPage", totalPageNum)
 
   // [ 검색어나 페이지가 바뀌면 url바꿔주기 ]
   useEffect(() => {
@@ -42,7 +43,6 @@ const AdminReviewPage = () => {
     }
     const params = new URLSearchParams(searchQuery);
     const query = params.toString();
-    console.log("query:", query)
     navigate("?" + query);
   }, [searchQuery]);
 
@@ -59,21 +59,15 @@ const AdminReviewPage = () => {
     });
   };
 
-  // [ 검색 핸들러 ]
-  // const handleSearch = (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData(e.target);
-  //   setSearchQuery({
-  //     ...searchQuery,
-  //     name: formData.get("name"),
-  //     ticketSeqTitle: formData.get("ticket.SeqTitle"),
-  //   });
-  // };
-
-  // [ 회원 정보 수정 form 열기 ]
+  // [ 리뷰수정 form 열기 ]
   const openEditForm = (review) => {
     setOpen(true);
     dispatch({ type: types.SET_SELECTED_REVIEW, payload: review });
+  };
+
+  // [ ReviewDetailDialog 닫기 ]
+  const handleClose = () => {
+    setOpen(false);
   };
 
   return(
@@ -81,7 +75,7 @@ const AdminReviewPage = () => {
         <SearchBox
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
-            placeholder="회원명이나 공연명으로 검색해주세요"
+            placeholder="작성자명으로 검색해주세요"
             field="name"
         />
 
@@ -100,6 +94,8 @@ const AdminReviewPage = () => {
           forcePage={searchQuery.page-1}
           onPageChange={onPageChange}
         />
+
+        { open && <ReviewDetailDialog open={open} handleClose={handleClose} setSearchQuery={setSearchQuery} />}
       </div>
   );
 }
