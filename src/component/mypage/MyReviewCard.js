@@ -56,8 +56,8 @@ const MyReviewCard = ({ review,  openReviewForm }) => {
           <div>{review.reviewText}</div>
           <div>{convertToKST(review.createdAt)}</div>     
 
-          <Button onClick={handleReviewButtonClick}>수정</Button>  
-          <Button>삭제</Button>  
+          <Button variant="light" onClick={handleReviewButtonClick}>수정</Button>  
+          <Button variant="light">삭제</Button>  
         </>
       ):(
         <div>부적절한 내용으로 숨김처리됨 리뷰입니다. 자세한 사항은 1:1문의를 이용해주세요</div>

@@ -55,10 +55,17 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
   // [ submit 버튼 ]
   const handleSubmit = (event) => {
     event.preventDefault();
-    // 리뷰 작성하기
-    dispatch(reviewAction.createReview({ ...formData }, 
-      selectedReserve._id, 
-      setShowDialog, setSearchQuery));
+    if(mode === "new"){
+      console.log("리뷰작성")
+      dispatch(reviewAction.createReview({ ...formData }, 
+        selectedReserve._id, 
+        setShowDialog, setSearchQuery));
+    }else{
+      console.log("리뷰수정")
+      dispatch(reviewAction.editReview({ ...formData }, 
+        selectedReview._id,
+        setShowDialog, setSearchQuery));
+    }
   };
 
   // [ form에 데이터 넣어주기 ]
@@ -119,11 +126,11 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
           </Form.Group>
             
         {mode === "new" ? (
-          <Button variant="primary" type="submit">
+          <Button variant="dark" type="submit">
             Submit
           </Button>
         ) : (
-          <Button variant="primary" type="submit">
+          <Button variant="dark" type="submit">
             Edit
           </Button>
         )}
