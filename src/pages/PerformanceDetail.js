@@ -73,30 +73,6 @@ const PerformanceDetail = () => {
         }
     }, [detailData])
 
-    // useEffect(() => {
-    //     // 함수를 선언하여 height를 측정하는 로직을 담습니다.
-    //     const measureHeight = () => {
-    //         if (postersBoxRef.current) {
-    //             setHeight(postersBoxRef.current.clientHeight);
-    //         }
-    //     };
-
-    //     // 페이지가 처음 로딩될 때와, postersBoxRef가 업데이트될 때 모두 height를 측정합니다.
-    //     measureHeight();
-
-    //     // 컴포넌트가 마운트되었을 때 height를 측정하고, 포스터 박스 ref가 변경될 때마다 다시 측정합니다.
-    //     window.addEventListener('resize', measureHeight);
-
-    //     // 컴포넌트가 언마운트될 때 리스너를 정리합니다.
-    //     return () => {
-    //         window.removeEventListener('resize', measureHeight);
-    //     };
-    // }, [postersBoxRef]); // postersBoxRef가 변경될 때마다 effect를 다시 실행합니다.
-
-    // useEffect(() => {
-    //     console.log('height:', height)
-    // }, [height])
-
     useEffect(() => {
         dispatch(perfomanceListAction.getLocationLatLot(location, settingQuery))
     }, [location])

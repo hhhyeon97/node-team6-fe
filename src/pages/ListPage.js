@@ -54,6 +54,7 @@ const ListPage = () => {
             rows: 10,
         }, settingQuery))
         console.log("receive PerformanceListData: ", PerformanceListData)
+        dispatch(perfomanceListAction.removeDetailData())
     }, [selectDate, status, selectedRegion, category, showPage])
 
     const { PerformanceListData } = useSelector(state => state.list)
