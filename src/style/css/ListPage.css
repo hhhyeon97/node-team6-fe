@@ -153,6 +153,12 @@
   color: white;
   border-color: #bbb;
 }
+.ListPageMainBox .ListItemsBox .ListItem .item_info_box .like_heart:hover {
+  color: #D61F1F;
+}
+.ListPageMainBox .ListItemsBox .ListItem .item_info_box .like_heart_red {
+  color: #D61F1F;
+}
 .ListPageMainBox .CalenderBox {
   padding: 20px;
   padding-top: 0;
