@@ -8,7 +8,6 @@ const getReviewList = (query) => async (dispatch) => {
     dispatch({ type: types.GET_REVIEW_LIST_REQUEST });
     const params = { ...query };
     const response = await api.get('/review', { params });
-    console.log('rrr', response.data)
     if (response.status !== 200) throw new Error(response.error);
     dispatch({
       type: types.GET_REVIEW_LIST_SUCCESS,
@@ -16,6 +15,24 @@ const getReviewList = (query) => async (dispatch) => {
     });
   } catch (error) {
     dispatch({ type: types.GET_REVIEW_LIST_FAIL, payload: error.error });
+  }
+}
+
+// [ 리뷰 상태 수정하기 (admin)]
+const updateReviewState = (id, isSuspended, setSearchQuery) => async (dispatch) => {
+  try{
+    console.log("isSuspended", isSuspended)
+    dispatch({ type: types.EDIT_REVIEW_STATE_REQUEST });
+    const response = await api.put(`/review/${id}`, {isSuspended});
+    console.log('rrrr', response.data)
+    if (response.status !== 200) throw new Error(response.error);
+    dispatch({ 
+      type: types.EDIT_REVIEW_STATE_SUCCESS,
+      payload: response.data
+    });
+    dispatch(reviewAction.getReviewList({page:1, name:""}));  
+  }catch(error){
+    dispatch({ type: types.EDIT_REVIEW_STATE_FAIL, payload: error.error });
   }
 }
 
@@ -70,6 +87,35 @@ const createReview = (formData, reserveId, setShowDialog, setSearchQuery) => asy
     dispatch({ type: types.CREATE_REVIEW_FAIL });
   }
 }
+
+// [ 리뷰 수정하기 ]
+const editReview = (formData, reviewId, setShowDialog, setSearchQuery) => async (dispatch) => {
+  try{
+    dispatch({ type: types.EDIT_REVIEW_REQUEST });
+    const response = await api.put("/review", { ...formData, reviewId });
+    if (response.status !== 200) throw new Error(response.error);
+    dispatch({ type: types.EDIT_REVIEW_SUCCESS });
+    setShowDialog(false);
+    dispatch(reviewAction.getMyReview({ page: 1 }));
+  }catch(error){
+    dispatch({ type: types.EDIT_REVIEW_FAIL });
+  }
+}
+
+// [ 리뷰 삭제하기 ]
+const deleteReview = (id, navigate) => async (dispatch) => {
+  try{
+    dispatch({ type: types.DELETE_REVIEW_REQUEST });
+    const response = await api.delete(`/review/${id}`);
+    if (response.status !== 200) throw new Error(response.error);
+    dispatch({ type: types.DELETE_REVIEW_SUCCESS });
+    alert("리뷰를 삭제했습니다.")
+    dispatch(reviewAction.getMyReview({ page: 1 }));
+  }catch(error){
+    dispatch({ type: types.DELETE_REVIEW_FAIL });
+  }
+}
+
 // [ 리뷰를 작성한 예매인지 체크하기 ]
 // const checkReviewed = (reserveTitle, reserveId) => async (dispatch) => {
 //   try {
@@ -105,5 +151,8 @@ export const reviewAction = {
   // checkReviewed,
   getAllReview,
   getMyReview,
+  updateReviewState,
+  editReview,
+  deleteReview,
   getMainPageReview
 }

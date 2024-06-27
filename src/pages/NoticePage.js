@@ -6,18 +6,30 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { noticeAction } from '../action/noticeAction';
 import { convertToKST } from '../utils/Date';
-import { faStar, faThumbTack } from '@fortawesome/free-solid-svg-icons';
+import {
+  faStar,
+  faThumbTack,
+  faUser,
+  faUserCheck,
+  faUserCircle,
+  faUserClock,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import LoadingText from '../component/LoadingText';
+import { faWaze } from '@fortawesome/free-brands-svg-icons';
 
 const NoticePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { noticeList, totalPageNum } = useSelector((state) => state.notice);
+  const { noticeList, totalPageNum, loading } = useSelector(
+    (state) => state.notice,
+  );
   const [query, setQuery] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState({
     page: query.get('page') || 1,
   });
+  const [activeKey, setActiveKey] = useState(null);
 
   const PAGE_SIZE = 5;
 
@@ -31,6 +43,9 @@ const NoticePage = () => {
     const params = new URLSearchParams(searchQuery);
     const query = params.toString();
     navigate('?' + query);
+
+    // 페이지가 바뀔 때마다 아코디언 초기화
+    setActiveKey(null);
   }, [searchQuery]);
 
   // [ 쿼리에 페이지값 바꿔주기 ]
@@ -49,13 +64,30 @@ const NoticePage = () => {
     ));
   };
 
+  if (loading) {
+    <LoadingText />;
+  }
+
+  if (noticeList.length === 0) {
+    return (
+      <div className="no_list_message">
+        <h2>공지사항을 준비중입니다.</h2>
+      </div>
+    );
+  }
+
   return (
     <Container className="notice_page_area d-flex justify-content-center align-items-center">
       <div className="notice_content_area">
         <h2 className="notice_top_title">공지사항</h2>
 
         {/* <Accordion defaultActiveKey="0" className="notice_accordion"> */}
-        <Accordion className="notice_accordion">
+        {/* <Accordion className="notice_accordion"> */}
+        <Accordion
+          activeKey={activeKey}
+          onSelect={(e) => setActiveKey(e)}
+          className="notice_accordion"
+        >
           <div className="notice_menu_wrap">
             <span className="notice_menu">번호</span>
             <span className="notice_menu">제목</span>
@@ -72,24 +104,46 @@ const NoticePage = () => {
                   <div className="d-flex align-items-center">
                     {/* <span className="notice_id">{'No.' + (idx + 1)}</span> */}
                     <span className="notice_id">
-                      {'No.' + ((searchQuery.page - 1) * PAGE_SIZE + (idx + 1))}
+                      {/* {'No.' + ((searchQuery.page - 1) * PAGE_SIZE + (idx + 1))} */}
+                      {notice.isImportant ? (
+                        <FontAwesomeIcon
+                          className="thumb_icon"
+                          icon={faThumbTack}
+                          style={{ marginRight: '10px' }}
+                        ></FontAwesomeIcon>
+                      ) : (
+                        `${
+                          'No.' +
+                          ((searchQuery.page - 1) * PAGE_SIZE + (idx + 1))
+                        }`
+                      )}
                     </span>
                     {/* <span className="notice_title">{notice.title}</span> */}
-                    {notice.isImportant && (
+                    {/* {notice.isImportant && (
                       <FontAwesomeIcon
                         className="star_icon"
                         icon={faThumbTack}
                         style={{ marginRight: '10px' }}
                       ></FontAwesomeIcon>
-                    )}
-                    {notice.title}
+                    )} */}
+                    {notice.isImportant ? '[공지]' : '[이벤트]'} {notice.title}
                   </div>
                   <span className="notice_date">
                     {convertToKST(notice.createdAt)}
                   </span>
                 </Accordion.Header>
                 <Accordion.Body className="desc_wrap">
-                  <div>작성자 : {notice.userId.name}</div>
+                  {/* <div>작성자 : {notice.userId.name}</div> */}
+                  <div>
+                    <FontAwesomeIcon
+                      icon={faWaze}
+                      className="author_icon"
+                    ></FontAwesomeIcon>{' '}
+                    작성자 :{' '}
+                    {notice.userId.level === 'admin'
+                      ? 'Noona Culture 관리자'
+                      : ''}
+                  </div>
                   <br />
                   {breakTextOnDot(notice.content)}
                 </Accordion.Body>

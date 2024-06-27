@@ -27,6 +27,7 @@ const AdminNoticePage = () => {
     title: query.get("title") || "",
   });
   const tableHeader = [
+    "",
     "작성자",
     "제목",
     "내용",
@@ -63,6 +64,13 @@ const AdminNoticePage = () => {
     });
   };
 
+  // [ handleNewNotice 열기 ]
+  const handleNewNotice = () => {
+    setMode("new");
+    setShowDialog(true);
+    console.log("열려라", showDialog)
+  }
+
   // [ 공지사항 수정 form 열기 ]
   const openEditForm = (notice) => {
     //edit모드로 설정하고
@@ -71,15 +79,7 @@ const AdminNoticePage = () => {
     setShowDialog(true);
   };
 
-  // [ handleNewNotice 열기 ]
-  const handleNewNotice = () => {
-    setMode("new");
-    setShowDialog(true);
-  }
-  useEffect(()=>{
-    console.log(showDialog);
-  },[showDialog])
-
+  
   // [ 아이템 삭제하기 ] 
   const deleteItem = (id, name) => {
     setSelectedId(id);
