@@ -24,6 +24,7 @@ function userReducer(state = initialState, action) {
     case types.RESET_PASSWORD_REQUEST:
     case types.CHECK_RESET_TOKEN_REQUEST:
     case types.USER_CHANGE_PASSWORD_REQUEST:
+    case types.DELETE_USER_REQUEST:
       return { ...state, loading: true };
     case types.LOGIN_SUCCESS:
     case types.LOGIN_WITH_TOKEN_SUCCESS:
@@ -33,7 +34,8 @@ function userReducer(state = initialState, action) {
     case types.EDIT_USER_SUCCESS:
       return { ...state, loading: false, user: payload.user, error: '' };
     case types.USER_CHANGE_PASSWORD_SUCCESS:
-      return { loading: false, success: true };
+    case types.DELETE_USER_SUCCESS:
+      return { loading: false, success: true, error: '' };
     case types.GET_USER_LIST_SUCCESS:
       return {
         ...state,
@@ -76,6 +78,8 @@ function userReducer(state = initialState, action) {
       };
     case types.LOGOUT:
       return { ...state, user: null };
+    case types.DELETE_USER_FAIL:
+      return { ...state, user: null, loading: false, error: '' };
     case types.SET_SELECTED_USER:
       return { ...state, selectedUser: payload };
     default:

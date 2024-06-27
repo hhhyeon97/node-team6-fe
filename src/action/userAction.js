@@ -237,6 +237,20 @@ const changePassword =
     }
   };
 
+  // [ 회원 탈퇴 ]
+  const deleteUser = (id, navigate) => async (dispatch) => {
+    try{
+      dispatch({ type: types.DELETE_USER_REQUEST });
+      const response = await api.delete(`/user/${id}`);
+      if (response.status !== 200) throw new Error(response.error);
+      dispatch({ type: types.DELETE_USER_SUCCESS });
+      alert('회원탈퇴가 완료되었습니다.');
+      navigate('/');
+    }catch(error){
+      dispatch({ type: types.DELETE_USER_FAIL });
+    }
+  }
+
 export const resetError = () => ({
   type: types.RESET_ERROR,
 });
@@ -257,4 +271,5 @@ export const userActions = {
   forgotPassword,
   resetPassword,
   changePassword,
+  deleteUser
 };
