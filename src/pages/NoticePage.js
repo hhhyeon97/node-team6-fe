@@ -105,17 +105,28 @@ const NoticePage = () => {
                     {/* <span className="notice_id">{'No.' + (idx + 1)}</span> */}
                     <span className="notice_id">
                       {/* {'No.' + ((searchQuery.page - 1) * PAGE_SIZE + (idx + 1))} */}
-                      {idx}
+                      {notice.isImportant ? (
+                        <FontAwesomeIcon
+                          className="thumb_icon"
+                          icon={faThumbTack}
+                          style={{ marginRight: '10px' }}
+                        ></FontAwesomeIcon>
+                      ) : (
+                        `${
+                          'No.' +
+                          ((searchQuery.page - 1) * PAGE_SIZE + (idx + 1))
+                        }`
+                      )}
                     </span>
                     {/* <span className="notice_title">{notice.title}</span> */}
-                    {notice.isImportant && (
+                    {/* {notice.isImportant && (
                       <FontAwesomeIcon
                         className="star_icon"
                         icon={faThumbTack}
                         style={{ marginRight: '10px' }}
                       ></FontAwesomeIcon>
-                    )}
-                    {notice.title}
+                    )} */}
+                    {notice.isImportant ? '[공지]' : '[이벤트]'} {notice.title}
                   </div>
                   <span className="notice_date">
                     {convertToKST(notice.createdAt)}
