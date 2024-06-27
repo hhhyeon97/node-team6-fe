@@ -21,7 +21,6 @@
 }
 
 .pagination_wrap {
-  margin-top: 50px;
   position: relative;
   top: 30px;
 }
@@ -87,9 +86,10 @@ li {
   left: 150px;
 }
 
-.star_icon {
+.thumb_icon {
   position: relative;
-  bottom: 1px;
+  top: 2px;
+  left: 8px;
 }
 
 .notice_menu_wrap span {
@@ -100,4 +100,21 @@ li {
   margin-left: 60px;
   position: absolute;
   right: 390px;
+}
+
+.no_list_message {
+  text-align: center;
+  color: #bbb;
+  margin-top: 30px;
+}
+
+.no_list_message h2 {
+  font-size: 25px;
+  font-family: "Gsans_B";
+}
+
+.author_icon {
+  font-size: 20px;
+  position: relative;
+  top: 2px;
 }
