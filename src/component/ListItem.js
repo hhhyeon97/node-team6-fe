@@ -23,12 +23,12 @@ const ListItem = ({ item }) => {
     };
 
     return (
-        <Row className="ListItem" onClick={() => showPerformance(item.mt20id)}>
-            <Col lg={5} md={6} sm={6} className="image_col">
+        <Row className="ListItem">
+            <Col lg={5} md={6} sm={6} className="image_col" onClick={() => showPerformance(item.mt20id)}>
                 <img className="posterImg" src={item.poster} alt="포스터 이미지"></img>
             </Col>
             <Col lg={5} md={5} sm={5} className="item_info_box">
-                <div>{item.prfnm}</div>
+                <div onClick={() => showPerformance(item.mt20id)}>{item.prfnm}</div>
                 <div>기간: {item.prfpdfrom} ~ {item.prfpdto}</div>
                 <div className={`state ${getStatusClassName()}`}>{item.prfstate}</div>
                 <div>

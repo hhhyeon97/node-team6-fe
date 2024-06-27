@@ -3,8 +3,10 @@ import { useSelector } from "react-redux";
 import JSConfetti from "js-confetti";
 import { Col, Container, Row } from "react-bootstrap";
 import '../style/css/ReservationCompletePage.css'
+import { useNavigate } from "react-router-dom";
 
 const ReservationCompletePage = () => {
+    const navigate = useNavigate()
     const jsConfetti = new JSConfetti();
 
     //색종이 커스터마이징
@@ -22,6 +24,10 @@ const ReservationCompletePage = () => {
 
     const { reservationId } = useSelector(state => state.reservation)
 
+    const moveMyReservation = () => {
+        navigate('/mypage/reservations/view-all?page=1')
+    }
+
     return (
         <Container className="wrap-container">
             <Row className="completePageBox">
@@ -30,10 +36,8 @@ const ReservationCompletePage = () => {
                     <Row>
                         예매 번호: {reservationId}
                     </Row>
-                    <Row>
-                        <a href="/mypage/reservations/view-all?page=1">
-                            나의 예매내역으로 바로가기
-                        </a>
+                    <Row onClick={moveMyReservation} className="moveLink">
+                        나의 예매내역으로 바로가기
                     </Row>
                 </Col>
             </Row>
