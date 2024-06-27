@@ -9,12 +9,14 @@ import RankingPerformance from '../component/mainpage/RankingPerformance';
 import MainBanner from '../component/mainpage/MainBanner';
 import { useDispatch } from 'react-redux';
 import { likeAction } from '../action/likeAction';
+import { perfomanceListAction } from '../action/perfomanceListAction';
 
 const MainPage = () => {
   const dispatch = useDispatch();
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(likeAction.getLikeList());
-  },[])
+    dispatch(perfomanceListAction.removeDetailData())
+  }, [])
   return (
     <div>
       <MainBanner />
@@ -30,7 +32,7 @@ const MainPage = () => {
       </Container>
       <EventBanner />
     </div>
-    
+
   );
 };
 

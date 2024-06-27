@@ -2,6 +2,7 @@ import api from "../utils/api";
 import * as types from "../constants/performanceList.constants";
 import { useEffect } from 'react';
 import { StringDateformat, EndDateformat } from '../utils/Date'
+import { faDisplay } from "@fortawesome/free-solid-svg-icons";
 
 const { DOMParser } = require('xmldom');
 
@@ -145,7 +146,7 @@ const getLocationLatLot = (location, settingQuery) => async (dispatch) => {
         const XmlNode = domParser.parseFromString(xmlText, 'text/xml');
         const jsonData = xmlToJson(XmlNode)
 
-        const cleanedData = cleanUp(jsonData);
+        const cleanedData = await cleanUp(jsonData);
 
         console.log('cleanedData lat lot:', cleanedData)
 
@@ -212,10 +213,15 @@ const getRankingPerformance = (query, settingQuery) => async (dispatch) => {
     }
 };
 
+const removeDetailData = () => async (dispatch) => {
+    dispatch({ type: types.REMOVE_DETAIL_DATA })
+}
+
 export const perfomanceListAction = {
     getPerformanceList,
     getPerformanceDetail,
     getLocationLatLot,
     getPerformanceListWithStatus,
     getRankingPerformance,
+    removeDetailData
 }

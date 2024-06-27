@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import { perfomanceListAction } from "../action/perfomanceListAction";
@@ -28,7 +28,6 @@ const PerformanceDetail = () => {
     const { detailData } = useSelector(state => state.list)
     const { reviewAllList } = useSelector(state => state.review)
 
-    const [selectTicketNum, setSelectTicketNum] = useState(1)
     const { id } = useParams()
 
     const [view, setView] = useState(false);
@@ -40,7 +39,8 @@ const PerformanceDetail = () => {
     const { locationLat } = useSelector(state => state.list)
     const { locationLot } = useSelector(state => state.list)
 
-    const ticketNumList = [1, 2, 3, 4, 5]
+    // const postersBoxRef = useRef(null);
+    // const [height, setHeight] = useState(0);
 
     const settingQuery = {
         service: REACT_APP_YEJIN_SERVICE_KEY,
@@ -74,16 +74,11 @@ const PerformanceDetail = () => {
     }, [detailData])
 
     useEffect(() => {
-        console.log('costArray:', costArray)
-        console.log('review allList', reviewAllList)
-    }, [costArray, reviewAllList])
-
-    useEffect(() => {
         dispatch(perfomanceListAction.getLocationLatLot(location, settingQuery))
     }, [location])
 
     const showDetail = () => {
-        setHidden(!hidden)
+        setHidden(false)
     }
 
     const movePage = (detailData) => {
