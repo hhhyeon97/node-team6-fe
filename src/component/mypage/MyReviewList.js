@@ -25,7 +25,7 @@ const MyReviewList = ({ myReviewList, openReviewForm }) => {
               </div>
             </div>
           ):(
-            <div>부적절한 내용으로 숨김처리됨 리뷰입니다. 자세한 사항은 1:1문의를 이용해주세요</div>
+            <div style={{ border: 'solid 1px red', marginBottom: '10px' }}>부적절한 내용으로 숨김처리됨 리뷰입니다. 자세한 사항은 1:1문의를 이용해주세요</div>
           )
         ))
 			}

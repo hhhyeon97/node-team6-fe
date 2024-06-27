@@ -10,7 +10,7 @@ import { convertToKST } from '../../utils/Date';
 import { Alert } from "react-bootstrap";
 import Star from '../../component/Star';
 
-const MyReviewCard = ({ review,  openReviewForm}) => {
+const MyReviewCard = ({ review,  openReviewForm }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let canceled = '';
@@ -37,6 +37,12 @@ const MyReviewCard = ({ review,  openReviewForm}) => {
     event.target.style.display = 'none';
   };
 
+  // [ 리뷰쓰기 버튼 클릭 처리 ]
+  const handleReviewButtonClick = (event) => {
+    event.stopPropagation(); // 클릭 이벤트의 전파를 막음
+    openReviewForm(review); // 리뷰쓰기 폼 열기
+  };
+
   return(
     <div>
       {!review?.isSuspended ? (
@@ -53,8 +59,10 @@ const MyReviewCard = ({ review,  openReviewForm}) => {
           <Star startNum={review.starRate} />
           <div>{review.SeqTitle}</div>
           <div>{review.reviewText}</div>
-          <div>{convertToKST(review.createdAt)}</div>
-        
+          <div>{convertToKST(review.createdAt)}</div>     
+
+          <Button onClick={handleReviewButtonClick}>수정</Button>  
+          <Button>삭제</Button>  
         </>
       ):(
         <div>부적절한 내용으로 숨김처리됨 리뷰입니다. 자세한 사항은 1:1문의를 이용해주세요</div>
