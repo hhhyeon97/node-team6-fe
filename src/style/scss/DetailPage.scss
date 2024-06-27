@@ -203,7 +203,8 @@
     flex-direction: column;
     align-items: center;
     .postersBox {
-      height: 2000px;
+      max-height: 1500px;
+      overflow: hidden;
 
       .posters {
         text-align: center;
@@ -231,6 +232,7 @@
   #false {
     overflow: show;
     height: fit-content;
+    max-height: none;
   }
 
   .locationTitle {

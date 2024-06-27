@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import { perfomanceListAction } from "../action/perfomanceListAction";
@@ -22,14 +22,14 @@ const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
 const PerformanceDetail = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    let checkLike = null;
+    // let checkLike = {};
     const { loading } = useSelector(state => state.list)
     const { error } = useSelector(state => state.list)
 
     const { detailData } = useSelector(state => state.list)
     const { reviewAllList } = useSelector(state => state.review)
+    const { likeList } = useSelector(state=>state.like);
 
-    const [selectTicketNum, setSelectTicketNum] = useState(1)
     const { id } = useParams()
 
     const [view, setView] = useState(false);
@@ -37,11 +37,13 @@ const PerformanceDetail = () => {
     const [hidden, setHidden] = useState(true)
     const [location, setLocation] = useState('')
     const [costArray, setCostArray] = useState([])
+    const [checkLike, setCheckLike] = useState(null);
 
     const { locationLat } = useSelector(state => state.list)
     const { locationLot } = useSelector(state => state.list)
 
-    const ticketNumList = [1, 2, 3, 4, 5]
+    // const postersBoxRef = useRef(null);
+    // const [height, setHeight] = useState(0);
 
     const settingQuery = {
         service: REACT_APP_YEJIN_SERVICE_KEY,
@@ -71,21 +73,16 @@ const PerformanceDetail = () => {
                     setCostArray([detailData.pcseguidance])
                 }
             }
-            checkLike = likeList.find(like=>like.seqId===detailData.mt20id);
+            getcheckList();
         }
-    }, [detailData])
-
-    useEffect(() => {
-        console.log('costArray:', costArray)
-        console.log('review allList', reviewAllList)
-    }, [costArray, reviewAllList])
+    }, [detailData,likeList])
 
     useEffect(() => {
         dispatch(perfomanceListAction.getLocationLatLot(location, settingQuery))
     }, [location])
 
     const showDetail = () => {
-        setHidden(!hidden)
+        setHidden(false)
     }
 
     const movePage = (detailData) => {
@@ -93,7 +90,12 @@ const PerformanceDetail = () => {
     }
 
     //찜기능
-    const { likeList } = useSelector(state=>state.like);
+    
+    const getcheckList = () => {
+        let checkLike = likeList.find(like=>like.seqId==detailData.mt20id);
+        setCheckLike(checkLike);
+    }
+
     const addLike = (item) =>{
         dispatch(likeAction.addLikeToList({
           seqId:item.mt20id,
@@ -104,10 +106,10 @@ const PerformanceDetail = () => {
           seqTitle:item.prfnm,
         }))
       }
-    const deleteLikeItem = () => {
+    const deleteLikeItem = (checkLike) => {
         dispatch(likeAction.deleteLikeItem({id:checkLike._id}))
     }
-
+    console.log("제발",checkLike);
     return (
         <Container className="wrap-container">
             {loading ? (
@@ -126,9 +128,9 @@ const PerformanceDetail = () => {
                         </Col>
                         <Col lg={7} md={7} sm={12} className="DetailInfoBox">
                             <Row className="LikeShare">
-                                {/* {!loading && checkLike != null || undefined ?(<FontAwesomeIcon icon={fas.faHeart} className="like_heart_red" onClick={()=>deleteLikeItem()}/>
+                                {checkLike?(<FontAwesomeIcon icon={fas.faHeart} className="like_heart_red" onClick={()=>deleteLikeItem(checkLike)}/>
                                 ):(<FontAwesomeIcon icon={far.faHeart} className="like_heart" onClick={()=>addLike(detailData)}/>)}
-                                <CopyClipButton detailData={detailData} /> */}
+                                <CopyClipButton detailData={detailData} />
                                 {/* <KakaoClipButton detailData={detailData} /> */}
                             </Row>
                             <Row className="DetailInfo">

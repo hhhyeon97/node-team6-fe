@@ -172,7 +172,8 @@
   align-items: center;
 }
 .DetailPageAllBox .DetailBox .postersBox {
-  height: 2000px;
+  max-height: 1500px;
+  overflow: hidden;
 }
 .DetailPageAllBox .DetailBox .postersBox .posters {
   text-align: center;
@@ -194,6 +195,7 @@
 .DetailPageAllBox #false {
   overflow: show;
   height: fit-content;
+  max-height: none;
 }
 .DetailPageAllBox .locationTitle {
   display: flex;

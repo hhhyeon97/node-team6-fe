@@ -29,6 +29,13 @@
       font-size: 1.2em;
       font-family: "Gsans_M";
       margin-bottom: 10px;
+      text-align: end;
+    }
+
+    .moveLink {
+      color: blue;
+      text-decoration: underline;
+      cursor: pointer;
     }
   }
 }

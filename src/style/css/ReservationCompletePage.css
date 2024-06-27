@@ -28,4 +28,10 @@
   font-size: 1.2em;
   font-family: "Gsans_M";
   margin-bottom: 10px;
+  text-align: end;
+}
+.completePageBox .completeInfo .moveLink {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
 }

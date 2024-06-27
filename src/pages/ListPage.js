@@ -25,11 +25,11 @@ const ListPage = () => {
     const { loading } = useSelector(state => state.list)
     const { error } = useSelector(state => state.list)
 
-    const [showPage, setShowPage] = useState(1)
+    const [query] = useSearchParams();
+    const [showPage, setShowPage] = useState(Number(query.get("page")) || 1)
     const [status, setStatus] = useState('02')
     const [totalPageNum, setTotalPageNum] = useState(1)
 
-    const [query] = useSearchParams();
     const category = query.get('category') || ''
     const categoryName = query.get('categoryName') || ''
 
@@ -39,9 +39,9 @@ const ListPage = () => {
         prfstate: status,
     }
 
-    // [ 쿼리에 페이지값 바꿔주기 ]
-    const onPageChange = () => {
-        setShowPage(showPage + 1)
+    // 페이지값 바꿔주기
+    const onPageChange = ({ selected }) => {
+        setShowPage(selected + 1)
     };
 
 
@@ -54,6 +54,7 @@ const ListPage = () => {
             rows: 10,
         }, settingQuery))
         console.log("receive PerformanceListData: ", PerformanceListData)
+        dispatch(perfomanceListAction.removeDetailData())
     }, [selectDate, status, selectedRegion, category, showPage])
 
     const { PerformanceListData } = useSelector(state => state.list)
