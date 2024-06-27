@@ -241,7 +241,7 @@ const changePassword =
   const deleteUser = (id, navigate) => async (dispatch) => {
     try{
       dispatch({ type: types.DELETE_USER_REQUEST });
-      const response = await api.delete(`/user/${id}`);
+      const response = await api.delete(`/user/me/${id}`);
       if (response.status !== 200) throw new Error(response.error);
       dispatch({ type: types.DELETE_USER_SUCCESS });
       alert('회원탈퇴가 완료되었습니다.');
