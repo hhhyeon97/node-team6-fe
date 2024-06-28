@@ -16,18 +16,8 @@ const MyReviewCard = ({ review,  openReviewForm }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
+  const { selectedReserve, loading, error } = useSelector(state => state.reservation);
   let canceled = '';
-
-  // // [ 포스터를 누르면 해당 공연 디테일 페이지로 이동 ]
-  // const handlePosterClick = (event) => {
-  //   event.stopPropagation(); // 클릭 이벤트의 전파를 막음
-  //   navigate(`/performance/${item.ticket.SeqId}`);
-  // };
-
-  // // [ 예매취소된 예매일 경우 연하게 보이게 ]
-  // if(item.isCanceled){
-  //   canceled ='canceled';
-  // }
 
   // [ 리뷰쓰기 버튼 클릭 처리 ]
   const handleEditReview = (event) => {

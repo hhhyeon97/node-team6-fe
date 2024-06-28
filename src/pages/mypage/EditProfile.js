@@ -191,7 +191,7 @@ const EditProfile = () => {
             업데이트
           </button>
 
-          <div onClick={handleMemberOut}>회원탈퇴하기</div>
+          <p className='outMember_btn' onClick={handleMemberOut}>회원탈퇴하기</p>
 
           {user?.level === 'gold' ? (
             <AlertModal
@@ -200,7 +200,7 @@ const EditProfile = () => {
               selectedId={user?._id}
               selectedName="회원 탈퇴하기"
               alertMessage={`${user?.name}회원님, 10% 혜택을 포기하실건가요? 🥺 회원님은 10% 할인 혜택을 받으실 수 있습니다`}
-              btnText="혜택 포기하고 탈퇴하기"
+              btnText="회원탈퇴"
             />
           ) : (
             <AlertModal

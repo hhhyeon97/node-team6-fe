@@ -15,7 +15,7 @@ const AlertModal = ({showModal, setShowModal,selectedId, selectedName, selectedD
   const handleShow = () => setShow(true);
   const navigate = useNavigate();
 
-  const handleDelete = () => {
+  const handleDelete = (event) => {
     if (btnText === '예매취소') {
       console.log('예매취소')
       dispatch(reservationAction.cancelReservation(selectedId, navigate));

@@ -1,0 +1,172 @@
+.my_reserve_date_container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  font-size: 12px;
+}
+.my_reserve_date_container .card_section {
+  width: 65%;
+  padding-left: 0;
+  padding-right: 0;
+  margin-top: 11px;
+  font-size: 16px;
+}
+.my_reserve_date_container .calander_section {
+  font-size: 14px;
+  padding-left: 0;
+  width: 35%;
+}
+.my_reserve_date_container .calander_section .selectDate {
+  padding: 5px 0;
+}
+.my_reserve_date_container .calander_section .todayBTNBox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+.my_reserve_date_container .calander_section .todayButton {
+  background-color: #fff;
+  border: solid 1px black;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+.my_reserve_date_container .calander_section .react-calendar {
+  width: inherit;
+  border: none;
+}
+.my_reserve_date_container .calander_section .stickyBox {
+  position: sticky;
+  top: 20px;
+}
+.my_reserve_date_container .calander_section .react-calendar abbr[title] {
+  text-decoration: none;
+}
+.my_reserve_date_container .calander_section .react-calendar__tile {
+  height: 70px;
+}
+.my_reserve_date_container .calander_section .react-calendar__tile--now, .my_reserve_date_container .calander_section .react-calendar__tile--now:enabled:hover, .my_reserve_date_container .calander_section .react-calendar__tile--now:enabled:focus {
+  background-color: #fff;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  color: #000;
+}
+.my_reserve_date_container .calander_section .react-calendar__tile--active, .my_reserve_date_container .calander_section .react-calendar__tile--active:enabled:hover {
+  background-color: #f44f08;
+  border: #f44f08;
+  border-radius: 8px;
+  color: #fff !important;
+}
+.my_reserve_date_container .calander_section .react-calendar__tile:enabled:hover, .my_reserve_date_container .calander_section .react-calendar__tile:enabled:focus {
+  border-radius: 8px;
+}
+.my_reserve_date_container .calander_section .react-calendar__month-view__days__day--weekend {
+  color: #000;
+}
+.my_reserve_date_container .my_reserve_card_container {
+  border: 0.5px solid #bbb;
+  border-radius: 8px;
+  padding: 15px 20px 20px 13px;
+  margin: 13px 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+.my_reserve_date_container .my_reserve_card_container .card_btns {
+  width: 160px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.my_reserve_date_container .my_reserve_card_container .card_btns button {
+  font-size: 0.7em;
+}
+.my_reserve_date_container .my_reserve_card_container .okCancel {
+  font-size: 0.8em;
+  padding: 10px 15px;
+  border: 1px solid #000;
+}
+.my_reserve_date_container .my_reserve_card_container .disableCancel {
+  font-size: 0.8em;
+  pointer-events: none;
+  border: 1px solid #000;
+  padding: 10px 15px;
+}
+.my_reserve_date_container .my_reserve_card_container .canceled_reserve {
+  padding: 10px 15px;
+  font-size: 0.9em;
+}
+.my_reserve_date_container .my_reserve_card_container .review_btn {
+  font-size: 0.7em;
+  padding: 10px 15px;
+}
+.my_reserve_date_container .my_reserve_card_container .card_top {
+  display: flex;
+  justify-content: space-between;
+}
+.my_reserve_date_container .my_reserve_card_container .info_group {
+  display: flex;
+  font-size: 0.9em;
+  align-items: center;
+}
+.my_reserve_date_container .my_reserve_card_container .info_group > .info_item {
+  margin-right: 10px;
+}
+.my_reserve_date_container .my_reserve_card_container .info_item {
+  display: flex;
+  font-size: 0.8em;
+  align-items: center;
+}
+.my_reserve_date_container .my_reserve_card_container .info_item p {
+  margin-right: 3px;
+}
+.my_reserve_date_container .my_reserve_card_container .book_date > strong {
+  font-family: Gsans_B;
+  font-size: 1.2em;
+}
+.my_reserve_date_container .my_reserve_card_container .card_main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+.my_reserve_date_container .my_reserve_card_container .card_title {
+  width: 45%;
+  display: flex;
+  align-items: center;
+}
+.my_reserve_date_container .my_reserve_card_container .card_title h5 {
+  font-family: "Gsans_B";
+  font-size: 1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.my_reserve_date_container .my_reserve_card_container .poster_box {
+  width: 6em;
+  min-width: 6em;
+  margin-right: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 0.5px solid #bbb;
+  background-color: #bbb;
+}
+.my_reserve_date_container .my_reserve_card_container .poster_img {
+  width: 100%;
+  object-fit: cover;
+}
+.my_reserve_date_container .my_reserve_card_container .item_price {
+  width: 12%;
+  font-size: 0.8em;
+  display: flex;
+  flex-flow: column;
+}
+.my_reserve_date_container .my_reserve_card_container .card_btns {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.my_reserve_date_container .my_reserve_card_container .card_btns button {
+  font-size: 0.9em;
+  padding: 8px 12px;
+  border: 1px solid #000;
+}

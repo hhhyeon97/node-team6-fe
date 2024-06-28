@@ -1,0 +1,62 @@
+
+.mypage_side_bar_container {
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  left: -150px;
+  padding: 10px 0;
+
+  ul,
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* [ side-bar ] */
+  .mypage_sidebar {
+    padding-top: 40px;
+    color: #919191;
+
+    h3 {
+      font-size: 20px;
+      color: #000;
+    }
+
+    a:hover {
+      color: #000;
+    }
+
+    .link_menu {
+      margin-bottom: 30px;
+      font-size: 13px;
+
+      a {
+        display: inline-block;
+        padding: 8px 0 0 5px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  /* [ user-profile ] */
+  .user_profile_container {
+    width: 100%;
+    .user_name {
+      font-family: Gsans_B;
+      width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+      font-size: 25px;
+      border-bottom: 2px solid #000;
+      padding-bottom: 15px;
+    }
+  }
+}

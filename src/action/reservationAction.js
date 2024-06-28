@@ -35,7 +35,6 @@ const getReservationDetail = (id) => async (dispatch) => {
         dispatch({ type: types.GET_MY_RESERVE_DETAIL_REQUEST })
         const response = await api.get(`/reserve/me/${id}`);
         if (response.status !== 200) throw new Error(response.error)
-        console.log('rrr', response.data)
         dispatch({ type: types.GET_MY_RESERVE_DETAIL_SUCCESS, payload: response.data })
     } catch (error) {
         dispatch({ type: types.GET_MY_RESERVE_DETAIL_FAIL, payload: error.error })
@@ -49,7 +48,8 @@ const cancelReservation = (id, navigate) => async (dispatch) => {
         if (response.status !== 200) throw new Error(response.error)
         dispatch({ type: types.CANCEL_RESERVATION_SUCCESS })
         // 예매취소 반영
-        dispatch(reservationAction.getReservationDetail(id));
+        navigate("/mypage/reservations/by-date")
+        // dispatch(reservationAction.getReservationDetail(id));
     } catch (error) {
         dispatch({ type: types.CANCEL_RESERVATION_FAIL, payload: error.error })
     }
