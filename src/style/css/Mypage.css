@@ -342,6 +342,9 @@
   border-top: 1px solid #bbb;
   border-bottom: 1px solid #bbb;
 }
+.review_modal_container .review_text_area {
+  padding: 25px 0;
+}
 .review_modal_container .review_img {
   max-width: 8em;
   max-height: 8em;

@@ -82,6 +82,7 @@ const createReview = (formData, reserveId, setShowDialog, setSearchQuery) => asy
     if (response.status !== 200) throw new Error(response.error);
     dispatch({ type: types.CREATE_REVIEW_SUCCESS });
     setShowDialog(false);
+    alert("리뷰가 등록되었습니다!")
     dispatch(reservationAction.getMyReserve({ page: 1 }));
   } catch(error) {
     dispatch({ type: types.CREATE_REVIEW_FAIL, payload: error.error });

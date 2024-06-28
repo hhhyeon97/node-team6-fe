@@ -27,8 +27,8 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
   );
   // console.log('mode', mode)
   // console.log("selectedReview", selectedReview)
-  console.log("error", error)
-  console.log("errorMM", errorMessage)
+  // console.log("error", error)
+  // console.log("errorMM", errorMessage)
   
   useEffect(() => {
     if (error) {
@@ -102,7 +102,7 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
         {/* 별점 */}
         <Form className="form-container" onSubmit={handleSubmit}>
             <Form.Group as={Col} className='star_area' controlId="starRate">
-              <Form.Label>별점</Form.Label>
+              <Form.Label>공연 평가하기</Form.Label>
                 <div class="star_select_group">
                   {errorMessage && <div className="error-message">{errorMessage}</div>}
                   <ReactStars
@@ -124,7 +124,7 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
               /> */}
             </Form.Group>
             {/* 리뷰 이미지 */}
-            <Form.Group className="mb-3 review_img_area" controlId="Image" required>
+            <Form.Group className="review_img_area" controlId="Image" required>
               {/* <Form.Label>Image</Form.Label> */}
               <div class="review_img">
                   <img
@@ -141,11 +141,14 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
               </div>
             </Form.Group>
             {/* 리뷰 내용 */}
-            <Form.Group as={Col} controlId="reviewText">
-              <Form.Label>reviewText</Form.Label>
+            <Form.Group as={Col} controlId="reviewText" className='review_text_area'>
+              {/* <Form.Label>reviewText</Form.Label> */}
               <Form.Control
                 onChange={handleChange}
-                type="text"
+                as="textarea"
+                rows={5}
+                // type="text-area"
+                required
                 placeholder="최소 15자 이상 입력해주세요"
                 required
                 value={formData?.reviewText}
@@ -154,11 +157,11 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
         
           {mode === "new" ? (
             <Button variant="dark" type="submit">
-              Submit
+              등록하기
             </Button>
           ) : (
             <Button variant="dark" type="submit">
-              Edit
+              수정하기
             </Button>
           )}
         </Form>

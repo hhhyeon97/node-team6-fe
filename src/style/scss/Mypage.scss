@@ -344,9 +344,9 @@
       padding: 65px 55px 0 0;
     }
   }  
-  .form-container{
-    // padding: 10px 0;
-  }
+  // .form-container{
+  //   // padding: 10px 0;
+  // }
   .star_select_group{
     display: flex;
     align-items: center;
@@ -380,6 +380,10 @@
     padding: 25px 0;
     border-top: 1px solid #bbb;
     border-bottom: 1px solid #bbb;
+  }
+
+  .review_text_area{
+    padding: 25px 0;
   }
   
   .review_img{
