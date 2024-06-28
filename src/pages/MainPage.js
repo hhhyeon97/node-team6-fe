@@ -17,6 +17,7 @@ const MainPage = () => {
   useEffect(() => {
     dispatch(perfomanceListAction.removeDetailData())
   }, [])
+
   return (
     <div>
       <MainBanner />

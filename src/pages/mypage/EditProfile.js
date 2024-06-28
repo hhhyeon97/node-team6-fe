@@ -11,8 +11,7 @@ import AlertModal from '../../component/AlertModal';
 const EditProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state.user);
-  const { error } = useSelector((state) => state.user);
+  const { user, loading, error } = useSelector((state) => state.user);
   const [showModal, setShowModal] = useState(false);
   const [emailError, setEmailError] = useState('');
   const [nameError, setNameError] = useState('');
@@ -90,7 +89,7 @@ const EditProfile = () => {
       return;
     }
 
-    dispatch(userActions.editUser({ ...formData }, navigate));
+    dispatch(userActions.editUser({ ...formData }));
   };
 
   const formatPhoneNumber = (value) => {

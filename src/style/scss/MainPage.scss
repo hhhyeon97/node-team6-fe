@@ -20,11 +20,11 @@
         button{
             background-color: white;
             border-radius: 0.8rem;
+            border: 1px solid black;
             margin-right: 0.4rem;
             width: 5rem;
             height: 2.3rem;
             line-height: 2.1rem;
-            border-style: solid;
         }
         button:hover{
             background-color: black;
@@ -50,6 +50,7 @@
         justify-content: center;
         align-items: center;
         overflow: hidden;
+        object-fit: cover;
         height: 29vh;
         border-radius: 0.5rem;
         margin-bottom: 0.4rem;
@@ -57,6 +58,7 @@
         border: 1px solid #e4e4e4;
     }
     .performance_card_img{
+        width: 100%;
         height: 100%;
     }
 
@@ -143,8 +145,9 @@
         align-items: center;
         height: 32vh;
         overflow: hidden;
+        object-fit: cover;
     }
-    .planned_card_img{ width: 100%; height: max-content;}
+    .planned_card_img{ width: 100%; height: 100%;}
     .like-heart{ 
         position: absolute; 
         color: gray;
@@ -244,10 +247,12 @@
             .review_card_img_box{
                 width: 30%;
                 overflow: hidden;
+                object-fit: cover;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 .review_card_img{
+                    width: 100%;
                     height: 100%;
                 }
             }
@@ -276,6 +281,7 @@
                         border-radius: 500px;
                         margin-right: 0.3rem;
                         overflow: hidden;
+                        object-fit: cover;
                             img {
                             width: 2.5rem;
                             height: 2.5rem;
