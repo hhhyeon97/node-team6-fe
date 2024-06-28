@@ -83,8 +83,8 @@ const createReview = (formData, reserveId, setShowDialog, setSearchQuery) => asy
     dispatch({ type: types.CREATE_REVIEW_SUCCESS });
     setShowDialog(false);
     dispatch(reservationAction.getMyReserve({ page: 1 }));
-  } catch {
-    dispatch({ type: types.CREATE_REVIEW_FAIL });
+  } catch(error) {
+    dispatch({ type: types.CREATE_REVIEW_FAIL, payload: error.error });
   }
 }
 
