@@ -16,15 +16,7 @@ const LoginPage = () => {
   const { user, error, loading } = useSelector((state) => state.user);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // 비밀번호 표시 상태
-  // const error = useSelector((state) => state.user.error);
-
-  // const KAKAO_REST_API_KEY = process.env.REACT_APP_KAKAO_REST_API_KEY;
-  // const KAKAO_REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI;
-
-  // useEffect(() => {
-  //   dispatch(userActions.resetError());
-  // }, [dispatch]);
+  const [showPassword, setShowPassword] = useState(false);
 
   const loginWithEmail = (event) => {
     event.preventDefault();
