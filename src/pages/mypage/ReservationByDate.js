@@ -18,6 +18,8 @@ const ReservationByDate = () => {
 	const [showDialog, setShowDialog] = useState(false);
 	const [mode, setMode] = useState("new");
 
+	console.log("date", selectDate)
+
 	useEffect(() => {
 		const formatDate = selectDate.toString()
 		console.log("formatDate", formatDate)
@@ -47,7 +49,11 @@ const ReservationByDate = () => {
 						<div className="stickyBox">
 							{selectDate ? <div className="selectDate">선택 날짜: {Dateformat(selectDate)} </div> :
 								<div className="selectDate"> 선택 날짜: {Dateformat(new Date())} </div>}
-							<CalenderBox selectDate={selectDate} setSelectDate={setSelectDate} />
+							<CalenderBox 
+								selectDate={selectDate} 
+								setSelectDate={setSelectDate} 
+								reservations={reservationByDateList} // 예약 정보 전달
+							/>
 							<div className="todayBTNBox">
 								<button onClick={() => backToday()} className="todayButton">오늘로</button>
 							</div>

@@ -418,7 +418,7 @@
 .my_reserve_date_container .calander_section .react-calendar__tile--active, .my_reserve_date_container .calander_section .react-calendar__tile--active:enabled:hover {
   background-color: #f44f08;
   border-radius: 8px;
-  color: #fff;
+  color: #fff !important;
 }
 .my_reserve_date_container .calander_section .react-calendar__tile:enabled:hover, .my_reserve_date_container .calander_section .react-calendar__tile:enabled:focus {
   border-radius: 8px;
