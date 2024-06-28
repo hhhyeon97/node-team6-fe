@@ -38,6 +38,9 @@
 .mypage-container .transparent {
   opacity: 0;
 }
+.mypage-container .title_section p {
+  font-size: 1em;
+}
 .mypage-container .mypage-right {
   display: flex;
   flex-flow: column;
@@ -379,15 +382,16 @@
   font-size: 12px;
 }
 .my_reserve_date_container .card_section {
-  width: 58%;
+  width: 65%;
   padding-left: 0;
   padding-right: 0;
   margin-top: 11px;
-  font-size: 12px;
+  font-size: 16px;
 }
 .my_reserve_date_container .calander_section {
   font-size: 14px;
   padding-left: 0;
+  width: 35%;
 }
 .my_reserve_date_container .calander_section .selectDate {
   padding: 5px 0;
@@ -405,7 +409,15 @@
   padding: 5px 10px;
 }
 .my_reserve_date_container .calander_section .react-calendar {
+  width: inherit;
   border: none;
+}
+.my_reserve_date_container .calander_section .stickyBox {
+  position: sticky;
+  top: 20px;
+}
+.my_reserve_date_container .calander_section .react-calendar abbr[title] {
+  text-decoration: none;
 }
 .my_reserve_date_container .calander_section .react-calendar__tile {
   height: 70px;
@@ -418,6 +430,7 @@
 }
 .my_reserve_date_container .calander_section .react-calendar__tile--active, .my_reserve_date_container .calander_section .react-calendar__tile--active:enabled:hover {
   background-color: #f44f08;
+  border: #f44f08;
   border-radius: 8px;
   color: #fff !important;
 }
