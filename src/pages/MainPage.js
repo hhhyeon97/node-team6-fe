@@ -15,7 +15,6 @@ import Review from '../component/mainpage/Review';
 const MainPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(likeAction.getLikeList());
     dispatch(perfomanceListAction.removeDetailData())
   }, [])
   return (
