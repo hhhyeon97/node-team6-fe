@@ -383,6 +383,10 @@
   border: 0.5px solid #000;
 }
 
+.modal-backdrop {
+  --bs-backdrop-bg: #0000002b !important;
+}
+
 .my_reserve_date_container {
   display: flex;
   justify-content: space-between;
