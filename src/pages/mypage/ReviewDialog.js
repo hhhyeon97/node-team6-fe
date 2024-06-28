@@ -18,17 +18,11 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
   const dispatch = useDispatch();
   const { selectedReserve } = useSelector((state) => state.reservation);
   const { selectedReview } = useSelector((state) => state.review);
-  // const { error } = useSelector((state) => state.reservation);
   const { error } = useSelector((state) => state.review);
   const [errorMessage, setErrorMessage] = useState(null);
-  // const [formData, setFormData] = useState({ ...InitialFormData });
   const [formData, setFormData] = useState(
     mode === "new" ? { ...InitialFormData } : selectedReview
   );
-  // console.log('mode', mode)
-  // console.log("selectedReview", selectedReview)
-  // console.log("error", error)
-  // console.log("errorMM", errorMessage)
   
   useEffect(() => {
     if (error) {

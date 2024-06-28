@@ -232,22 +232,6 @@
     }
 }
 
-// [ 나의 리뷰 ]
-.my_review_all_container{
-  .my_review_card{
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
-    border: 0.5px solid #bbb;
-    border-radius: 8px;
-  }
-  .card_main{
-    display: flex;
-    flex-flow: column;
-    border: 1px solid red;
-  }
-}
-
 // [ 나의 예매 날짜로 조회 ]
 .ByDateReservationItem {
   margin-bottom: 10px;

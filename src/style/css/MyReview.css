@@ -1,0 +1,12 @@
+.my_review_all_container .my_review_card {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  border: 0.5px solid #bbb;
+  border-radius: 8px;
+}
+.my_review_all_container .card_main {
+  display: flex;
+  flex-flow: column;
+  border: 1px solid red;
+}
