@@ -1,6 +1,13 @@
-.mypage-container {
+.mypage-wrap-container{
+  padding: 0;
+  padding-top: 15px;
+  position: relative;
   display: flex;
   justify-content: space-between;
+}
+.mypage-container {
+  width: 100%;
+  min-height: 500px;
 
   h1,
   h2,
@@ -33,59 +40,14 @@
     opacity: 0;
   }
 
-  /* < mypage-left > */
-  .mypage-left {
-    // border: 2px solid green;
-    width: 14%;
-    display: flex;
-    flex-flow: column;
-    align-items: flex-start;
-
-    /* [ side-bar ] */
-    .mypage_sidebar {
-      // border: 1px solid red;
-      padding-top: 40px;
-      color: #919191;
-
-      h3 {
-        font-size: 20px;
-        color: #000;
-      }
-
-      a:hover {
-        color: #000;
-      }
-
-      .link_menu {
-        margin-bottom: 30px;
-        font-size: 13px;
-
-        a {
-          display: inline-block;
-          padding: 8px 0 0 5px;
-          cursor: pointer;
-        }
-      }
-    }
-
-    /* [ user-profile ] */
-    .user_profile_container {
-      .user_name {
-        font-family: Gsans_B;
-      }
-    }
-  }
 
   /* < mypage-right > */
   .mypage-right {
     display: flex;
-    width: 86%;
     flex-flow: column;
-    // border: 2px solid green;
 
     /* [ 회원 등급 정보 ] */
     .user_level_section {
-      // border: 1px solid blue;
       display: flex;
       padding: 10px;
       background-color: #000;

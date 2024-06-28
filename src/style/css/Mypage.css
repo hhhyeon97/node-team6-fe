@@ -1,8 +1,15 @@
 @charset "UTF-8";
-.mypage-container {
+.mypage-wrap-container {
+  padding: 0;
+  padding-top: 15px;
+  position: relative;
   display: flex;
   justify-content: space-between;
-  /* < mypage-left > */
+}
+
+.mypage-container {
+  width: 100%;
+  min-height: 500px;
   /* < mypage-right > */
 }
 .mypage-container h1,
@@ -31,40 +38,8 @@
 .mypage-container .transparent {
   opacity: 0;
 }
-.mypage-container .mypage-left {
-  width: 14%;
-  display: flex;
-  flex-flow: column;
-  align-items: flex-start;
-  /* [ side-bar ] */
-  /* [ user-profile ] */
-}
-.mypage-container .mypage-left .mypage_sidebar {
-  padding-top: 40px;
-  color: #919191;
-}
-.mypage-container .mypage-left .mypage_sidebar h3 {
-  font-size: 20px;
-  color: #000;
-}
-.mypage-container .mypage-left .mypage_sidebar a:hover {
-  color: #000;
-}
-.mypage-container .mypage-left .mypage_sidebar .link_menu {
-  margin-bottom: 30px;
-  font-size: 13px;
-}
-.mypage-container .mypage-left .mypage_sidebar .link_menu a {
-  display: inline-block;
-  padding: 8px 0 0 5px;
-  cursor: pointer;
-}
-.mypage-container .mypage-left .user_profile_container .user_name {
-  font-family: Gsans_B;
-}
 .mypage-container .mypage-right {
   display: flex;
-  width: 86%;
   flex-flow: column;
   /* [ 회원 등급 정보 ] */
   /* [ 나의 예매_전체조회 카드 ]*/
