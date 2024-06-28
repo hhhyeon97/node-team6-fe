@@ -57,3 +57,8 @@ export const USER_LEVELS = ['normal', 'gold', 'suspend'];
 export const UPDATE_LEVEL_REQUEST = 'UPDATE_LEVEL_REQUEST';
 export const UPDATE_LEVEL_SUCCESS = 'UPDATE_LEVEL_SUCCESS';
 export const UPDATE_LEVEL_FAIL = 'UPDATE_LEVEL_FAIL';
+
+// 회원 탈퇴
+export const DELETE_USER_REQUEST ='DELETE_USER_REQUEST';
+export const DELETE_USER_SUCCESS ='DELETE_USER_SUCCESS';
+export const DELETE_USER_FAIL ='DELETE_USER_FAIL';

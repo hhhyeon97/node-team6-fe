@@ -87,30 +87,72 @@ const createReview = (formData, reserveId, setShowDialog, setSearchQuery) => asy
     dispatch({ type: types.CREATE_REVIEW_FAIL });
   }
 }
-// [ 리뷰를 작성한 예매인지 체크하기 ]
-const checkReviewed = (reserveTitle, reserveId) => async (dispatch) => {
-  try {
-    dispatch({ type: types.CHECKE_REVIEWED_RESERVATION_REQUEST });
-    const response = await api.get(`/review/check/${reserveId}`);
-    // console.log('action:', reserveTitle, '리뷰결과:',response.data.data);
+
+// [ 리뷰 수정하기 ]
+const editReview = (formData, reviewId, setShowDialog, setSearchQuery) => async (dispatch) => {
+  try{
+    dispatch({ type: types.EDIT_REVIEW_REQUEST });
+    const response = await api.put("/review", { ...formData, reviewId });
     if (response.status !== 200) throw new Error(response.error);
-    dispatch({
-      type: types.CHECKE_REVIEWED_RESERVATION_SUCCESS,
-      payload: {
-        reserveId,
-        reviewed: !!response.data.data // 예매 항목에 대한 리뷰가 있는지 여부를 boolean으로 변환
-      }
-    });
-  } catch (error) {
-    dispatch({ type: types.CHECKE_REVIEWED_RESERVATION_FAIL });
+    dispatch({ type: types.EDIT_REVIEW_SUCCESS });
+    setShowDialog(false);
+    dispatch(reviewAction.getMyReview({ page: 1 }));
+  }catch(error){
+    dispatch({ type: types.EDIT_REVIEW_FAIL });
+  }
+}
+
+// [ 리뷰 삭제하기 ]
+const deleteReview = (id, navigate) => async (dispatch) => {
+  try{
+    dispatch({ type: types.DELETE_REVIEW_REQUEST });
+    const response = await api.delete(`/review/${id}`);
+    if (response.status !== 200) throw new Error(response.error);
+    dispatch({ type: types.DELETE_REVIEW_SUCCESS });
+    alert("리뷰를 삭제했습니다.")
+    dispatch(reviewAction.getMyReview({ page: 1 }));
+  }catch(error){
+    dispatch({ type: types.DELETE_REVIEW_FAIL });
+  }
+}
+
+// [ 리뷰를 작성한 예매인지 체크하기 ]
+// const checkReviewed = (reserveTitle, reserveId) => async (dispatch) => {
+//   try {
+//     dispatch({ type: types.CHECKE_REVIEWED_RESERVATION_REQUEST });
+//     const response = await api.get(`/review/check/${reserveId}`);
+//     // console.log('action:', reserveTitle, '리뷰결과:',response.data.data);
+//     if (response.status !== 200) throw new Error(response.error);
+//     dispatch({
+//       type: types.CHECKE_REVIEWED_RESERVATION_SUCCESS,
+//       payload: {
+//         reserveId,
+//         reviewed: !!response.data.data // 예매 항목에 대한 리뷰가 있는지 여부를 boolean으로 변환
+//       }
+//     });
+//   } catch (error) {
+//     dispatch({ type: types.CHECKE_REVIEWED_RESERVATION_FAIL });
+//   }
+// }
+
+const getMainPageReview = ({starRate,reviewQty}) => async(dispatch) =>{
+  try{
+    dispatch({type:types.GET_MAIN_PAGE_REVIEW_REQUEST});
+    const response = await api.get(`/review/main?starRate=${starRate}&reviewQty=${reviewQty}`);
+    dispatch({type:types.GET_MAIN_PAGE_REVIEW_SUCCESS,payload:response.data.data})
+  }catch(error){
+    dispatch({type:types.GET_MAIN_PAGE_REVIEW_FAIL});
   }
 }
 
 export const reviewAction = {
   getReviewList,
   createReview,
-  checkReviewed,
+  // checkReviewed,
   getAllReview,
   getMyReview,
-  updateReviewState
+  updateReviewState,
+  editReview,
+  deleteReview,
+  getMainPageReview
 }
