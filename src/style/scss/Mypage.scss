@@ -80,6 +80,7 @@
       display: flex;
       padding: 10px;
       background-color: #000;
+      margin-bottom: 50px;
 
       .vertical_bar {
         color: #4b4b4b;
@@ -279,10 +280,4 @@
     background-color: #bbb !important;
     border: #bbb;
   }
-}
-
-// 나의 예매 날짜로 조회
-.ByDateReservationItem {
-  border: solid 1px blue;
-  margin-bottom: 10px;
 }
