@@ -3,33 +3,30 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { reviewAction } from '../../action/reviewAction';
+import { reservationAction } from '../../action/reservationAction';
 import { Button } from "react-bootstrap";
 import { reserveFormat } from '../../utils/Date';
 import { priceformat } from '../../utils/Date';
 import { convertToKST } from '../../utils/Date';
-import { Alert } from "react-bootstrap";
+import AlertModal from '../AlertModal';
 
 const MyReserveCard = ({ item,  openReviewForm, isReviewed }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let canceled = '';
-
-  // console.log("리뷰됬나요", item.ticket.SeqTitle, ":", isReviewed)
-
-	// [ 리뷰를 남긴 예매인지 체크하기 ]
-	// useEffect(() => {
-	// 	dispatch(reviewAction.checkReviewed(item._id));
-	// }, [item._id, dispatch]);
-
-  // console.log('reviewed?',reviewedReserve._id )
-  // console.log("여기서 찍자", isReviewed)
-
-  // console.log("item._id", item._id, ": isReviewed_id", isReviewed)
+  const [showModal, setShowModal] = useState(false);
+  const [cancelBtnClass, setCancelBtnClass] = useState('');
 
   // [ 포스터를 누르면 해당 공연 디테일 페이지로 이동 ]
   const handlePosterClick = (event) => {
     event.stopPropagation(); // 클릭 이벤트의 전파를 막음
-    navigate(`/performance/${item.ticket.SeqId}`);
+    navigate(`/performance/${item?.ticket?.SeqId}`);
+  };
+
+  // [ 카드 클릭 시 이동 ]
+  const handleCardClick = (event) => {
+    event.stopPropagation(); // 클릭 이벤트의 전파를 막음
+    navigate(`/mypage/reservations/${item._id}`);
   };
 
   // [ 예매취소된 예매일 경우 연하게 보이게 ]
@@ -43,9 +40,28 @@ const MyReserveCard = ({ item,  openReviewForm, isReviewed }) => {
     openReviewForm(item); // 리뷰쓰기 폼 열기
   };
 
+  // [ 관람 당일 이후거나 이미 예매취소했으면 예매취소 불가능 ]
+  useEffect(() => {
+    const reservationDate = new Date(item?.reservationDate);
+    const currentDate = new Date();
+
+    if (reservationDate > currentDate && !item.isCanceled) {
+      setCancelBtnClass('okCancel');
+    } else {
+      setCancelBtnClass('disableCancel');
+    }
+  }, [item]);
+
+  // [ 예매 취소 ]
+  const handleCancle = (event) => {
+    event.stopPropagation();
+    console.log("취소")
+    setShowModal(true);
+  }
+
   return(
     <div className={`${canceled} my_reserve_card_container`}
-    onClick={() => navigate(`/mypage/reservations/${item._id}`)}>
+    onClick={handleCardClick}>
     <div className="card_top">
       <div class="info_group">
         <div className='info_item'><p>예매번호</p><strong>{item.reservationId}</strong></div>
@@ -61,19 +77,19 @@ const MyReserveCard = ({ item,  openReviewForm, isReviewed }) => {
           <div className='poster_box' onClick={handlePosterClick} >
             <img
               className='poster_img'
-              src={item.ticket.SeqImage}
+              src={item?.ticket?.SeqImage}
               style={{ width: '6em' }}
               alt='예약공연 포스터'
               />
           </div>
-          <h5>{item.ticket.SeqTitle}</h5>
+          <h5>{item?.ticket?.SeqTitle}</h5>
         </div>
       <div className='item_price'>
         <strong>{priceformat(item.totalPrice)}원 /</strong>
-        <strong>수량 {item.ticketNum}</strong>
+        <strong>수량 {item?.ticketNum}</strong>
       </div>
-      {item.isCanceled ? (<div className='canceled_reserve'>예매취소됨</div>):(<div className='transparent canceled_reserve'>예매취소됨</div>)}
-      {!item.ticket.isReview && !item.isCanceled ? (
+      {item.isCanceled ? (<div className='canceled_reserve'>예매취소됨</div>):(<Button onClick={handleCancle} className={cancelBtnClass}>예매취소</Button>)}
+      {!item?.ticket?.isReview && !item.isCanceled ? (
         <Button variant='dark' size="sm" className='review_btn' onClick={handleReviewButtonClick}>
           리뷰작성
         </Button>
@@ -83,6 +99,15 @@ const MyReserveCard = ({ item,  openReviewForm, isReviewed }) => {
         </Button>
       )}
       </div>
+      <AlertModal 
+        showModal={showModal}
+        setShowModal={setShowModal}
+        selectedId={item._id}
+        selectedName={item.ticket.SeqTitle}
+        selectedDate={reserveFormat(item.reservationDate)}
+        alertMessage="해당 공연의 예매를 정말로 취소하시겠습니까?(예매취소는 관람일 하루 전날까지만 가능합니다)"
+        btnText="예매취소"
+      />
   </div>
     
   )
