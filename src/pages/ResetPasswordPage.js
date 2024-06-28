@@ -100,7 +100,7 @@ const ResetPasswordPage = () => {
           <div className="password_input_wrap">
             <Form.Control
               type={showPassword ? 'text' : 'password'}
-              placeholder="새 비밀번호를 입력하세요"
+              placeholder="새 비밀번호를 입력해 주세요"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -126,7 +126,7 @@ const ResetPasswordPage = () => {
           <div className="password_input_wrap">
             <Form.Control
               type={showConfirmPassword ? 'text' : 'password'}
-              placeholder="새 비밀번호를 다시 입력하세요"
+              placeholder="새 비밀번호를 다시 입력해 주세요"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required

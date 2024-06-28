@@ -91,7 +91,7 @@ const getPerformanceList = (query, settingQuery) => async (dispatch) => {
         const jsonData = xmlToJson(XmlNode)
 
         const cleanedData = cleanUp(jsonData);
-        // console.log("Cleaned json data:", cleanedData.dbs.db); // 불필요한거 지우기
+        console.log("Cleaned json data:", cleanedData.dbs.db); // 불필요한거 지우기
 
         dispatch({ type: types.PERFORMANCELIST_GET_SUCCESS, payload: cleanedData.dbs.db })
     } catch (error) {
@@ -118,7 +118,7 @@ const getPerformanceDetail = (id, settingQuery) => async (dispatch) => {
         const jsonData = xmlToJson(XmlNode)
 
         const cleanedData = cleanUp(jsonData);
-        // console.log("Cleaned json data:", cleanedData.dbs); // 불필요한거 지우기
+        console.log("Cleaned json data:", cleanedData.dbs); // 불필요한거 지우기
 
         dispatch({ type: types.GET_PERFORMANCE_DETAIL_SUCCESS, payload: cleanedData.dbs.db })
 

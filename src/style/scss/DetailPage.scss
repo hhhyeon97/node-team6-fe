@@ -10,7 +10,12 @@
     width: max-content;
     vertical-align: middle;
 
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
+  .state_run {
+    background-color: black;
+    color: white;
   }
 
   .DetailTitle {
@@ -64,11 +69,11 @@
           border-radius: 8px;
         }
 
-        .like_heart:hover{
-          color: #D61F1F;
+        .like_heart:hover {
+          color: #d61f1f;
         }
-        .like_heart_red{
-          color: #D61F1F;
+        .like_heart_red {
+          color: #d61f1f;
         }
       }
 
@@ -80,57 +85,8 @@
       .DetailButtonBox {
         display: flex;
         justify-content: space-between;
+        margin-bottom: 0;
 
-        .ticketNum {
-          border: solid 1px black;
-          text-align: center;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border-radius: 5px;
-          padding: 0;
-          font-size: 0.7em;
-
-          position: relative;
-
-          ul {
-            padding: 0;
-            margin: 0;
-          }
-
-          .liBox {
-            position: absolute;
-            border: solid 1px black;
-            width: 100%;
-            left: 0;
-            top: 40px;
-            background-color: white;
-            border-radius: 8px;
-            animation: slideDown 0.8s forwards;
-
-            li {
-              list-style: none;
-              cursor: pointer;
-              padding: 2px 0;
-            }
-
-            li:hover {
-              background-color: black;
-              color: white;
-            }
-          }
-
-          @keyframes slideDown {
-            0% {
-              transform: translateY(-10px);
-              opacity: 0;
-            }
-            100% {
-              transform: translateY(25px);
-              opacity: 1;
-            }
-          }
-        }
         .reservationBtnBox {
           padding: 0;
 
@@ -141,6 +97,23 @@
             background-color: black;
             color: white;
             width: 100%;
+          }
+
+          .true {
+            background-color: #bbb;
+            border: none;
+          }
+
+          .trueColor {
+            margin-top: 3px;
+            text-align: center;
+            color: red;
+            font-size: 20px;
+            display: block;
+          }
+
+          .falseColor {
+            display: none;
           }
         }
       }

@@ -82,8 +82,8 @@ li {
 
 .notice_date {
   margin-left: auto;
-  position: relative;
-  left: 150px;
+  position: fixed;
+  right: 150px;
 }
 
 .thumb_icon {
@@ -93,13 +93,15 @@ li {
 }
 
 .notice_menu_wrap span {
-  margin: auto 25px;
+  margin: auto 15px;
+  background-color: #bbb;
+  padding: 2px;
+  border-radius: 8px;
 }
 
 .notice_menu_wrap span:last-child {
-  margin-left: 60px;
-  position: absolute;
-  right: 390px;
+  margin-left: auto;
+  margin-right: 120px;
 }
 
 .no_list_message {

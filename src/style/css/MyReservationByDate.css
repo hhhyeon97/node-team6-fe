@@ -1,0 +1,144 @@
+@charset "UTF-8";
+.Info {
+  margin-top: 20px;
+}
+.Info .CalenderBox {
+  margin-bottom: 30px;
+}
+.Info .CalenderBox .stickyBox {
+  position: sticky;
+  top: 30px;
+  /*실제 캘린더 내의 css*/
+}
+.Info .CalenderBox .stickyBox .selectDate {
+  text-align: end;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: none;
+}
+.Info .CalenderBox .stickyBox .calender_custom {
+  padding: 3px;
+  width: 100%;
+  /* line-height: 1.8em; */
+  border: none;
+}
+.Info .CalenderBox .stickyBox .calender_custom .react-calendar__navigation__label {
+  flex-grow: 0 !important;
+  font-family: Gsans_B;
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: 3px;
+}
+.Info .CalenderBox .stickyBox .calender_custom .react-calendar__navigation__next-button,
+.Info .CalenderBox .stickyBox .calender_custom .react-calendar__navigation__prev-button {
+  transform: scale(1.6);
+}
+.Info .CalenderBox .stickyBox .calender_custom abbr[title] {
+  text-decoration: none;
+  color: #9f9f9f;
+}
+.Info .CalenderBox .stickyBox .calender_custom .react-calendar__month-view__days__day--weekend {
+  color: black;
+}
+.Info .CalenderBox .stickyBox .calender_custom .react-calendar__tile--now {
+  background: none;
+  border-radius: 15px;
+  border: solid 1px #bbb;
+  color: black;
+}
+.Info .CalenderBox .stickyBox .calender_custom .react-calendar__tile--active:enabled:hover,
+.Info .CalenderBox .stickyBox .calender_custom .react-calendar__tile--active:enabled:focus,
+.Info .CalenderBox .stickyBox .calender_custom .react-calendar__tile--active {
+  border-radius: 15px;
+  background-color: #f44f08;
+  color: white;
+  border-color: #f44f08;
+}
+.Info .CalenderBox .stickyBox .calender_custom .react-calendar__month-view__days {
+  /* row-gap: 4px; */
+  min-width: 100%;
+  min-height: 200px;
+}
+.Info .CalenderBox .stickyBox .todayBTNBox {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  display: none;
+}
+.Info .CalenderBox .stickyBox .todayBTNBox .todayButton {
+  background: none;
+  border: solid 1px #bbb;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-family: "Gsans_L";
+  font-weight: normal;
+  font-size: 14px;
+}
+.Info .ByDateReservationItem {
+  border: solid 1px #bbb;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+}
+.Info .ByDateReservationItem .top_Info {
+  color: #9f9f9f;
+  font-size: 10px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+.Info .ByDateReservationItem .top_Info .top_Info_left {
+  display: flex;
+  padding-right: 0;
+  max-width: 70%;
+}
+.Info .ByDateReservationItem .top_Info .top_Info_left div:first-child {
+  margin-right: 8px;
+}
+.Info .ByDateReservationItem .top_Info .top_Info_right {
+  color: black;
+  padding-left: 0;
+  min-width: 30%;
+  text-align: end;
+}
+.Info .ByDateReservationItem .top_Info .top_Info_right span {
+  font-family: Gsans_B;
+  font-size: 13px;
+}
+.Info .ByDateReservationItem .top_Info span {
+  color: black;
+  margin-left: 2px;
+}
+.Info .ByDateReservationItem .bottom_Info {
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+.Info .ByDateReservationItem .bottom_Info .poster_img {
+  min-height: 140px;
+  border-radius: 10px;
+  background-size: 100%;
+  margin-right: 20px;
+}
+.Info .ByDateReservationItem .bottom_Info .item_title {
+  font-family: Gsans_B;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.Info .ByDateReservationItem .bottom_Info .item_cost {
+  display: flex;
+  font-size: 13px;
+}
+.Info .ByDateReservationItem .bottom_Info .item_cost div {
+  font-family: Gsans_B;
+}
+.Info .ByDateReservationItem .bottom_Info .item_cost div span {
+  font-family: Gsans_M;
+}

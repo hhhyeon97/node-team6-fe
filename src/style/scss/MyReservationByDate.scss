@@ -1,0 +1,173 @@
+.Info {
+  margin-top: 20px;
+
+  .CalenderBox {
+    margin-bottom: 30px;
+
+    .stickyBox {
+      position: sticky;
+      top: 30px;
+
+      .selectDate {
+        text-align: end;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        display: none;
+      }
+
+      /*실제 캘린더 내의 css*/
+      .calender_custom {
+        padding: 3px;
+        width: 100%;
+        /* line-height: 1.8em; */
+        border: none;
+
+        .react-calendar__navigation__label {
+          flex-grow: 0 !important;
+          // font-size: 1.5em;
+          font-family: Gsans_B;
+          display: flex;
+          align-items: center;
+          position: relative;
+          top: 3px;
+        }
+
+        .react-calendar__navigation__next-button,
+        .react-calendar__navigation__prev-button {
+          // min-width: 35px;
+          // font-weight: 600;
+          transform: scale(1.6);
+        }
+
+        abbr[title] {
+          text-decoration: none;
+          color: #9f9f9f;
+        }
+
+        .react-calendar__month-view__days__day--weekend {
+          color: black;
+        }
+
+        .react-calendar__tile--now {
+          background: none;
+          border-radius: 15px;
+          border: solid 1px #bbb;
+          color: black;
+        }
+
+        .react-calendar__tile--active:enabled:hover,
+        .react-calendar__tile--active:enabled:focus,
+        .react-calendar__tile--active {
+          border-radius: 15px;
+          background-color: #f44f08;
+          color: white;
+          border-color: #f44f08;
+        }
+
+        .react-calendar__month-view__days {
+          /* row-gap: 4px; */
+          min-width: 100%;
+          min-height: 200px;
+        }
+      }
+
+      .todayBTNBox {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        display: none;
+
+        .todayButton {
+          background: none;
+          border: solid 1px #bbb;
+          border-radius: 20px;
+          padding: 5px 10px;
+
+          font-family: "Gsans_L";
+          font-weight: normal;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  // 나의 예매 날짜로 조회
+  .ByDateReservationItem {
+    border: solid 1px #bbb;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    min-height: 190px;
+    display: flex;
+    flex-direction: column;
+
+    .top_Info {
+      color: #9f9f9f;
+      font-size: 10px;
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 10px;
+
+      .top_Info_left {
+        display: flex;
+        padding-right: 0;
+        max-width: 70%;
+
+        div:first-child {
+          margin-right: 8px;
+        }
+      }
+
+      .top_Info_right {
+        color: black;
+        padding-left: 0;
+        min-width: 30%;
+        text-align: end;
+        span {
+          font-family: Gsans_B;
+          font-size: 13px;
+        }
+      }
+
+      span {
+        color: black;
+        margin-left: 2px;
+      }
+    }
+
+    .bottom_Info {
+      padding: 0 20px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+
+      .poster_img {
+        min-height: 140px;
+        border-radius: 10px;
+        background-size: 100%;
+        margin-right: 20px;
+      }
+
+      .item_title {
+        font-family: Gsans_B;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .item_cost {
+        display: flex;
+        font-size: 13px;
+
+        div {
+          font-family: Gsans_B;
+
+          span {
+            font-family: Gsans_M;
+          }
+        }
+      }
+    }
+  }
+}

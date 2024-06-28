@@ -46,7 +46,7 @@ const FindPasswordPage = () => {
           </Form.Label>
           <Form.Control
             type="email"
-            placeholder="이메일을 입력하세요"
+            placeholder="메일 주소"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required

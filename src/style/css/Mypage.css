@@ -75,6 +75,7 @@
   display: flex;
   padding: 10px;
   background-color: #000;
+  margin-bottom: 50px;
 }
 .mypage-container .mypage-right .user_level_section .vertical_bar {
   color: #4b4b4b;

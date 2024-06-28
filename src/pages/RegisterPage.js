@@ -23,10 +23,10 @@ const RegisterPage = () => {
   const [formError, setFormError] = useState('');
   const [passwordValid, setPasswordValid] = useState('');
   const [emailError, setEmailError] = useState('');
-  const error = useSelector((state) => state.user.error);
+  // const error = useSelector((state) => state.user.error);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { user, loading } = useSelector((state) => state.user);
+  const { user, loading, error } = useSelector((state) => state.user);
 
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -34,6 +34,13 @@ const RegisterPage = () => {
   const register = (event) => {
     event.preventDefault();
     const { email, name, password, confirmPassword, contact } = formData;
+
+    // 이름 유효성 검사
+    const nameRegex = /^[a-zA-Z가-힣]+$/;
+    if (!nameRegex.test(name)) {
+      setFormError('이름은 한글이나 영어만 입력할 수 있습니다.');
+      return;
+    }
 
     // 비밀번호에 공백이 있는지 확인
     if (password.includes(' ')) {
@@ -90,11 +97,12 @@ const RegisterPage = () => {
         setContactError('');
       }
     }
-
     if (id === 'email') {
       setEmailError('');
-      setFormError('');
       dispatch(userActions.resetError());
+    }
+    if (id === 'name') {
+      setFormError('');
     }
   };
 
@@ -146,20 +154,13 @@ const RegisterPage = () => {
   return (
     <Container className="register_area d-flex justify-content-center align-items-center">
       <h2 className="register_title">회원가입</h2>
-      {/* {error && (
-        <div className="register_error_message">
-          <Alert variant="danger" className="error-message">
-            {error}
-          </Alert>
-        </div>
-      )} */}
       <Form className="register_form" onSubmit={register}>
         <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
+          <Form.Label>이메일</Form.Label>
           <Form.Control
             type="email"
             id="email"
-            placeholder="Email"
+            placeholder="ex) noonaculture@naver.com"
             onChange={handleChange}
             required
             isInvalid={!!emailError}
@@ -169,21 +170,25 @@ const RegisterPage = () => {
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Name</Form.Label>
+          <Form.Label>이름</Form.Label>
           <Form.Control
             type="text"
             id="name"
-            placeholder="Name"
+            placeholder="한글 또는 영어로 입력해 주세요"
             onChange={handleChange}
             required
+            isInvalid={!!formError}
           />
+          <Form.Control.Feedback type="invalid">
+            {formError}
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Phone Number</Form.Label>
+          <Form.Label>연락처</Form.Label>
           <Form.Control
             type="text"
             id="contact"
-            placeholder="Phone Number"
+            placeholder="전화번호 11자리를 입력해 주세요"
             value={formData.contact}
             onChange={handleChange}
             required
@@ -240,13 +245,13 @@ const RegisterPage = () => {
               {passwordValid}
             </span>
           )} */}
-          {gapMessage ? null : <Form.Label>Password</Form.Label>}
+          {gapMessage ? null : <Form.Label>비밀번호</Form.Label>}
           {passwordValid}
           <div className="password_input_wrap">
             <Form.Control
               type={showPassword ? 'text' : 'password'}
               id="password"
-              placeholder="Password"
+              placeholder="대문자, 숫자, 특수문자를 하나 이상 포함해 주세요"
               onChange={handleChange}
               required
               onFocus={() => {
@@ -268,12 +273,12 @@ const RegisterPage = () => {
           </div>
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Confirm Password</Form.Label>
+          <Form.Label>비밀번호 재확인</Form.Label>
           <div className="password_input_wrap">
             <Form.Control
               type={showConfirmPassword ? 'text' : 'password'}
               id="confirmPassword"
-              placeholder="Confirm Password"
+              placeholder="비밀번호를 재 입력해 주세요"
               onChange={handleChange}
               required
               isInvalid={!!passwordError}

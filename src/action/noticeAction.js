@@ -64,20 +64,55 @@ const deleteNotice = (id, setSearchQuery, navigate) => async (dispatch) => {
 };
 
 // [ 사용자 공지사항 리스트 가져오기 ]
+// const getUserNoticeList = (query) => async (dispatch) => {
+//   try {
+//     console.log('쿼리', query);
+//     dispatch({ type: types.GET_NOTICE_LIST_REQUEST });
+//     const params = { ...query };
+//     const response = await api.get('/notice/user-notice', { params });
+//     console.log('noticerrr', response.data);
+//     if (response.status !== 200) throw new Error(response.error);
+//     dispatch({
+//       type: types.GET_NOTICE_LIST_SUCCESS,
+//       payload: response.data,
+//     });
+//   } catch (error) {
+//     dispatch({ type: types.CREATE_NOTICE_FAIL, payload: error.error });
+//   }
+// };
+
+// const getUserNoticeList = (query) => async (dispatch) => {
+//   try {
+//     console.log('쿼리', query);
+//     dispatch({ type: types.GET_NOTICE_LIST_REQUEST });
+//     const params = { ...query };
+//     const response = await api.get('/notice/user-notice', { params });
+//     if (response.status !== 200) throw new Error(response.error);
+
+//     const { importantNotices, normalNotices, totalPageNum } = response.data;
+
+//     dispatch({
+//       type: types.GET_USER_NOTICE_LIST_SUCCESS,
+//       payload: { importantNotices, normalNotices, totalPageNum },
+//     });
+//   } catch (error) {
+//     dispatch({ type: types.GET_NOTICE_LIST_FAIL, payload: error.message });
+//   }
+// };
+
 const getUserNoticeList = (query) => async (dispatch) => {
   try {
-    console.log('쿼리', query);
     dispatch({ type: types.GET_NOTICE_LIST_REQUEST });
     const params = { ...query };
     const response = await api.get('/notice/user-notice', { params });
-    console.log('noticerrr', response.data);
+    console.log('데이터', response);
     if (response.status !== 200) throw new Error(response.error);
     dispatch({
       type: types.GET_NOTICE_LIST_SUCCESS,
       payload: response.data,
     });
   } catch (error) {
-    dispatch({ type: types.CREATE_NOTICE_FAIL, payload: error.error });
+    dispatch({ type: types.GET_NOTICE_LIST_FAIL, payload: error.message });
   }
 };
 

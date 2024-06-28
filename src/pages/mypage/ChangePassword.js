@@ -1,24 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import LoadingText from '../../component/LoadingText';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import MyPageLayout from '../../Layout/MyPageLayout';
-import { Alert, Button, Container, Form, Spinner } from 'react-bootstrap';
+import { Alert, Button, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { userActions } from '../../action/userAction';
 
-const EditPassword = () => {
+const ChangePassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, error, loading, success } = useSelector((state) => state.user);
+  const { loading, error, isAuthenticated } = useSelector(
+    (state) => state.user,
+  );
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [gapMessage, setGapMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [currentPassword, setCurrentPassword] = useState('');
+
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+  // 이거를 걸고 싶은데 성공했을 때 로그인 페이지로 보내는게 안 되고 있음
+  // useEffect(() => {
+  //   if (!isAuthenticated) {
+  //     navigate('/mypage/verify-password'); // 인증되지 않은 경우 인증 페이지로 이동
+  //   }
+  // }, [isAuthenticated, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,15 +37,19 @@ const EditPassword = () => {
       setGapMessage('비밀번호에는 공백을 포함할 수 없습니다.');
       return;
     }
-
+    if (!passwordRegex.test(newPassword)) {
+      setGapMessage(
+        '비밀번호는 최소 8자 이상, 하나의 대문자, 소문자, 숫자 및 특수문자를 포함해야 합니다.',
+      );
+      return;
+    }
     if (newPassword !== confirmPassword) {
       setErrorMessage('비밀번호가 일치하지 않습니다.');
       return;
     }
 
-    dispatch(
-      userActions.changePassword({ currentPassword, newPassword }, navigate),
-    );
+    // dispatch(userActions.changePassword({ newPassword }, navigate));
+    dispatch(userActions.changePassword(newPassword, navigate));
   };
 
   const togglePasswordVisibility = () => {
@@ -61,16 +75,6 @@ const EditPassword = () => {
             {error}
           </Alert>
         )}
-        <Form.Group controlId="formBasicCurrentPassword">
-          <Form.Label>현재 비밀번호</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="현재 비밀번호를 입력하세요"
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
-            required
-          />
-        </Form.Group>
         <Form.Group controlId="formBasicPassword">
           <Form.Label>비밀번호</Form.Label>
           <div className="password_input_wrap">
@@ -127,9 +131,6 @@ const EditPassword = () => {
             </Form.Control.Feedback>
           </div>
         </Form.Group>
-        {/* <button className="submit_btn" type="submit">
-          비밀번호 변경하기
-        </button> */}
         <button className="submit_btn" type="submit" disabled={loading}>
           {loading ? '변경 중...' : '비밀번호 재설정'}
         </button>
@@ -138,4 +139,4 @@ const EditPassword = () => {
   );
 };
 
-export default EditPassword;
+export default ChangePassword;
