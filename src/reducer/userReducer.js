@@ -6,6 +6,7 @@ const initialState = {
   userList: [],
   totalPageNum: 1,
   selectedUser: null,
+  isAuthenticated: false,
 };
 
 function userReducer(state = initialState, action) {
@@ -33,6 +34,8 @@ function userReducer(state = initialState, action) {
     case types.GET_USER_SUCCESS:
     case types.EDIT_USER_SUCCESS:
       return { ...state, loading: false, user: payload.user, error: '' };
+    case types.VERIFY_CURRENT_PASSWORD_SUCCESS:
+      return { ...state, loading: false, isAuthenticated: true, error: '' };
     case types.USER_CHANGE_PASSWORD_SUCCESS:
     case types.DELETE_USER_SUCCESS:
       return { loading: false, success: true, error: '' };
@@ -70,6 +73,13 @@ function userReducer(state = initialState, action) {
         error:
           payload ||
           '토큰이 만료되었습니다.\n비밀번호 재설정 링크를 다시 받아주세요.',
+      };
+    case types.VERIFY_CURRENT_PASSWORD_FAIL:
+      return {
+        ...state,
+        loading: false,
+        isAuthenticated: false,
+        error: payload,
       };
     case types.RESET_ERROR:
       return {
