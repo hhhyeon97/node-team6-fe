@@ -10,6 +10,7 @@ import { convertToKST } from '../../utils/Date';
 import { Alert } from "react-bootstrap";
 import Star from '../../component/Star';
 import AlertModal from '../AlertModal';
+import defaultPhoto from "../../assets/img/default_photo.png"
 
 const MyReviewCard = ({ review,  openReviewForm }) => {
   const dispatch = useDispatch();
@@ -55,7 +56,7 @@ const MyReviewCard = ({ review,  openReviewForm }) => {
               src={review.image}
               style={{ width: '6em' }}
               alt='리뷰사진'
-              onError={handleImageError}
+              onError={(e) => e.target.src = defaultPhoto }
               />
           </div>
           <Star startNum={review.starRate} />

@@ -1,6 +1,7 @@
 import React from "react";
 import { Table, Badge } from "react-bootstrap";
 import { convertToKST } from "../../utils/Date";
+import defaultUserImg from "../../assets/img/profile_user.png"
 
 const UserTable = ({ header, userList, openEditForm }) => {
   return (
@@ -23,11 +24,13 @@ const UserTable = ({ header, userList, openEditForm }) => {
                     src={user.image}
                     alt={user.name} 
                     style={{ width: '23px', height: '23px', objectFit: 'cover' }} 
-                    onError={(e) => e.target.src = 'https://iconspng.com/_next/image?url=https%3A%2F%2Ficonspng.com%2Fimages%2Fabstract-user-icon-3%2Fabstract-user-icon-3.jpg&w=1080&q=75'}
+                    // onError={(e) => e.target.src = 'https://iconspng.com/_next/image?url=https%3A%2F%2Ficonspng.com%2Fimages%2Fabstract-user-icon-3%2Fabstract-user-icon-3.jpg&w=1080&q=75'}
+                    onError={(e) => e.target.src = defaultUserImg }
                   />
                 ) : (
                   <img 
-                    src='https://iconspng.com/_next/image?url=https%3A%2F%2Ficonspng.com%2Fimages%2Fabstract-user-icon-3%2Fabstract-user-icon-3.jpg&w=1080&q=75'
+                    // src='https://iconspng.com/_next/image?url=https%3A%2F%2Ficonspng.com%2Fimages%2Fabstract-user-icon-3%2Fabstract-user-icon-3.jpg&w=1080&q=75'
+                    src={defaultUserImg}
                     alt={user.name} 
                     style={{ width: '23px', height: '23px', objectFit: 'cover' }} 
                   />
