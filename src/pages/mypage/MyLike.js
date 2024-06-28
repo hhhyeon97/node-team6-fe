@@ -8,9 +8,11 @@ const MyLike = () => {
   return (
     <MyPageLayout title="나의 활동" cap="나의 찜">
         <div>나의 찜 페이지</div>
-        {likeList && likeList.length>0? likeList.map((item,index)=>(
-            <MyLikeCard key={index} item={item} />
-        )):''}
+        <div className='mylike_wrap'>
+          {likeList && likeList.length>0? likeList.map((item,index)=>(
+              <MyLikeCard key={index} item={item} />
+          )):''}
+        </div>
     </MyPageLayout>
   )
 }

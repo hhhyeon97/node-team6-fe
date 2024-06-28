@@ -2,7 +2,6 @@ import React from 'react'
 import Star from '../Star'
 
 const ReviewCard = ({item}) => {
-    console.log(item)
     const cutReviewText = (text) => {
         const maxLength = 70;
         const cutText = text.length > maxLength? text.substring(0,maxLength) + '...' : text;

@@ -1,6 +1,6 @@
 .footer_area{
     width: 100%;
-    margin-top: 10rem;
+    margin-top: 6rem;
     display: flex;
     justify-content: center;
 
@@ -40,6 +40,12 @@
             padding-bottom: 0.2rem;
             font-size: 1rem;
         }
+    }
+
+    .footer_notice{
+        h3 {font-size: 0.8rem; font-weight: 600;}
+        h4 {font-size: 0.8rem;}
+        span {cursor: pointer;}
     }
 
     .footer_nav_area{

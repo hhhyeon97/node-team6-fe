@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { userActions } from '../action/userAction';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,6 +22,10 @@ const Navbar = ({ user }) => {
     { name: '무용', code: 'BBBC' },
     { name: '연극', code: 'AAAA' },
   ]
+
+  useEffect(()=>{
+    dispatch(likeAction.getLikeList())
+  },[])
 
   const logout = () => {
     dispatch(userActions.logout());

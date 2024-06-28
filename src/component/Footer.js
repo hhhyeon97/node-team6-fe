@@ -1,12 +1,22 @@
 import { faGit, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import '../style/css/Footer.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { noticeAction } from '../action/noticeAction'
 
 const Footer = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const size = 4;
+  const {mainNoticeList,loading,error} = useSelector(state=>state.notice);
+
+  useEffect(()=>{
+    dispatch(noticeAction.getMainNoticeList(size));
+  },[])
+
   const noona = '{;}'
   return (
     <div className='footer_area'>
@@ -19,8 +29,12 @@ const Footer = () => {
           </div>
         </Row>
         <Row className='under_line'>     
-          <Col lg={8}>
-          공지사항
+          <Col lg={8} className='footer_notice'>
+            <h3>공지사항</h3>
+            {loading?(<div>공지사항을 불러오는 중입니다.</div>)
+            : mainNoticeList&&mainNoticeList.length>0? mainNoticeList.map((item, index)=>(
+              <h4 key={index}><span onClick={()=>navigate('/notice')}>{item.title}</span></h4>
+            )):''}
           </Col>
           <Col lg={4}>
             <Row className='footer_nav_area'>

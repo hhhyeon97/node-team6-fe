@@ -7,7 +7,6 @@ import ReviewCard from './ReviewCard';
 const Review = () => {
     const dispatch = useDispatch();
     const { mainPageReview, loading } = useSelector(state=>state.review);
-    console.log(mainPageReview)
 
     const starRate = 5;
     const reviewQty = 4;
