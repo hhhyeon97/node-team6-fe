@@ -116,7 +116,6 @@ const PerformanceDetail = () => {
     const deleteLikeItem = (checkLike) => {
         dispatch(likeAction.deleteLikeItem({ id: checkLike._id }))
     }
-    console.log("제발", checkLike);
     return (
         <Container className="wrap-container">
             {loading ? (
