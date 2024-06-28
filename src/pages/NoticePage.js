@@ -7,6 +7,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { noticeAction } from '../action/noticeAction';
 import { convertToKST } from '../utils/Date';
 import {
+  faPaperclip,
   faStar,
   faThumbTack,
   faUser,
@@ -53,16 +54,16 @@ const NoticePage = () => {
     setSearchQuery({ ...searchQuery, page: selected + 1 });
   };
 
-  const breakTextOnDot = (text) => {
-    const parts = text.split('.');
-    return parts.map((part, index) => (
-      <span key={index}>
-        {part}
-        {index !== parts.length - 1 && '.'}
-        {index !== parts.length - 1 && <br />}
-      </span>
-    ));
-  };
+  // const breakTextOnDot = (text) => {
+  //   const parts = text.split('.');
+  //   return parts.map((part, index) => (
+  //     <span key={index}>
+  //       {part}
+  //       {index !== parts.length - 1 && '.'}
+  //       {index !== parts.length - 1 && <br />}
+  //     </span>
+  //   ));
+  // };
 
   if (loading) {
     <LoadingText />;
@@ -88,11 +89,6 @@ const NoticePage = () => {
           onSelect={(e) => setActiveKey(e)}
           className="notice_accordion"
         >
-          <div className="notice_menu_wrap d-flex">
-            <span className="notice_menu">번호</span>
-            <span className="notice_menu title">제목</span>
-            <span className="notice_menu">등록일</span>
-          </div>
           {noticeList.map((notice, idx) => (
             // <Card key={notice._id} className="notice_card">
             <Card
@@ -102,37 +98,29 @@ const NoticePage = () => {
               <Accordion.Item eventKey={idx.toString()}>
                 <Accordion.Header className="d-flex justify-content-between align-items-center">
                   <div className="d-flex align-items-center">
-                    {/* <span className="notice_id">{'No.' + (idx + 1)}</span> */}
                     <span className="notice_id">
-                      {/* {'No.' + ((searchQuery.page - 1) * PAGE_SIZE + (idx + 1))} */}
                       {notice.isImportant ? (
                         <FontAwesomeIcon
                           className="thumb_icon"
                           icon={faThumbTack}
                         ></FontAwesomeIcon>
                       ) : (
-                        `${
-                          'No.' +
-                          ((searchQuery.page - 1) * PAGE_SIZE + (idx + 1))
-                        }`
+                        <FontAwesomeIcon
+                          className="clip_icon"
+                          icon={faPaperclip}
+                        />
                       )}
                     </span>
-                    {/* <span className="notice_title">{notice.title}</span> */}
-                    {/* {notice.isImportant && (
-                      <FontAwesomeIcon
-                        className="star_icon"
-                        icon={faThumbTack}
-                        style={{ marginRight: '10px' }}
-                      ></FontAwesomeIcon>
-                    )} */}
-                    {notice.isImportant ? '[공지]' : '[이벤트]'} {notice.title}
+                    <span className="notice_title_wrap">
+                      {notice.isImportant ? '[공지]' : '[이벤트]'}{' '}
+                      {notice.title}
+                    </span>
                   </div>
                   <span className="notice_date">
                     {convertToKST(notice.createdAt)}
                   </span>
                 </Accordion.Header>
                 <Accordion.Body className="desc_wrap">
-                  {/* <div>작성자 : {notice.userId.name}</div> */}
                   <div>
                     <FontAwesomeIcon
                       icon={faWaze}
@@ -144,7 +132,10 @@ const NoticePage = () => {
                       : ''}
                   </div>
                   <br />
-                  {breakTextOnDot(notice.content)}
+                  <div className="notice_img_wrap">
+                    {notice.img && <img src={notice.img} alt="공지 이미지" />}
+                  </div>
+                  {notice.content}
                 </Accordion.Body>
               </Accordion.Item>
             </Card>

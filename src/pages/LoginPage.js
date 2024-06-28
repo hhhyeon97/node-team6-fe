@@ -79,7 +79,7 @@ const LoginPage = () => {
                 fill="none"
                 viewBox="0 0 24 24"
                 class="icon-md"
-                style={{ color: 'rgb(226, 197, 65)', marginBottom: '3px' }}
+                style={{ color: 'rgb(231, 94, 94)', marginBottom: '3px' }}
               >
                 <path
                   stroke="currentColor"
@@ -139,7 +139,8 @@ const LoginPage = () => {
           </div>
           <div className="sns_btn_area">
             <p>
-              - &nbsp;<strong>SNS</strong> 계정으로 로그인하기 &nbsp;-
+              - &nbsp;<span className="sns_wrap">SNS</span> 계정으로 로그인하기
+              &nbsp;-
             </p>
             <div className="sns_btn_wrap">
               {/* <GoogleLogin
