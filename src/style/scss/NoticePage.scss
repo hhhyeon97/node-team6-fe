@@ -87,8 +87,9 @@ li {
 
 .notice_date {
   margin-left: auto;
-  position: relative;
-  left: 150px;
+  position: fixed;
+  // position: relative;
+  right: 150px;
 }
 
 .thumb_icon {
@@ -98,15 +99,30 @@ li {
 }
 
 .notice_menu_wrap span {
-  margin: auto 25px;
+  margin: auto 15px;
+  background-color: #bbb;
+  padding: 2px;
+  border-radius: 8px;
 }
 
 .notice_menu_wrap span:last-child {
-  margin-left: 60px;
-  position: absolute;
-  right: 390px;
+  // margin-left: 60px;
+  // position: relative;
+  // right: 100px;
+  // bottom: 3px;
+  // float: right;
+  // position: absolute;
+  // right: 390px;
+  // margin-left: auto;
+  // left: 0px;
+  // flex-grow: 1;
+  margin-left: auto;
+  margin-right: 120px;
 }
-
+.title {
+  // position: relative;
+  // right: 300px;
+}
 .no_list_message {
   text-align: center;
   color: #bbb;

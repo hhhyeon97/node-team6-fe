@@ -211,6 +211,10 @@
 .planned_card_area .slick-next:before {
   content: none;
 }
+.planned_card_area .slick-dots li button::before {
+  font-size: 8px !important;
+  top: auto !important;
+}
 
 .event_banner {
   width: 100%;
@@ -230,4 +234,71 @@
 }
 .event_banner h2 {
   font-weight: 600;
+}
+
+.review_area .review_box {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.review_area .review_box .review_card_area {
+  width: 49%;
+  height: 23vh;
+  box-sizing: border-box;
+  display: flex;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 0.8rem;
+  border: 1px solid #bbb;
+}
+.review_area .review_box .review_card_area .review_card_img_box {
+  width: 30%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.review_area .review_box .review_card_area .review_card_img_box .review_card_img {
+  height: 100%;
+}
+.review_area .review_box .review_card_area .review_card_text_box {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem 1rem 0rem 1rem;
+}
+.review_area .review_box .review_card_area .review_card_text_box h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.review_area .review_box .review_card_area .review_card_text_box p {
+  font-size: 0.9rem;
+  margin: 0.5rem 0rem;
+}
+.review_area .review_box .review_card_area .review_card_text_box .review_card_text {
+  max-height: 11rem;
+  overflow: hidden;
+}
+.review_area .review_box .review_card_area .review_card_text_box .review_card_user_box {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-bottom: 0.8rem;
+}
+.review_area .review_box .review_card_area .review_card_text_box .review_card_user_box span {
+  color: #707070;
+}
+.review_area .review_box .review_card_area .review_card_text_box .review_card_user_box .review_card_user_img_box {
+  border-radius: 500px;
+  margin-right: 0.3rem;
+  overflow: hidden;
+}
+.review_area .review_box .review_card_area .review_card_text_box .review_card_user_box .review_card_user_img_box img {
+  width: 2.5rem;
+  height: 2.5rem;
 }

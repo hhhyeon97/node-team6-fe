@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { reviewAction } from '../../action/reviewAction';
 import { convertToKST } from "../../utils/Date";
+import defaultPhoto from "../../assets/img/default_photo.png"
 
 const ReviewDetailDialog = ({ open, handleClose, setSearchQuery }) => {
   const dispatch = useDispatch();
@@ -52,23 +53,45 @@ const ReviewDetailDialog = ({ open, handleClose, setSearchQuery }) => {
       <Modal.Body>
         <div>공연정보 : {selectedReview.reservationId.ticket.SeqTitle}</div>
         <div className='poster_box' onClick={handlePosterClick} >
-          <img
+          {selectedReview.reservationId.ticket.SeqImage ? (
+            <img
             className='poster_img'
             src={selectedReview.reservationId.ticket.SeqImage}
             style={{ width: '6em' }}
             alt='리뷰공연 포스터'
+            onError={(e) => e.target.src = defaultPhoto }
             />
+          ):(
+            <img
+            className='poster_img'
+            src={selectedReview.reservationId.ticket.SeqImage}
+            style={{ width: '6em' }}
+            alt='리뷰공연 포스터'
+            onError={handleImageError}
+            />
+          )}
+
         </div>
         <div>작성자 : {selectedReview.userId.name}</div>
         <div>회원등급 : {selectedReview.userId.level.toUpperCase()}</div>
         <div className='poster_box' onClick={handlePosterClick} >
-          <img
-            className='poster_img'
-            src={selectedReview.image}
-            style={{ width: '6em' }}
-            alt='리뷰사진'
-            onError={handleImageError}
-            />
+          {selectedReview.image ? (
+            <img
+              className='poster_img'
+              src={selectedReview.image}
+              style={{ width: '6em' }}
+              alt='리뷰사진'
+              onError={(e) => e.target.src = defaultPhoto }
+              />
+          ):(
+            <img
+              className='poster_img'
+              src={selectedReview.image}
+              style={{ width: '6em' }}
+              alt='리뷰사진'
+              onError={handleImageError}
+              />
+          )}
         </div>
         <div>리뷰내용 : {selectedReview.reviewText}</div>
         <div>등록일자 : {convertToKST(selectedReview.createdAt)}</div>

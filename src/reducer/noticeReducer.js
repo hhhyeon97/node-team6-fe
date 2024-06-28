@@ -6,6 +6,7 @@ const initialState = {
   noticeList: [],
   totalPageNum: 1,
   selectedNotice: null,
+  mainNoticeList:[],
 };
 
 function noticeReducer(state = initialState, action) {
@@ -15,21 +16,27 @@ function noticeReducer(state = initialState, action) {
     case types.CREATE_NOTICE_REQUEST:
     case types.EDIT_NOTICE_REQUEST:
     case types.DELETE_NOTICE_REQUEST:
+    case types.GET_MAIN_NOTICE_LIST_REQUEST:
       return { ...state, loading: true };
     case types.GET_NOTICE_LIST_SUCCESS:
-      return { ...state, loading: false, error: '',
-              noticeList: payload.data,
-              totalPageNum: payload.totalPageNum,
-      }
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        noticeList: payload.data,
+        totalPageNum: payload.totalPageNum,
+      };
     case types.CREATE_NOTICE_SUCCESS:
     case types.EDIT_NOTICE_SUCCESS:
     case types.DELETE_NOTICE_SUCCESS:
-      return { ...state, loading: false, error: ""};
+      return { ...state, loading: false, error: '' };
+    case types.GET_MAIN_NOTICE_LIST_SUCCESS:
+      return {...state, loading:false, error:'', mainNoticeList:payload }
     case types.GET_NOTICE_LIST_FAIL:
     case types.CREATE_NOTICE_FAIL:
     case types.EDIT_NOTICE_FAIL:
     case types.DELETE_NOTICE_FAIL:
-      return { ...state, loading: false, error: payload }
+      return { ...state, loading: false, error: payload };
     case types.SET_SELECTED_NOTICE:
       return { ...state, selectedNotice: payload };
     default:

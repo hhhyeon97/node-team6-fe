@@ -1,5 +1,5 @@
 .ListPageTitle {
-  margin: 30px 0 0;
+  margin: 60px 0 0;
   padding: 0;
   padding-left: 10px;
 
@@ -130,32 +130,42 @@
     cursor: pointer;
 
     .ListItem {
-      padding: 10px;
       margin-bottom: 10px;
-      border: solid 1px red;
-      justify-content: end;
-      height: 350px;
+      border: solid 1px #d9d9d9;
+      border-radius: 10px;
+      height: 220px;
 
       box-sizing: border-box;
       overflow: hidden;
 
       .image_col {
-        height: 100%;
-        border: solid 1px orange;
+        padding: 0;
         display: flex;
         justify-content: center;
         align-items: center;
-
-        .posterImg {
-          max-height: 100%;
-          max-width: 100%;
-        }
+        background-size: cover;
       }
 
       .item_info_box {
         display: flex;
         flex-direction: column;
         justify-content: center;
+
+        .item_info_box_term {
+          font-size: 1em;
+          color: #5c5c5c;
+          font-family: "Gsans_B";
+        }
+
+        .item_info_box_title {
+          font-size: 20px;
+          font-family: "Gsans_B";
+          margin: 5px 0;
+        }
+
+        .item_info_box_where {
+          font-family: "Gsans_M";
+        }
 
         .state {
           width: fit-content;
@@ -164,7 +174,7 @@
           font-size: 1em;
           text-align: center;
           border: 1px solid black;
-          margin-top: 10px;
+          margin: 20px 0 8px;
         }
 
         .status_run {
@@ -178,11 +188,15 @@
           border-color: #bbb;
         }
 
-        .like_heart:hover{
-          color:#D61F1F;
+        .item_info_box_like {
+          text-align: end;
         }
-        .like_heart_red{
-          color:#D61F1F;
+
+        .like_heart:hover {
+          color: #d61f1f;
+        }
+        .like_heart_red {
+          color: #d61f1f;
         }
       }
     }
@@ -257,11 +271,11 @@
 
         .todayButton {
           background: none;
-          border: solid 1px black;
+          border: solid 1px #bbb;
           border-radius: 20px;
           padding: 5px 10px;
 
-          font-family: "Gsans_M";
+          font-family: "Gsans_L";
           font-weight: normal;
           font-size: 14px;
         }

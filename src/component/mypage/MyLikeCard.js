@@ -21,7 +21,7 @@ const MyLikeCard = ({item}) => {
   }else if(startDay>today) {
     status='공연예정'; style='before_perf';
   }else if(today>endDay) {
-    status='공연종료'; style='before_perf'; filterStyle='filter_gray';
+    status='공연종료'; style='end_perf'; filterStyle='filter_gray';
   }
 
   const deleteLikeItem = (item) => {
@@ -30,18 +30,19 @@ const MyLikeCard = ({item}) => {
 
   return (
     <div className='mylike_card_area'>
-      <div className='mylike_card_image_box' onClick={()=>navigate(`/performance/${item.seqId}`)}>
-        <div className='mylike_care_image_size'>
-          <img
-              src={item.seqImage}
-              className={`mylike_card_image ${filterStyle}`}
-          />  
-        </div>
+      <div className='mylike_care_image_size' onClick={()=>navigate(`/performance/${item.seqId}`)}>
+        <img
+          src={item.seqImage}
+          className={`mylike_card_image ${filterStyle}`}
+        /> 
       </div>
       <div className='mylike_card_text_box' onClick={()=>navigate(`/performance/${item.seqId}`)}>
-        <h4>{StartDate(item.seqFrom)} ~ {StartDate(item.seqTo)}</h4>
-        <h3>{item.seqTitle}</h3>
-        <h5>{item.seqLocation}</h5>
+        <div>
+          <h4>{StartDate(item.seqFrom)} ~ {StartDate(item.seqTo)}</h4>
+          <h3>{item.seqTitle}</h3>
+          <h5>{item.seqLocation}</h5>  
+        </div>
+        
         <button className={style}>{status}</button>
       </div>
       <div className='like_heart' onClick={()=>deleteLikeItem(item)}>

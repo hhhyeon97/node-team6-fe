@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Alert, Container, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { userActions } from '../action/userAction';
+import { resetError, userActions } from '../action/userAction';
 import '../style/css/RegisterPage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faSlash } from '@fortawesome/free-solid-svg-icons';
@@ -27,13 +27,62 @@ const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { user, loading } = useSelector((state) => state.user);
-
+  // const [error, setError] = useState('');
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+  // useEffect(() => {
+  //   if (error) {
+  //     setEmailError(error);
+  //   } else {
+  //     setEmailError('');
+  //   }
+  // }, [error]);
+
+  // useEffect(() => {
+  //   setError('');
+  // }, []);
+
+  // useEffect(() => {
+  //   dispatch(userActions.resetError());
+  // }, [dispatch]);
+
+  // useEffect(() => {
+  //   setEmailError('');
+  // });
+
+  // useEffect(() => {
+  //   if (error === '이미 가입된 사용자입니다!') {
+  //     setEmailError(error);
+  //   }
+  // }, [error]);
+
+  // useEffect(() => {
+  //   return () => {
+  //     dispatch(userActions.resetError());
+  //   };
+  // }, [dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(userActions.resetError());
+  // }, [dispatch]);
 
   const register = (event) => {
     event.preventDefault();
     const { email, name, password, confirmPassword, contact } = formData;
+
+    // 이름 유효성 검사
+    const nameRegex = /^[a-zA-Z가-힣]+$/;
+    if (!nameRegex.test(name)) {
+      setFormError('이름은 한글이나 영어만 입력할 수 있습니다.');
+      return;
+    }
+    // 전화번호 유효성 검사
+    const cleanedContact = contact.replace(/\D/g, '');
+    if (cleanedContact.length !== 11) {
+      setContactError('전화번호는 11자리 숫자여야 합니다.');
+      return;
+    }
 
     // 비밀번호에 공백이 있는지 확인
     if (password.includes(' ')) {
@@ -55,18 +104,11 @@ const RegisterPage = () => {
       return;
     }
 
-    // 전화번호 유효성 검사
-    const cleanedContact = contact.replace(/\D/g, '');
-    if (cleanedContact.length !== 11) {
-      setContactError('전화번호는 11자리 숫자여야 합니다.');
-      return;
-    }
-
     setPasswordError('');
     setContactError('');
     setFormError('');
     setEmailError('');
-    // setPasswordError(false);
+    setGapMessage('');
 
     // FormData에 있는 값을 가지고 백엔드로 넘겨주기
     dispatch(
@@ -90,11 +132,12 @@ const RegisterPage = () => {
         setContactError('');
       }
     }
-
     if (id === 'email') {
       setEmailError('');
-      setFormError('');
       dispatch(userActions.resetError());
+    }
+    if (id === 'name') {
+      setFormError('');
     }
   };
 
@@ -120,7 +163,7 @@ const RegisterPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (error) {
+    if (error === '이미 가입된 사용자입니다!') {
       setEmailError(error);
     }
   }, [error]);
@@ -146,44 +189,65 @@ const RegisterPage = () => {
   return (
     <Container className="register_area d-flex justify-content-center align-items-center">
       <h2 className="register_title">회원가입</h2>
-      {/* {error && (
-        <div className="register_error_message">
-          <Alert variant="danger" className="error-message">
-            {error}
-          </Alert>
-        </div>
-      )} */}
       <Form className="register_form" onSubmit={register}>
         <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
+          {emailError && (
+            <span className="gap_message">
+              <svg
+                className="svg_icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="none"
+                viewBox="0 0 24 24"
+                class="icon-md"
+                style={{ color: 'rgb(226, 197, 65)', marginBottom: '3px' }}
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19a3 3 0 1 1-6 0M15.865 16A7.54 7.54 0 0 0 19.5 9.538C19.5 5.375 16.142 2 12 2S4.5 5.375 4.5 9.538A7.54 7.54 0 0 0 8.135 16m7.73 0h-7.73m7.73 0v3h-7.73v-3"
+                ></path>
+              </svg>{' '}
+              {emailError}
+            </span>
+          )}
+          {emailError ? null : <Form.Label>이메일</Form.Label>}
+          {/* <Form.Label>이메일</Form.Label> */}
           <Form.Control
             type="email"
             id="email"
-            placeholder="Email"
+            placeholder="ex) noonaculture@naver.com"
             onChange={handleChange}
             required
-            isInvalid={!!emailError}
+            // isInvalid={!!emailError}
           />
-          <Form.Control.Feedback type="invalid">
+          {/* <Form.Control.Feedback type="invalid">
             {emailError}
-          </Form.Control.Feedback>
+          </Form.Control.Feedback> */}
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Name</Form.Label>
+          <Form.Label>이름</Form.Label>
           <Form.Control
             type="text"
             id="name"
-            placeholder="Name"
+            placeholder="한글 또는 영어로 입력해 주세요"
             onChange={handleChange}
             required
+            isInvalid={!!formError}
           />
+          <Form.Control.Feedback type="invalid">
+            {formError}
+          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Phone Number</Form.Label>
+          <Form.Label>연락처</Form.Label>
           <Form.Control
             type="text"
             id="contact"
-            placeholder="Phone Number"
+            placeholder="전화번호 11자리를 입력해 주세요"
             value={formData.contact}
             onChange={handleChange}
             required
@@ -240,13 +304,13 @@ const RegisterPage = () => {
               {passwordValid}
             </span>
           )} */}
-          {gapMessage ? null : <Form.Label>Password</Form.Label>}
+          {gapMessage ? null : <Form.Label>비밀번호</Form.Label>}
           {passwordValid}
           <div className="password_input_wrap">
             <Form.Control
               type={showPassword ? 'text' : 'password'}
               id="password"
-              placeholder="Password"
+              placeholder="대문자, 숫자, 특수문자를 하나 이상 포함해 주세요"
               onChange={handleChange}
               required
               onFocus={() => {
@@ -268,12 +332,12 @@ const RegisterPage = () => {
           </div>
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Confirm Password</Form.Label>
+          <Form.Label>비밀번호 재확인</Form.Label>
           <div className="password_input_wrap">
             <Form.Control
               type={showConfirmPassword ? 'text' : 'password'}
               id="confirmPassword"
-              placeholder="Confirm Password"
+              placeholder="비밀번호를 재 입력해 주세요"
               onChange={handleChange}
               required
               isInvalid={!!passwordError}

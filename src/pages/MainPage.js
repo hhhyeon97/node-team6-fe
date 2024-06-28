@@ -10,11 +10,11 @@ import MainBanner from '../component/mainpage/MainBanner';
 import { useDispatch } from 'react-redux';
 import { likeAction } from '../action/likeAction';
 import { perfomanceListAction } from '../action/perfomanceListAction';
+import Review from '../component/mainpage/Review';
 
 const MainPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(likeAction.getLikeList());
     dispatch(perfomanceListAction.removeDetailData())
   }, [])
   return (
@@ -31,6 +31,9 @@ const MainPage = () => {
         <ClosingPerformance />
       </Container>
       <EventBanner />
+      <Container className='wrap-container'>
+        <Review />
+      </Container>
     </div>
 
   );

@@ -9,7 +9,11 @@
   border: 1px solid black;
   width: max-content;
   vertical-align: middle;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+.DetailPageAllBox .state_run {
+  background-color: black;
+  color: white;
 }
 .DetailPageAllBox .DetailTitle {
   font-size: 2em;
@@ -57,10 +61,10 @@
   border-radius: 8px;
 }
 .DetailPageAllBox .DetailTopBox .DetailInfoBox .LikeShare .like_heart:hover {
-  color: #D61F1F;
+  color: #d61f1f;
 }
 .DetailPageAllBox .DetailTopBox .DetailInfoBox .LikeShare .like_heart_red {
-  color: #D61F1F;
+  color: #d61f1f;
 }
 .DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailInfo {
   flex-grow: 1;
@@ -69,50 +73,7 @@
 .DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox {
   display: flex;
   justify-content: space-between;
-}
-.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox .ticketNum {
-  border: solid 1px black;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  padding: 0;
-  font-size: 0.7em;
-  position: relative;
-}
-.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox .ticketNum ul {
-  padding: 0;
-  margin: 0;
-}
-.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox .ticketNum .liBox {
-  position: absolute;
-  border: solid 1px black;
-  width: 100%;
-  left: 0;
-  top: 40px;
-  background-color: white;
-  border-radius: 8px;
-  animation: slideDown 0.8s forwards;
-}
-.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox .ticketNum .liBox li {
-  list-style: none;
-  cursor: pointer;
-  padding: 2px 0;
-}
-.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox .ticketNum .liBox li:hover {
-  background-color: black;
-  color: white;
-}
-@keyframes slideDown {
-  0% {
-    transform: translateY(-10px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(25px);
-    opacity: 1;
-  }
+  margin-bottom: 0;
 }
 .DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox .reservationBtnBox {
   padding: 0;
@@ -124,6 +85,20 @@
   background-color: black;
   color: white;
   width: 100%;
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox .reservationBtnBox .true {
+  background-color: #bbb;
+  border: none;
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox .reservationBtnBox .trueColor {
+  margin-top: 3px;
+  text-align: center;
+  color: red;
+  font-size: 20px;
+  display: block;
+}
+.DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox .reservationBtnBox .falseColor {
+  display: none;
 }
 .DetailPageAllBox .subTitle {
   font-size: 2em;

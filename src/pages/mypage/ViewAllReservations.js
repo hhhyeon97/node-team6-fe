@@ -20,7 +20,7 @@ const ViewAllReservations = () => {
     page: query.get("page") || 1,
   });
   const [showDialog, setShowDialog] = useState(false);
-  // const [mode, setMode] = useState("new");
+  const [mode, setMode] = useState("new");
 
 	// [ 나의예매 정보 받아오기 ]
 	useEffect(() => {
@@ -41,7 +41,7 @@ const ViewAllReservations = () => {
     setSearchQuery({...searchQuery, page: selected +1});
   };
 
-  // [ 상품 수정하기 form 열기 ] 
+  // [ 리뷰 작성하기 form 열기 ] 
   const openReviewForm = (reserve) => {
     dispatch({type: types.SET_SELECTED_RESERVATION, payload: reserve});
     setShowDialog(true);
@@ -64,7 +64,7 @@ const ViewAllReservations = () => {
         />
 
         <ReviewDialog
-          // mode={mode}
+          mode={mode}
           showDialog={showDialog}
           setShowDialog={setShowDialog}
           setSearchQuery={setSearchQuery}

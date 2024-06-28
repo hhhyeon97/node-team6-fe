@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { userActions } from '../../action/userAction';
 import { Form, Col, Alert } from 'react-bootstrap';
 import CloudinaryUploadWidget from '../../utils/CloudinaryUploadWidget';
+import AlertModal from '../../component/AlertModal';
 
 // 회원정보 수정 컴포넌트
 const EditProfile = () => {
@@ -12,7 +13,9 @@ const EditProfile = () => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
   const { error } = useSelector((state) => state.user);
+  const [showModal, setShowModal] = useState(false);
   const [emailError, setEmailError] = useState('');
+  const [nameError, setNameError] = useState('');
   const [contactError, setContactError] = useState('');
   const [formData, setFormData] = useState({
     image: '',
@@ -48,6 +51,10 @@ const EditProfile = () => {
       [id]: formattedValue,
     }));
 
+    if (id === 'name') {
+      setNameError('');
+    }
+
     if (id === 'contact') {
       const cleanedContact = formattedValue.replace(/\D/g, '');
       if (cleanedContact.length === 11) {
@@ -68,6 +75,13 @@ const EditProfile = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const { image, name, email, contact } = formData;
+
+    // 이름 유효성 검사
+    const nameRegex = /^[a-zA-Z가-힣]+$/;
+    if (!nameRegex.test(name)) {
+      setNameError('이름은 한글이나 영어만 입력할 수 있습니다.');
+      return;
+    }
 
     // 전화번호 유효성 검사
     const cleanedContact = contact.replace(/\D/g, '');
@@ -94,6 +108,12 @@ const EditProfile = () => {
     }
 
     return cleanValue;
+  };
+
+  // [ 회원탈퇴 버튼 ]
+  const handleMemberOut = () => {
+    setShowModal(true);
+    console.log('userId', user._id);
   };
 
   return (
@@ -142,10 +162,14 @@ const EditProfile = () => {
               id="name"
               onChange={handleChange}
               type="text"
-              placeholder="2자이상 10자 이하로 입력해주세요"
+              placeholder="한글 또는 영어로 입력해주세요"
               required
               value={formData.name}
+              isInvalid={!!nameError}
             />
+            <Form.Control.Feedback type="invalid">
+              {nameError}
+            </Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group as={Col} controlId="contact">
@@ -165,8 +189,30 @@ const EditProfile = () => {
           </Form.Group>
 
           <button className="edit_submit_btn" type="submit">
-            저장하기
+            업데이트
           </button>
+
+          <div onClick={handleMemberOut}>회원탈퇴하기</div>
+
+          {user?.level === 'gold' ? (
+            <AlertModal
+              showModal={showModal}
+              setShowModal={setShowModal}
+              selectedId={user?._id}
+              selectedName="회원 탈퇴하기"
+              alertMessage={`${user?.name}회원님, 10% 혜택을 포기하실건가요? 🥺 회원님은 10% 할인 혜택을 받으실 수 있습니다`}
+              btnText="혜택 포기하고 탈퇴하기"
+            />
+          ) : (
+            <AlertModal
+              showModal={showModal}
+              setShowModal={setShowModal}
+              selectedId={user?._id}
+              selectedName="회원 탈퇴하기"
+              alertMessage={`${user?.name}회원님, 정말 저희를 떠나실건가요? 🥲`}
+              btnText="회원탈퇴"
+            />
+          )}
         </Form>
       </div>
     </MyPageLayout>

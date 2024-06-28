@@ -3,6 +3,7 @@ import { Form, Modal, Button, Col, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { noticeAction } from '../../action/noticeAction';
 import CloudinaryUploadWidget from "../../utils/CloudinaryUploadWidget";
+import defaultPhoto from "../../assets/img/default_photo.png"
 
 const InitialFormData = {
   title: "",
@@ -19,6 +20,8 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
   const [formData, setFormData] = useState(
     mode === "new" ? { ...InitialFormData } : selectedNotice
   );
+  const user = useSelector(state => state.user);
+  console.log(user)
 
   // [ 다이얼로그 닫기 ]
   const handleClose = () => {
@@ -90,9 +93,9 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
     event.target.style.display = 'none';
   };
 
-  if (!selectedNotice) {
-    return <></>;
-  }
+  // if (!selectedNotice) {
+  //   return <></>;
+  // }
   
   return (
     <Modal show={showDialog} onHide={handleClose}>
@@ -106,7 +109,7 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
       <Modal.Body>
         <Form className='notice-form-container' onSubmit={handleSubmit}>
           <Row className="mb-3">
-            <div>작성자 : {selectedNotice.userId.name}</div>
+            <div>작성자 : {mode === "new"? user.user.name : mode === "edit" && selectedNotice?.userId.name}</div>
             <Form.Group as={Col} controlId="title">
               <Form.Label>제목</Form.Label>
               <Form.Control
@@ -138,7 +141,8 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
                   src={formData.img}
                   className="upload-image"
                   alt="uploadedimage"
-                  onError={handleImageError}
+                  // onError={handleImageError}
+                  onError={(e) => e.target.src = defaultPhoto }
                   ></img>
                 </div>
             </Form.Group>
