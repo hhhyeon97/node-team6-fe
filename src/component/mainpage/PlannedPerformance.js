@@ -80,7 +80,7 @@ const PlannedPerformance = () => {
 
   return (
     <div className='planned_performance'>
-      <h2>오픈 예정 전시</h2>
+      <h2>오픈 예정 공연</h2>
       {loading ? (<div>공연 정보를 가져오는 중입니다 ...</div>) :
         PerformanceListDataWithStatus && PerformanceListDataWithStatus.length > 0 ? (
           <div className="slider-container wrap-container planned_card_area">
