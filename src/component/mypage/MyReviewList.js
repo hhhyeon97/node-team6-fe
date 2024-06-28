@@ -13,23 +13,26 @@ const MyReviewList = ({ myReviewList, openReviewForm }) => {
 
 
   return (
-    <div>
+    <>
       { myReviewList.map(review => (
           !review.isSuspended ? (
-            <div style={{ border: 'solid 1px red', marginBottom: '10px' }}>
               <div key={review._id}>
                 <MyReviewCard
                   review={review}
                   openReviewForm={openReviewForm}
                 />
               </div>
-            </div>
           ):(
-            <div style={{ border: 'solid 1px red', marginBottom: '10px' }}>부적절한 내용으로 숨김처리됨 리뷰입니다. 자세한 사항은 1:1문의를 이용해주세요</div>
+            <div key={review._id}>
+                <MyReviewCard
+                  review={review}
+                  // openReviewForm={openReviewForm}
+                />
+            </div>
           )
         ))
 			}
-    </div>
+    </>
   )
 }
 
