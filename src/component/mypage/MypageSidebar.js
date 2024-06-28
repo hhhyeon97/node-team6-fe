@@ -30,7 +30,7 @@ const MypageSidebar = () => {
             <Link to="/mypage/edit-profile">회원정보 수정</Link>
           </li>
           <li>
-            <Link to="/mypage/edit-password">비밀번호 변경</Link>
+            <Link to="/mypage/verify-password">비밀번호 변경</Link>
           </li>
         </ul>
       </ul>
