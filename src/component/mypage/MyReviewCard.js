@@ -50,16 +50,21 @@ const MyReviewCard = ({ review,  openReviewForm }) => {
     <div>
       {!review?.isSuspended ? (
         <>
-          <div className='poster_box' onClick={()=>navigate(`/performance/${review.ticket.SeqId}`)} >
-            <img
+          <div className='poster_box' >
+            {review.image ? (
+              <img
               className='poster_img'
-              src={review.image}
+              src={review?.image}
               style={{ width: '6em' }}
               alt='리뷰사진'
               onError={(e) => e.target.src = defaultPhoto }
               />
+            ):(
+              <></>
+            )}
+
           </div>
-          <Star startNum={review.starRate} />
+          <Star startNum={review?.starRate} />
           <div>{review.SeqTitle}</div>
           <div>{review.reviewText}</div>
           <div>{convertToKST(review.createdAt)}</div>     
