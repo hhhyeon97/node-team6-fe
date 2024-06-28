@@ -24,6 +24,15 @@
     color: inherit;
   }
 
+  .disabled{
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .transparent{
+    opacity: 0;
+  }
+
   /* < mypage-left > */
   .mypage-left {
     // border: 2px solid green;
@@ -126,7 +135,7 @@
     .my_reserve_card_container {
       border: 0.5px solid #bbb;
       border-radius: 8px;
-      padding: 20px 15px;
+      padding: 15px 20px 20px 13px;
       margin: 13px 0;
       overflow: hidden;
       cursor: pointer;
@@ -137,10 +146,19 @@
       }
       .info_group {
         display: flex;
+        font-size: 0.9em;
+        align-items: center;
+      }
+      .info_group > .info_item {
+        margin-right: 10px;
       }
       .info_item {
         display: flex;
         font-size: 0.7em;
+        align-items: center;
+      }
+      .info_item p {
+        margin-right: 3px;
       }
       .book_date > strong {
         font-family: Gsans_B;
@@ -149,13 +167,23 @@
       .card_main {
         display: flex;
         align-items: center;
+        justify-content: space-between;
+        padding-top: 10px;
+      }
+      .card_title{
+        width: 50%;
+        display: flex;
+        align-items: center;
       }
       .card_title h5 {
         font-family: "Gsans_B";
         font-size: 1em;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .poster_box {
         width: 6em;
+        min-width: 6em;
         margin-right: 20px;
         border-radius: 8px;
         overflow: hidden;
@@ -165,6 +193,19 @@
       .poster_img {
         width: 100%;
         object-fit: cover;
+      }
+      .item_price{
+        width: 12%;
+        font-size: 0.8em;
+        display: flex;
+        flex-flow: column;
+      }
+      .canceled_reserve{
+        font-size: 0.8em;
+      }
+      .review_btn{
+        width: 15%;
+        padding: 10px;
       }
     }
 

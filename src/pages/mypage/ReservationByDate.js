@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dateformat, StringDateformat, EndDateformat } from '../../utils/Date'
 import { reservationAction } from "../../action/reservationAction";
 import ReservationItem from "../../component/ReservationItem";
+import MyReserveCard from '../../component/mypage/MyReserveCard';
 
 // 예약날짜로 나의 예매 조회 컴포넌트
 const ReservationByDate = () => {
@@ -46,7 +47,8 @@ const ReservationByDate = () => {
 				<Col lg={6} md={6} sm={6}>
 					{reservationByDateList && reservationByDateList.length > 0 ? (
 						reservationByDateList.map(item => (
-							<ReservationItem item={item} />
+							// <ReservationItem item={item} />
+							<MyReserveCard item={item} />
 						))
 					) : (
 						<div>해당 날짜에 예매 내역이 없습니다.</div>

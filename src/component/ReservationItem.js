@@ -3,7 +3,7 @@ import { convertToKST } from '../utils/Date'
 
 const ReservationItem = ({ item }) => {
     return (
-        <div className="ByDateReservationItem">
+        <div className="ByDateReservationItem my_reserve_card_container">
             <div>{item.ticket.SeqTitle}</div>
             <div>{convertToKST(item.reservationDate)}</div>
             <div>{item.SeqLocation}</div>

@@ -24,6 +24,13 @@
   text-decoration: none;
   color: inherit;
 }
+.mypage-container .disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.mypage-container .transparent {
+  opacity: 0;
+}
 .mypage-container .mypage-left {
   width: 14%;
   display: flex;
@@ -109,7 +116,7 @@
 .mypage-container .mypage-right .my_reserve_card_container {
   border: 0.5px solid #bbb;
   border-radius: 8px;
-  padding: 20px 15px;
+  padding: 15px 20px 20px 13px;
   margin: 13px 0;
   overflow: hidden;
   cursor: pointer;
@@ -120,10 +127,19 @@
 }
 .mypage-container .mypage-right .my_reserve_card_container .info_group {
   display: flex;
+  font-size: 0.9em;
+  align-items: center;
+}
+.mypage-container .mypage-right .my_reserve_card_container .info_group > .info_item {
+  margin-right: 10px;
 }
 .mypage-container .mypage-right .my_reserve_card_container .info_item {
   display: flex;
   font-size: 0.7em;
+  align-items: center;
+}
+.mypage-container .mypage-right .my_reserve_card_container .info_item p {
+  margin-right: 3px;
 }
 .mypage-container .mypage-right .my_reserve_card_container .book_date > strong {
   font-family: Gsans_B;
@@ -132,13 +148,23 @@
 .mypage-container .mypage-right .my_reserve_card_container .card_main {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+.mypage-container .mypage-right .my_reserve_card_container .card_title {
+  width: 50%;
+  display: flex;
+  align-items: center;
 }
 .mypage-container .mypage-right .my_reserve_card_container .card_title h5 {
   font-family: "Gsans_B";
   font-size: 1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .mypage-container .mypage-right .my_reserve_card_container .poster_box {
   width: 6em;
+  min-width: 6em;
   margin-right: 20px;
   border-radius: 8px;
   overflow: hidden;
@@ -148,6 +174,19 @@
 .mypage-container .mypage-right .my_reserve_card_container .poster_img {
   width: 100%;
   object-fit: cover;
+}
+.mypage-container .mypage-right .my_reserve_card_container .item_price {
+  width: 12%;
+  font-size: 0.8em;
+  display: flex;
+  flex-flow: column;
+}
+.mypage-container .mypage-right .my_reserve_card_container .canceled_reserve {
+  font-size: 0.8em;
+}
+.mypage-container .mypage-right .my_reserve_card_container .review_btn {
+  width: 15%;
+  padding: 10px;
 }
 .mypage-container .mypage-right .edit_user_form_container .edit_image_box {
   width: 100px;
