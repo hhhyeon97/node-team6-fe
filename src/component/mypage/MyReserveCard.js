@@ -88,16 +88,18 @@ const MyReserveCard = ({ item,  openReviewForm, isReviewed }) => {
         <strong>{priceformat(item.totalPrice)}원 /</strong>
         <strong>수량 {item?.ticketNum}</strong>
       </div>
-      {item.isCanceled ? (<div className='canceled_reserve'>예매취소됨</div>):(<Button onClick={handleCancle} className={cancelBtnClass}>예매취소</Button>)}
-      {!item?.ticket?.isReview && !item.isCanceled ? (
-        <Button variant='dark' size="sm" className='review_btn' onClick={handleReviewButtonClick}>
-          리뷰작성
-        </Button>
-      ) : (
-        <Button variant='light' size="sm" className='review_btn transparent disabled'>
-          리뷰안돼
-        </Button>
-      )}
+      <div class="card_btns">
+        {item.isCanceled ? (<div className='canceled_reserve'>예매취소됨</div>):(<Button variant='light' onClick={handleCancle} className={cancelBtnClass}>예매취소</Button>)}
+        {!item?.ticket?.isReview && !item.isCanceled ? (
+          <Button variant='dark' size="sm" className='review_btn' onClick={handleReviewButtonClick}>
+            리뷰작성
+          </Button>
+        ) : (
+          <Button variant='light' size="sm" className='review_btn transparent disabled'>
+            리뷰안돼
+          </Button>
+        )}
+      </div>
       </div>
       <AlertModal 
         showModal={showModal}
