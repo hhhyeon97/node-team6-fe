@@ -81,7 +81,7 @@ const ResetPasswordPage = () => {
             fill="none"
             viewBox="0 0 24 24"
             class="icon-md"
-            style={{ color: 'rgb(226, 197, 65)', marginBottom: '3px' }}
+            style={{ color: 'rgb(231, 94, 94)', marginBottom: '3px' }}
           >
             <path
               stroke="currentColor"

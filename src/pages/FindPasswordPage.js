@@ -31,10 +31,6 @@ const FindPasswordPage = () => {
     }
   }, [user, navigate]);
 
-  if (loading) {
-    <LoadingText />;
-  }
-
   return (
     <Container className="find_password_area  d-flex justify-content-center align-items-center">
       <h2 className="title">비밀번호 찾기</h2>
@@ -55,8 +51,8 @@ const FindPasswordPage = () => {
           />
           <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
         </Form.Group>
-        <button className="submit_btn" type="submit">
-          비밀번호 재발급
+        <button className="submit_btn" type="submit" disabled={loading}>
+          {loading ? '링크 전송중...' : '비밀번호 재발급'}
         </button>
       </Form>
     </Container>
