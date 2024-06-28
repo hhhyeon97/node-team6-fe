@@ -10,6 +10,7 @@ import { convertToKST } from '../../utils/Date';
 import { Alert } from "react-bootstrap";
 import Star from '../../component/Star';
 import AlertModal from '../AlertModal';
+import defaultPhoto from "../../assets/img/default_photo.png"
 
 const MyReviewCard = ({ review,  openReviewForm }) => {
   const dispatch = useDispatch();
@@ -46,28 +47,68 @@ const MyReviewCard = ({ review,  openReviewForm }) => {
 
 
   return(
-    <div>
-      {!review?.isSuspended ? (
-        <>
-          <div className='poster_box' onClick={()=>navigate(`/performance/${review.ticket.SeqId}`)} >
-            <img
-              className='poster_img'
-              src={review.image}
-              style={{ width: '6em' }}
-              alt='리뷰사진'
-              onError={handleImageError}
-              />
+    <>
+    {!review?.isSuspended ? (
+      <div className='my_review_card'>
+          <div class="card_main">
+            <div class="card_top">
+              <div>{review.SeqTitle}</div>
+              <div class="top_info">
+                <Star startNum={review?.starRate} />
+              </div>
+            <div>{review.reviewText}</div>
+            </div> 
+            <div className='poster_box' >
+              {review.image ? (
+                <img
+                className='poster_img'
+                src={review?.image}
+                style={{ width: '6em' }}
+                alt='리뷰사진'
+                onError={(e) => e.target.src = defaultPhoto }
+                />
+                ):(
+                  <></>
+                  )}
+            </div>
           </div>
-          <Star startNum={review.starRate} />
-          <div>{review.SeqTitle}</div>
-          <div>{review.reviewText}</div>
-          <div>{convertToKST(review.createdAt)}</div>     
-
-          <Button variant="light" onClick={handleEditReview}>수정</Button>  
-          <Button variant="light" onClick={handleEeleteReview}>삭제</Button>  
-        </>
+          <div>{convertToKST(review.createdAt)}</div>
+          <div class="review_btns">
+            <Button variant="light" onClick={handleEditReview}>수정</Button>
+            <Button variant="light" onClick={handleEeleteReview}>삭제</Button>
+          </div> 
+        </div>
       ):(
+        <div className='my_review_card disabled'>
         <div>부적절한 내용으로 숨김처리됨 리뷰입니다. 자세한 사항은 1:1문의를 이용해주세요</div>
+        <div class="card_main">
+            <div class="card_top">
+              <div>{review.SeqTitle}</div>
+              <div class="top_info">
+                <Star startNum={review?.starRate} />
+              </div>
+            <div>{review.reviewText}</div>
+            </div> 
+            <div className='poster_box' >
+              {review.image ? (
+                <img
+                className='poster_img'
+                src={review?.image}
+                style={{ width: '6em' }}
+                alt='리뷰사진'
+                onError={(e) => e.target.src = defaultPhoto }
+                />
+                ):(
+                  <></>
+                  )}
+            </div>
+          </div>
+          <div>{convertToKST(review.createdAt)}</div>
+          <div class="review_btns">
+            <Button variant="light" onClick={handleEditReview}>수정</Button>
+            <Button variant="light" onClick={handleEeleteReview}>삭제</Button>
+          </div> 
+      </div>
       )}
 
     <AlertModal 
@@ -78,7 +119,7 @@ const MyReviewCard = ({ review,  openReviewForm }) => {
 			alertMessage={`${review.SeqTitle}의 리뷰를 삭제하시겠습니까?`}
 			btnText="리뷰삭제"
 			/>
-    </div>
+  </>
   )
 }
 
