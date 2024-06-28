@@ -88,9 +88,9 @@ const NoticePage = () => {
           onSelect={(e) => setActiveKey(e)}
           className="notice_accordion"
         >
-          <div className="notice_menu_wrap">
+          <div className="notice_menu_wrap d-flex">
             <span className="notice_menu">번호</span>
-            <span className="notice_menu">제목</span>
+            <span className="notice_menu title">제목</span>
             <span className="notice_menu">등록일</span>
           </div>
           {noticeList.map((notice, idx) => (
@@ -109,7 +109,6 @@ const NoticePage = () => {
                         <FontAwesomeIcon
                           className="thumb_icon"
                           icon={faThumbTack}
-                          style={{ marginRight: '10px' }}
                         ></FontAwesomeIcon>
                       ) : (
                         `${
