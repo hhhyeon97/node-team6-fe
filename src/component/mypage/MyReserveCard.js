@@ -73,7 +73,7 @@ const MyReserveCard = ({ item,  openReviewForm, isReviewed }) => {
         <strong>수량 {item.ticketNum}</strong>
       </div>
       {item.isCanceled ? (<div className='canceled_reserve'>예매취소됨</div>):(<div className='transparent canceled_reserve'>예매취소됨</div>)}
-      {!isReviewed && !item.isCanceled ? (
+      {!item.ticket.isReview && !item.isCanceled ? (
         <Button variant='dark' size="sm" className='review_btn' onClick={handleReviewButtonClick}>
           리뷰작성
         </Button>
