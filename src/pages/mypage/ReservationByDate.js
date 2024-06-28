@@ -85,7 +85,7 @@ const ReservationByDate = () => {
 					</Col>
 
 			{/* <div>예약날짜로 나의 예매 조회 페이지</div> */}
-// 			<Row className="Info">
+{/* // 			<Row className="Info">
 // 				<Col lg={7} md={7} sm={10}>
 // 					{reservationByDateList && reservationByDateList.length > 0 ? (
 // 						reservationByDateList.map(item => (
@@ -104,7 +104,7 @@ const ReservationByDate = () => {
 // 							<button onClick={() => backToday()} className="todayButton">오늘로</button>
 // 						</div>
 // 					</div>
-// 				</Col>
+// 				</Col> */}
 
 			</Row>
 		</MyPageLayout>
