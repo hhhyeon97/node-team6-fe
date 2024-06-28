@@ -9,12 +9,12 @@ const Star = ({ startNum }) => {
 
     return (
         <div>
-            {[...Array(Number(startNum))].map(num => (
-                <FontAwesomeIcon icon={fas.faStar} className="star" />
+            {[...Array(Number(startNum))].map((_, index) => (
+                <FontAwesomeIcon key={`filled-star-${index}`} icon={fas.faStar} className="star" />
             ))
             }
-            {[...Array(5 - Number(startNum))].map(num => (
-                <FontAwesomeIcon icon={faStar} className="star" />
+            {[...Array(5 - Number(startNum))].map((_, index) => (
+                <FontAwesomeIcon key={`empty-star-${index}`} icon={faStar} className="star" />
             ))}
         </div>
     );

@@ -18,6 +18,7 @@ const MainPage = () => {
     dispatch(likeAction.getLikeList());
     dispatch(perfomanceListAction.removeDetailData())
   }, [])
+
   return (
     <div>
       <MainBanner />

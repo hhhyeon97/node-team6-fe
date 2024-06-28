@@ -224,7 +224,12 @@ const PerformanceDetail = () => {
                                             </div>
                                             <div>{convertToKST(review.createdAt)}</div>
                                         </div>
-                                        <div>{review.reviewText}</div>
+                                        <div className="reviewInner">
+                                            <div>{review.reviewText}</div>
+                                            <div className="userSendImg">
+                                                <img src={`${review.image}`} />
+                                            </div>
+                                        </div>
                                     </div>
                                 ) : (
                                     <div>아직 리뷰가 없습니다</div>

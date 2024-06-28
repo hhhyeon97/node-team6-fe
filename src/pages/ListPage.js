@@ -12,6 +12,7 @@ import { faCaretDown, faCaretUp, faLocationDot } from '@fortawesome/free-solid-s
 import { useSearchParams } from "react-router-dom";
 import LoadingText from "../component/LoadingText";
 import Pagination from "../component/Pagination";
+import ListPageSkeleton from "./skeletion/ListPageSkeleton";
 
 const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
 
@@ -122,7 +123,7 @@ const ListPage = () => {
                 </Row>
 
                 <Col lg={7} md={7} sm={6} className="ListItemsBox">
-                    {loading ? <LoadingText /> :
+                    {loading ? <ListPageSkeleton /> :
                         (Array.isArray(PerformanceListData) && PerformanceListData.length > 0 ? (
                             PerformanceListData.map((item, index) => (
                                 <ListItem key={index} item={item} />
