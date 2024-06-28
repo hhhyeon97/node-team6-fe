@@ -41,7 +41,7 @@ const ViewAllReservations = () => {
     setSearchQuery({...searchQuery, page: selected +1});
   };
 
-  // [ 상품 수정하기 form 열기 ] 
+  // [ 리뷰 작성하기 form 열기 ] 
   const openReviewForm = (reserve) => {
     dispatch({type: types.SET_SELECTED_RESERVATION, payload: reserve});
     setShowDialog(true);

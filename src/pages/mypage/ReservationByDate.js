@@ -6,13 +6,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dateformat, StringDateformat, EndDateformat } from '../../utils/Date'
 import { reservationAction } from "../../action/reservationAction";
 import ReservationItem from "../../component/ReservationItem";
+import * as types from "../../constants/reservation.constants";
 import MyReserveCard from '../../component/mypage/MyReserveCard';
+import ReviewDialog from '../mypage/ReviewDialog';
 
 // 예약날짜로 나의 예매 조회 컴포넌트
 const ReservationByDate = () => {
 	const dispatch = useDispatch();
 	const { reservationByDateList } = useSelector(state => state.reservation)
 	const [selectDate, setSelectDate] = useState(new Date())
+	const [showDialog, setShowDialog] = useState(false);
+	const [mode, setMode] = useState("new");
 
 	useEffect(() => {
 		const formatDate = selectDate.toString()
@@ -25,10 +29,16 @@ const ReservationByDate = () => {
 		console.log('next reservationByDateList', reservationByDateList)
 	}, [reservationByDateList])
 
-	// [ 오늘날짜로 돌아가기]
+	// [ 오늘날짜로 돌아가기 ]
 	const backToday = () => {
 		setSelectDate(new Date())
 	}
+
+	// [ 리뷰 작성하기 form 열기 ] 
+	const openReviewForm = (reserve) => {
+		dispatch({type: types.SET_SELECTED_RESERVATION, payload: reserve});
+		setShowDialog(true);
+	};
 
 	return (
 		<MyPageLayout title="나의 예매" cap="예약날짜로 조회">
@@ -48,7 +58,19 @@ const ReservationByDate = () => {
 					{reservationByDateList && reservationByDateList.length > 0 ? (
 						reservationByDateList.map(item => (
 							// <ReservationItem item={item} />
-							<MyReserveCard item={item} />
+							<>
+							<MyReserveCard 
+								item={item} 
+								openReviewForm={openReviewForm}
+							/>
+						
+								<ReviewDialog
+								mode={mode}
+								showDialog={showDialog}
+								setShowDialog={setShowDialog}
+								// setSearchQuery={setSearchQuery}
+								/>
+							</>
 						))
 					) : (
 						<div>해당 날짜에 예매 내역이 없습니다.</div>
