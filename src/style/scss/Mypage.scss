@@ -230,7 +230,8 @@
     .mylike_wrap{
       display: flex;
       flex-wrap: wrap;
-      gap:2%
+      gap:2%;
+      margin-top:0.5rem;
     }
     .mylike_card_area {
       position: relative;
