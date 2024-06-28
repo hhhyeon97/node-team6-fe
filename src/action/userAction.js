@@ -153,8 +153,24 @@ const getUser = () => async (dispatch) => {
   }
 };
 
-// 회원 정보 수정하기
-const editUser = (formData, navigate) => async (dispatch) => {
+// // 회원 정보 수정하기
+// const editUser = (formData, navigate) => async (dispatch) => {
+//   try {
+//     dispatch({ type: types.EDIT_USER_REQUEST });
+//     const response = await api.put('/user/me', formData);
+//     if (response.status !== 200) throw new Error(response.error);
+//     dispatch({
+//       type: types.EDIT_USER_SUCCESS,
+//       payload: response.data,
+//     });
+//     alert('회원 정보가 업데이트 되었습니다 !');
+//     navigate('/mypage/edit-profile');
+//   } catch (error) {
+//     dispatch({ type: types.EDIT_USER_FAIL, payload: error.error });
+//   }
+// };
+
+const editUser = (formData) => async (dispatch) => {
   try {
     dispatch({ type: types.EDIT_USER_REQUEST });
     const response = await api.put('/user/me', formData);
@@ -163,7 +179,7 @@ const editUser = (formData, navigate) => async (dispatch) => {
       type: types.EDIT_USER_SUCCESS,
       payload: response.data,
     });
-    navigate('/mypage/reservations/by-date');
+    alert('회원 정보가 업데이트 되었습니다 !');
   } catch (error) {
     dispatch({ type: types.EDIT_USER_FAIL, payload: error.error });
   }
