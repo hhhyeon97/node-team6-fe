@@ -44,6 +44,16 @@
   padding-bottom: 0.2rem;
   font-size: 1rem;
 }
+.footer_area .footer_notice h3 {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.footer_area .footer_notice h4 {
+  font-size: 0.8rem;
+}
+.footer_area .footer_notice span {
+  cursor: pointer;
+}
 .footer_area .footer_nav_area h3 {
   font-size: 0.8rem;
   font-weight: 600;
