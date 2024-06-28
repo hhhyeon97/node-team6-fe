@@ -24,7 +24,9 @@ import ResetPasswordPage from '../pages/ResetPasswordPage';
 import MyLike from '../pages/mypage/MyLike';
 import NoticePage from '../pages/NoticePage';
 import ReservationDetail from '../pages/mypage/ReservationDatail';
-import EditPassword from '../pages/mypage/EditPassword';
+import EditPassword from '../pages/mypage/ChangePassword';
+import VerifyCurrentPassword from '../pages/mypage/VerifyCurrentPassword';
+import ChangePassword from '../pages/mypage/ChangePassword';
 
 const AppRouter = () => {
   const navigate = useNavigate();
@@ -62,7 +64,11 @@ const AppRouter = () => {
       <Route path="/mypage/reviews" element={<MyReviews />} />
       <Route path="/mypage/like" element={<MyLike />} />
       <Route path="/mypage/edit-profile" element={<EditProfile />} />
-      <Route path="/mypage/edit-password" element={<EditPassword />} />
+      <Route
+        path="/mypage/verify-password"
+        element={<VerifyCurrentPassword />}
+      />
+      <Route path="/mypage/change-password" element={<ChangePassword />} />
       <Route path="/admin/user" element={<AdminUserPage />} />
       <Route path="/admin/review" element={<AdminReviewPage />} />
       <Route path="/admin/notice" element={<AdminNoticePage />} />

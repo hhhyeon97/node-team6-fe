@@ -24,6 +24,15 @@
     color: inherit;
   }
 
+  .disabled{
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .transparent{
+    opacity: 0;
+  }
+
   /* < mypage-left > */
   .mypage-left {
     // border: 2px solid green;
@@ -80,6 +89,7 @@
       display: flex;
       padding: 10px;
       background-color: #000;
+      margin-bottom: 50px;
 
       .vertical_bar {
         color: #4b4b4b;
@@ -126,7 +136,7 @@
     .my_reserve_card_container {
       border: 0.5px solid #bbb;
       border-radius: 8px;
-      padding: 20px 15px;
+      padding: 15px 20px 20px 13px;
       margin: 13px 0;
       overflow: hidden;
       cursor: pointer;
@@ -137,10 +147,19 @@
       }
       .info_group {
         display: flex;
+        font-size: 0.9em;
+        align-items: center;
+      }
+      .info_group > .info_item {
+        margin-right: 10px;
       }
       .info_item {
         display: flex;
         font-size: 0.7em;
+        align-items: center;
+      }
+      .info_item p {
+        margin-right: 3px;
       }
       .book_date > strong {
         font-family: Gsans_B;
@@ -149,13 +168,23 @@
       .card_main {
         display: flex;
         align-items: center;
+        justify-content: space-between;
+        padding-top: 10px;
+      }
+      .card_title{
+        width: 50%;
+        display: flex;
+        align-items: center;
       }
       .card_title h5 {
         font-family: "Gsans_B";
         font-size: 1em;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .poster_box {
         width: 6em;
+        min-width: 6em;
         margin-right: 20px;
         border-radius: 8px;
         overflow: hidden;
@@ -165,6 +194,19 @@
       .poster_img {
         width: 100%;
         object-fit: cover;
+      }
+      .item_price{
+        width: 12%;
+        font-size: 0.8em;
+        display: flex;
+        flex-flow: column;
+      }
+      .canceled_reserve{
+        font-size: 0.8em;
+      }
+      .review_btn{
+        width: 15%;
+        padding: 10px;
       }
     }
 
@@ -288,8 +330,178 @@
   }
 }
 
-// 나의 예매 날짜로 조회
+// [ 나의 리뷰 ]
+.my_review_all_container{
+  .my_review_card{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    border: 0.5px solid #bbb;
+    border-radius: 8px;
+  }
+  .card_main{
+    display: flex;
+    flex-flow: column;
+    border: 1px solid red;
+  }
+}
+
+// [ 나의 예매 날짜로 조회 ]
 .ByDateReservationItem {
-  border: solid 1px blue;
   margin-bottom: 10px;
+}
+
+  // [ 리뷰 작성 form ]
+.review_modal_container{
+  padding: 15px;
+  .review_modal_header{
+    border-bottom: 2px solid #000;
+    padding: 0;
+    padding-top: 10px;
+    padding-bottom: 5px;
+
+    .btn-close{
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 65px 55px 0 0;
+    }
+  }  
+  // .form-container{
+  //   // padding: 10px 0;
+  // }
+  .star_select_group{
+    display: flex;
+    align-items: center;
+  }
+  .star_select_group .star_select{
+    justify-content: flex-end;
+  }
+  .error-message{
+    color: red;
+    font-size: 0.6em;
+    margin-right: 10px;
+  }
+  .modal-content{
+    padding: 10px 15px;
+  }
+  .modal-title{
+    font-size: 1.3em;
+    font-family: 'Gsans_B';
+  }
+  .star_area{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+  }
+  .star_area label{
+    margin: 0;
+  }
+  .review_img_area{
+    display: flex;
+    padding: 25px 0;
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+  }
+
+  .review_text_area{
+    padding: 25px 0;
+  }
+  
+  .review_img{
+    max-width: 8em;
+    max-height: 8em;
+    width: 8em;
+    height: 8em;
+    overflow: hidden;
+    border: 0.5px #bbb;
+    border-radius: 8px;
+  }
+
+  .review_img img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  .img_uploade_btn{
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+  }
+  .img_uploade_btn > button{
+    padding: 10px;
+    background: #fff;
+    color: #000;
+    border: 0.5px solid #000;
+  }
+}
+.modal-backdrop {
+  --bs-backdrop-bg: #0000002b !important;
+}
+// [ 예약 날짜로 보기 ]
+.my_reserve_date_container{
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  font-size: 12px;
+
+
+  
+  .card_section{
+    width: 58%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 11px;
+    font-size: 12px;
+  }
+  .calander_section{
+    font-size: 14px;
+    padding-left: 0;
+
+    .selectDate{
+      padding: 5px 0;
+    }
+    .todayBTNBox{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .todayButton{
+      background-color: #fff;
+      border: solid 1px black;
+      border-radius: 20px;
+      padding: 5px 10px;
+    }
+    .react-calendar{
+      border: none;
+    }
+    .react-calendar__tile{
+      height: 70px;
+    }
+    .react-calendar__tile--now, .react-calendar__tile--now:enabled:hover, .react-calendar__tile--now:enabled:focus{
+      background-color: #fff;
+      border: 1px solid #bbb;
+      border-radius: 8px;
+      color: #000;
+    }
+    .react-calendar__tile--active, .react-calendar__tile--active:enabled:hover{
+      background-color: #f44f08;
+      border-radius: 8px;
+      color: #fff !important;
+    }
+    .react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus{
+      border-radius: 8px;
+    } 
+    .react-calendar__month-view__days__day--weekend {
+      color: #000;
+    }
+  }
+  .my_reserve_card_container{
+    .review_btn{
+      font-size: 1em;
+    }
+  }
 }

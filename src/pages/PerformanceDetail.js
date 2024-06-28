@@ -28,7 +28,7 @@ const PerformanceDetail = () => {
 
     const { detailData } = useSelector(state => state.list)
     const { reviewAllList } = useSelector(state => state.review)
-    const { likeList } = useSelector(state=>state.like);
+    const { likeList } = useSelector(state => state.like);
 
     const { id } = useParams()
 
@@ -42,6 +42,7 @@ const PerformanceDetail = () => {
     const { locationLat } = useSelector(state => state.list)
     const { locationLot } = useSelector(state => state.list)
 
+    const [BtnDisabled, setBtnDisabled] = useState(false)
     // const postersBoxRef = useRef(null);
     // const [height, setHeight] = useState(0);
 
@@ -73,9 +74,15 @@ const PerformanceDetail = () => {
                     setCostArray([detailData.pcseguidance])
                 }
             }
+
+            if (new Date(detailData.prfpdto) < new Date()) {
+                setBtnDisabled(true)
+            } else {
+                setBtnDisabled(false)
+            }
             getcheckList();
         }
-    }, [detailData,likeList])
+    }, [detailData, likeList])
 
     useEffect(() => {
         dispatch(perfomanceListAction.getLocationLatLot(location, settingQuery))
@@ -90,33 +97,33 @@ const PerformanceDetail = () => {
     }
 
     //찜기능
-    
+
     const getcheckList = () => {
-        let checkLike = likeList.find(like=>like.seqId==detailData.mt20id);
+        let checkLike = likeList.find(like => like.seqId == detailData.mt20id);
         setCheckLike(checkLike);
     }
 
-    const addLike = (item) =>{
+    const addLike = (item) => {
         dispatch(likeAction.addLikeToList({
-          seqId:item.mt20id,
-          seqImage:item.poster,
-          seqTo:item.prfpdto,
-          seqFrom:item.prfpdfrom,
-          seqLocation:item.fcltynm,
-          seqTitle:item.prfnm,
+            seqId: item.mt20id,
+            seqImage: item.poster,
+            seqTo: item.prfpdto,
+            seqFrom: item.prfpdfrom,
+            seqLocation: item.fcltynm,
+            seqTitle: item.prfnm,
         }))
-      }
-    const deleteLikeItem = (checkLike) => {
-        dispatch(likeAction.deleteLikeItem({id:checkLike._id}))
     }
-    console.log("제발",checkLike);
+    const deleteLikeItem = (checkLike) => {
+        dispatch(likeAction.deleteLikeItem({ id: checkLike._id }))
+    }
+    console.log("제발", checkLike);
     return (
         <Container className="wrap-container">
             {loading ? (
                 <div><LoadingText /></div>
             ) : (detailData ? (
                 <div className="DetailPageAllBox">
-                    <div className="DetailStatus">
+                    <div className={`DetailStatus ${detailData.prfstate.toString() === '공연중' ? 'state_run' : ''}`}>
                         <span>
                             {detailData.prfstate}
                         </span>
@@ -128,8 +135,8 @@ const PerformanceDetail = () => {
                         </Col>
                         <Col lg={7} md={7} sm={12} className="DetailInfoBox">
                             <Row className="LikeShare">
-                                {checkLike?(<FontAwesomeIcon icon={fas.faHeart} className="like_heart_red" onClick={()=>deleteLikeItem(checkLike)}/>
-                                ):(<FontAwesomeIcon icon={far.faHeart} className="like_heart" onClick={()=>addLike(detailData)}/>)}
+                                {checkLike ? (<FontAwesomeIcon icon={fas.faHeart} className="like_heart_red" onClick={() => deleteLikeItem(checkLike)} />
+                                ) : (<FontAwesomeIcon icon={far.faHeart} className="like_heart" onClick={() => addLike(detailData)} />)}
                                 <CopyClipButton detailData={detailData} />
                                 {/* <KakaoClipButton detailData={detailData} /> */}
                             </Row>
@@ -157,7 +164,8 @@ const PerformanceDetail = () => {
                             </Row>
                             <Row className="DetailButtonBox">
                                 <div className="reservationBtnBox">
-                                    <button className="reserveBtn" onClick={() => { movePage(detailData) }}>예매하기</button>
+                                    <button disabled={BtnDisabled} className={`reserveBtn ${BtnDisabled.toString()}`} onClick={() => { movePage(detailData) }}>예매하기</button>
+                                    <div className={`${BtnDisabled.toString()}Color`}>더 이상 예매가 불가한 상품입니다.</div>
                                 </div>
                             </Row>
                         </Col>
@@ -218,7 +226,7 @@ const PerformanceDetail = () => {
                                         </div>
                                         <div>{review.reviewText}</div>
                                     </div>
-                                ):(
+                                ) : (
                                     <div>아직 리뷰가 없습니다</div>
                                 )
                             ))

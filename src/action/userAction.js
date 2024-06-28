@@ -217,39 +217,61 @@ const updateUserLevel = (id, level, setSearchQuery) => async (dispatch) => {
   }
 };
 
-const changePassword =
-  (currentPassword, newPassword, navigate) => async (dispatch) => {
+// 회원 비밀번호 확인
+const verifyCurrentPassword =
+  (currentPassword, navigate) => async (dispatch) => {
     try {
-      dispatch({ type: types.USER_CHANGE_PASSWORD_REQUEST });
-      const response = await api.put('/password/change-password', {
+      dispatch({ type: types.VERIFY_CURRENT_PASSWORD_REQUEST });
+
+      const response = await api.post('/password/verify-password', {
         currentPassword,
-        newPassword,
       });
+
       if (response.status !== 200) throw new Error(response.error);
-      dispatch({ type: types.USER_CHANGE_PASSWORD_SUCCESS });
-      alert('비밀번호 변경이 완료되었습니다!\n재로그인 후 이용해주세요.');
-      navigate('/login');
+
+      dispatch({ type: types.VERIFY_CURRENT_PASSWORD_SUCCESS });
+      alert('확인되었습니다.');
+      navigate('/mypage/change-password'); // 인증 성공 후 비밀번호 변경 페이지로 이동
     } catch (error) {
       dispatch({
-        type: types.USER_CHANGE_PASSWORD_FAIL,
+        type: types.VERIFY_CURRENT_PASSWORD_FAIL,
         payload: error.error,
       });
     }
   };
-
-  // [ 회원 탈퇴 ]
-  const deleteUser = (id, navigate) => async (dispatch) => {
-    try{
-      dispatch({ type: types.DELETE_USER_REQUEST });
-      const response = await api.delete(`/user/me/${id}`);
-      if (response.status !== 200) throw new Error(response.error);
-      dispatch({ type: types.DELETE_USER_SUCCESS });
-      alert('회원탈퇴가 완료되었습니다.');
-      navigate('/');
-    }catch(error){
-      dispatch({ type: types.DELETE_USER_FAIL });
-    }
+// 회원 비밀번호 변경
+const changePassword = (newPassword, navigate) => async (dispatch) => {
+  try {
+    dispatch({ type: types.USER_CHANGE_PASSWORD_REQUEST });
+    const response = await api.put('/password/change-password', {
+      newPassword,
+    });
+    if (response.status !== 200) throw new Error(response.error);
+    dispatch({ type: types.USER_CHANGE_PASSWORD_SUCCESS });
+    alert('비밀번호 변경이 완료되었습니다!\n재로그인 후 이용해주세요.');
+    dispatch(logout());
+    navigate('/login');
+  } catch (error) {
+    dispatch({
+      type: types.USER_CHANGE_PASSWORD_FAIL,
+      payload: error.error,
+    });
   }
+};
+
+// [ 회원 탈퇴 ]
+const deleteUser = (id, navigate) => async (dispatch) => {
+  try {
+    dispatch({ type: types.DELETE_USER_REQUEST });
+    const response = await api.delete(`/user/me/${id}`);
+    if (response.status !== 200) throw new Error(response.error);
+    dispatch({ type: types.DELETE_USER_SUCCESS });
+    alert('회원탈퇴가 완료되었습니다.');
+    navigate('/');
+  } catch (error) {
+    dispatch({ type: types.DELETE_USER_FAIL });
+  }
+};
 
 export const resetError = () => ({
   type: types.RESET_ERROR,
@@ -271,5 +293,6 @@ export const userActions = {
   forgotPassword,
   resetPassword,
   changePassword,
-  deleteUser
+  deleteUser,
+  verifyCurrentPassword,
 };

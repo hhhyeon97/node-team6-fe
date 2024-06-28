@@ -33,7 +33,7 @@ const MainPage = () => {
       </Container>
       <EventBanner />
       <Container className='wrap-container'>
-        <Review />  
+        <Review />
       </Container>
     </div>
 
