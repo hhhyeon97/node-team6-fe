@@ -24,14 +24,6 @@ function noticeReducer(state = initialState, action) {
         noticeList: payload.data,
         totalPageNum: payload.totalPageNum,
       };
-    // case types.GET_USER_NOTICE_LIST_SUCCESS:
-    //   return {
-    //     ...state,
-    //     importantNotices: payload.importantNotices,
-    //     normalNotices: payload.normalNotices,
-    //     totalPageNum: payload.totalPageNum,
-    //     loading: false,
-    //   };
     case types.CREATE_NOTICE_SUCCESS:
     case types.EDIT_NOTICE_SUCCESS:
     case types.DELETE_NOTICE_SUCCESS:

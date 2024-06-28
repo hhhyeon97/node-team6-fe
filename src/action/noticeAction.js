@@ -105,6 +105,7 @@ const getUserNoticeList = (query) => async (dispatch) => {
     dispatch({ type: types.GET_NOTICE_LIST_REQUEST });
     const params = { ...query };
     const response = await api.get('/notice/user-notice', { params });
+    console.log('데이터', response);
     if (response.status !== 200) throw new Error(response.error);
     dispatch({
       type: types.GET_NOTICE_LIST_SUCCESS,

@@ -22,9 +22,9 @@ const LoginPage = () => {
   // const KAKAO_REST_API_KEY = process.env.REACT_APP_KAKAO_REST_API_KEY;
   // const KAKAO_REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI;
 
-  useEffect(() => {
-    dispatch(userActions.resetError());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(userActions.resetError());
+  // }, [dispatch]);
 
   const loginWithEmail = (event) => {
     event.preventDefault();
@@ -103,7 +103,7 @@ const LoginPage = () => {
         )}
         <Form className="login_form" onSubmit={loginWithEmail}>
           <Form.Group className="mb-4" controlId="formBasicEmail">
-            <Form.Label>Email</Form.Label>
+            <Form.Label>이메일</Form.Label>
             <Form.Control
               type="email"
               placeholder="ex) noonaculture@naver.com"
@@ -113,7 +113,7 @@ const LoginPage = () => {
           </Form.Group>
 
           <Form.Group className="mb-4" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>비밀번호</Form.Label>
             <div className="password_input_wrap">
               <Form.Control
                 type={showPassword ? 'text' : 'password'}
