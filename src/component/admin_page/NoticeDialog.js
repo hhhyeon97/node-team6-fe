@@ -3,6 +3,7 @@ import { Form, Modal, Button, Col, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { noticeAction } from '../../action/noticeAction';
 import CloudinaryUploadWidget from "../../utils/CloudinaryUploadWidget";
+import defaultPhoto from "../../assets/img/default_photo.png"
 
 const InitialFormData = {
   title: "",
@@ -140,7 +141,8 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
                   src={formData.img}
                   className="upload-image"
                   alt="uploadedimage"
-                  onError={handleImageError}
+                  // onError={handleImageError}
+                  onError={(e) => e.target.src = defaultPhoto }
                   ></img>
                 </div>
             </Form.Group>
