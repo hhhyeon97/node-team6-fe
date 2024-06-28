@@ -20,7 +20,7 @@ const MainPage = () => {
   }, [])
   return (
     <div>
-      {/* <MainBanner />
+      <MainBanner />
       <Container className='wrap-container'>
         <RankingPerformance />
       </Container>
@@ -30,7 +30,7 @@ const MainPage = () => {
       <PlannedPerformance />
       <Container className='wrap-container'>
         <ClosingPerformance />
-      </Container> */}
+      </Container>
       <EventBanner />
       <Container className='wrap-container'>
         <Review />  
