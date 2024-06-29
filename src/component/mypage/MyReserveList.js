@@ -10,7 +10,7 @@ const MyReserveList = ({ reserveList, openReviewForm }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  if(reserveList || reserveList.length === 0){
+  if(!reserveList || reserveList.length === 0){
     return(
       <div className='no_reserve_msg'>
         <h4>예매내역이 없습니다.</h4>
