@@ -67,7 +67,7 @@ const ReservationDetail = () => {
                   <li>관람일자 <strong>{reserveFormat(selectedReserve.reservationDate)}</strong></li>
                   <li>{selectedReserve.isCanceled ? 
                       (<div className='state canceled'>예매취소됨</div>)
-                      :(<div className='state'>예매중</div>)}
+                      :(<div className='state'>예매완료</div>)}
                   </li>
                 </ul>
               </section>

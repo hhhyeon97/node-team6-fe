@@ -73,13 +73,15 @@
     overflow: hidden;
 
     .user_img {
+      width: 90px;
+      height: 90px;
       color: #bbb;
       margin-bottom: 15px;
     }
     .user_name {
       color: #fff;
       font-family: 'Gsans_B';
-      font-size: 0.7em;
+      font-size: 0.6em;
       overflow: hidden;
       text-overflow: ellipsis;
     }
@@ -87,6 +89,7 @@
     .link_menu {
       display: flex;
       flex-flow: column;
+      padding-left: 40px;
       width: 100%;
       margin-top: 20px;
       color: #bbb;
@@ -97,12 +100,16 @@
 
       a {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        padding: 10px 0;
+        padding: 15px 0;
+        font-size: 1.1em;
       }
       a:hover {
         color: #fff;
+      }
+      a > svg{
+        margin-right: 8px;
       }
     }
   }
