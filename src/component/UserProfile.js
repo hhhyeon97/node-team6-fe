@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import defaultProfile from '../assets/img/profile_user.png';
 
 const UserProfile = ({ user }) => {
 
@@ -13,14 +14,14 @@ const UserProfile = ({ user }) => {
             <img 
               src={user?.image}
               alt={user?.name} 
-              style={{ width: '75px', height: '75px', objectFit: 'cover' }} 
-              onError={(e) => e.target.src = 'https://iconspng.com/_next/image?url=https%3A%2F%2Ficonspng.com%2Fimages%2Fabstract-user-icon-3%2Fabstract-user-icon-3.jpg&w=1080&q=75'}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+              onError={(e) => e.target.src = defaultProfile}
             />
           ) : (
             <img 
-              src='https://iconspng.com/_next/image?url=https%3A%2F%2Ficonspng.com%2Fimages%2Fabstract-user-icon-3%2Fabstract-user-icon-3.jpg&w=1080&q=75'
+              src={defaultProfile}
               alt={user?.name} 
-              style={{ width: '75px', height: '75px', objectFit: 'cover' }} 
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
             />
           )}
         </div>
