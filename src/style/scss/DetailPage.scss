@@ -140,11 +140,8 @@
   }
 
   .review_box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100px;
+    text-align: center;
+    margin-top: 30px;
   }
 
   .review {
@@ -253,6 +250,24 @@
 
 @media screen and (max-width: 768px) {
   .DetailPageAllBox {
+    .DetailTopBox {
+      .DetailInfoBox {
+        .LikeShare {
+          margin: 5px 0;
+        }
+        .DetailInfo {
+          font-size: 0.75em;
+        }
+
+        .DetailButtonBox {
+          .reservationBtnBox {
+            .reserveBtn {
+              font-size: 0.8em;
+            }
+          }
+        }
+      }
+    }
     .DetailBox {
       .postersBox {
         height: 90vh;
@@ -263,10 +278,52 @@
 
 @media screen and (max-width: 480px) {
   .DetailPageAllBox {
+    margin-top: 30px;
+    .DetailTopBox {
+      padding-bottom: 30px;
+      .DetailTopImg {
+        margin-bottom: 20px;
+      }
+
+      .DetailInfoBox {
+        padding-top: 20px;
+        border-top: solid 2px black;
+
+        font-size: 0.75em;
+
+        .DetailButtonBox {
+          .reservationBtnBox {
+            .trueColor {
+              font-size: 0.9em;
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+    }
     .DetailBox {
       .postersBox {
         height: 70vh;
       }
+    }
+
+    .subTitle {
+      margin: 20px 0 10px;
+      font-size: 1.5em;
+
+      + li {
+        font-size: 0.8em;
+
+        + li {
+          font-size: 0.8em;
+        }
+      }
+    }
+
+    #true1 {
+      width: 100%;
+      font-size: 1.3em;
+      padding: 15px 0;
     }
   }
 }
