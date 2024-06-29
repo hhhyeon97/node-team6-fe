@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { reviewAction } from '../../action/reviewAction';
 import { convertToKST } from "../../utils/Date";
 import defaultPhoto from "../../assets/img/default_photo.png"
+import Star from '../../component/Star';
 
 const ReviewDetailDialog = ({ open, handleClose, setSearchQuery }) => {
   const dispatch = useDispatch();
@@ -48,33 +49,43 @@ const ReviewDetailDialog = ({ open, handleClose, setSearchQuery }) => {
   return (
     <Modal show={open} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Review Detail</Modal.Title>
+        <Modal.Title>리뷰 상세정보</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div>공연정보 : {selectedReview.reservationId.ticket.SeqTitle}</div>
-        <div className='poster_box' onClick={handlePosterClick} >
-          {selectedReview.reservationId.ticket.SeqImage ? (
-            <img
-            className='poster_img'
-            src={selectedReview.reservationId.ticket.SeqImage}
-            style={{ width: '6em' }}
-            alt='리뷰공연 포스터'
-            onError={(e) => e.target.src = defaultPhoto }
-            />
-          ):(
-            <img
-            className='poster_img'
-            src={selectedReview.reservationId.ticket.SeqImage}
-            style={{ width: '6em' }}
-            alt='리뷰공연 포스터'
-            onError={handleImageError}
-            />
-          )}
-
+      <div className="review_detail_modal">
+        <div class="perform_infos">
+          {/* <div className='poster_box' onClick={handlePosterClick} >
+            {selectedReview.reservationId.ticket.SeqImage ? (
+              <img
+              className='poster_img'
+              src={selectedReview.reservationId.ticket.SeqImage}
+              style={{ width: '6em' }}
+              alt='리뷰공연 포스터'
+              onError={(e) => e.target.src = defaultPhoto }
+              />
+            ):(
+              <img
+              className='poster_img'
+              src={selectedReview.reservationId.ticket.SeqImage}
+              style={{ width: '6em' }}
+              alt='리뷰공연 포스터'
+              onError={handleImageError}
+              />
+              )}
+            </div> */}
         </div>
-        <div>작성자 : {selectedReview.userId.name}</div>
-        <div>회원등급 : {selectedReview.userId.level.toUpperCase()}</div>
-        <div className='poster_box' onClick={handlePosterClick} >
+        
+        <Form onSubmit={submitStatus}>
+          <Form.Group as={Col} controlId="status" className='suspend_review_area'>
+              <Form.Check
+                type="checkbox"
+                label="리뷰숨김"
+                name="isSuspend"
+                checked={reviewState}
+                onChange={handleCheckboxChange}
+              />
+          </Form.Group>
+          <div className='poster_box' onClick={handlePosterClick} >
           {selectedReview.image ? (
             <img
               className='poster_img'
@@ -93,31 +104,31 @@ const ReviewDetailDialog = ({ open, handleClose, setSearchQuery }) => {
               />
           )}
         </div>
-        <div>리뷰내용 : {selectedReview.reviewText}</div>
-        <div>등록일자 : {convertToKST(selectedReview.createdAt)}</div>
-          
-        <Form onSubmit={submitStatus}>
-          <Form.Group as={Col} controlId="status">
-              <Form.Check
-                type="checkbox"
-                label="리뷰숨김"
-                name="isSuspend"
-                checked={reviewState}
-                onChange={handleCheckboxChange}
-              />
-          </Form.Group>
-
-          <div className="order-button-area">
-            <Button
-              variant="light"
-              onClick={handleClose}
-              className="order-button"
-            >
-              닫기
-            </Button>
-            <Button type="submit">저장</Button>
+        <div class="review_info_group">
+          <div>공연정보 : {selectedReview.reservationId.ticket.SeqTitle}</div>
+          <div>등록일자 : {convertToKST(selectedReview.createdAt)}</div>
+          <div>작성자 : {selectedReview.userId.name}</div>
+          <div className="star_rate_info">
+            <p>별점 : </p>&nbsp; <Star startNum={selectedReview?.starRate} />
           </div>
-        </Form>
+        </div>
+        {/* <div>회원등급 : {selectedReview.userId.level.toUpperCase()}</div> */}
+        <div>리뷰내용 : 
+          <div className="review_content">{selectedReview.reviewText}</div>
+        </div>
+
+            <div className="order-button-area">
+              {/* <Button
+                variant="light"
+                onClick={handleClose}
+                className="order-button"
+              >
+                닫기
+              </Button> */}
+              <Button type="submit" variant='dark'>저장</Button>
+            </div>
+          </Form>
+        </div>
       </Modal.Body>
     </Modal>
   );

@@ -112,8 +112,7 @@ const NoticePage = () => {
                       )}
                     </span>
                     <span className="notice_title_wrap">
-                      {notice.isImportant ? '[공지]' : '[이벤트]'}{' '}
-                      {notice.title}
+                      {notice.isImportant ? '[공지]' : '[일반]'} {notice.title}
                     </span>
                   </div>
                   <span className="notice_date">

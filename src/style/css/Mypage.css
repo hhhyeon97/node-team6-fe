@@ -1,5 +1,6 @@
 @charset "UTF-8";
 .mypage-wrap-container {
+  max-width: 1350px;
   padding: 0;
   padding-top: 15px;
   position: relative;
@@ -50,7 +51,7 @@
 }
 .mypage-container .mypage-right .user_level_section {
   display: flex;
-  padding: 10px;
+  padding: 20px 10px;
   background-color: #000;
   margin-bottom: 50px;
 }
@@ -61,16 +62,21 @@
   display: flex;
   align-items: center;
   padding: 0 10px;
-  font-size: 10px;
+  font-size: 13px;
   color: #fff;
 }
+.mypage-container .mypage-right .user_level_section .user_level_info svg {
+  margin-right: 3px;
+}
 .mypage-container .mypage-right .user_level_section .user_level_info h5 {
+  margin-right: 10px;
   font-family: Gsans_B;
-  font-size: 12px;
+  font-size: 1em;
   color: #bbb;
 }
 .mypage-container .mypage-right .user_level_section .user_level_info .level_bdg {
   font-family: Gsans_B;
+  font-size: 0.7em;
   padding: 7px 10px;
   border-radius: 50px;
 }
@@ -91,9 +97,33 @@
   background-color: #f44f08;
   color: rgb(255, 255, 255);
 }
+.mypage-container .mypage-right .edit_user_form_container {
+  display: flex;
+  padding: 25px 0 30px 5px;
+  border-bottom: 1px solid #000;
+}
+.mypage-container .mypage-right .edit_user_form_container .col {
+  margin-bottom: 25px;
+}
+.mypage-container .mypage-right .edit_user_form_container .form-label {
+  font-size: 1.2em;
+}
+.mypage-container .mypage-right .edit_user_form_container .form-control {
+  width: 100%;
+}
+.mypage-container .mypage-right .edit_user_form_container .upload_img_area {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
+.mypage-container .mypage-right .edit_user_form_container .profile_contaiener {
+  display: flex;
+  flex-flow: column;
+}
 .mypage-container .mypage-right .edit_user_form_container .edit_image_box {
-  width: 100px;
-  height: 100px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   border: 1px solid #bbb;
   overflow: hidden;
@@ -103,12 +133,37 @@
   width: 100%;
   height: 100%;
 }
-.mypage-container .mypage-right .edit_user_form_container .outMember_btn {
+.mypage-container .mypage-right .edit_user_form_container .upload_img_btn {
+  padding: 0 13px;
+  height: 50px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+.mypage-container .mypage-right .edit_user_form_container .upload_img_btn:hover {
+  background-color: rgb(53, 53, 53);
+}
+.mypage-container .mypage-right .edit_user_form_container .edit_submit_btn {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  background-color: #000;
+}
+.mypage-container .mypage-right .edit_user_form_container .edit_submit_btn:hover {
+  background-color: rgb(49, 49, 49);
+}
+.mypage-container .mypage-right .outMember_container {
+  display: flex;
+  justify-content: flex-end;
+}
+.mypage-container .mypage-right .outMember_btn {
+  padding: 20px 0 0 5px;
   width: fit-content;
   color: rgb(59, 59, 59);
   cursor: pointer;
 }
-.mypage-container .mypage-right .edit_user_form_container .outMember_btn:hover {
+.mypage-container .mypage-right .outMember_btn:hover {
   color: #000;
 }
 .mypage-container .mypage-right .mylike_wrap {
@@ -205,20 +260,6 @@
   opacity: 0.5;
 }
 
-.reserve-detail-container {
-  border: 2px solid red;
-}
-.reserve-detail-container .okCancel {
-  font-size: 0.8em;
-  background-color: #000;
-}
-.reserve-detail-container .disableCancel {
-  font-size: 0.7em;
-  pointer-events: none;
-  background-color: #bbb !important;
-  border: #bbb;
-}
-
 .ByDateReservationItem {
   margin-bottom: 10px;
 }
@@ -247,7 +288,7 @@
 }
 .review_modal_container .error-message {
   color: red;
-  font-size: 0.6em;
+  font-size: 0.7em;
   margin-right: 10px;
 }
 .review_modal_container .modal-content {
@@ -304,6 +345,7 @@
 .modal-backdrop {
   --bs-backdrop-bg: #0000002b !important;
 }
+
 
 @media screen and (max-width: 480px) {
   /* 모바일 세로 */

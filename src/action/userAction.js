@@ -127,7 +127,7 @@ const resetPassword =
       });
       if (response.status !== 200) throw new Error(response.error);
       dispatch({ type: types.RESET_PASSWORD_SUCCESS });
-      alert('새 비밀번호가 설정되었습니다!');
+      alert('새 비밀번호가 설정되었습니다!\n로그인 후 이용해 주세요.');
       navigate('/login');
     } catch (error) {
       const errorMessage = error.response?.data?.error || error.message;
@@ -170,7 +170,7 @@ const getUser = () => async (dispatch) => {
 //   }
 // };
 
-const editUser = (formData) => async (dispatch) => {
+const editUser = (formData, navigate) => async (dispatch) => {
   try {
     dispatch({ type: types.EDIT_USER_REQUEST });
     const response = await api.put('/user/me', formData);
@@ -179,7 +179,8 @@ const editUser = (formData) => async (dispatch) => {
       type: types.EDIT_USER_SUCCESS,
       payload: response.data,
     });
-    alert('회원 정보가 업데이트 되었습니다 !');
+    alert('회원 정보가 수정 되었습니다.');
+    navigate('/mypage/reservations/by-date');
   } catch (error) {
     dispatch({ type: types.EDIT_USER_FAIL, payload: error.error });
   }

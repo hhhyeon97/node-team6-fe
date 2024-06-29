@@ -3,9 +3,10 @@ import MyPageLayout from '../../Layout/MyPageLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { userActions } from '../../action/userAction';
-import { Form, Col, Alert } from 'react-bootstrap';
+import { Form, Col, Alert, Container } from 'react-bootstrap';
 import CloudinaryUploadWidget from '../../utils/CloudinaryUploadWidget';
 import AlertModal from '../../component/AlertModal';
+import defaultProfile from '../../assets/img/profile_user.png';
 
 // 회원정보 수정 컴포넌트
 const EditProfile = () => {
@@ -22,6 +23,7 @@ const EditProfile = () => {
     email: '',
     contact: '',
   });
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   // [ 유저 정보 받아오기 ]
   useEffect(() => {
@@ -50,6 +52,11 @@ const EditProfile = () => {
       [id]: formattedValue,
     }));
 
+    if (id === 'email') {
+      setEmailError('');
+      dispatch(userActions.resetError());
+    }
+
     if (id === 'name') {
       setNameError('');
     }
@@ -75,6 +82,12 @@ const EditProfile = () => {
     event.preventDefault();
     const { image, name, email, contact } = formData;
 
+    // 이메일 유효성 검사
+    if (!emailRegex.test(email)) {
+      setEmailError('유효한 이메일 주소를 입력해 주세요.');
+      return;
+    }
+
     // 이름 유효성 검사
     const nameRegex = /^[a-zA-Z가-힣]+$/;
     if (!nameRegex.test(name)) {
@@ -89,7 +102,7 @@ const EditProfile = () => {
       return;
     }
 
-    dispatch(userActions.editUser({ ...formData }));
+    dispatch(userActions.editUser({ ...formData }, navigate));
   };
 
   const formatPhoneNumber = (value) => {
@@ -117,103 +130,100 @@ const EditProfile = () => {
 
   return (
     <MyPageLayout title="나의 계정" cap="회원정보 수정">
-      <div>
-        {error && (
-          <div>
-            <Alert variant="danger" className="error-message">
-              {error}
-            </Alert>
-          </div>
-        )}
+      <Container>
         <Form className="edit_user_form_container" onSubmit={handleSubmit}>
-          <Form.Group as={Col} controlId="image">
+          <Form.Group as={Col} controlId="image" className='profile_contaiener'>
             <Form.Label>프로필 이미지</Form.Label>
-            <CloudinaryUploadWidget uploadImage={uploadImage} />
-            <div class="edit_image_box">
-              <img
-                id="uploadedimage"
-                src={
-                  formData.image === ''
-                    ? 'https://iconspng.com/_next/image?url=https%3A%2F%2Ficonspng.com%2Fimages%2Fabstract-user-icon-3%2Fabstract-user-icon-3.jpg&w=1080&q=75'
-                    : formData.image
-                }
-                className="upload-image"
-                alt="uploadedimage"
-              ></img>
+            <div class="upload_img_area">
+              <div class="edit_image_box">
+                <img
+                  id="uploadedimage"
+                  src={formData.image === '' ? defaultProfile : formData.image}
+                  className="upload-image"
+                  alt="uploadedimage"
+                ></img>
+              </div>
+              <CloudinaryUploadWidget uploadImage={uploadImage} />
             </div>
           </Form.Group>
-
-          <Form.Group as={Col} controlId="email">
-            <Form.Label>이메일</Form.Label>
-            <Form.Control
-              id="email"
-              onChange={handleChange}
-              type="text"
-              placeholder="2자이상 10자 이하로 입력해주세요"
-              required
-              value={formData.email}
-            />
-          </Form.Group>
-
-          <Form.Group as={Col} controlId="name">
-            <Form.Label>이름</Form.Label>
-            <Form.Control
-              id="name"
-              onChange={handleChange}
-              type="text"
-              placeholder="한글 또는 영어로 입력해주세요"
-              required
-              value={formData.name}
-              isInvalid={!!nameError}
-            />
-            <Form.Control.Feedback type="invalid">
-              {nameError}
-            </Form.Control.Feedback>
-          </Form.Group>
-
-          <Form.Group as={Col} controlId="contact">
-            <Form.Label>연락처</Form.Label>
-            <Form.Control
-              onChange={handleChange}
-              type="text"
-              placeholder="11자리로 입력해주세요"
-              required
-              id="contact"
-              value={formData.contact}
-              isInvalid={!!contactError}
-            />
-            <Form.Control.Feedback type="invalid">
-              {contactError}
-            </Form.Control.Feedback>
-          </Form.Group>
+          <Col>
+            <Form.Group as={Col} controlId="email">
+              <Form.Label>이메일</Form.Label>
+              <Form.Control
+                id="email"
+                onChange={handleChange}
+                type="text"
+                placeholder="이메일을 입력해 주세요"
+                required
+                value={formData.email}
+                isInvalid={!!emailError}
+              />
+              <Form.Control.Feedback type="invalid">
+                {emailError}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group as={Col} controlId="name">
+              <Form.Label>이름</Form.Label>
+              <Form.Control
+                id="name"
+                onChange={handleChange}
+                type="text"
+                placeholder="한글 또는 영어로 입력해 주세요"
+                required
+                value={formData.name}
+                isInvalid={!!nameError}
+              />
+              <Form.Control.Feedback type="invalid">
+                {nameError}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group as={Col} controlId="contact">
+              <Form.Label>연락처</Form.Label>
+              <Form.Control
+                onChange={handleChange}
+                type="text"
+                placeholder="11자리로 입력해 주세요"
+                required
+                id="contact"
+                value={formData.contact}
+                isInvalid={!!contactError}
+              />
+              <Form.Control.Feedback type="invalid">
+                {contactError}
+              </Form.Control.Feedback>
+            </Form.Group>
 
           <button className="edit_submit_btn" type="submit">
-            업데이트
+            저장하기
           </button>
-
-          <p className='outMember_btn' onClick={handleMemberOut}>회원탈퇴하기</p>
-
-          {user?.level === 'gold' ? (
-            <AlertModal
-              showModal={showModal}
-              setShowModal={setShowModal}
-              selectedId={user?._id}
-              selectedName="회원 탈퇴하기"
-              alertMessage={`${user?.name}회원님, 10% 혜택을 포기하실건가요? 🥺 회원님은 10% 할인 혜택을 받으실 수 있습니다`}
-              btnText="회원탈퇴"
-            />
-          ) : (
-            <AlertModal
-              showModal={showModal}
-              setShowModal={setShowModal}
-              selectedId={user?._id}
-              selectedName="회원 탈퇴하기"
-              alertMessage={`${user?.name}회원님, 정말 저희를 떠나실건가요? 🥲`}
-              btnText="회원탈퇴"
-            />
-          )}
+          </Col>
         </Form>
-      </div>
+        <div class="outMember_container">
+          <p className="outMember_btn" onClick={handleMemberOut}>
+            회원탈퇴하기
+          </p>
+        </div>
+
+        {user?.level === 'gold' ? (
+          <AlertModal
+            showModal={showModal}
+            setShowModal={setShowModal}
+            selectedId={user?._id}
+            selectedName="회원 탈퇴하기"
+            alertMessage={`${user?.name}회원님, 10% 혜택을 포기하실건가요? 🥺 회원님은 10% 할인 혜택을 받으실 수 있습니다`}
+            btnText="회원탈퇴"
+          />
+        ) : (
+          <AlertModal
+            showModal={showModal}
+            setShowModal={setShowModal}
+            selectedId={user?._id}
+            selectedName="회원 탈퇴하기"
+            alertMessage={`${user?.name}회원님, 정말 누나컬처를 떠나실건가요? 🥲`}
+            btnText="회원탈퇴"
+          />
+        )}
+      </Container>
     </MyPageLayout>
   );
 };

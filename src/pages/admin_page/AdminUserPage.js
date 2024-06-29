@@ -68,14 +68,18 @@ const AdminUserPage = () => {
   };
 
   return(
-      <div className="admin_user_container">
+      <div className="admin_user_container admin_page">
         <SearchBox
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
             placeholder="회원명으로 검색해주세요"
             field="name"
         />
-        <Button onClick={resetSearch} variant="secondary">All</Button>
+        <div class="reset_btn_area">
+          <Button className='search_reset' onClick={resetSearch} variant="light">
+            검색 초기화
+          </Button>
+        </div>
 
         <LinedTitle title='회원관리' cap='회원 정보를 조회하고 회원등급을 수정할 수 있습니다'/>
 

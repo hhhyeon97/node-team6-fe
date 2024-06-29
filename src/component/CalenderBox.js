@@ -17,19 +17,9 @@ const CalenderBox = ({ selectDate, setSelectDate, blockDate, blockMaxDate, reser
         setActiveStartDate(activeStartDate);
     };
 
-    // const getTileContent = ({ date, view }) => {
-    //     if (view === 'month') {
-    //         const reservation = reservations.find(res => new Date(res.date).toDateString() === date.toDateString());
-    //         if (reservation) {
-    //             return (
-    //                 <div className="calendar-tile-content">
-    //                     <img src={reservation.ticket.SeqImage} alt="예약 이미지" className="calendar-tile-image" />
-    //                 </div>
-    //             );
-    //         }
-    //     }
-    //     return null;
-    // };
+    useEffect(() => {
+        setActiveStartDate(selectDate);
+    }, [selectDate]);
 
     return (
         <Calendar
@@ -47,7 +37,7 @@ const CalenderBox = ({ selectDate, setSelectDate, blockDate, blockMaxDate, reser
             maxDate={blockMaxDate}
             activeStartDate={activeStartDate}
             onActiveStartDateChange={handleActiveStartDateChange}
-            // tileContent={getTileContent} // tileContent prop 추가
+        // tileContent={getTileContent} // tileContent prop 추가
         >
         </Calendar >
     )

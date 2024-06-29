@@ -127,7 +127,7 @@ const ReservationPage = () => {
         <Container className='wrap-container reservationPage'>
             {detailData ? (
                 <Row className='ReservationContainer'>
-                    <Col lg={7} md={7} sm={12} className='reservation_Right_Box'>
+                    <Col lg={7} md={6} sm={12} className='reservation_Right_Box'>
                         <div>
                             <div className='title'>관람일자 선택</div>
                             <CalenderBox selectDate={reservationDate} setSelectDate={setReservationDate} blockDate={blockDate} blockMaxDate={blockMaxDate} />
@@ -137,7 +137,7 @@ const ReservationPage = () => {
                             <PaymentForm cardValue={cardValue} handleInputFocus={handleInputFocus} handlePaymentInfoChange={handlePaymentInfoChange} />
                         </div>
                     </Col>
-                    <Col lg={5} md={5} sm={12} className='reservation_Info_Box'>
+                    <Col lg={5} md={6} sm={12} className='reservation_Info_Box'>
                         <div className='subTitle'>상품 정보</div>
                         <div className='Info_TopBox_performance under_line'>
                             <div className='poster_img'>
