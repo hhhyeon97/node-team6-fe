@@ -326,8 +326,6 @@
 .modal-backdrop {
   --bs-backdrop-bg: #0000002b !important;
 }
-<<<<<<< HEAD
-=======
 
 .verify_password_form {
   padding: 25px 0 30px 5px;
@@ -401,4 +399,3 @@
   padding: 15px;
   margin-top: 10px;
 }
->>>>>>> 4b41267b04667458022e42ac1765140289d68de8
