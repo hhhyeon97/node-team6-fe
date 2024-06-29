@@ -118,8 +118,11 @@
 .DetailPageAllBox .review {
   border: solid 1px #bbb;
   border-radius: 5px;
-  padding: 20px 10px;
+  padding: 20px 10px 10px;
   margin-bottom: 10px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
 }
 .DetailPageAllBox .review .detailReviewTop {
   display: flex;
@@ -134,6 +137,15 @@
 }
 .DetailPageAllBox .review .detailReviewTop .starName .review_nickname {
   margin-left: 10px;
+}
+.DetailPageAllBox .review .reviewInner {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+.DetailPageAllBox .review .reviewInner .userSendImg img {
+  max-height: 90px;
 }
 .DetailPageAllBox #true1 {
   display: block;

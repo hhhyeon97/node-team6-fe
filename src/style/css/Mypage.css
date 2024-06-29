@@ -1,8 +1,15 @@
 @charset "UTF-8";
-.mypage-container {
+.mypage-wrap-container {
+  padding: 0;
+  padding-top: 15px;
+  position: relative;
   display: flex;
   justify-content: space-between;
-  /* < mypage-left > */
+}
+
+.mypage-container {
+  width: 100%;
+  min-height: 500px;
   /* < mypage-right > */
 }
 .mypage-container h1,
@@ -31,43 +38,13 @@
 .mypage-container .transparent {
   opacity: 0;
 }
-.mypage-container .mypage-left {
-  width: 14%;
-  display: flex;
-  flex-flow: column;
-  align-items: flex-start;
-  /* [ side-bar ] */
-  /* [ user-profile ] */
-}
-.mypage-container .mypage-left .mypage_sidebar {
-  padding-top: 40px;
-  color: #919191;
-}
-.mypage-container .mypage-left .mypage_sidebar h3 {
-  font-size: 20px;
-  color: #000;
-}
-.mypage-container .mypage-left .mypage_sidebar a:hover {
-  color: #000;
-}
-.mypage-container .mypage-left .mypage_sidebar .link_menu {
-  margin-bottom: 30px;
-  font-size: 13px;
-}
-.mypage-container .mypage-left .mypage_sidebar .link_menu a {
-  display: inline-block;
-  padding: 8px 0 0 5px;
-  cursor: pointer;
-}
-.mypage-container .mypage-left .user_profile_container .user_name {
-  font-family: Gsans_B;
+.mypage-container .title_section p {
+  font-size: 1em;
 }
 .mypage-container .mypage-right {
   display: flex;
-  width: 86%;
   flex-flow: column;
   /* [ 회원 등급 정보 ] */
-  /* [ 나의 예매_전체조회 카드 ]*/
   /* [ 회원정보 수정 페이지 ] */
   /* 나의 찜 페이지 */
 }
@@ -114,81 +91,6 @@
   background-color: #f44f08;
   color: rgb(255, 255, 255);
 }
-.mypage-container .mypage-right .my_reserve_card_container {
-  border: 0.5px solid #bbb;
-  border-radius: 8px;
-  padding: 15px 20px 20px 13px;
-  margin: 13px 0;
-  overflow: hidden;
-  cursor: pointer;
-}
-.mypage-container .mypage-right .my_reserve_card_container .card_top {
-  display: flex;
-  justify-content: space-between;
-}
-.mypage-container .mypage-right .my_reserve_card_container .info_group {
-  display: flex;
-  font-size: 0.9em;
-  align-items: center;
-}
-.mypage-container .mypage-right .my_reserve_card_container .info_group > .info_item {
-  margin-right: 10px;
-}
-.mypage-container .mypage-right .my_reserve_card_container .info_item {
-  display: flex;
-  font-size: 0.7em;
-  align-items: center;
-}
-.mypage-container .mypage-right .my_reserve_card_container .info_item p {
-  margin-right: 3px;
-}
-.mypage-container .mypage-right .my_reserve_card_container .book_date > strong {
-  font-family: Gsans_B;
-  font-size: 1.2em;
-}
-.mypage-container .mypage-right .my_reserve_card_container .card_main {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 10px;
-}
-.mypage-container .mypage-right .my_reserve_card_container .card_title {
-  width: 50%;
-  display: flex;
-  align-items: center;
-}
-.mypage-container .mypage-right .my_reserve_card_container .card_title h5 {
-  font-family: "Gsans_B";
-  font-size: 1em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.mypage-container .mypage-right .my_reserve_card_container .poster_box {
-  width: 6em;
-  min-width: 6em;
-  margin-right: 20px;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 0.5px solid #bbb;
-  background-color: #bbb;
-}
-.mypage-container .mypage-right .my_reserve_card_container .poster_img {
-  width: 100%;
-  object-fit: cover;
-}
-.mypage-container .mypage-right .my_reserve_card_container .item_price {
-  width: 12%;
-  font-size: 0.8em;
-  display: flex;
-  flex-flow: column;
-}
-.mypage-container .mypage-right .my_reserve_card_container .canceled_reserve {
-  font-size: 0.8em;
-}
-.mypage-container .mypage-right .my_reserve_card_container .review_btn {
-  width: 15%;
-  padding: 10px;
-}
 .mypage-container .mypage-right .edit_user_form_container .edit_image_box {
   width: 100px;
   height: 100px;
@@ -201,17 +103,25 @@
   width: 100%;
   height: 100%;
 }
+.mypage-container .mypage-right .edit_user_form_container .outMember_btn {
+  width: fit-content;
+  color: rgb(59, 59, 59);
+  cursor: pointer;
+}
+.mypage-container .mypage-right .edit_user_form_container .outMember_btn:hover {
+  color: #000;
+}
 .mypage-container .mypage-right .mylike_wrap {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 2%;
 }
 .mypage-container .mypage-right .mylike_card_area {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 23.3%;
-  height: 48vh;
+  width: 23.5%;
+  height: 51vh;
   overflow: hidden;
   margin-bottom: 4rem;
   cursor: pointer;
@@ -225,9 +135,11 @@
   align-items: center;
   border-radius: 0.4rem;
   overflow: hidden;
+  object-fit: cover;
 }
 .mypage-container .mypage-right .mylike_card_area .mylike_card_image {
   width: 100%;
+  height: 100%;
 }
 .mypage-container .mypage-right .mylike_card_area .filter_gray {
   filter: grayscale(75%);
@@ -251,6 +163,9 @@
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 0.3rem;
+  max-height: 2.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .mypage-container .mypage-right .mylike_card_area .mylike_card_text_box h5 {
   font-size: 0.9rem;
@@ -290,25 +205,14 @@
   border: 2px solid red;
 }
 .reserve-detail-container .okCancel {
+  font-size: 0.8em;
   background-color: #000;
 }
 .reserve-detail-container .disableCancel {
+  font-size: 0.7em;
   pointer-events: none;
   background-color: #bbb !important;
   border: #bbb;
-}
-
-.my_review_all_container .my_review_card {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
-  border: 0.5px solid #bbb;
-  border-radius: 8px;
-}
-.my_review_all_container .card_main {
-  display: flex;
-  flex-flow: column;
-  border: 1px solid red;
 }
 
 .ByDateReservationItem {
@@ -395,63 +299,4 @@
 
 .modal-backdrop {
   --bs-backdrop-bg: #0000002b !important;
-}
-
-.my_reserve_date_container {
-  display: flex;
-  justify-content: space-between;
-  margin: 0;
-  font-size: 12px;
-}
-.my_reserve_date_container .card_section {
-  width: 58%;
-  padding-left: 0;
-  padding-right: 0;
-  margin-top: 11px;
-  font-size: 12px;
-}
-.my_reserve_date_container .calander_section {
-  font-size: 14px;
-  padding-left: 0;
-}
-.my_reserve_date_container .calander_section .selectDate {
-  padding: 5px 0;
-}
-.my_reserve_date_container .calander_section .todayBTNBox {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-}
-.my_reserve_date_container .calander_section .todayButton {
-  background-color: #fff;
-  border: solid 1px black;
-  border-radius: 20px;
-  padding: 5px 10px;
-}
-.my_reserve_date_container .calander_section .react-calendar {
-  border: none;
-}
-.my_reserve_date_container .calander_section .react-calendar__tile {
-  height: 70px;
-}
-.my_reserve_date_container .calander_section .react-calendar__tile--now, .my_reserve_date_container .calander_section .react-calendar__tile--now:enabled:hover, .my_reserve_date_container .calander_section .react-calendar__tile--now:enabled:focus {
-  background-color: #fff;
-  border: 1px solid #bbb;
-  border-radius: 8px;
-  color: #000;
-}
-.my_reserve_date_container .calander_section .react-calendar__tile--active, .my_reserve_date_container .calander_section .react-calendar__tile--active:enabled:hover {
-  background-color: #f44f08;
-  border-radius: 8px;
-  color: #fff !important;
-}
-.my_reserve_date_container .calander_section .react-calendar__tile:enabled:hover, .my_reserve_date_container .calander_section .react-calendar__tile:enabled:focus {
-  border-radius: 8px;
-}
-.my_reserve_date_container .calander_section .react-calendar__month-view__days__day--weekend {
-  color: #000;
-}
-.my_reserve_date_container .my_reserve_card_container .review_btn {
-  font-size: 1em;
 }

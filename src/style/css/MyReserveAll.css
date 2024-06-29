@@ -1,0 +1,84 @@
+@charset "UTF-8";
+/* [ 나의 예매_전체조회 카드 ]*/
+.my_reserve_all_container {
+  font-size: 18px;
+}
+.my_reserve_all_container .my_reserve_card_container {
+  border: 0.5px solid #bbb;
+  border-radius: 8px;
+  padding: 15px 20px 20px 13px;
+  margin: 13px 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+.my_reserve_all_container .my_reserve_card_container .card_top {
+  display: flex;
+  justify-content: space-between;
+}
+.my_reserve_all_container .my_reserve_card_container .info_group {
+  display: flex;
+  font-size: 0.9em;
+  align-items: center;
+}
+.my_reserve_all_container .my_reserve_card_container .info_group > .info_item {
+  margin-right: 10px;
+}
+.my_reserve_all_container .my_reserve_card_container .info_item {
+  display: flex;
+  font-size: 0.8em;
+  align-items: center;
+}
+.my_reserve_all_container .my_reserve_card_container .info_item p {
+  margin-right: 3px;
+}
+.my_reserve_all_container .my_reserve_card_container .book_date > strong {
+  font-family: Gsans_B;
+  font-size: 1.2em;
+}
+.my_reserve_all_container .my_reserve_card_container .card_main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+.my_reserve_all_container .my_reserve_card_container .card_title {
+  width: 60%;
+  display: flex;
+  align-items: center;
+}
+.my_reserve_all_container .my_reserve_card_container .card_title h5 {
+  font-family: "Gsans_B";
+  font-size: 1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.my_reserve_all_container .my_reserve_card_container .poster_box {
+  width: 6em;
+  min-width: 6em;
+  margin-right: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 0.5px solid #bbb;
+  background-color: #bbb;
+}
+.my_reserve_all_container .my_reserve_card_container .poster_img {
+  width: 100%;
+  object-fit: cover;
+}
+.my_reserve_all_container .my_reserve_card_container .item_price {
+  width: 12%;
+  font-size: 0.8em;
+  display: flex;
+  flex-flow: column;
+}
+.my_reserve_all_container .my_reserve_card_container .card_btns {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.my_reserve_all_container .my_reserve_card_container .card_btns button {
+  font-size: 0.9em;
+  padding: 10px 15px;
+  border: 1px solid #000;
+}

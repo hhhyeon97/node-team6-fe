@@ -1,0 +1,36 @@
+.mainPage_skeleton {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+  .performance_card_area {
+    width: 18.5%;
+    position: relative;
+    cursor: pointer;
+
+    .performance_card_img_box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      height: 29vh;
+      border-radius: 0.5rem;
+      margin-bottom: 0.2rem;
+      position: relative;
+      border: 1px solid #e4e4e4;
+    }
+    .performance_card_img {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.77);
+      font-size: 1.3em;
+    }
+
+    .skeletonBtn {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

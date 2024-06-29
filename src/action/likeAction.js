@@ -7,7 +7,6 @@ const addLikeToList = ({seqId,seqImage,seqTo,seqFrom,seqLocation,seqTitle}) => a
         const response = await api.post("/like",{
             seqId,seqImage,seqTo,seqFrom,seqLocation,seqTitle
         });
-        console.log("추가",response.data.data.items);
         dispatch({type:types.ADD_LIKE_SUCCESS,payload:response.data.data.items});
     }catch(error){
         dispatch({type:types.ADD_LIKE_FAIL,payload:error.error})

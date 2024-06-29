@@ -48,6 +48,7 @@ function userReducer(state = initialState, action) {
         totalPageNum: payload.totalPageNum,
       };
     case types.UPDATE_LEVEL_SUCCESS:
+    case types.FORGOT_PASSWORD_SUCCESS:
       return {
         ...state,
         loading: false,

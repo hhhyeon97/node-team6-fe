@@ -68,11 +68,11 @@ const loginWithGoogle = (accessToken) => async (dispatch) => {
 const loginWithKakao = (token) => async (dispatch) => {
   try {
     dispatch({ type: types.KAKAO_LOGIN_REQUEST });
-    console.log('test 1');
+    // console.log('test 1');
     const response = await api.post('/auth/kakao', { token });
-    console.log('test 2');
+    // console.log('test 2');
     if (response.status !== 200) throw new Error(response.error);
-    console.log('test 3');
+    // console.log('test 3');
     localStorage.setItem('token', response.data.token);
     dispatch({ type: types.KAKAO_LOGIN_SUCCESS, payload: response.data });
   } catch (error) {
@@ -84,20 +84,16 @@ const loginWithKakao = (token) => async (dispatch) => {
 };
 
 const loginWithKakaoCode = (code, navigate) => async (dispatch) => {
-  console.log('인가', code);
+  // console.log('인가', code);
   try {
     dispatch({ type: types.KAKAO_LOGIN_REQUEST });
-    console.log('testtttttttt');
     const response = await api.post('/auth/kakao/code', { code });
-    console.log('testtttttttt', response);
     if (response.status !== 200) throw new Error(response.error);
     localStorage.setItem('token', response.data.token);
     dispatch({ type: types.KAKAO_LOGIN_SUCCESS, payload: response.data });
-    console.log('testtttttttt');
     navigate('/');
   } catch (error) {
     dispatch({ type: types.KAKAO_LOGIN_FAIL, payload: error.error });
-    console.log('testtttttttt');
   }
 };
 
@@ -136,23 +132,10 @@ const resetPassword =
     } catch (error) {
       const errorMessage = error.response?.data?.error || error.message;
       dispatch({ type: types.RESET_PASSWORD_FAIL, payload: errorMessage });
-      alert('토큰이 만료되었습니다.\n비밀번호 재설정 링크를 다시 받아주세요.');
+      alert('만료된 토큰입니다.\n비밀번호 재설정 링크를 다시 받아주세요.');
       navigate('/find-password');
     }
   };
-
-// 비밀번호 재설정 토큰 만료 체크
-// const checkResetToken = (token) => async (dispatch) => {
-//   try {
-//     dispatch({ type: types.CHECK_RESET_TOKEN_REQUEST });
-//     const response = await api.get(`/password/check-reset-token/${token}`);
-//     if (response.status !== 200) throw new Error(response.error);
-//     dispatch({ type: types.CHECK_RESET_TOKEN_SUCCESS });
-//   } catch (error) {
-//     const errorMessage = error.response?.data?.error || error.message;
-//     dispatch({ type: types.CHECK_RESET_TOKEN_FAIL, payload: errorMessage });
-//   }
-// };
 
 // 유저 정보 가져오기
 const getUser = () => async (dispatch) => {
@@ -170,8 +153,24 @@ const getUser = () => async (dispatch) => {
   }
 };
 
-// 회원 정보 수정하기
-const editUser = (formData, navigate) => async (dispatch) => {
+// // 회원 정보 수정하기
+// const editUser = (formData, navigate) => async (dispatch) => {
+//   try {
+//     dispatch({ type: types.EDIT_USER_REQUEST });
+//     const response = await api.put('/user/me', formData);
+//     if (response.status !== 200) throw new Error(response.error);
+//     dispatch({
+//       type: types.EDIT_USER_SUCCESS,
+//       payload: response.data,
+//     });
+//     alert('회원 정보가 업데이트 되었습니다 !');
+//     navigate('/mypage/edit-profile');
+//   } catch (error) {
+//     dispatch({ type: types.EDIT_USER_FAIL, payload: error.error });
+//   }
+// };
+
+const editUser = (formData) => async (dispatch) => {
   try {
     dispatch({ type: types.EDIT_USER_REQUEST });
     const response = await api.put('/user/me', formData);
@@ -180,7 +179,7 @@ const editUser = (formData, navigate) => async (dispatch) => {
       type: types.EDIT_USER_SUCCESS,
       payload: response.data,
     });
-    navigate('/mypage/reservations/by-date');
+    alert('회원 정보가 업데이트 되었습니다 !');
   } catch (error) {
     dispatch({ type: types.EDIT_USER_FAIL, payload: error.error });
   }
@@ -230,8 +229,7 @@ const verifyCurrentPassword =
       if (response.status !== 200) throw new Error(response.error);
 
       dispatch({ type: types.VERIFY_CURRENT_PASSWORD_SUCCESS });
-      alert('확인되었습니다.');
-      navigate('/mypage/change-password'); // 인증 성공 후 비밀번호 변경 페이지로 이동
+      navigate('/mypage/change-password');
     } catch (error) {
       dispatch({
         type: types.VERIFY_CURRENT_PASSWORD_FAIL,
