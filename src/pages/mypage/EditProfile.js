@@ -198,9 +198,11 @@ const EditProfile = () => {
           </button>
           </Col>
         </Form>
-        <p className="outMember_btn" onClick={handleMemberOut}>
-          회원탈퇴하기
-        </p>
+        <div class="outMember_container">
+          <p className="outMember_btn" onClick={handleMemberOut}>
+            회원탈퇴하기
+          </p>
+        </div>
 
         {user?.level === 'gold' ? (
           <AlertModal

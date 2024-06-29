@@ -139,6 +139,9 @@
   border-radius: 10px;
   margin-top: 20px;
 }
+.mypage-container .mypage-right .edit_user_form_container .upload_img_btn:hover {
+  background-color: rgb(53, 53, 53);
+}
 .mypage-container .mypage-right .edit_user_form_container .edit_submit_btn {
   width: 100%;
   padding: 15px;
@@ -149,6 +152,10 @@
 }
 .mypage-container .mypage-right .edit_user_form_container .edit_submit_btn:hover {
   background-color: rgb(49, 49, 49);
+}
+.mypage-container .mypage-right .outMember_container {
+  display: flex;
+  justify-content: flex-end;
 }
 .mypage-container .mypage-right .outMember_btn {
   padding: 20px 0 0 5px;

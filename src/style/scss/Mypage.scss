@@ -150,6 +150,9 @@
         border-radius: 10px;
         margin-top: 20px;
       }
+      .upload_img_btn:hover{
+        background-color: rgb(53, 53, 53);
+      }
       .edit_submit_btn{
         width: 100%;
         padding: 15px;
@@ -161,6 +164,10 @@
       .edit_submit_btn:hover{
         background-color: rgb(49, 49, 49);
       }
+    }
+    .outMember_container{
+      display: flex;
+      justify-content: flex-end;
     }
     .outMember_btn{
       padding: 20px 0 0 5px;
