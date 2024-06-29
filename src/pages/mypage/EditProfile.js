@@ -132,7 +132,7 @@ const EditProfile = () => {
     <MyPageLayout title="나의 계정" cap="회원정보 수정">
       <Container>
         <Form className="edit_user_form_container" onSubmit={handleSubmit}>
-          <Form.Group as={Col} controlId="image">
+          <Form.Group as={Col} controlId="image" className='profile_contaiener'>
             <Form.Label>프로필 이미지</Form.Label>
             <div class="upload_img_area">
               <div class="edit_image_box">
@@ -146,60 +146,63 @@ const EditProfile = () => {
               <CloudinaryUploadWidget uploadImage={uploadImage} />
             </div>
           </Form.Group>
-          <Form.Group as={Col} controlId="email">
-            <Form.Label>이메일</Form.Label>
-            <Form.Control
-              id="email"
-              onChange={handleChange}
-              type="text"
-              placeholder="이메일을 입력해 주세요"
-              required
-              value={formData.email}
-              isInvalid={!!emailError}
-            />
-            <Form.Control.Feedback type="invalid">
-              {emailError}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} controlId="name">
-            <Form.Label>이름</Form.Label>
-            <Form.Control
-              id="name"
-              onChange={handleChange}
-              type="text"
-              placeholder="한글 또는 영어로 입력해 주세요"
-              required
-              value={formData.name}
-              isInvalid={!!nameError}
-            />
-            <Form.Control.Feedback type="invalid">
-              {nameError}
-            </Form.Control.Feedback>
-          </Form.Group>
-
-          <Form.Group as={Col} controlId="contact">
-            <Form.Label>연락처</Form.Label>
-            <Form.Control
-              onChange={handleChange}
-              type="text"
-              placeholder="11자리로 입력해 주세요"
-              required
-              id="contact"
-              value={formData.contact}
-              isInvalid={!!contactError}
-            />
-            <Form.Control.Feedback type="invalid">
-              {contactError}
-            </Form.Control.Feedback>
-          </Form.Group>
+          <Col>
+            <Form.Group as={Col} controlId="email">
+              <Form.Label>이메일</Form.Label>
+              <Form.Control
+                id="email"
+                onChange={handleChange}
+                type="text"
+                placeholder="이메일을 입력해 주세요"
+                required
+                value={formData.email}
+                isInvalid={!!emailError}
+              />
+              <Form.Control.Feedback type="invalid">
+                {emailError}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group as={Col} controlId="name">
+              <Form.Label>이름</Form.Label>
+              <Form.Control
+                id="name"
+                onChange={handleChange}
+                type="text"
+                placeholder="한글 또는 영어로 입력해 주세요"
+                required
+                value={formData.name}
+                isInvalid={!!nameError}
+              />
+              <Form.Control.Feedback type="invalid">
+                {nameError}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group as={Col} controlId="contact">
+              <Form.Label>연락처</Form.Label>
+              <Form.Control
+                onChange={handleChange}
+                type="text"
+                placeholder="11자리로 입력해 주세요"
+                required
+                id="contact"
+                value={formData.contact}
+                isInvalid={!!contactError}
+              />
+              <Form.Control.Feedback type="invalid">
+                {contactError}
+              </Form.Control.Feedback>
+            </Form.Group>
 
           <button className="edit_submit_btn" type="submit">
             저장하기
           </button>
+          </Col>
         </Form>
-        <p className="outMember_btn" onClick={handleMemberOut}>
-          회원탈퇴하기
-        </p>
+        <div class="outMember_container">
+          <p className="outMember_btn" onClick={handleMemberOut}>
+            회원탈퇴하기
+          </p>
+        </div>
 
         {user?.level === 'gold' ? (
           <AlertModal
