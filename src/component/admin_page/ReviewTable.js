@@ -5,7 +5,7 @@ import { convertToKST } from "../../utils/Date";
 const ReviewTable = ({ header, reviewList, openEditForm }) => {
   return (
     <div className="overflow-x">
-      <Table striped bordered hover>
+      <Table hover>
         <thead>
             <tr>
               {header.map((title) => (
@@ -20,7 +20,7 @@ const ReviewTable = ({ header, reviewList, openEditForm }) => {
                 <th>{review.reservationId?.ticket.SeqTitle}</th>
                 <th>{review.userId.name}</th>
                 <th>{review.userId.level.toUpperCase()}</th>
-                <th>{review.reviewText}</th>
+                <th className='text_area'>{review.reviewText}</th>
                 <th>{convertToKST(review.createdAt)}</th>
                 <th>{review.isSuspended ? (<p>숨김</p>):("")}</th>
               </tr>

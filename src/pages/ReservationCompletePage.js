@@ -12,9 +12,11 @@ const ReservationCompletePage = () => {
     //색종이 커스터마이징
     const handleClick = () => {
         jsConfetti.addConfetti({
-            emojis: ["🍔", "🍕", "🍺", "🍗"],
-            emojiSize: 100,
-            confettiNumber: 30,
+            // emojis: ["🍔", "🍕", "🍺", "🍗"],
+            // emojis: ["N", "O", "C", "N", "A"],
+            emojis: ["💸", "🪙", "💲", "👍", "💖"],
+            emojiSize: 80,
+            confettiNumber: 50,
         });
     };
 
@@ -31,8 +33,8 @@ const ReservationCompletePage = () => {
     return (
         <Container className="wrap-container">
             <Row className="completePageBox">
-                <Col className="completeTitle">주문이 <br /> 완료되었습니다.</Col>
-                <Col className="completeInfo">
+                <Col lg={6} md={7} sm={12} className="completeTitle">주문이 <br /> 완료되었습니다.</Col>
+                <Col lg={6} md={5} sm={12} className="completeInfo">
                     <Row>
                         예매 번호: {reservationId}
                     </Row>

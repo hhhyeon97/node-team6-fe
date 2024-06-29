@@ -13,6 +13,7 @@ import { useSearchParams } from "react-router-dom";
 import LoadingText from "../component/LoadingText";
 import Pagination from "../component/Pagination";
 import ListPageSkeleton from "./skeletion/ListPageSkeleton";
+import notFound from '../assets/img/notFound.png'
 
 const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
 
@@ -22,6 +23,7 @@ const ListPage = () => {
     const [selectDate, setSelectDate] = useState(new Date())
     const [view, setView] = useState(false);
     const [selectedRegion, setSelectedRegion] = useState('')
+    const [showPagination, setShowPagination] = useState(true)
 
     const { loading } = useSelector(state => state.list)
     const { error } = useSelector(state => state.list)
@@ -98,6 +100,15 @@ const ListPage = () => {
         );
     }
 
+    useEffect(() => {
+        if ((!Array.isArray(PerformanceListData) || PerformanceListData.length === 0)) {
+            setShowPagination(false);
+        } else {
+            setShowPagination(true);
+        }
+    }, [loading, PerformanceListData]);
+
+
     return (
         <Container className="wrap-container">
             <Row className="ListPageTitle">
@@ -122,32 +133,40 @@ const ListPage = () => {
                     </Col>
                 </Row>
 
-                <Col lg={7} md={7} sm={6} className="ListItemsBox">
-                    {loading ? <ListPageSkeleton /> :
-                        (Array.isArray(PerformanceListData) && PerformanceListData.length > 0 ? (
-                            PerformanceListData.map((item, index) => (
-                                <ListItem key={index} item={item} />
+                <Row className="ListPageMain_inner_Box">
+                    <Col lg={7} md={7} sm={6} className="ListItemsBox">
+                        {loading ? <ListPageSkeleton /> :
+                            (Array.isArray(PerformanceListData) && PerformanceListData.length > 0 ? (
+                                PerformanceListData.map((item, index) => (
+                                    <ListItem key={index} item={item} />
+                                ))
+                            ) : (
+                                <div className="notFound_box">
+                                    <div className="notFound_inner_box">
+                                        <img src={notFound} alt="Not Found" />
+                                        <div>공연 정보가 없습니다</div>
+                                        <div>다른 조건으로 공연을 찾아보세요</div>
+                                    </div>
+                                </div>
                             ))
-                        ) : (
-                            <p>공연정보가 없습니다.</p>
-                        ))
-                    }
+                        }
 
-                    <Row className="ListPagePagination">
-                        <Pagination totalPageNum={10} forcePage={showPage - 1} onPageChange={onPageChange} />
-                    </Row>
-                </Col>
+                        <Row className={`ListPagePagination pagination${showPagination.toString()}`}>
+                            <Pagination totalPageNum={10} forcePage={showPage - 1} onPageChange={onPageChange} />
+                        </Row>
+                    </Col>
 
-                <Col lg={5} md={5} sm={6} className="CalenderBox">
-                    <div className="stickyBox">
-                        {selectDate ? <div className="selectDate">선택 날짜: {Dateformat(selectDate)} </div> :
-                            <div className="selectDate"> 선택 날짜: {Dateformat(new Date())} </div>}
-                        <CalenderBox selectDate={selectDate} setSelectDate={setSelectDate} />
-                        <div className="todayBTNBox">
-                            <button onClick={() => backToday()} className="todayButton">오늘로</button>
+                    <Col lg={5} md={5} sm={6} className="CalenderBox">
+                        <div className="stickyBox">
+                            {selectDate ? <div className="selectDate">선택 날짜: {Dateformat(selectDate)} </div> :
+                                <div className="selectDate"> 선택 날짜: {Dateformat(new Date())} </div>}
+                            <CalenderBox selectDate={selectDate} setSelectDate={setSelectDate} />
+                            <div className="todayBTNBox">
+                                <button onClick={() => backToday()} className="todayButton">오늘로</button>
+                            </div>
                         </div>
-                    </div>
-                </Col>
+                    </Col>
+                </Row>
             </Row>
         </Container>
     )

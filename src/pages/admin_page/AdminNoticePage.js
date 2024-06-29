@@ -30,9 +30,9 @@ const AdminNoticePage = () => {
     "",
     "작성자",
     "제목",
-    "내용",
-    "조회수",
     "등록일자",
+    "조회수",
+    ""
   ];
 
   // [ noticeList 가져오기 ]
@@ -88,20 +88,25 @@ const AdminNoticePage = () => {
   };
 
   return(
-    <div className="admin_notice_container">
+    <div className="admin_notice_container admin_page">
       <SearchBox
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         placeholder="제목으로 검색해주세요"
         field="title"
       />
-      <Button onClick={resetSearch} variant="secondary">검색 초기화</Button>
+
+      <div class="reset_btn_area">
+      <Button className="" variant='dark' onClick={handleNewNotice}>
+          + 공지사항 작성
+      </Button>
+        <Button className='search_reset' onClick={resetSearch} variant="light">
+          검색 초기화
+        </Button>
+      </div>
 
       <LinedTitle title='공지사항관리' cap='공지사항을 작성하고 관리할 수 있습니다'/>
 
-      <Button className="" onClick={handleNewNotice}>
-          + 공지사항 작성
-      </Button>
 
       <NoticeTable
           header={tableHeader}

@@ -15,6 +15,7 @@ const InitialFormData = {
 const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
   const dispatch = useDispatch();
   const { selectedNotice, error } = useSelector((state) => state.notice);
+  const [titleError, setTitleError] = useState(false);
   const [contentError, setContentError] = useState(false)
   const [checkImportant, setCheckImportant] = useState(false)
   const [formData, setFormData] = useState(
@@ -54,6 +55,9 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
     if (id === "content") {
       checkContentLength(value);
     }
+    if (id === "title"){
+      checkTitleLength(value);
+    }
   };
 
   // [ content 길이 확인 및 에러 처리 ]
@@ -61,7 +65,16 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
     if (value.length < 15) {
       setContentError(true);
     } else {
-      setContentError(false);
+      setTitleError(false);
+    }
+  };
+
+  // [ title 길이 확인 및 에러 처리 ]
+  const checkTitleLength = (value) => {
+    if (value.length < 4 || value.length > 25) {
+      setTitleError(true);
+    } else {
+      setTitleError(false);
     }
   };
 
@@ -112,11 +125,16 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
             <div>작성자 : {mode === "new"? user.user.name : mode === "edit" && selectedNotice?.userId.name}</div>
             <Form.Group as={Col} controlId="title">
               <Form.Label>제목</Form.Label>
+              {titleError && (
+                <span className="error-message">최소 4자 이상 작성해주세요</span>
+              )}
               <Form.Control
                 onChange={handleChange}
                 type="string"
-                placeholder="최소 4자 이상 작성해주세요"
+                placeholder="4자 이상 25자 이하로 작성해주세요"
                 required
+                minLength={4}
+                maxLength={25}
                 value={formData.title}
               />
             </Form.Group>
@@ -134,23 +152,25 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
 
             <Form.Group className="mb-3" controlId="image" required>
               <Form.Label>사진</Form.Label>
-              <CloudinaryUploadWidget uploadImage={uploadImage} />
-                <div className='upload_img_box'>
-                  <img
-                  id="uploadedimage"
-                  src={formData.img}
-                  className="upload-image"
-                  alt="uploadedimage"
-                  // onError={handleImageError}
-                  onError={(e) => e.target.src = defaultPhoto }
-                  ></img>
+                <div class="img_area">
+                  <div className='upload_img_box'>
+                    <img
+                    id="uploadedimage"
+                    src={formData.img}
+                    className="upload-image"
+                    alt="uploadedimage"
+                    // onError={handleImageError}
+                    onError={(e) => e.target.src = defaultPhoto }
+                    ></img>
+                  </div>
+                  <CloudinaryUploadWidget uploadImage={uploadImage} />
                 </div>
             </Form.Group>
 
             <Form.Group as={Col} controlId="content">
               <Form.Label>내용</Form.Label>
               {contentError && (
-                <span className="error-message">15자 이상 입력하세요</span>
+                <span className="error-message">15자 이상 작성해주세요</span>
               )}
               <Form.Control
                 className='notice_content'
@@ -160,17 +180,18 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
                 type="string"
                 placeholder="최소 15자 이상 작성해주세요"
                 required
+                minLength={15}
                 value={formData.content}
               />
             </Form.Group>
           </Row>
             {mode === "new" ? (
               <Button variant="dark" type="submit">
-                Submit
+                등록
               </Button>
               ) : (
               <Button variant="dark" type="submit">
-                Edit
+                수정
               </Button>
             )}
         </Form> 

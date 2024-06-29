@@ -115,6 +115,10 @@
 .DetailPageAllBox .reviewText {
   border-bottom: solid 3px black;
 }
+.DetailPageAllBox .review_box {
+  text-align: center;
+  margin-top: 30px;
+}
 .DetailPageAllBox .review {
   border: solid 1px #bbb;
   border-radius: 5px;
@@ -200,12 +204,60 @@
 }
 
 @media screen and (max-width: 768px) {
+  .DetailPageAllBox .DetailTitle {
+    font-size: 1.7em;
+  }
+  .DetailPageAllBox .DetailTopBox .DetailInfoBox .LikeShare {
+    margin: 5px 0;
+  }
+  .DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailInfo {
+    font-size: 0.75em;
+  }
+  .DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox .reservationBtnBox .reserveBtn {
+    font-size: 0.8em;
+  }
   .DetailPageAllBox .DetailBox .postersBox {
     height: 90vh;
   }
 }
 @media screen and (max-width: 480px) {
+  .DetailPageAllBox {
+    margin-top: 30px;
+  }
+  .DetailPageAllBox .DetailTitle {
+    font-size: 1.4em;
+  }
+  .DetailPageAllBox .DetailTopBox {
+    padding-bottom: 30px;
+  }
+  .DetailPageAllBox .DetailTopBox .DetailTopImg {
+    margin-bottom: 20px;
+  }
+  .DetailPageAllBox .DetailTopBox .DetailInfoBox {
+    padding-top: 20px;
+    border-top: solid 2px black;
+    font-size: 0.75em;
+  }
+  .DetailPageAllBox .DetailTopBox .DetailInfoBox .DetailButtonBox .reservationBtnBox .trueColor {
+    font-size: 0.9em;
+    margin-top: 10px;
+  }
   .DetailPageAllBox .DetailBox .postersBox {
     height: 70vh;
+  }
+  .DetailPageAllBox .subTitle {
+    margin: 20px 0 10px;
+    font-size: 1.5em;
+  }
+  .DetailPageAllBox .subTitle + li {
+    font-size: 0.8em;
+  }
+  .DetailPageAllBox .subTitle + li + li {
+    font-size: 0.8em;
+  }
+  .DetailPageAllBox #true1 {
+    width: 100%;
+    font-size: 1.3em;
+    padding: 15px 0;
   }
 }

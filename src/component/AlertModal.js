@@ -41,10 +41,10 @@ const AlertModal = ({showModal, setShowModal,selectedId, selectedName, selectedD
       </Modal.Header>
       <Modal.Body>{alertMessage}</Modal.Body>
       <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="dark" onClick={handleClose}>
             취소
           </Button>
-          <Button variant="primary" onClick={handleDelete}>
+        <Button variant="light" onClick={handleDelete} style={{border:'1px solid #000'}}>
             {btnText}
           </Button>
       </Modal.Footer>
