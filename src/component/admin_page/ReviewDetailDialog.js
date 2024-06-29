@@ -114,7 +114,7 @@ const ReviewDetailDialog = ({ open, handleClose, setSearchQuery }) => {
         </div>
         {/* <div>회원등급 : {selectedReview.userId.level.toUpperCase()}</div> */}
         <div>리뷰내용 : 
-          <div class="review_content">{selectedReview.reviewText}</div>
+          <div className="review_content">{selectedReview.reviewText}</div>
         </div>
 
             <div className="order-button-area">
