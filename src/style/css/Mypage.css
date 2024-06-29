@@ -50,7 +50,7 @@
 }
 .mypage-container .mypage-right .user_level_section {
   display: flex;
-  padding: 10px;
+  padding: 20px 10px;
   background-color: #000;
   margin-bottom: 50px;
 }
@@ -61,16 +61,21 @@
   display: flex;
   align-items: center;
   padding: 0 10px;
-  font-size: 10px;
+  font-size: 13px;
   color: #fff;
 }
+.mypage-container .mypage-right .user_level_section .user_level_info svg {
+  margin-right: 3px;
+}
 .mypage-container .mypage-right .user_level_section .user_level_info h5 {
+  margin-right: 10px;
   font-family: Gsans_B;
-  font-size: 12px;
+  font-size: 1em;
   color: #bbb;
 }
 .mypage-container .mypage-right .user_level_section .user_level_info .level_bdg {
   font-family: Gsans_B;
+  font-size: 0.7em;
   padding: 7px 10px;
   border-radius: 50px;
 }
@@ -91,6 +96,24 @@
   background-color: #f44f08;
   color: rgb(255, 255, 255);
 }
+.mypage-container .mypage-right .edit_user_form_container {
+  padding: 25px 0 30px 5px;
+  border-bottom: 1px solid #000;
+}
+.mypage-container .mypage-right .edit_user_form_container .col {
+  margin-bottom: 25px;
+}
+.mypage-container .mypage-right .edit_user_form_container .form-label {
+  font-size: 1.2em;
+}
+.mypage-container .mypage-right .edit_user_form_container .form-control {
+  width: 30%;
+}
+.mypage-container .mypage-right .edit_user_form_container .upload_img_area {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
 .mypage-container .mypage-right .edit_user_form_container .edit_image_box {
   width: 100px;
   height: 100px;
@@ -103,12 +126,29 @@
   width: 100%;
   height: 100%;
 }
-.mypage-container .mypage-right .edit_user_form_container .outMember_btn {
+.mypage-container .mypage-right .edit_user_form_container .upload_img_btn {
+  margin-left: 15px;
+  padding: 0 13px;
+  height: 40px;
+}
+.mypage-container .mypage-right .edit_user_form_container .edit_submit_btn {
+  width: 30%;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  background-color: #000;
+}
+.mypage-container .mypage-right .edit_user_form_container .edit_submit_btn:hover {
+  background-color: rgb(49, 49, 49);
+}
+.mypage-container .mypage-right .outMember_btn {
+  padding: 20px 0 0 5px;
   width: fit-content;
   color: rgb(59, 59, 59);
   cursor: pointer;
 }
-.mypage-container .mypage-right .edit_user_form_container .outMember_btn:hover {
+.mypage-container .mypage-right .outMember_btn:hover {
   color: #000;
 }
 .mypage-container .mypage-right .mylike_wrap {
@@ -201,20 +241,6 @@
   opacity: 0.5;
 }
 
-.reserve-detail-container {
-  border: 2px solid red;
-}
-.reserve-detail-container .okCancel {
-  font-size: 0.8em;
-  background-color: #000;
-}
-.reserve-detail-container .disableCancel {
-  font-size: 0.7em;
-  pointer-events: none;
-  background-color: #bbb !important;
-  border: #bbb;
-}
-
 .ByDateReservationItem {
   margin-bottom: 10px;
 }
@@ -243,7 +269,7 @@
 }
 .review_modal_container .error-message {
   color: red;
-  font-size: 0.6em;
+  font-size: 0.7em;
   margin-right: 10px;
 }
 .review_modal_container .modal-content {
@@ -300,3 +326,79 @@
 .modal-backdrop {
   --bs-backdrop-bg: #0000002b !important;
 }
+<<<<<<< HEAD
+=======
+
+.verify_password_form {
+  padding: 25px 0 30px 5px;
+  border-bottom: 1px solid #000;
+  font-size: 1.2em;
+}
+.verify_password_form .message {
+  font-family: Gsans_L;
+  font-size: 0.6em;
+  margin-left: 5px;
+}
+.verify_password_form .form-label {
+  margin: 0;
+  margin-bottom: 10px;
+}
+.verify_password_form .input_group {
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+}
+.verify_password_form .form-control {
+  width: 30%;
+  margin: 0;
+}
+.verify_password_form .certificate_btn {
+  height: 38px;
+  font-size: 0.7em;
+  margin-left: 7px;
+}
+.verify_password_form .error_message {
+  width: 40%;
+  font-size: 0.6em;
+}
+
+.reset_password_form {
+  padding: 25px 0 30px 5px;
+  border-bottom: 1px solid #000;
+  font-size: 1.2em;
+}
+.reset_password_form .ps_form_group {
+  padding-bottom: 20px;
+}
+.reset_password_form .form-label {
+  margin: 0;
+  margin-bottom: 10px;
+}
+.reset_password_form .password_input_wrap {
+  display: flex;
+  align-items: center;
+}
+.reset_password_form .password_toggle_icon {
+  margin-left: 10px;
+  opacity: 0.4;
+}
+.reset_password_form .input_group {
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+}
+.reset_password_form .form-control {
+  width: 30%;
+  margin: 0;
+}
+.reset_password_form .error_message {
+  width: 50%;
+  font-size: 0.6em;
+}
+.reset_password_form .set_ps_btn {
+  width: 30%;
+  font-size: 0.7em;
+  padding: 15px;
+  margin-top: 10px;
+}
+>>>>>>> 4b41267b04667458022e42ac1765140289d68de8

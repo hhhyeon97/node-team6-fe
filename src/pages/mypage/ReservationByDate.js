@@ -46,7 +46,7 @@ const ReservationByDate = () => {
 	};
 
 	return (
-		<MyPageLayout title="나의 예매" cap="예약날짜로 조회">
+		<MyPageLayout title="나의 예매" cap="관람일자로 조회">
 			<Row className="my_reserve_date_container">
 					<Col lg={5} md={5} sm={6} className="CalenderBox calander_section">
 						<div className="stickyBox">
@@ -81,32 +81,12 @@ const ReservationByDate = () => {
 								</>
 							))
 						) : (
-							<div>해당 날짜에 예매 내역이 없습니다.</div>
+							<div className='no_reserve_msg'>
+								<h4>해당 날짜에 예매내역이 없습니다.</h4>
+								<button onClick={() => backToday()} className="todayButton">오늘날짜로 돌아가기</button>
+							</div>
 						)}
 					</Col>
-
-			{/* <div>예약날짜로 나의 예매 조회 페이지</div> */}
-{/* // 			<Row className="Info">
-// 				<Col lg={7} md={7} sm={10}>
-// 					{reservationByDateList && reservationByDateList.length > 0 ? (
-// 						reservationByDateList.map(item => (
-// 							<ReservationItem item={item} />
-// 						))
-// 					) : (
-// 						<div>해당 날짜에 예매 내역이 없습니다.</div>
-// 					)}
-// 				</Col>
-// 				<Col lg={5} md={5} sm={10} className="CalenderBox">
-// 					<div className="stickyBox">
-// 						{selectDate ? <div className="selectDate">선택 날짜: {Dateformat(selectDate)} </div> :
-// 							<div className="selectDate"> 선택 날짜: {Dateformat(new Date())} </div>}
-// 						<CalenderBox selectDate={selectDate} setSelectDate={setSelectDate} />
-// 						<div className="todayBTNBox">
-// 							<button onClick={() => backToday()} className="todayButton">오늘로</button>
-// 						</div>
-// 					</div>
-// 				</Col> */}
-
 			</Row>
 		</MyPageLayout>
 	)

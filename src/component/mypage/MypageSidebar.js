@@ -9,7 +9,7 @@ const MypageSidebar = () => {
         <h3>나의 예매</h3>
         <ul className="link_menu">
           <li>
-            <Link to="/mypage/reservations/by-date">예약날짜로 조회</Link>
+            <Link to="/mypage/reservations/by-date">관람일자로 조회</Link>
           </li>
           <li>
             <Link to="/mypage/reservations/view-all">전체 조회</Link>

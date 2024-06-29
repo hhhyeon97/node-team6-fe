@@ -1,15 +1,87 @@
 // [ 나의 리뷰 ]
 .my_review_all_container{
+  .disabled{
+    opacity: 0.3;
+  }
   .my_review_card{
+    position: relative;
     display: flex;
     justify-content: space-between;
+    min-height: 160px;
+    padding: 15px;
     margin: 10px 0;
     border: 0.5px solid #bbb;
     border-radius: 8px;
+    font-size: 18px;
+  }
+  .review_title{
+    font-family: Gsans_B;
+    font-size: 1.1em;
   }
   .card_main{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 60%;
     display: flex;
     flex-flow: column;
-    border: 1px solid red;
+  }
+  .review_date{
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+  }
+  .review_btns{
+    display: flex;
+    align-items: center;
+  }
+  .review_btns button{
+    border: 1px solid #000;
+    margin-right: 5px;
+  }
+  .poster_box{
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 0.5px solid #bbb;
+    width: fit-content;
+    overflow: hidden;
+  }
+  .suspend_msg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Gsans_B;
+    white-space: nowrap;
+    color: #4b4b4b;
+  }
+  .suspend_msg svg{
+    margin-right: 5px;
+  }
+  // [ 리뷰 없음 ]
+  .no_review_msg{
+    width: 100%;
+    padding: 90px 0;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+    h4{
+      margin-bottom: 15px;
+    }
+
+    .link_btn{
+      border: none;
+      background-color: #000;
+      color: #fff;
+      padding: 15px 18px;
+      border-radius: 8px;
+      font-size: 0.8em;
+      margin: 0 5px;
+    }
+
+    .link_btn:hover{
+      background-color: rgb(75, 75, 75);
+    }
   }
 }

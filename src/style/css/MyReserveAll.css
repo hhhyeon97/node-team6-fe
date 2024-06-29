@@ -3,6 +3,29 @@
 .my_reserve_all_container {
   font-size: 18px;
 }
+.my_reserve_all_container .no_reserve_msg {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding: 90px 0;
+}
+.my_reserve_all_container .no_reserve_msg h4 {
+  margin-bottom: 15px;
+}
+.my_reserve_all_container .no_reserve_msg .link_btn {
+  border: none;
+  background-color: #000;
+  color: #fff;
+  padding: 15px 18px;
+  border-radius: 8px;
+  font-size: 0.8em;
+}
+.my_reserve_all_container .no_reserve_msg .link_btn:hover {
+  background-color: rgb(75, 75, 75);
+}
 .my_reserve_all_container .my_reserve_card_container {
   border: 0.5px solid #bbb;
   border-radius: 8px;
