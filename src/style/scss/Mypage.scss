@@ -109,6 +109,22 @@
 
     /* [ 회원정보 수정 페이지 ] */
     .edit_user_form_container {
+      padding: 25px 0 30px 5px;
+      border-bottom: 1px solid #000;
+      .col{
+        margin-bottom: 25px;
+      }
+      .form-label{
+        font-size: 1.2em;
+      }
+      .form-control{
+        width: 30%;
+      }
+      .upload_img_area{
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+      }
       .edit_image_box {
         width: 100px;
         height: 100px;
@@ -121,16 +137,33 @@
         width: 100%;
         height: 100%;
       }
-      .outMember_btn{
-        width: fit-content;
-        color: rgb(59, 59, 59);
-        cursor: pointer;
+      .upload_img_btn {
+        margin-left: 15px;
+        padding: 0 13px;
+        height: 40px;
       }
-      .outMember_btn:hover{
-        color: #000;
+      .edit_submit_btn{
+        width: 30%;
+        padding: 15px;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        background-color: #000;
+      }
+      .edit_submit_btn:hover{
+        background-color: rgb(49, 49, 49);
       }
     }
-
+    .outMember_btn{
+      padding: 20px 0 0 5px;
+      width: fit-content;
+      color: rgb(59, 59, 59);
+      cursor: pointer;
+    }
+    .outMember_btn:hover{
+      color: #000;
+    }
+    
     /* 나의 찜 페이지 */
     .mylike_wrap{
       display: flex;
