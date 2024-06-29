@@ -6,6 +6,7 @@ import { Alert, Button, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { userActions } from '../../action/userAction';
+import '../../style/css/Mypage.css';
 
 const ChangePassword = () => {
   const dispatch = useDispatch();
@@ -62,20 +63,20 @@ const ChangePassword = () => {
 
   return (
     <MyPageLayout title="나의 계정" cap="비밀번호 변경">
-      {gapMessage && (
-        <div>
-          <Alert variant="danger" className="error_message">
-            {gapMessage}
-          </Alert>
-        </div>
-      )}
       <Form className="reset_password_form" onSubmit={handleSubmit}>
+        {gapMessage && (
+          <div>
+            <Alert variant="danger" className="error_message">
+              {gapMessage}
+            </Alert>
+          </div>
+        )}
         {error && (
           <Alert variant="danger" className="error_message">
             {error}
           </Alert>
         )}
-        <Form.Group controlId="formBasicPassword">
+        <Form.Group controlId="formBasicPassword" className='ps_form_group'>
           <Form.Label>비밀번호</Form.Label>
           <div className="password_input_wrap">
             <Form.Control
@@ -101,7 +102,7 @@ const ChangePassword = () => {
             </span>
           </div>
         </Form.Group>
-        <Form.Group controlId="formBasicConfirmPassword">
+        <Form.Group controlId="formBasicConfirmPassword" className='ps_form_group'>
           <Form.Label>비밀번호 재확인</Form.Label>
           <div className="password_input_wrap">
             <Form.Control
@@ -131,9 +132,9 @@ const ChangePassword = () => {
             </Form.Control.Feedback>
           </div>
         </Form.Group>
-        <button className="submit_btn" type="submit" disabled={loading}>
+        <Button className="submit_btn set_ps_btn" type="submit" variant='dark' disabled={loading}>
           {loading ? '변경 중...' : '비밀번호 재설정'}
-        </button>
+        </Button>
       </Form>
     </MyPageLayout>
   );

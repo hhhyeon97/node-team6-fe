@@ -340,3 +340,76 @@
 .modal-backdrop {
   --bs-backdrop-bg: #0000002b !important;
 }
+
+.verify_password_form {
+  padding: 25px 0 30px 5px;
+  border-bottom: 1px solid #000;
+  font-size: 1.2em;
+}
+.verify_password_form .message {
+  font-family: Gsans_L;
+  font-size: 0.6em;
+  margin-left: 5px;
+}
+.verify_password_form .form-label {
+  margin: 0;
+  margin-bottom: 10px;
+}
+.verify_password_form .input_group {
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+}
+.verify_password_form .form-control {
+  width: 30%;
+  margin: 0;
+}
+.verify_password_form .certificate_btn {
+  height: 38px;
+  font-size: 0.7em;
+  margin-left: 7px;
+}
+.verify_password_form .error_message {
+  width: 40%;
+  font-size: 0.6em;
+}
+
+.reset_password_form {
+  padding: 25px 0 30px 5px;
+  border-bottom: 1px solid #000;
+  font-size: 1.2em;
+}
+.reset_password_form .ps_form_group {
+  padding-bottom: 20px;
+}
+.reset_password_form .form-label {
+  margin: 0;
+  margin-bottom: 10px;
+}
+.reset_password_form .password_input_wrap {
+  display: flex;
+  align-items: center;
+}
+.reset_password_form .password_toggle_icon {
+  margin-left: 10px;
+  opacity: 0.4;
+}
+.reset_password_form .input_group {
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+}
+.reset_password_form .form-control {
+  width: 30%;
+  margin: 0;
+}
+.reset_password_form .error_message {
+  width: 50%;
+  font-size: 0.6em;
+}
+.reset_password_form .set_ps_btn {
+  width: 30%;
+  font-size: 0.7em;
+  padding: 15px;
+  margin-top: 10px;
+}
