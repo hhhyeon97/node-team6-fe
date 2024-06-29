@@ -50,7 +50,7 @@
 }
 .mypage-container .mypage-right .user_level_section {
   display: flex;
-  padding: 10px;
+  padding: 20px 10px;
   background-color: #000;
   margin-bottom: 50px;
 }
@@ -61,16 +61,21 @@
   display: flex;
   align-items: center;
   padding: 0 10px;
-  font-size: 10px;
+  font-size: 13px;
   color: #fff;
 }
+.mypage-container .mypage-right .user_level_section .user_level_info svg {
+  margin-right: 3px;
+}
 .mypage-container .mypage-right .user_level_section .user_level_info h5 {
+  margin-right: 10px;
   font-family: Gsans_B;
-  font-size: 12px;
+  font-size: 1em;
   color: #bbb;
 }
 .mypage-container .mypage-right .user_level_section .user_level_info .level_bdg {
   font-family: Gsans_B;
+  font-size: 0.7em;
   padding: 7px 10px;
   border-radius: 50px;
 }
