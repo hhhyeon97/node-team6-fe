@@ -58,62 +58,74 @@ const ReservationDetail = () => {
       <Row>
         <Col>
             <div className="reserve-detail-container">
-            {selectedReserve.isCanceled ? (<h1>예매취소됨</h1>):(<h1>예매중</h1>)}
               
               <section className="my-order">
-                <h3>예매상세내역</h3>
+                <h4>예매상세내역</h4>
                 <ul className='order-info'>
                   <li>예매번호 <strong>{selectedReserve.reservationId}</strong></li>
                   <li>예매일자 <strong>{convertToKST(selectedReserve.createdAt)}</strong></li>
+                  <li>관람일자 <strong>{reserveFormat(selectedReserve.reservationDate)}</strong></li>
+                  <li>{selectedReserve.isCanceled ? 
+                      (<div className='state canceled'>예매취소됨</div>)
+                      :(<div className='state'>예매중</div>)}
+                  </li>
                 </ul>
               </section>
               
               <section className="my-product">
-                <h3>예매상품정보</h3>
-                <ul className='my_reserve_card_container'>   
-                  <div className='poster_box' onClick={() => navigate(`/performance/${selectedReserve.ticket.SeqId}`)} >
-                    <img
-                      className='poster_img'
-                      src={selectedReserve.ticket.SeqImage}
-                      style={{ width: '8em' }}
-                      alt='예약공연 포스터'
-                      />
-                  </div>         
-                  <div className='card_title'><h5>{selectedReserve.ticket.SeqTitle}</h5></div>
-                  <div><strong>{priceformat(selectedReserve.totalPrice)}원</strong> / 티켓수량 <strong>{selectedReserve.ticketNum}</strong></div>
-                  <div className='info_item book_date'>
-                    <p>관람일자</p>
-                    <strong>{reserveFormat(selectedReserve.reservationDate)}</strong>
-                  </div>
+                <h4>예매상품정보</h4>
+                <ul className='my_product_header'>
+                  <li>공연정보</li>
+                  <li>티켓정보</li>
                 </ul>
+                <ul className='my_reserve_card_container'>   
+                  <div className='card_title'>
+                    <div className='poster_box' onClick={() => navigate(`/performance/${selectedReserve.ticket.SeqId}`)} >
+                      <img
+                        className='poster_img'
+                        src={selectedReserve.ticket.SeqImage}
+                        alt='예약공연 포스터'
+                        />
+                    </div>
+                    <h5>{selectedReserve.ticket.SeqTitle}</h5>
+                  </div>         
+                  <div class="ticket_date">
+                    <div>{selectedReserve.ticket.SeqFrom} - </div>
+                    <div>{selectedReserve.ticket.SeqTo}</div>
+                  </div>
+                  <div><strong>{priceformat(selectedReserve.totalPrice)}원</strong> / 티켓수량 <strong>{selectedReserve.ticketNum}</strong></div>
+                {/* <div className='info_item book_date'>
+                  <p>관람일자</p>
+                  
+                </div> */}
+              </ul>
 
-                <Button onClick={handleCancle} className={cancelBtnClass}>예매취소</Button>
+                {/* <Button onClick={handleCancle} className={cancelBtnClass}>예매취소</Button> */}
                 
               </section>
 
               <section className="my-buyer">
-                <h3>구매자정보</h3>
+                <h4>구매자정보</h4>
                 <div className='my-buyer-info'>
                   <div className='buyer-info buyer-name'>
-                    <div>주문자</div>
-                    <div>{selectedReserve.userId.name}</div>
+                    <div className='info_title'>주문자</div>
+                    <strong>{selectedReserve.userId.name}</strong>
                   </div>
                   <div className='buyer-info buyer-email'>
-                    <div>이메일</div>
-                    <div>{selectedReserve.userId.email}</div>
+                    <div className='info_title'>이메일</div>
+                    <strong>{selectedReserve.userId.email}</strong>
                   </div>
                   <div className='buyer-info buyer-email'>
-                    <div>연락처</div>
-                    <div>{selectedReserve.userId.contact}</div>
+                    <div className='info_title'>연락처</div>
+                    <strong>{selectedReserve.userId.contact}</strong>
                   </div>
                 </div>
               </section>
 
               <section className='my-payment'>
-                <h3>결제정보</h3>
-                <div>
-                  <div>결제금액</div>
-                  <h5>₩ { priceformat(selectedReserve.totalPrice)}원</h5>
+                <h4>결제정보</h4>
+                <div className='pay_info'>
+                  <h5>{priceformat(selectedReserve.totalPrice)}원</h5>
                 </div>
               </section>
             </div>
