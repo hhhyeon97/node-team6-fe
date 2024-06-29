@@ -16,6 +16,7 @@ const MyReserveCard = ({ item,  openReviewForm, isReviewed }) => {
   let canceled = '';
   const [showModal, setShowModal] = useState(false);
   const [cancelBtnClass, setCancelBtnClass] = useState('');
+  const [canWriteReview, setCanWriteReview] = useState(false); // 추가된 상태
 
   // [ 포스터를 누르면 해당 공연 디테일 페이지로 이동 ]
   const handlePosterClick = (event) => {
@@ -49,6 +50,13 @@ const MyReserveCard = ({ item,  openReviewForm, isReviewed }) => {
       setCancelBtnClass('okCancel');
     } else {
       setCancelBtnClass('disableCancel');
+    }
+
+    // 관람일자 당일 이후에만 리뷰쓰기 버튼 활성화
+    if (reservationDate <= currentDate && !item.isCanceled) {
+      setCanWriteReview(true);
+    } else {
+      setCanWriteReview(false);
     }
   }, [item]);
 
@@ -90,7 +98,7 @@ const MyReserveCard = ({ item,  openReviewForm, isReviewed }) => {
       </div>
       <div class="card_btns">
         {item.isCanceled ? (<div className='canceled_reserve'>예매취소됨</div>):(<Button variant='light' onClick={handleCancle} className={cancelBtnClass}>예매취소</Button>)}
-        {!item?.ticket?.isReview && !item.isCanceled ? (
+        {canWriteReview && !item?.ticket?.isReview && !item.isCanceled ? (
           <Button variant='dark' size="sm" className='review_btn' onClick={handleReviewButtonClick}>
             리뷰작성
           </Button>
