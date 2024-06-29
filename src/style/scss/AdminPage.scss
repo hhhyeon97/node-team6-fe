@@ -30,7 +30,14 @@
   .table th {
     text-align: center; /* 텍스트 가운데 정렬 */
     vertical-align: middle; /* 상하 가운데 정렬 */
+    overflow: hidden; /* 넘치는 텍스트 숨김 */
+    white-space: nowrap; /* 텍스트를 한 줄로 */
+    text-overflow: ellipsis; /* 넘치는 텍스트는 ...으로 표시 */
   }
+  /* 추가적으로 필요할 수 있는 스타일들 */
+.overflow-x {
+  overflow-x: auto;
+}
 
   // < admin_top_nav >
   .admin_top_nav {
@@ -154,7 +161,13 @@
       margin-right: 20px;
     }
     .profile_group{
-      padding-left: 10px;
+      // padding-left: 10px;
+      .user_name{
+        // width: 10em;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
+        // border: 1px solid;
+      }
     }
     .level_group{
       display: flex;

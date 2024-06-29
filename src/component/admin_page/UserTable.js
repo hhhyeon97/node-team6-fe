@@ -39,7 +39,7 @@ const UserTable = ({ header, userList, openEditForm }) => {
                       />
                     </div>
                   )}
-                  {user.name}
+                  <p className='user_name'>{user.name}</p>
                 </div>
               </th>
               <th>
