@@ -121,12 +121,15 @@
         width: 100%;
       }
       .upload_img_area{
+        height: 100%;
         display: flex;
         align-items: center;
-        padding-left: 10px;
+        flex-flow: column;
+        // padding-left: 10px;
       }
       .profile_contaiener{
         display: flex;
+        flex-flow: column;
       }
       .edit_image_box {
         width: 250px;
@@ -141,9 +144,11 @@
         height: 100%;
       }
       .upload_img_btn {
-        margin-left: 15px;
+        // margin-left: 15px;
         padding: 0 13px;
-        height: 40px;
+        height: 50px;
+        border-radius: 10px;
+        margin-top: 20px;
       }
       .edit_submit_btn{
         width: 100%;
