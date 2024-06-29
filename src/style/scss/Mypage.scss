@@ -260,21 +260,7 @@
     opacity: 0.5;
   }
 }
-// [ 나의예매 디테일 페이지 ]
-.reserve-detail-container {
-  border: 2px solid red;
-  // 예매 취소 버튼
-    .okCancel {
-      font-size: 0.8em;
-      background-color: #000;
-    }
-    .disableCancel {
-      font-size: 0.7em;
-      pointer-events: none;
-      background-color: #bbb !important;
-      border: #bbb;
-    }
-}
+
 
 // [ 나의 예매 날짜로 조회 ]
 .ByDateReservationItem {
