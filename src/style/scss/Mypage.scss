@@ -1,4 +1,5 @@
 .mypage-wrap-container {
+  max-width: 1350px;
   padding: 0;
   padding-top: 15px;
   position: relative;
@@ -107,6 +108,7 @@
 
     /* [ 회원정보 수정 페이지 ] */
     .edit_user_form_container {
+      display: flex;
       padding: 25px 0 30px 5px;
       border-bottom: 1px solid #000;
       .col{
@@ -116,16 +118,19 @@
         font-size: 1.2em;
       }
       .form-control{
-        width: 30%;
+        width: 100%;
       }
       .upload_img_area{
         display: flex;
         align-items: center;
         padding-left: 10px;
       }
+      .profile_contaiener{
+        display: flex;
+      }
       .edit_image_box {
-        width: 100px;
-        height: 100px;
+        width: 250px;
+        height: 250px;
         border-radius: 50%;
         border: 1px solid #bbb;
         overflow: hidden;
@@ -141,7 +146,7 @@
         height: 40px;
       }
       .edit_submit_btn{
-        width: 30%;
+        width: 100%;
         padding: 15px;
         border: none;
         border-radius: 8px;

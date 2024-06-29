@@ -1,5 +1,6 @@
 @charset "UTF-8";
 .mypage-wrap-container {
+  max-width: 1350px;
   padding: 0;
   padding-top: 15px;
   position: relative;
@@ -97,6 +98,7 @@
   color: rgb(255, 255, 255);
 }
 .mypage-container .mypage-right .edit_user_form_container {
+  display: flex;
   padding: 25px 0 30px 5px;
   border-bottom: 1px solid #000;
 }
@@ -107,16 +109,19 @@
   font-size: 1.2em;
 }
 .mypage-container .mypage-right .edit_user_form_container .form-control {
-  width: 30%;
+  width: 100%;
 }
 .mypage-container .mypage-right .edit_user_form_container .upload_img_area {
   display: flex;
   align-items: center;
   padding-left: 10px;
 }
+.mypage-container .mypage-right .edit_user_form_container .profile_contaiener {
+  display: flex;
+}
 .mypage-container .mypage-right .edit_user_form_container .edit_image_box {
-  width: 100px;
-  height: 100px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   border: 1px solid #bbb;
   overflow: hidden;
@@ -132,7 +137,7 @@
   height: 40px;
 }
 .mypage-container .mypage-right .edit_user_form_container .edit_submit_btn {
-  width: 30%;
+  width: 100%;
   padding: 15px;
   border: none;
   border-radius: 8px;
