@@ -133,38 +133,40 @@ const ListPage = () => {
                     </Col>
                 </Row>
 
-                <Col lg={7} md={7} sm={6} className="ListItemsBox">
-                    {loading ? <ListPageSkeleton /> :
-                        (Array.isArray(PerformanceListData) && PerformanceListData.length > 0 ? (
-                            PerformanceListData.map((item, index) => (
-                                <ListItem key={index} item={item} />
-                            ))
-                        ) : (
-                            <div className="notFound_box">
-                                <div className="notFound_inner_box">
-                                    <img src={notFound} alt="Not Found" />
-                                    <div>공연 정보가 없습니다</div>
-                                    <div>다른 조건으로 공연을 찾아보세요</div>
+                <Row className="ListPageMain_inner_Box">
+                    <Col lg={7} md={7} sm={6} className="ListItemsBox">
+                        {loading ? <ListPageSkeleton /> :
+                            (Array.isArray(PerformanceListData) && PerformanceListData.length > 0 ? (
+                                PerformanceListData.map((item, index) => (
+                                    <ListItem key={index} item={item} />
+                                ))
+                            ) : (
+                                <div className="notFound_box">
+                                    <div className="notFound_inner_box">
+                                        <img src={notFound} alt="Not Found" />
+                                        <div>공연 정보가 없습니다</div>
+                                        <div>다른 조건으로 공연을 찾아보세요</div>
+                                    </div>
                                 </div>
+                            ))
+                        }
+
+                        <Row className={`ListPagePagination pagination${showPagination.toString()}`}>
+                            <Pagination totalPageNum={10} forcePage={showPage - 1} onPageChange={onPageChange} />
+                        </Row>
+                    </Col>
+
+                    <Col lg={5} md={5} sm={6} className="CalenderBox">
+                        <div className="stickyBox">
+                            {selectDate ? <div className="selectDate">선택 날짜: {Dateformat(selectDate)} </div> :
+                                <div className="selectDate"> 선택 날짜: {Dateformat(new Date())} </div>}
+                            <CalenderBox selectDate={selectDate} setSelectDate={setSelectDate} />
+                            <div className="todayBTNBox">
+                                <button onClick={() => backToday()} className="todayButton">오늘로</button>
                             </div>
-                        ))
-                    }
-
-                    <Row className={`ListPagePagination pagination${showPagination.toString()}`}>
-                        <Pagination totalPageNum={10} forcePage={showPage - 1} onPageChange={onPageChange} />
-                    </Row>
-                </Col>
-
-                <Col lg={5} md={5} sm={6} className="CalenderBox">
-                    <div className="stickyBox">
-                        {selectDate ? <div className="selectDate">선택 날짜: {Dateformat(selectDate)} </div> :
-                            <div className="selectDate"> 선택 날짜: {Dateformat(new Date())} </div>}
-                        <CalenderBox selectDate={selectDate} setSelectDate={setSelectDate} />
-                        <div className="todayBTNBox">
-                            <button onClick={() => backToday()} className="todayButton">오늘로</button>
                         </div>
-                    </div>
-                </Col>
+                    </Col>
+                </Row>
             </Row>
         </Container>
     )
