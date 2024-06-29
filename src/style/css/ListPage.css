@@ -170,6 +170,19 @@
 .ListPageMainBox .ListItemsBox .ListItem .item_info_box .like_heart_red {
   color: #d61f1f;
 }
+.ListPageMainBox .ListItemsBox .notFound_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+}
+.ListPageMainBox .ListItemsBox .notFound_box .notFound_inner_box {
+  text-align: center;
+}
+.ListPageMainBox .ListItemsBox .notFound_box img {
+  max-width: 80px;
+}
 .ListPageMainBox .CalenderBox {
   padding: 20px;
   padding-top: 0;
@@ -243,4 +256,8 @@
 }
 .ListPagePagination .nc_pagination li {
   list-style: none;
+}
+
+.paginationfalse {
+  display: none;
 }
