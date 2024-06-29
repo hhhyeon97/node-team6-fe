@@ -13,6 +13,7 @@ import { useSearchParams } from "react-router-dom";
 import LoadingText from "../component/LoadingText";
 import Pagination from "../component/Pagination";
 import ListPageSkeleton from "./skeletion/ListPageSkeleton";
+import notFound from '../assets/img/notFound.png'
 
 const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
 
@@ -22,6 +23,7 @@ const ListPage = () => {
     const [selectDate, setSelectDate] = useState(new Date())
     const [view, setView] = useState(false);
     const [selectedRegion, setSelectedRegion] = useState('')
+    const [showPagination, setShowPagination] = useState(true)
 
     const { loading } = useSelector(state => state.list)
     const { error } = useSelector(state => state.list)
@@ -98,6 +100,15 @@ const ListPage = () => {
         );
     }
 
+    useEffect(() => {
+        if ((!Array.isArray(PerformanceListData) || PerformanceListData.length === 0)) {
+            setShowPagination(false);
+        } else {
+            setShowPagination(true);
+        }
+    }, [loading, PerformanceListData]);
+
+
     return (
         <Container className="wrap-container">
             <Row className="ListPageTitle">
@@ -129,11 +140,17 @@ const ListPage = () => {
                                 <ListItem key={index} item={item} />
                             ))
                         ) : (
-                            <p>공연정보가 없습니다.</p>
+                            <div className="notFound_box">
+                                <div className="notFound_inner_box">
+                                    <img src={notFound} alt="Not Found" />
+                                    <div>공연 정보가 없습니다</div>
+                                    <div>다른 조건으로 공연을 찾아보세요</div>
+                                </div>
+                            </div>
                         ))
                     }
 
-                    <Row className="ListPagePagination">
+                    <Row className={`ListPagePagination pagination${showPagination.toString()}`}>
                         <Pagination totalPageNum={10} forcePage={showPage - 1} onPageChange={onPageChange} />
                     </Row>
                 </Col>
