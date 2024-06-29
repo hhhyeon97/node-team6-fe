@@ -82,6 +82,9 @@
     .card_btns button{
       font-size: 0.7em;
     }
+    .card_btns button:first-child{
+      margin-right: 5px;
+    }
     // 예매 취소 버튼
     .okCancel {
       font-size: 0.8em;
@@ -166,7 +169,7 @@
     .card_btns{
       width: 200px;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
     }
     .card_btns button{

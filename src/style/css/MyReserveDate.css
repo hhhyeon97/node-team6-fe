@@ -80,6 +80,9 @@
 .my_reserve_date_container .my_reserve_card_container .card_btns button {
   font-size: 0.7em;
 }
+.my_reserve_date_container .my_reserve_card_container .card_btns button:first-child {
+  margin-right: 5px;
+}
 .my_reserve_date_container .my_reserve_card_container .okCancel {
   font-size: 0.8em;
   padding: 10px 15px;
@@ -162,7 +165,7 @@
 .my_reserve_date_container .my_reserve_card_container .card_btns {
   width: 200px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 .my_reserve_date_container .my_reserve_card_container .card_btns button {
