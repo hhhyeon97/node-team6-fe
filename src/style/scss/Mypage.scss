@@ -135,15 +135,6 @@
         width: 100%;
         height: 100%;
       }
-<<<<<<< HEAD
-      .outMember_btn {
-        width: fit-content;
-        color: rgb(59, 59, 59);
-        cursor: pointer;
-      }
-      .outMember_btn:hover {
-        color: #000;
-=======
       .upload_img_btn {
         margin-left: 15px;
         padding: 0 13px;
@@ -159,7 +150,6 @@
       }
       .edit_submit_btn:hover{
         background-color: rgb(49, 49, 49);
->>>>>>> 4b41267b04667458022e42ac1765140289d68de8
       }
     }
     .outMember_btn{
@@ -268,25 +258,6 @@
     opacity: 0.5;
   }
 }
-<<<<<<< HEAD
-// [ 나의예매 디테일 페이지 ]
-.reserve-detail-container {
-  border: 2px solid red;
-  // 예매 취소 버튼
-  .okCancel {
-    font-size: 0.8em;
-    background-color: #000;
-  }
-  .disableCancel {
-    font-size: 0.7em;
-    pointer-events: none;
-    background-color: #bbb !important;
-    border: #bbb;
-  }
-}
-=======
-
->>>>>>> 4b41267b04667458022e42ac1765140289d68de8
 
 // [ 나의 예매 날짜로 조회 ]
 .ByDateReservationItem {
@@ -384,79 +355,79 @@
 }
 
 // [ 비밀번호 확인 페이지 ]
-.verify_password_form{
-  padding: 25px 0 30px 5px;
-  border-bottom: 1px solid #000;
-  font-size: 1.2em;
+// .verify_password_form{
+//   padding: 25px 0 30px 5px;
+//   border-bottom: 1px solid #000;
+//   font-size: 1.2em;
 
-  .message{
-    font-family: Gsans_L;
-    font-size: 0.6em;
-    margin-left: 5px;
-  }
-  .form-label{
-    margin: 0;
-    margin-bottom: 10px;
-  }
-  .input_group{
-    display: flex;
-    padding: 10px 0;
-    align-items: center;
-  }
-  .form-control{
-    width: 30%;
-    margin: 0;
-  }
-  .certificate_btn{
-    height: 38px;
-    font-size:0.7em;
-    margin-left: 7px;
-  }
-  .error_message{
-    width: 40%;
-    font-size: 0.6em;
-  }
-}
+//   .message{
+//     font-family: Gsans_L;
+//     font-size: 0.6em;
+//     margin-left: 5px;
+//   }
+//   .form-label{
+//     margin: 0;
+//     margin-bottom: 10px;
+//   }
+//   .input_group{
+//     display: flex;
+//     padding: 10px 0;
+//     align-items: center;
+//   }
+//   .form-control{
+//     // width: 30%;
+//     margin: 0;
+//   }
+//   .certificate_btn{
+//     height: 38px;
+//     font-size:0.7em;
+//     margin-left: 7px;
+//   }
+//   .error_message{
+//     width: 40%;
+//     font-size: 0.6em;
+//   }
+// }
 
-// [ 비밀번호 변경 페이지]
-.reset_password_form{
-  padding: 25px 0 30px 5px;
-  border-bottom: 1px solid #000;
-  font-size: 1.2em;
+// // [ 비밀번호 변경 페이지]
+// .reset_password_form{
+//   padding: 25px 0 30px 5px;
+//   border-bottom: 1px solid #000;
+//   font-size: 1.2em;
 
-  .ps_form_group{
-    padding-bottom: 20px;
-  }
+//   .ps_form_group{
+//     padding-bottom: 20px;
+//   }
 
-  .form-label{
-    margin: 0;
-    margin-bottom: 10px;
-  }
-  .password_input_wrap{
-    display: flex;
-    align-items: center;
-  }
-  .password_toggle_icon{
-    margin-left: 10px;
-    opacity: 0.4;
-  }
-  .input_group{
-    display: flex;
-    padding: 10px 0;
-    align-items: center;
-  }
-  .form-control{
-    width: 30%;
-    margin: 0;
-  }
-  .error_message{
-    width: 50%;
-    font-size: 0.6em;
-  }
-  .set_ps_btn{
-    width: 30%;
-    font-size:0.7em;
-    padding: 15px;
-    margin-top: 10px;
-  }
-}
+//   .form-label{
+//     margin: 0;
+//     margin-bottom: 10px;
+//   }
+//   .password_input_wrap{
+//     display: flex;
+//     align-items: center;
+//   }
+//   .password_toggle_icon{
+//     margin-left: 10px;
+//     opacity: 0.4;
+//   }
+//   .input_group{
+//     display: flex;
+//     padding: 10px 0;
+//     align-items: center;
+//   }
+//   .form-control{
+//     width: 30%;
+//     margin: 0;
+//   }
+//   .error_message{
+//     width: 50%;
+//     font-size: 0.6em;
+//   }
+//   .set_ps_btn{
+//     width: 30%;
+//     font-size:0.7em;
+//     padding: 15px;
+//     margin-top: 10px;
+//   }
+// }
