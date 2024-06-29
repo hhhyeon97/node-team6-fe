@@ -55,7 +55,7 @@ const VerifyCurrentPassword = () => {
             </div>
           )}
           <Form.Group controlId="formBasicCurrentPassword">
-            <Form.Label>현재 비밀번호</Form.Label>
+            {/* <Form.Label>현재 비밀번호</Form.Label> */}
             <Form.Control
               type="password"
               placeholder="현재 비밀번호를 입력하세요"
