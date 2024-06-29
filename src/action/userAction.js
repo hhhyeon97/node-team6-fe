@@ -127,7 +127,7 @@ const resetPassword =
       });
       if (response.status !== 200) throw new Error(response.error);
       dispatch({ type: types.RESET_PASSWORD_SUCCESS });
-      alert('새 비밀번호가 설정되었습니다!');
+      alert('새 비밀번호가 설정되었습니다!\n로그인 후 이용해 주세요.');
       navigate('/login');
     } catch (error) {
       const errorMessage = error.response?.data?.error || error.message;

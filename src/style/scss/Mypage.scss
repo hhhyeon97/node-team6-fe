@@ -1,4 +1,4 @@
-.mypage-wrap-container{
+.mypage-wrap-container {
   padding: 0;
   padding-top: 15px;
   position: relative;
@@ -31,21 +31,20 @@
     color: inherit;
   }
 
-  .disabled{
+  .disabled {
     pointer-events: none;
     opacity: 0.5;
   }
 
-  .transparent{
+  .transparent {
     opacity: 0;
   }
 
-  .title_section{
-    p{
+  .title_section {
+    p {
       font-size: 1em;
     }
   }
-
 
   /* < mypage-right > */
   .mypage-right {
@@ -100,7 +99,6 @@
       }
     }
 
-
     /* [ 회원정보 수정 페이지 ] */
     .edit_user_form_container {
       .edit_image_box {
@@ -115,21 +113,21 @@
         width: 100%;
         height: 100%;
       }
-      .outMember_btn{
+      .outMember_btn {
         width: fit-content;
         color: rgb(59, 59, 59);
         cursor: pointer;
       }
-      .outMember_btn:hover{
+      .outMember_btn:hover {
         color: #000;
       }
     }
 
     /* 나의 찜 페이지 */
-    .mylike_wrap{
+    .mylike_wrap {
       display: flex;
       flex-wrap: wrap;
-      gap:2%
+      gap: 2%;
     }
     .mylike_card_area {
       position: relative;
@@ -202,7 +200,7 @@
           background-color: white;
           color: black;
         }
-        .end_perf{
+        .end_perf {
           border-color: #bbb;
           background-color: #bbb;
           color: white;
@@ -225,16 +223,16 @@
 .reserve-detail-container {
   border: 2px solid red;
   // 예매 취소 버튼
-    .okCancel {
-      font-size: 0.8em;
-      background-color: #000;
-    }
-    .disableCancel {
-      font-size: 0.7em;
-      pointer-events: none;
-      background-color: #bbb !important;
-      border: #bbb;
-    }
+  .okCancel {
+    font-size: 0.8em;
+    background-color: #000;
+  }
+  .disableCancel {
+    font-size: 0.7em;
+    pointer-events: none;
+    background-color: #bbb !important;
+    border: #bbb;
+  }
 }
 
 // [ 나의 예매 날짜로 조회 ]
@@ -242,65 +240,65 @@
   margin-bottom: 10px;
 }
 
-  // [ 리뷰 작성 form ]
-.review_modal_container{
+// [ 리뷰 작성 form ]
+.review_modal_container {
   padding: 15px;
-  .review_modal_header{
+  .review_modal_header {
     border-bottom: 2px solid #000;
     padding: 0;
     padding-top: 10px;
     padding-bottom: 5px;
 
-    .btn-close{
+    .btn-close {
       position: absolute;
       top: 0;
       right: 0;
       padding: 65px 55px 0 0;
     }
-  }  
+  }
   // .form-container{
   //   // padding: 10px 0;
   // }
-  .star_select_group{
+  .star_select_group {
     display: flex;
     align-items: center;
   }
-  .star_select_group .star_select{
+  .star_select_group .star_select {
     justify-content: flex-end;
   }
-  .error-message{
+  .error-message {
     color: red;
     font-size: 0.6em;
     margin-right: 10px;
   }
-  .modal-content{
+  .modal-content {
     padding: 10px 15px;
   }
-  .modal-title{
+  .modal-title {
     font-size: 1.3em;
     font-family: 'Gsans_B';
   }
-  .star_area{
+  .star_area {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 15px 0;
   }
-  .star_area label{
+  .star_area label {
     margin: 0;
   }
-  .review_img_area{
+  .review_img_area {
     display: flex;
     padding: 25px 0;
     border-top: 1px solid #bbb;
     border-bottom: 1px solid #bbb;
   }
 
-  .review_text_area{
+  .review_text_area {
     padding: 25px 0;
   }
-  
-  .review_img{
+
+  .review_img {
     max-width: 8em;
     max-height: 8em;
     width: 8em;
@@ -310,18 +308,18 @@
     border-radius: 8px;
   }
 
-  .review_img img{
+  .review_img img {
     object-fit: cover;
     width: 100%;
     height: 100%;
   }
 
-  .img_uploade_btn{
+  .img_uploade_btn {
     display: flex;
     align-items: center;
     margin-left: 15px;
   }
-  .img_uploade_btn > button{
+  .img_uploade_btn > button {
     padding: 10px;
     background: #fff;
     color: #000;
