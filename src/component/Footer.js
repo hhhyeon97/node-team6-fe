@@ -38,24 +38,24 @@ const Footer = () => {
           </Col>
           <Col lg={4}>
             <Row className='footer_nav_area'>
-              <Col lg={3}>
+              <Col xs={3}>
                 <h3>우리는</h3>
                 <h4>팀원 소개</h4>
                 <h4>동료 모집</h4>
               </Col>
-              <Col lg={3}>
+              <Col xs={3}>
                 <h3>나의 예매</h3>
                 <h4 onClick={()=>navigate('/mypage/reservations/view-all?page=1')}>예매 내역</h4>
                 <h4>취소 내역</h4>
                 <h4 onClick={()=>navigate('/mypage/reviews')}>공연리뷰 내역</h4>
                 <h4 onClick={()=>navigate('/mypage/like')}>찜 내역</h4>
               </Col>
-              <Col lg={3}>
+              <Col xs={3}>
                 <h3>나의 계정</h3>
                 <h4 onClick={()=>navigate('/mypage/edit-profile')}>회원정보수정</h4>
                 <h4>회원등급</h4>
               </Col>
-              <Col lg={3}>
+              <Col xs={3}>
                 <h3>도움말</h3>
                 <h4 onClick={()=>navigate('/notice')}>공지사항</h4>
                 <h4>FAQ</h4>

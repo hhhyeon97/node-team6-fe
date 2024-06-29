@@ -1,0 +1,18 @@
+.mobile_nav_area{
+    .mobile_under_nav_area{
+        width: 100%;
+        background-color: white;
+        padding-top: 0.5rem;
+        text-align: center;
+        display: flex;
+        justify-content: space-around;
+        border-top: 1px solid #bbb;
+        position: fixed;
+        bottom: 0px;
+        z-index: 5;
+        h6 {font-size: 0.5rem;}
+        .nav_user_icon{
+            font-size: 1.5rem;
+        }
+    }
+}

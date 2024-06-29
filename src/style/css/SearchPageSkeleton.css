@@ -1,0 +1,18 @@
+.searchPage_skeleton {
+  width: 100%;
+}
+.searchPage_skeleton .search_card_area {
+  position: relative;
+  width: 100%;
+  margin-bottom: 3rem;
+  cursor: pointer;
+}
+.searchPage_skeleton .search_card_area .search_card_img {
+  width: 100%;
+}
+.searchPage_skeleton .search_card_area .skeletonBtn span {
+  height: 30px;
+}
+.searchPage_skeleton .search_card_area .skeletonBtn .like {
+  margin-left: 10px;
+}

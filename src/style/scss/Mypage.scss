@@ -183,20 +183,21 @@
     .mylike_wrap {
       display: flex;
       flex-wrap: wrap;
-      gap: 2%;
+      gap:2%;
+      margin-top:0.5rem;
     }
     .mylike_card_area {
       position: relative;
       display: flex;
       flex-direction: column;
       width: 23.5%;
-      height: 51vh;
+      height: 63vh;
       overflow: hidden;
       margin-bottom: 4rem;
       cursor: pointer;
 
       .mylike_care_image_size {
-        height: 57%;
+        height: 60%;
         border: 1px solid #e4e4e4;
         overflow: hidden;
         display: flex;
@@ -216,7 +217,7 @@
 
       .mylike_card_text_box {
         width: 100%;
-        height: 43%;
+        height: 40%;
         padding: 0.5rem 0.3rem 3.5rem 0.3rem;
         display: flex;
         flex-direction: column;
@@ -263,9 +264,13 @@
         }
       }
       .like_heart {
-        position: absolute;
+        // position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
         right: 0.5rem;
-        bottom: 3rem;
+        bottom: 1rem;
         font-size: 1.5rem;
         color: #d61f1f;
       }
@@ -371,19 +376,23 @@
   --bs-backdrop-bg: #0000002b !important;
 }
 
-@media screen and (max-width: 768px){
-	/* 모바일 가로, 태블릿 세로 */
-	.mypage-wrap-container{
-		max-width: 720px;
-	}
-}
 
 @media screen and (max-width: 480px){
 	/* 모바일 세로 */
-	.mypage-wrap-container{
+	.wrap-container{
 		max-width: 340px;
-    border: 2px solid red;
 	}
+
+  .mypage-container{
+    .mypage-right{
+      .mylike_card_area{
+        width: 49%;
+        height: 58vh;
+        margin-bottom: 2rem;
+        .mylike_card_text_box{
+          padding-bottom: 2rem;
+        }
+      }
+    }
+  }
 }
-
-

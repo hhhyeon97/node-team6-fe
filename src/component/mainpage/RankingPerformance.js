@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { StringDateformat } from '../../utils/Date';
 import { perfomanceListAction } from '../../action/perfomanceListAction';
@@ -9,6 +9,7 @@ const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
 
 const RankingPerformance = () => {
     const dispatch = useDispatch();
+    const scrollContainerRef = useRef(null);
     const [selectDate, setSelectDate] = useState(new Date());
     const [errorMsg, setErrorMsg] = useState();
     const [catecode, setCatecode] = useState('GGGA');
@@ -45,30 +46,48 @@ const RankingPerformance = () => {
     }, [selectDate, catecode])
 
     const { RankingList, loading, error } = useSelector(state => state.list);
-
+    useEffect(() => {
+        const scrollContainer = scrollContainerRef.current;
+        const handleWheel = (event) => {
+            if (event.deltaY > 0) {
+                scrollContainer.scrollLeft += 100;
+            } else {
+                scrollContainer.scrollLeft -= 100;
+            }
+            event.preventDefault();
+        };
+        scrollContainer.addEventListener('wheel', handleWheel);
+        return () => {
+            scrollContainer.removeEventListener('wheel', handleWheel);
+        };
+    }, []);
     return (
         <div className='month_performance_area'>
             <h2>장르별 TOP5</h2>
-            <div className='genre_btn_area'>
-                {genreList.map((item, index) => (
-                    <button
-                        key={index}
-                        onClick={() => getGenreRanking(item, index)}
-                        className={`${active[index] ? 'active' : ''}`}
-                    >{item.name}</button>
-                ))}
+            <div className='genre_btn_area scroll_box' ref={scrollContainerRef}>
+                <div className='scroll_width'>
+                    {genreList.map((item, index) => (
+                        <button
+                            key={index}
+                            onClick={() => getGenreRanking(item, index)}
+                            className={`${active[index] ? 'active' : ''}`}
+                        >{item.name}</button>
+                    ))}    
+                </div>
             </div>
-            <div className='month_performance_row'>
-                {loading ? (
-                    <MainPageSkelton num={5} />
-                )
-                    : (RankingList && RankingList.length > 0 ?
-                        RankingList.map((item, index) => {
-                            if (index >= 5) { return } else {
-                                return (<RankingCard key={index} item={item} />)
-                            }
-                        }) : (<div>공연 정보가 없습니다!</div>))}
-            </div>
+            <div className='scroll_box' ref={scrollContainerRef}>
+                <div className='month_performance_row'>
+                    {loading ? (
+                        <MainPageSkelton num={5} />
+                    )
+                        : (RankingList && RankingList.length > 0 ?
+                            RankingList.map((item, index) => {
+                                if (index >= 5) { return } else {
+                                    return (<RankingCard key={index} item={item} />)
+                                }
+                            }) : (<div>공연 정보가 없습니다!</div>))}
+                </div>    
+            </div>  
         </div>
     )
 }

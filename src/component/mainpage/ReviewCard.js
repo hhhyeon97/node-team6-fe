@@ -1,7 +1,9 @@
 import React from 'react'
 import Star from '../Star'
+import { useNavigate } from 'react-router-dom'
 
 const ReviewCard = ({item}) => {
+  const navigate = useNavigate();
     const cutReviewText = (text) => {
         const maxLength = 70;
         const cutText = text.length > maxLength? text.substring(0,maxLength) + '...' : text;
@@ -9,9 +11,9 @@ const ReviewCard = ({item}) => {
     }
 
   return (
-    <div className='review_card_area'>
+    <div className='review_card_area' onClick={()=>navigate(`/performance/${item.reservationId.ticket.SeqId}`)}>
       <div className='review_card_img_box'>
-        <img src={item.image} className='review_card_img'/>
+        <img src={item.reservationId.ticket.SeqImage} className='review_card_img'/>
       </div>
       <div className='review_card_text_box'>
         <div className='review_card_text'>

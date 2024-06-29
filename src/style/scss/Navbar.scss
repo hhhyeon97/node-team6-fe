@@ -7,14 +7,14 @@
   //   padding-left: 0px;
   //   padding-right: 0px;
   // }
-
+  width: 100%;
   .nav_icon {
     cursor: pointer;
   }
   .nav_logo_area {
-    margin: 30px 30px 30px 0px;
+    margin: 2rem 0rem;
     img {
-      width: 280px;
+      width: 17.5rem;
     }
   }
   .txt-align {
@@ -24,7 +24,7 @@
     display: flex;
     justify-content: end;
     align-items: end;
-    margin-bottom: 30px;
+    margin-bottom: 2rem;
     font-size: 0.5rem;
   }
   .nav_user_menu div {
@@ -39,9 +39,12 @@
     font-size: 1.3rem;
     padding-left: 0;
     margin-bottom: 0.7rem;
+    overflow: hidden;
   }
   .nav_category li {
     list-style: none;
+    color: black;
+    white-space: nowrap;
   }
   .nav_menu_under_bar {
     position: absolute;
@@ -56,9 +59,10 @@
     position: relative;
     border: none;
     background-color: transparent;
-    margin-right: 2.5rem;
+    margin-right: 2.4rem;
     padding-left: 0;
     padding-right: 0;
+    color: black;
   }
 
   .nav_category_button .hidden_under_bar {
@@ -85,13 +89,18 @@
 
   .nav_input_area {
     display: flex;
-    justify-content: end;
-
+    // justify-content: end;
+    white-space: nowrap;
+    .input-box{
+      width: 100%;
+    }
     input {
+      border-radius: 0px;
       border-top: none;
       border-left: none;
       border-right: none;
       border-bottom: 1px solid black;
+      max-width: 88%;
     }
     input:focus-visible {
       outline: none;
@@ -102,6 +111,76 @@
       border-right: none;
       border-bottom: 1px solid black;
       background-color: transparent;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+	/* 모바일 가로, 태블릿 세로 */
+  // .nav_underline{
+  // }
+  
+	.wrap-container{
+		max-width: 720px;
+  }
+  .nav_area{
+    .nav_category{
+      font-size: 1.1rem;
+    }
+    .nav_category_button{
+      margin-right: 1.3rem;
+    }
+    .nav_input_area{
+      display: none;
+    }
+    .nav_user_menu{
+      span { display: none; }
+    }
+  }
+}
+
+@media screen and (max-width: 480px){
+	/* 모바일 세로 */
+	.wrap-container{
+		max-width: 340px;
+	}
+  .nav_area{
+    .nav_logo_area {
+      margin: 1rem 0rem;
+      img {
+        width: 10rem;
+      }
+    }
+    .nav_user_menu{
+      display: none;
+    }
+    .nav_category_area{
+      display: none;
+    }
+    .mobile_input_area{
+      display: flex;
+      justify-content: end;
+      align-items: end;
+      margin-bottom: 0.9rem;
+      white-space: nowrap;
+      input {
+        width: 7rem;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 1px solid black;
+      }
+      input:focus-visible {
+        outline: none;
+      }
+      button {
+        background-color: transparent;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 1px solid black;
+        color: black;
+      }
     }
   }
 }
