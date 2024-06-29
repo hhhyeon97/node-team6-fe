@@ -245,6 +245,17 @@
   }
   .error-message {
     color: red;
+    font-size: 0.8em;
+    margin-left: 5px;
+  }
+  .img_area{
+    display: flex;
+    align-items: center;
+    button{
+      height: 40px;
+      padding: 0 15px;
+      margin-left: 20px
+    }
   }
 }
 
@@ -326,12 +337,12 @@
     }
   }
 }
-.order-table-item{
-  border-bottom: 1px solid #bbb;
-}
+// .order-table-item, .notice-table-item{
+//   border-bottom: 1px solid #bbb;
+// }
 
-.text_area{
-  display: block;
-  width: 520px;
-  border-bottom: none
-}
+// .text_area{
+//   display: block;
+//   width: 520px;
+//   border-bottom: none
+// }

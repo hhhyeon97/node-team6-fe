@@ -210,6 +210,17 @@
 }
 .notice-form-container .error-message {
   color: red;
+  font-size: 0.8em;
+  margin-left: 5px;
+}
+.notice-form-container .img_area {
+  display: flex;
+  align-items: center;
+}
+.notice-form-container .img_area button {
+  height: 40px;
+  padding: 0 15px;
+  margin-left: 20px;
 }
 
 .user_detail_modal .profile_group {
@@ -283,14 +294,4 @@
 }
 .review_detail_modal .order-button-area button {
   padding: 10px 30px;
-}
-
-.order-table-item {
-  border-bottom: 1px solid #bbb;
-}
-
-.text_area {
-  display: block;
-  width: 520px;
-  border-bottom: none;
 }

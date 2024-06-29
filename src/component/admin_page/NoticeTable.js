@@ -20,9 +20,9 @@ const NoticeTable = ({ header, noticeList, deleteItem, openEditForm }) => {
               <th>{notice.isImportant ? (<p>중요</p>):("")}</th>
               <th>{notice.userId.name}</th>
               <th>{notice.title}</th>
-              <th>{notice.content}</th>
-              <th>{notice.view ? notice.view : 0}</th>
+              {/* <th className='text_area'>{notice.content}</th> */}
               <th>{convertToKST(notice.createdAt)}</th>
+              <th>{notice.view ? notice.view : 0}</th>
               <th >
                 <Button variant="light" size="sm" onClick={() => openEditForm(notice)}>
                   수정
