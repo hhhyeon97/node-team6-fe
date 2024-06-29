@@ -1,5 +1,103 @@
 .reserve-detail-container {
-  border: 2px solid pink;
+  margin-top: 30px;
+}
+.reserve-detail-container h4 {
+  border-bottom: 4px solid #000;
+  margin-bottom: 0;
+  padding-bottom: 10px;
+}
+.reserve-detail-container section {
+  padding: 15px 0;
+  margin-bottom: 10px;
+}
+.reserve-detail-container .order-info {
+  padding: 15px 0 15px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #bbb;
+}
+.reserve-detail-container .order-info li {
+  padding: 0 20px 0 0;
+}
+.reserve-detail-container strong {
+  font-family: Gsans_B;
+  margin-left: 5px;
+}
+.reserve-detail-container .state {
+  padding: 10px 15px;
+  background-color: #000;
+  border-radius: 30px;
+  color: #fff;
+}
+.reserve-detail-container .canceled {
+  background-color: #bbb;
+}
+.reserve-detail-container .my_reserve_card_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 15px 25px 5px;
+  border-bottom: 1px solid #bbb;
+}
+.reserve-detail-container .my_product_header {
+  padding: 10px 25px 10px 5px;
+  font-size: 1.2em;
+  font-family: "GSANS_B";
+  border-bottom: 1px solid #000;
+  display: flex;
+  justify-content: space-between;
+}
+.reserve-detail-container .my_product_header li:first-child {
+  width: 85%;
+  display: flex;
+  justify-content: center;
+}
+.reserve-detail-container .my_product_header li:last-child {
+  width: 15%;
+  display: flex;
+  justify-content: center;
+}
+.reserve-detail-container .card_title {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.reserve-detail-container .card_title h5 {
+  font-family: Gsans_B;
+  padding: 0 25px;
+}
+.reserve-detail-container .poster_box {
+  border-radius: 8px;
+  border: 0.5px solid #bbb;
+  overflow: hidden;
+  cursor: pointer;
+}
+.reserve-detail-container .poster_box img {
+  width: 11em;
+}
+.reserve-detail-container .my-buyer-info {
+  font-size: 20px;
+}
+.reserve-detail-container .my-buyer-info .buyer-info {
+  display: flex;
+  border-bottom: 1px solid #bbb;
+  padding: 25px;
+}
+.reserve-detail-container .my-buyer-info .info_title {
+  border-right: 1px solid #bbb;
+  padding-right: 25px;
+}
+.reserve-detail-container .my-buyer-info strong {
+  padding-left: 25px;
+}
+.reserve-detail-container .pay_info {
+  padding: 25px 0 25px 5px;
+  border-bottom: 1px solid #bbb;
+}
+.reserve-detail-container .pay_info h5 {
+  margin: 0;
 }
 .reserve-detail-container .okCancel {
   font-size: 0.8em;
