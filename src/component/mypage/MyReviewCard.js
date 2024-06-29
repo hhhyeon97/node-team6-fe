@@ -11,6 +11,8 @@ import { Alert } from "react-bootstrap";
 import Star from '../../component/Star';
 import AlertModal from '../AlertModal';
 import defaultPhoto from "../../assets/img/default_photo.png"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 const MyReviewCard = ({ review,  openReviewForm }) => {
   const dispatch = useDispatch();
@@ -40,10 +42,10 @@ const MyReviewCard = ({ review,  openReviewForm }) => {
     <>
     {!review?.isSuspended ? (
       <div className='my_review_card'>
-          <div class="card_main">
-            <div class="card_top">
-              <div>{review.SeqTitle}</div>
-              <div class="top_info">
+          <div className="card_main">
+            <div className="card_top">
+              <div className='review_title'>{review.SeqTitle}</div>
+              <div className="top_info">
                 <Star startNum={review?.starRate} />
               </div>
             <div>{review.reviewText}</div>
@@ -62,18 +64,18 @@ const MyReviewCard = ({ review,  openReviewForm }) => {
                   )}
             </div>
           </div>
-          <div>{convertToKST(review.createdAt)}</div>
-          <div class="review_btns">
+          <div className='review_date'>{convertToKST(review.createdAt)}</div>
+          <div className="review_btns">
             <Button variant="light" onClick={handleEditReview}>수정</Button>
             <Button variant="light" onClick={handleEeleteReview}>삭제</Button>
           </div> 
         </div>
       ):(
-        <div className='my_review_card disabled'>
-        <div>부적절한 내용으로 숨김처리됨 리뷰입니다. 자세한 사항은 1:1문의를 이용해주세요</div>
-        <div class="card_main">
+        <div className='my_review_card'>
+        <div className='suspend_msg'><FontAwesomeIcon icon={faCircleExclamation} />부적절한 내용으로 숨김처리됨 리뷰입니다. 자세한 사항은 1:1문의를 이용해주세요</div>
+        <div className="card_main disabled">
             <div class="card_top">
-              <div>{review.SeqTitle}</div>
+              <div className='review_title'>{review.SeqTitle}</div>
               <div class="top_info">
                 <Star startNum={review?.starRate} />
               </div>
@@ -93,8 +95,8 @@ const MyReviewCard = ({ review,  openReviewForm }) => {
                   )}
             </div>
           </div>
-          <div>{convertToKST(review.createdAt)}</div>
-          <div class="review_btns">
+          <div className="review_date disabled">{convertToKST(review.createdAt)}</div>
+          <div class="review_btns disabled">
             <Button variant="light" onClick={handleEditReview}>수정</Button>
             <Button variant="light" onClick={handleEeleteReview}>삭제</Button>
           </div> 
