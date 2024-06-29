@@ -6,6 +6,7 @@ import { userActions } from '../../action/userAction';
 import { Form, Col, Alert } from 'react-bootstrap';
 import CloudinaryUploadWidget from '../../utils/CloudinaryUploadWidget';
 import AlertModal from '../../component/AlertModal';
+import defaultProfile from '../../assets/img/profile_user.png';
 
 // 회원정보 수정 컴포넌트
 const EditProfile = () => {
@@ -89,7 +90,7 @@ const EditProfile = () => {
       return;
     }
 
-    dispatch(userActions.editUser({ ...formData }));
+    dispatch(userActions.editUser({ ...formData }, navigate));
   };
 
   const formatPhoneNumber = (value) => {
@@ -128,18 +129,20 @@ const EditProfile = () => {
         <Form className="edit_user_form_container" onSubmit={handleSubmit}>
           <Form.Group as={Col} controlId="image">
             <Form.Label>프로필 이미지</Form.Label>
-            <CloudinaryUploadWidget uploadImage={uploadImage} />
-            <div class="edit_image_box">
-              <img
-                id="uploadedimage"
-                src={
-                  formData.image === ''
-                    ? 'https://iconspng.com/_next/image?url=https%3A%2F%2Ficonspng.com%2Fimages%2Fabstract-user-icon-3%2Fabstract-user-icon-3.jpg&w=1080&q=75'
+            <div class="upload_img_area">
+              <div class="edit_image_box">
+                <img
+                  id="uploadedimage"
+                  src={
+                    formData.image === ''
+                    ? defaultProfile
                     : formData.image
-                }
-                className="upload-image"
-                alt="uploadedimage"
-              ></img>
+                  }
+                  className="upload-image"
+                  alt="uploadedimage"
+                ></img>
+              </div>
+              <CloudinaryUploadWidget uploadImage={uploadImage} />
             </div>
           </Form.Group>
 
@@ -188,9 +191,10 @@ const EditProfile = () => {
           </Form.Group>
 
           <button className="edit_submit_btn" type="submit">
-            업데이트
+            저장하기
           </button>
 
+        </Form>
           <p className='outMember_btn' onClick={handleMemberOut}>회원탈퇴하기</p>
 
           {user?.level === 'gold' ? (
@@ -208,11 +212,10 @@ const EditProfile = () => {
               setShowModal={setShowModal}
               selectedId={user?._id}
               selectedName="회원 탈퇴하기"
-              alertMessage={`${user?.name}회원님, 정말 저희를 떠나실건가요? 🥲`}
+              alertMessage={`${user?.name}회원님, 정말 누나컬처를 떠나실건가요? 🥲`}
               btnText="회원탈퇴"
             />
           )}
-        </Form>
       </div>
     </MyPageLayout>
   );

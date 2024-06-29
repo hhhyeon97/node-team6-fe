@@ -15,6 +15,7 @@ const InitialFormData = {
 const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
   const dispatch = useDispatch();
   const { selectedNotice, error } = useSelector((state) => state.notice);
+  const [titleError, setTitleError] = useState(false);
   const [contentError, setContentError] = useState(false)
   const [checkImportant, setCheckImportant] = useState(false)
   const [formData, setFormData] = useState(
@@ -54,6 +55,9 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
     if (id === "content") {
       checkContentLength(value);
     }
+    if (id === "title"){
+      checkTitleLength(value);
+    }
   };
 
   // [ content 길이 확인 및 에러 처리 ]
@@ -61,7 +65,16 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
     if (value.length < 15) {
       setContentError(true);
     } else {
-      setContentError(false);
+      setTitleError(false);
+    }
+  };
+
+  // [ title 길이 확인 및 에러 처리 ]
+  const checkTitleLength = (value) => {
+    if (value.length < 15) {
+      setTitleError(true);
+    } else {
+      setTitleError(false);
     }
   };
 
@@ -112,10 +125,13 @@ const NoticeDialog = ({ mode, showDialog, setShowDialog, setSearchQuery }) => {
             <div>작성자 : {mode === "new"? user.user.name : mode === "edit" && selectedNotice?.userId.name}</div>
             <Form.Group as={Col} controlId="title">
               <Form.Label>제목</Form.Label>
+              {titleError && (
+                <span className="error-message">4자 이상 25자 이하로 입력하세요</span>
+              )}
               <Form.Control
                 onChange={handleChange}
                 type="string"
-                placeholder="최소 4자 이상 작성해주세요"
+                placeholder="4자 이상 25자 이하로 작성해주세요"
                 required
                 value={formData.title}
               />

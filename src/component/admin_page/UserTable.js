@@ -4,9 +4,10 @@ import { convertToKST } from "../../utils/Date";
 import defaultUserImg from "../../assets/img/profile_user.png"
 
 const UserTable = ({ header, userList, openEditForm }) => {
+  
   return (
     <div className="overflow-x">
-      <Table striped bordered hover>
+      <Table  hover>
         <thead>
             <tr>
               {header.map((title) => (
@@ -19,25 +20,36 @@ const UserTable = ({ header, userList, openEditForm }) => {
             userList.map((user, index) => (
               <tr onClick={() => openEditForm(user)} className="order-table-item">
               <th>
-                {user.image ? (
-                  <img 
-                    src={user.image}
-                    alt={user.name} 
-                    style={{ width: '23px', height: '23px', objectFit: 'cover' }} 
-                    // onError={(e) => e.target.src = 'https://iconspng.com/_next/image?url=https%3A%2F%2Ficonspng.com%2Fimages%2Fabstract-user-icon-3%2Fabstract-user-icon-3.jpg&w=1080&q=75'}
-                    onError={(e) => e.target.src = defaultUserImg }
-                  />
-                ) : (
-                  <img 
-                    // src='https://iconspng.com/_next/image?url=https%3A%2F%2Ficonspng.com%2Fimages%2Fabstract-user-icon-3%2Fabstract-user-icon-3.jpg&w=1080&q=75'
-                    src={defaultUserImg}
-                    alt={user.name} 
-                    style={{ width: '23px', height: '23px', objectFit: 'cover' }} 
-                  />
-                )}
-                {user.name}
+                <div class="profile_group">
+                  {user.image ? (
+                    <div className="user_profile">
+                      <img
+                        className='user_img'
+                        src={user.image}
+                        alt={user.name}
+                        onError={(e) => e.target.src = defaultUserImg }
+                      />
+                    </div>
+                  ) : (
+                    <div className="user_profile">
+                      <img
+                        className='user_img'
+                        src={defaultUserImg}
+                        alt={user.name}
+                      />
+                    </div>
+                  )}
+                  {user.name}
+                </div>
               </th>
-              <th>{user.level.toUpperCase()}</th>
+              <th>
+                <div class="level_group">
+                  {user.level === "normal" && <div className="level_tag normal"> {user.level.toUpperCase()}</div>}
+                  {user.level === "gold" && <div className="level_tag gold"> {user.level.toUpperCase()}</div>}
+                  {user.level === "admin" && <div className="level_tag suspend"> {user.level.toUpperCase()}</div>}
+                  {user.level === "admin" && <div className="level_tag admin"> {user.level.toUpperCase()}</div>}
+                </div>
+              </th>
               <th>{user.email}</th>
               <th>{user.contact}</th>
               <th>{convertToKST(user.createdAt)}</th>

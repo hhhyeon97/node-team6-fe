@@ -11,7 +11,7 @@ const MypageUserLevel = ({ user }) => {
   switch (user.level.toUpperCase()) {
     case 'NORMAL':
       levelClass = 'normal level_bdg';
-      benefitText = '3개월간 티켓 예매 건수가 10건이 넘어갈 경우 GOLD 회원 등급이 됩니다.';
+      benefitText = '회원님은 NORMAL 등급입니다. GOLD 회원일 경우 10%의 할인혜택을 받으실 수 있습니다.';
       break;
     case 'GOLD':
       levelClass = 'gold level_bdg';

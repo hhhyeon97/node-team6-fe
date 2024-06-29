@@ -9,47 +9,64 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faStarHalfAlt, faStar as faEmptyStar } from '@fortawesome/free-solid-svg-icons';
 
 const InitialFormData = {
-  starRate: 0,
   image: "",
   reviewText: "",
+  starRate: 0,
 };
 
 const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQuery }) => {
   const dispatch = useDispatch();
   const { selectedReserve } = useSelector((state) => state.reservation);
   const { selectedReview } = useSelector((state) => state.review);
-  const { error } = useSelector((state) => state.review);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [contentError, setContentError] = useState(false)
+  const [starError, setStarError] = useState(false)
   const [formData, setFormData] = useState(
     mode === "new" ? { ...InitialFormData } : selectedReview
   );
-  
-  useEffect(() => {
-    if (error) {
-      setErrorMessage(error); 
-    } else {
-      setErrorMessage(null); // 에러가 없을 경우 초기화
-    }
-  }, [error]);
+  console.log(mode)
+  const [star, setStar]= useState (
+    mode === "new" ? 0 : selectedReview?.starRate
+    )
 
   useEffect(() => {
     if (showDialog) {
       if (mode === "edit" && selectedReview) {
+        setStar(selectedReview?.starRate);
         setFormData({
-          starRate: selectedReview.starRate,
           image: selectedReview.image,
-          reviewText: selectedReview.reviewText
+          reviewText: selectedReview.reviewText,
+          starRate: selectedReview.starRate
         });
       } else {
+        setStar(0);
         setFormData({ ...InitialFormData });
       }
     }
   }, [showDialog, selectedReview, mode]);
 
+    // [ content 길이 확인 및 에러 처리 ]
+  const checkContentLength = (value) => {
+    console.log('value', value)
+    if (value.length < 15) {
+      setContentError(true);
+    } else {
+      setContentError(false);
+    }
+  };
+
+  // [ 별점 수 확인 및 에러 처리 ]
+  const checkStarLength = (value) => {
+    console.log('starvalue', value)
+    if (value < 1) {
+      setStarError(true);
+    } else {
+      setStarError(false);
+    }
+  };
+
   // [ 리뷰 창 닫기 ]
   const handleClose = () => {
     setFormData({...InitialFormData}); // 모든걸 초기화시키고
-    setErrorMessage(null); 
     setShowDialog(false);// 창 닫아주기
   };
 
@@ -58,12 +75,12 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
     event.preventDefault();
     if(mode === "new"){
       console.log("리뷰작성")
-      dispatch(reviewAction.createReview({ ...formData }, 
+      dispatch(reviewAction.createReview({...formData}, 
         selectedReserve._id, 
         setShowDialog, setSearchQuery));
     }else{
       console.log("리뷰수정")
-      dispatch(reviewAction.editReview({ ...formData }, 
+      dispatch(reviewAction.editReview({...formData}, 
         selectedReview._id,
         setShowDialog, setSearchQuery));
     }
@@ -74,12 +91,17 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
     event.preventDefault();
     const { id, value } = event.target;
     setFormData({ ...formData, [id]: value});
+    if (id === "reviewText") {
+      checkContentLength(value);
+    }
   };
 
   // [ 별점 기능 ]
   const handleStarRatingChange = (newRating) => {
-    setErrorMessage(null);
-    setFormData({ ...formData, starRate: newRating });
+    setStar(newRating);
+    setFormData({ ...formData, starRate: newRating }); // 업데이트
+    checkStarLength(newRating);
+    console.log("form",formData)
   };
 
   // [ 이미지 업로드 ]
@@ -98,7 +120,10 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
             <Form.Group as={Col} className='star_area' controlId="starRate">
               <Form.Label>공연 평가하기</Form.Label>
                 <div class="star_select_group">
-                  {errorMessage && <div className="error-message">{errorMessage}</div>}
+                  {/* {errorMessage && <div className="error-message">{errorMessage}</div>} */}
+                  {star === 0 && (
+                    <span className="error-message">별점을 매겨주세요(최소 1점)</span>
+                  )}
                   <ReactStars
                     classNames='star_select'
                     count={5}
@@ -106,20 +131,13 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
                     size={24}
                     isHalf={false}
                     activeColor="#f44f08"
-                    value={formData?.starRate}
+                    value={star}
+                    id="starRate"
                   />
                 </div>
-              {/* <Form.Control
-                onChange={handleChange}
-                type="Number"
-                placeholder="별점을 입력하세요"
-                required
-                value={formData?.starRate}
-              /> */}
             </Form.Group>
             {/* 리뷰 이미지 */}
             <Form.Group className="review_img_area" controlId="Image" required>
-              {/* <Form.Label>Image</Form.Label> */}
               <div class="review_img">
                   <img
                     id="uploadedimage"
@@ -136,7 +154,9 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
             </Form.Group>
             {/* 리뷰 내용 */}
             <Form.Group as={Col} controlId="reviewText" className='review_text_area'>
-              {/* <Form.Label>reviewText</Form.Label> */}
+              {contentError && (
+                <span className="error-message">최소 15자 이상 입력해주세요</span>
+              )}
               <Form.Control
                 onChange={handleChange}
                 as="textarea"
