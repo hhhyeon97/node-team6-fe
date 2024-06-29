@@ -1,4 +1,8 @@
 @charset "UTF-8";
+.admin-wrap {
+  max-width: 1200px;
+}
+
 .admin_page_container {
   display: flex;
   /* 추가적으로 필요할 수 있는 스타일들 */
@@ -21,6 +25,9 @@
 .admin_page_container a {
   text-decoration: none;
   color: inherit;
+}
+.admin_page_container .admin_page {
+  margin-top: 70px;
 }
 .admin_page_container .table_title {
   display: flex;
@@ -51,7 +58,10 @@
   position: absolute;
   top: 0;
   right: 0;
-  padding: 20px 30px;
+  padding: 20px 140px 20px 0;
+}
+.admin_page_container .search-box input:focus-visible {
+  outline: none;
 }
 .admin_page_container .search-box svg {
   position: absolute;
@@ -117,6 +127,18 @@
 }
 .admin_page_container .admin_main_container {
   width: 100%;
+}
+.admin_page_container .reset_btn_area {
+  display: flex;
+  justify-content: flex-end;
+}
+.admin_page_container .search_reset {
+  border: 0.5px solid #bbb;
+  position: absolute;
+  color: rgb(78, 78, 78);
+  top: 0;
+  right: 0;
+  margin: 20px 30px;
 }
 .admin_page_container .admin_user_container .user_item {
   display: flex;

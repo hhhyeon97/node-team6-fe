@@ -5,7 +5,7 @@ import { convertToKST } from "../../utils/Date";
 const NoticeTable = ({ header, noticeList, deleteItem, openEditForm }) => {
   return (
     <div className="overflow-x">
-      <Table striped bordered hover>
+      <Table  hover>
         <thead>
             <tr>
               {header.map((title) => (
@@ -25,7 +25,7 @@ const NoticeTable = ({ header, noticeList, deleteItem, openEditForm }) => {
               <th>{convertToKST(notice.createdAt)}</th>
               <th>
                 <Button size="sm" onClick={() => openEditForm(notice)}>
-                  Edit
+                  공지수정
                 </Button>
                 <Button
                   size="sm"

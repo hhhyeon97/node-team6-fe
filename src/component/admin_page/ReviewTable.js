@@ -5,7 +5,7 @@ import { convertToKST } from "../../utils/Date";
 const ReviewTable = ({ header, reviewList, openEditForm }) => {
   return (
     <div className="overflow-x">
-      <Table striped bordered hover>
+      <Table hover>
         <thead>
             <tr>
               {header.map((title) => (

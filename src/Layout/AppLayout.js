@@ -34,7 +34,7 @@ const AppLayout = ({ children }) => {
                 <img src={logoImg} />
               </Link>
             </div>
-            <Container className='wrap-container'>
+            <Container className='wrap-container admin-wrap'>
               <section className="admin_main_section">
                 <main>{children}</main>
               </section>
