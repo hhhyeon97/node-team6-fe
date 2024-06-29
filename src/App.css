@@ -27,14 +27,17 @@ body {
   padding-bottom: 10px;
   border-bottom: 4px solid #000;
 }
-.title_section > .title {
+
+.title_section>.title {
   display: flex;
   align-items: flex-end;
 }
-.title_section > .title h3 {
+
+.title_section>.title h3 {
   margin-right: 10px;
 }
-.title_section > .title p {
+
+.title_section>.title p {
   font-family: Gsans_L;
   font-size: 12px;
 }
@@ -46,44 +49,67 @@ body {
   align-items: center;
   font-size: 40px;
 }
-.user_profile_container .user_profile .user_img{
+
+.user_profile_container .user_profile .user_img {
   width: 75px;
   height: 75px;
   border: 1px solid #bbb;
   border-radius: 50%;
   overflow: hidden;
 }
+
 .user_profile_container .user_name {
   color: #000;
   font-size: 30px;
 }
 
 /* nc_pagination */
-.nc_pagination{
+.nc_pagination {
   display: flex;
   justify-content: center;
 }
-.nc_pagination .page-item{
+
+.nc_pagination .page-item {
   padding: 0 12px;
   color: #bbb;
 }
-.nc_pagination .page-item.active{
+
+.nc_pagination .page-item.active {
   font-family: Gsans_B;
   color: #000;
 }
-.pre, .next{
+
+.pre,
+.next {
   padding: 0 12px;
   color: #000;
 }
+
 .pg_disabled {
   color: #bbb;
   pointer-events: none;
 }
 
 /* 이미지 업로드 버튼 */
-.upload_img_btn{
+.upload_img_btn {
   background: #000;
   border: none;
   padding: 7px 9px;
   font-size: 0.7em;
+}
+
+@media screen and (max-width: 768px) {
+
+  /* 모바일 가로, 태블릿 세로 */
+  .wrap-container {
+    max-width: 720px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+
+  /* 모바일 세로 */
+  .wrap-container {
+    max-width: 340px;
+  }
 }

@@ -209,7 +209,10 @@ const PerformanceDetail = () => {
 
                         <div className="subTitle reviewText">리뷰</div>
                         {reviewAllList && reviewAllList.length === 0 ? (
-                            <div>아직 리뷰가 없습니다</div>
+                            <div className="review_box">
+                                <div>등록된 리뷰가 없습니다</div>
+                                <div>이 공연의 첫번째 리뷰를 작성해보세요</div>
+                            </div>
                         ) : (
                             reviewAllList.map(review => (
                                 !review.isSuspended ? (

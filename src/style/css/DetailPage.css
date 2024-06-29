@@ -115,6 +115,13 @@
 .DetailPageAllBox .reviewText {
   border-bottom: solid 3px black;
 }
+.DetailPageAllBox .review_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+}
 .DetailPageAllBox .review {
   border: solid 1px #bbb;
   border-radius: 5px;
