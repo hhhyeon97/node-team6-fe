@@ -8,6 +8,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import MyReserveList from '../../component/mypage/MyReserveList';
 import Pagination from '../../component/Pagination';
 import ReviewDialog from '../mypage/ReviewDialog';
+import "../../style/css/MyReserveAll.css"
 
 
 // 나의 예매 모두 보기 컴포넌트

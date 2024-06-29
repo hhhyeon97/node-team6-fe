@@ -26,7 +26,6 @@ const ReservationDetail = () => {
 
   // [ 관람 당일 이후거나 이미 예매취소했으면 예매취소 불가능 ]
   useEffect(() => {
-
     const reservationDate = new Date(selectedReserve?.reservationDate);
     const currentDate = new Date();
 
