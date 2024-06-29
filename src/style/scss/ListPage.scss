@@ -200,6 +200,22 @@
         }
       }
     }
+
+    .notFound_box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 80%;
+
+      .notFound_inner_box {
+        text-align: center;
+      }
+
+      img {
+        max-width: 80px;
+      }
+    }
   }
 
   .CalenderBox {
@@ -291,4 +307,7 @@
       list-style: none;
     }
   }
+}
+.paginationfalse {
+  display: none;
 }
