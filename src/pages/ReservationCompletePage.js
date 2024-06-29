@@ -17,14 +17,6 @@ const ReservationCompletePage = () => {
             emojis: ["💸", "🪙", "💲", "👍", "💖"],
             emojiSize: 80,
             confettiNumber: 50,
-            // confettiColors: [
-            //     "#ff0a54",
-            //     "#ff477e",
-            //     "#ff7096",
-            //     "#ff85a1",
-            //     "#fbb1bd",
-            //     "#f9bec7",
-            // ],
         });
     };
 
@@ -41,8 +33,8 @@ const ReservationCompletePage = () => {
     return (
         <Container className="wrap-container">
             <Row className="completePageBox">
-                <Col className="completeTitle">주문이 <br /> 완료되었습니다.</Col>
-                <Col className="completeInfo">
+                <Col lg={6} md={7} sm={12} className="completeTitle">주문이 <br /> 완료되었습니다.</Col>
+                <Col lg={6} md={5} sm={12} className="completeInfo">
                     <Row>
                         예매 번호: {reservationId}
                     </Row>

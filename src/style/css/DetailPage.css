@@ -204,6 +204,9 @@
 }
 
 @media screen and (max-width: 768px) {
+  .DetailPageAllBox .DetailTitle {
+    font-size: 1.7em;
+  }
   .DetailPageAllBox .DetailTopBox .DetailInfoBox .LikeShare {
     margin: 5px 0;
   }
@@ -220,6 +223,9 @@
 @media screen and (max-width: 480px) {
   .DetailPageAllBox {
     margin-top: 30px;
+  }
+  .DetailPageAllBox .DetailTitle {
+    font-size: 1.4em;
   }
   .DetailPageAllBox .DetailTopBox {
     padding-bottom: 30px;
