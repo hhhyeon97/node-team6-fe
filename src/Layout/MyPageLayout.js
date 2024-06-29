@@ -5,9 +5,9 @@ import { Col, Row, Container } from "react-bootstrap";
 import MypageUserLevel from '../component/mypage/MypageUserLevel';
 import MypageSidebar from "../component/mypage/MypageSidebar";
 import { userActions } from '../action/userAction';
-// import MypageUserProfile from "../component/mypage/MypageUserProfile";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../style/css/Mypage.css";
+import "../style/css/MypageSideBar.css";
 import LinedTitle from '../component/LinedTitle';
 import UserProfile from '../component/UserProfile';
 
@@ -26,13 +26,13 @@ const MyPageLayout = ({ title, cap, children }) => {
   }
 
   return (
-    <Container className='wrap-container'>
-      <div className="mypage-container"style={{ marginTop: '20px', marginBottom: '20px', border: '1px solid #ccc' }}>
-        <section className="mypage-left">
-          {/* <MypageUserProfile /> */}
-          <UserProfile user={user} />
-          <MypageSidebar />
-        </section>
+    <>
+    <Container className='wrap-container mypage-wrap-container'>
+      <div class="mypage_side_bar_container">
+        <UserProfile user={user} />
+        <MypageSidebar />
+      </div>
+      <div className="mypage-container">
         <section className="mypage-right">
           <MypageUserLevel user={user}/>
           <LinedTitle title={title} cap={cap}/>
@@ -42,6 +42,7 @@ const MyPageLayout = ({ title, cap, children }) => {
         </section>
       </div>
     </Container>
+    </>
   );
 }
 

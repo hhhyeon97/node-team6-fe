@@ -9,6 +9,7 @@ import ReservationItem from "../../component/ReservationItem";
 import * as types from "../../constants/reservation.constants";
 import MyReserveCard from '../../component/mypage/MyReserveCard';
 import ReviewDialog from '../mypage/ReviewDialog';
+import '../../style/css/MyReserveDate.css'
 // import '../../style/css/MyReservationByDate.css'
 
 
