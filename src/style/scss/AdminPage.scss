@@ -282,3 +282,47 @@
     margin-right: 5px;
   }
 }
+
+// 리뷰 정보 수정 모달
+.review_detail_modal{
+  p{
+    margin: 0;
+  }
+  .suspend_review_area{
+    display: flex;
+    justify-content: flex-end;
+  }
+  .perform_infos{
+    display: flex;
+  }
+  .poster_box{
+    width: fit-content;
+    border: 0.5px solid #bbb;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .star_rate_info{
+    display: flex;
+  }
+  .review_info_group div{
+    padding: 3px 0;
+  }
+  .review_content{
+    height: 10em;
+    margin-top: 5px;
+    padding: 5px 10px;
+    overflow: hidden;
+    overflow-y: auto;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+  }
+  .order-button-area{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+    button{
+      padding: 10px 30px;
+    }
+  }
+}
