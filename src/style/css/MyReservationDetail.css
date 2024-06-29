@@ -1,0 +1,13 @@
+.reserve-detail-container {
+  border: 2px solid pink;
+}
+.reserve-detail-container .okCancel {
+  font-size: 0.8em;
+  background-color: #000;
+}
+.reserve-detail-container .disableCancel {
+  font-size: 0.7em;
+  pointer-events: none;
+  background-color: #bbb !important;
+  border: #bbb;
+}

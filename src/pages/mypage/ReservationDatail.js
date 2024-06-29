@@ -9,6 +9,7 @@ import { reservationAction } from '../../action/reservationAction';
 import "../../style/css/Mypage.css"
 import LoadingText from '../../component/LoadingText';
 import AlertModal from '../../component/AlertModal';
+import '../../style/css/MyReservationDetail.css'
 
 const ReservationDetail = () => {
   const dispatch = useDispatch();

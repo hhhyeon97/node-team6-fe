@@ -1,0 +1,15 @@
+// [ 나의예매 디테일 페이지 ]
+.reserve-detail-container {
+  border: 2px solid pink;
+  // 예매 취소 버튼
+    .okCancel {
+      font-size: 0.8em;
+      background-color: #000;
+    }
+    .disableCancel {
+      font-size: 0.7em;
+      pointer-events: none;
+      background-color: #bbb !important;
+      border: #bbb;
+    }
+}

@@ -55,7 +55,7 @@
     /* [ 회원 등급 정보 ] */
     .user_level_section {
       display: flex;
-      padding: 10px;
+      padding: 20px 10px;
       background-color: #000;
       margin-bottom: 50px;
 
@@ -67,16 +67,22 @@
         display: flex;
         align-items: center;
         padding: 0 10px;
-        font-size: 10px;
+        font-size: 13px;
         color: #fff;
+        
+        svg{
+          margin-right: 3px;
+        }
 
         h5 {
+          margin-right: 10px;
           font-family: Gsans_B;
-          font-size: 12px;
+          font-size: 1em;
           color: #bbb;
         }
         .level_bdg {
           font-family: Gsans_B;
+          font-size: 0.7em;
           padding: 7px 10px;
           border-radius: 50px;
         }
@@ -103,6 +109,22 @@
 
     /* [ 회원정보 수정 페이지 ] */
     .edit_user_form_container {
+      padding: 25px 0 30px 5px;
+      border-bottom: 1px solid #000;
+      .col{
+        margin-bottom: 25px;
+      }
+      .form-label{
+        font-size: 1.2em;
+      }
+      .form-control{
+        width: 30%;
+      }
+      .upload_img_area{
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+      }
       .edit_image_box {
         width: 100px;
         height: 100px;
@@ -115,16 +137,33 @@
         width: 100%;
         height: 100%;
       }
-      .outMember_btn{
-        width: fit-content;
-        color: rgb(59, 59, 59);
-        cursor: pointer;
+      .upload_img_btn {
+        margin-left: 15px;
+        padding: 0 13px;
+        height: 40px;
       }
-      .outMember_btn:hover{
-        color: #000;
+      .edit_submit_btn{
+        width: 30%;
+        padding: 15px;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        background-color: #000;
+      }
+      .edit_submit_btn:hover{
+        background-color: rgb(49, 49, 49);
       }
     }
-
+    .outMember_btn{
+      padding: 20px 0 0 5px;
+      width: fit-content;
+      color: rgb(59, 59, 59);
+      cursor: pointer;
+    }
+    .outMember_btn:hover{
+      color: #000;
+    }
+    
     /* 나의 찜 페이지 */
     .mylike_wrap{
       display: flex;
@@ -221,21 +260,7 @@
     opacity: 0.5;
   }
 }
-// [ 나의예매 디테일 페이지 ]
-.reserve-detail-container {
-  border: 2px solid red;
-  // 예매 취소 버튼
-    .okCancel {
-      font-size: 0.8em;
-      background-color: #000;
-    }
-    .disableCancel {
-      font-size: 0.7em;
-      pointer-events: none;
-      background-color: #bbb !important;
-      border: #bbb;
-    }
-}
+
 
 // [ 나의 예매 날짜로 조회 ]
 .ByDateReservationItem {
@@ -270,7 +295,7 @@
   }
   .error-message{
     color: red;
-    font-size: 0.6em;
+    font-size: 0.7em;
     margin-right: 10px;
   }
   .modal-content{
@@ -330,4 +355,82 @@
 }
 .modal-backdrop {
   --bs-backdrop-bg: #0000002b !important;
+}
+
+// [ 비밀번호 확인 페이지 ]
+.verify_password_form{
+  padding: 25px 0 30px 5px;
+  border-bottom: 1px solid #000;
+  font-size: 1.2em;
+
+  .message{
+    font-family: Gsans_L;
+    font-size: 0.6em;
+    margin-left: 5px;
+  }
+  .form-label{
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .input_group{
+    display: flex;
+    padding: 10px 0;
+    align-items: center;
+  }
+  .form-control{
+    width: 30%;
+    margin: 0;
+  }
+  .certificate_btn{
+    height: 38px;
+    font-size:0.7em;
+    margin-left: 7px;
+  }
+  .error_message{
+    width: 40%;
+    font-size: 0.6em;
+  }
+}
+
+// [ 비밀번호 변경 페이지]
+.reset_password_form{
+  padding: 25px 0 30px 5px;
+  border-bottom: 1px solid #000;
+  font-size: 1.2em;
+
+  .ps_form_group{
+    padding-bottom: 20px;
+  }
+
+  .form-label{
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .password_input_wrap{
+    display: flex;
+    align-items: center;
+  }
+  .password_toggle_icon{
+    margin-left: 10px;
+    opacity: 0.4;
+  }
+  .input_group{
+    display: flex;
+    padding: 10px 0;
+    align-items: center;
+  }
+  .form-control{
+    width: 30%;
+    margin: 0;
+  }
+  .error_message{
+    width: 50%;
+    font-size: 0.6em;
+  }
+  .set_ps_btn{
+    width: 30%;
+    font-size:0.7em;
+    padding: 15px;
+    margin-top: 10px;
+  }
 }

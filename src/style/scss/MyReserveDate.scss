@@ -82,6 +82,9 @@
     .card_btns button{
       font-size: 0.7em;
     }
+    .card_btns button:first-child{
+      margin-right: 5px;
+    }
     // 예매 취소 버튼
     .okCancel {
       font-size: 0.8em;
@@ -166,13 +169,38 @@
     .card_btns{
       width: 200px;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
     }
     .card_btns button{
       font-size: 0.9em;
       padding: 8px 12px;
       border: 1px solid #000;
+    }
+  }
+  // [ 해당 날짜에 예매 없음 ]
+  .no_reserve_msg{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+    h4{
+      margin-bottom: 15px;
+    }
+    .todayButton{
+      border: none;
+      background-color: #000;
+      color: #fff;
+      padding: 15px 18px;
+      border-radius: 8px;
+      font-size: 0.8em;
+    }
+
+    .todayButton:hover{
+      background-color: rgb(75, 75, 75);
     }
   }
 }
