@@ -341,3 +341,17 @@
 .modal-backdrop {
   --bs-backdrop-bg: #0000002b !important;
 }
+
+@media screen and (max-width: 768px) {
+  /* 모바일 가로, 태블릿 세로 */
+  .mypage-wrap-container {
+    max-width: 720px;
+  }
+}
+@media screen and (max-width: 480px) {
+  /* 모바일 세로 */
+  .mypage-wrap-container {
+    max-width: 340px;
+    border: 2px solid red;
+  }
+}
