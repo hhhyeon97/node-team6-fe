@@ -9,40 +9,36 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faStarHalfAlt, faStar as faEmptyStar } from '@fortawesome/free-solid-svg-icons';
 
 const InitialFormData = {
-  starRate: 0,
   image: "",
   reviewText: "",
+  starRate: 0,
 };
 
 const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQuery }) => {
   const dispatch = useDispatch();
   const { selectedReserve } = useSelector((state) => state.reservation);
   const { selectedReview } = useSelector((state) => state.review);
-  const { error } = useSelector((state) => state.review);
   const [contentError, setContentError] = useState(false)
   const [starError, setStarError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState(null);
   const [formData, setFormData] = useState(
     mode === "new" ? { ...InitialFormData } : selectedReview
   );
-  console.log('starErr', starError)
-  // useEffect(() => {
-  //   if (error) {
-  //     setErrorMessage(error); 
-  //   } else {
-  //     setErrorMessage(null); // 에러가 없을 경우 초기화
-  //   }
-  // }, [error]);
+  console.log(mode)
+  const [star, setStar]= useState (
+    mode === "new" ? 0 : selectedReview?.starRate
+    )
 
   useEffect(() => {
     if (showDialog) {
       if (mode === "edit" && selectedReview) {
+        setStar(selectedReview?.starRate);
         setFormData({
-          starRate: selectedReview.starRate,
           image: selectedReview.image,
-          reviewText: selectedReview.reviewText
+          reviewText: selectedReview.reviewText,
+          starRate: selectedReview.starRate
         });
       } else {
+        setStar(0);
         setFormData({ ...InitialFormData });
       }
     }
@@ -71,7 +67,6 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
   // [ 리뷰 창 닫기 ]
   const handleClose = () => {
     setFormData({...InitialFormData}); // 모든걸 초기화시키고
-    // setErrorMessage(null); 
     setShowDialog(false);// 창 닫아주기
   };
 
@@ -80,12 +75,12 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
     event.preventDefault();
     if(mode === "new"){
       console.log("리뷰작성")
-      dispatch(reviewAction.createReview({ ...formData }, 
+      dispatch(reviewAction.createReview({...formData}, 
         selectedReserve._id, 
         setShowDialog, setSearchQuery));
     }else{
       console.log("리뷰수정")
-      dispatch(reviewAction.editReview({ ...formData }, 
+      dispatch(reviewAction.editReview({...formData}, 
         selectedReview._id,
         setShowDialog, setSearchQuery));
     }
@@ -99,18 +94,14 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
     if (id === "reviewText") {
       checkContentLength(value);
     }
-    console.log("id",id)
-    if(id === "starRate"){
-      checkStarLength(value);
-    }
   };
 
   // [ 별점 기능 ]
   const handleStarRatingChange = (newRating) => {
-    setErrorMessage(null);
-    setFormData({ ...formData, starRate: newRating });
+    setStar(newRating);
+    setFormData({ ...formData, starRate: newRating }); // 업데이트
     checkStarLength(newRating);
-    console.log('rate',newRating)
+    console.log("form",formData)
   };
 
   // [ 이미지 업로드 ]
@@ -130,7 +121,7 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
               <Form.Label>공연 평가하기</Form.Label>
                 <div class="star_select_group">
                   {/* {errorMessage && <div className="error-message">{errorMessage}</div>} */}
-                  {formData.starRate === 0 && (
+                  {star === 0 && (
                     <span className="error-message">별점을 매겨주세요(최소 1점)</span>
                   )}
                   <ReactStars
@@ -140,7 +131,7 @@ const ReviewDialog = ({ mode, showDialog, setShowDialog, searchQuery, setSearchQ
                     size={24}
                     isHalf={false}
                     activeColor="#f44f08"
-                    value={formData?.starRate}
+                    value={star}
                     id="starRate"
                   />
                 </div>
