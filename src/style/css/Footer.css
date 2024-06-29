@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .footer_area {
   width: 100%;
   margin-top: 6rem;
@@ -83,4 +84,24 @@
   border-bottom: 1px solid #bbb;
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  /* 모바일 가로, 태블릿 세로 */
+  .wrap-container {
+    max-width: 720px;
+  }
+  .footer_notice {
+    border-bottom: 1px solid #bbb;
+  }
+  .footer_nav_area h3 {
+    margin-top: 0.5rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  /* 모바일 세로 */
+  .footer_area {
+    margin-top: 2rem;
+    margin-bottom: 1.3rem;
+  }
 }

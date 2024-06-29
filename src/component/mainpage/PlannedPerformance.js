@@ -44,10 +44,14 @@ const PlannedPerformance = () => {
   const [errorMsg, setErrorMsg] = useState();
   const [status, setStatus] = useState('01');
   const [showPage, setShowPage] = useState(1);
+  const isMobile = window.matchMedia("(max-width: 480px)").matches;
+  let showSlide = 3;
+  let setRows = 9;
+  if(isMobile) { showSlide = 1; setRows = 5} else {showSlide = 3; setRows = 9}
 
   const settingQuery = {
     service: REACT_APP_YEJIN_SERVICE_KEY,
-    rows: 9,
+    rows: setRows,
     signgucode: '',
     prfstate: status,
   }
@@ -67,8 +71,8 @@ const PlannedPerformance = () => {
   const settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToShow: showSlide,
+    slidesToScroll: showSlide,
     autoplay: true,
     speed: 300,
     autoplaySpeed: 7000,

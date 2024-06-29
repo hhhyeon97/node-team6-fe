@@ -42,11 +42,10 @@ const MyLikeCard = ({item}) => {
           <h3>{item.seqTitle}</h3>
           <h5>{item.seqLocation}</h5>  
         </div>
-        
-        <button className={style}>{status}</button>
-      </div>
-      <div className='like_heart' onClick={()=>deleteLikeItem(item)}>
-        <FontAwesomeIcon icon={faHeart} />
+        <div className='like_heart' onClick={()=>deleteLikeItem(item)}>
+          <button className={style}>{status}</button>
+          <FontAwesomeIcon icon={faHeart} />
+        </div>
       </div>
     </div>
   )

@@ -7,7 +7,7 @@ import ReviewCard from './ReviewCard';
 const Review = () => {
     const dispatch = useDispatch();
     const { mainPageReview, loading } = useSelector(state=>state.review);
-
+    const isMobile = window.matchMedia("(max-width: 480px)").matches;
     const starRate = 5;
     const reviewQty = 4;
 
@@ -19,9 +19,10 @@ const Review = () => {
         <h2>이달의 관람 후기</h2>
         <div className='review_box'>
             {loading?(<div>리뷰 정보를 가져오는 중입니다 ...</div>)
-            :(mainPageReview && mainPageReview.length>0 ? mainPageReview.map((item, index)=>(
-                <ReviewCard key={index} item={item} />
-            )):'')}       
+            :(mainPageReview && mainPageReview.length>0 ? mainPageReview.map((item, index)=>{
+                if(isMobile && index === 3) return
+                return <ReviewCard key={index} item={item} />
+            }):'')}       
         </div>
     </div>
   )
