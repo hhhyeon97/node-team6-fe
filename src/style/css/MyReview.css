@@ -55,3 +55,26 @@
 .my_review_all_container .suspend_msg svg {
   margin-right: 5px;
 }
+.my_review_all_container .no_review_msg {
+  width: 100%;
+  padding: 90px 0;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.my_review_all_container .no_review_msg h4 {
+  margin-bottom: 15px;
+}
+.my_review_all_container .no_review_msg .link_btn {
+  border: none;
+  background-color: #000;
+  color: #fff;
+  padding: 15px 18px;
+  border-radius: 8px;
+  font-size: 0.8em;
+  margin: 0 5px;
+}
+.my_review_all_container .no_review_msg .link_btn:hover {
+  background-color: rgb(75, 75, 75);
+}

@@ -57,4 +57,31 @@
   .suspend_msg svg{
     margin-right: 5px;
   }
+  // [ 리뷰 없음 ]
+  .no_review_msg{
+    width: 100%;
+    padding: 90px 0;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+    h4{
+      margin-bottom: 15px;
+    }
+
+    .link_btn{
+      border: none;
+      background-color: #000;
+      color: #fff;
+      padding: 15px 18px;
+      border-radius: 8px;
+      font-size: 0.8em;
+      margin: 0 5px;
+    }
+
+    .link_btn:hover{
+      background-color: rgb(75, 75, 75);
+    }
+  }
 }

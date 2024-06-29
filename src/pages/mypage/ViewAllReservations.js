@@ -57,12 +57,12 @@ const ViewAllReservations = () => {
               openReviewForm={openReviewForm}
             />
 					</div>
-
+{/* 
 					<Pagination 
           totalPageNum={totalPageNum}
           forcePage={searchQuery.page-1}
           onPageChange={onPageChange}
-        />
+        /> */}
 
         <ReviewDialog
           mode={mode}

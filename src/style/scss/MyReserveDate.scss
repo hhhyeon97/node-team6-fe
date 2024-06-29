@@ -175,4 +175,29 @@
       border: 1px solid #000;
     }
   }
+  // [ 해당 날짜에 예매 없음 ]
+  .no_reserve_msg{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+    h4{
+      margin-bottom: 15px;
+    }
+    .todayButton{
+      border: none;
+      background-color: #000;
+      color: #fff;
+      padding: 15px 18px;
+      border-radius: 8px;
+      font-size: 0.8em;
+    }
+
+    .todayButton:hover{
+      background-color: rgb(75, 75, 75);
+    }
+  }
 }

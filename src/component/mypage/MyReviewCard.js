@@ -37,7 +37,6 @@ const MyReviewCard = ({ review,  openReviewForm }) => {
     event.target.style.display = 'none';
   };
 
-
   return(
     <>
     {!review?.isSuspended ? (
@@ -96,8 +95,8 @@ const MyReviewCard = ({ review,  openReviewForm }) => {
             </div>
           </div>
           <div className="review_date disabled">{convertToKST(review.createdAt)}</div>
-          <div class="review_btns disabled">
-            <Button variant="light" onClick={handleEditReview}>수정</Button>
+          <div className="review_btns">
+            <Button className="disabled" variant="light" onClick={handleEditReview}>수정</Button>
             <Button variant="light" onClick={handleEeleteReview}>삭제</Button>
           </div> 
       </div>

@@ -10,6 +10,17 @@ const MyReserveList = ({ reserveList, openReviewForm }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  if(reserveList || reserveList.length === 0){
+    return(
+      <div className='no_reserve_msg'>
+        <h4>예매내역이 없습니다.</h4>
+        <div class="link_btn_group">
+          <button onClick={() => navigate('/performance')} className="link_btn">공연 예매하기</button>
+        </div>
+    </div>
+    )
+  }
+
   return (
     <div>
     {reserveList?.map((item) => (

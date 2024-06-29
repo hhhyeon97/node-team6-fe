@@ -170,3 +170,25 @@
   padding: 8px 12px;
   border: 1px solid #000;
 }
+.my_reserve_date_container .no_reserve_msg {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.my_reserve_date_container .no_reserve_msg h4 {
+  margin-bottom: 15px;
+}
+.my_reserve_date_container .no_reserve_msg .todayButton {
+  border: none;
+  background-color: #000;
+  color: #fff;
+  padding: 15px 18px;
+  border-radius: 8px;
+  font-size: 0.8em;
+}
+.my_reserve_date_container .no_reserve_msg .todayButton:hover {
+  background-color: rgb(75, 75, 75);
+}
