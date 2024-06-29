@@ -35,7 +35,7 @@ const AppLayout = ({ children }) => {
               </Link>
             </div>
             <Container className='wrap-container'>
-              <section className="admin_main_section" style={{ border: '1px solid #ccc' }}>
+              <section className="admin_main_section">
                 <main>{children}</main>
               </section>
             </Container>

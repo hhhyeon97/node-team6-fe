@@ -46,12 +46,12 @@ const UserTable = ({ header, userList, openEditForm }) => {
                 <div class="level_group">
                   {user.level === "normal" && <div className="level_tag normal"> {user.level.toUpperCase()}</div>}
                   {user.level === "gold" && <div className="level_tag gold"> {user.level.toUpperCase()}</div>}
-                  {user.level === "admin" && <div className="level_tag suspend"> {user.level.toUpperCase()}</div>}
+                  {user.level === "suspend" && <div className="level_tag suspend"> {user.level.toUpperCase()}</div>}
                   {user.level === "admin" && <div className="level_tag admin"> {user.level.toUpperCase()}</div>}
                 </div>
               </th>
               <th>{user.email}</th>
-              <th>{user.contact}</th>
+              <th>{user.contact ? user.contact : "-"}</th>
               <th>{convertToKST(user.createdAt)}</th>
               </tr>
             ))

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .admin_page_container {
   display: flex;
 }
@@ -19,6 +20,14 @@
 .admin_page_container a {
   text-decoration: none;
   color: inherit;
+}
+.admin_page_container .table_title {
+  display: flex;
+  justify-content: center;
+}
+.admin_page_container .table th {
+  text-align: center; /* 텍스트 가운데 정렬 */
+  vertical-align: middle; /* 상하 가운데 정렬 */
 }
 .admin_page_container .admin_top_nav {
   position: relative;
@@ -112,7 +121,7 @@
 }
 .admin_page_container .admin_user_container .user_profile {
   display: flex;
-  margin-right: 6px;
+  margin-right: 20px;
   width: 30px;
   height: 30px;
   border: 0.5px solid #bbb;
@@ -125,10 +134,17 @@
   object-fit: cover;
   margin-right: 20px;
 }
+.admin_page_container .admin_user_container .profile_group {
+  padding-left: 10px;
+}
+.admin_page_container .admin_user_container .level_group {
+  display: flex;
+  justify-content: center;
+}
 .admin_page_container .admin_user_container .level_tag {
   width: fit-content;
   border-radius: 30px;
-  padding: 10px;
+  padding: 6px 8px;
   font-family: Gsans_B;
   font-size: 0.6em;
 }
@@ -143,6 +159,7 @@
 }
 .admin_page_container .admin_user_container .suspend {
   background-color: #bbb;
+  color: #fff;
   border: 1px solid #bbb;
 }
 
