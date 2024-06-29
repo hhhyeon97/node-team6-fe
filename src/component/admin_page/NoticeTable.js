@@ -16,24 +16,24 @@ const NoticeTable = ({ header, noticeList, deleteItem, openEditForm }) => {
           <tbody>
           {noticeList?.length > 0 ? (
             noticeList?.map((notice, index) => (
-              <tr className="notice-table-item" onClick={() => openEditForm(notice)}>
+              <tr className="notice-table-item">
               <th>{notice.isImportant ? (<p>중요</p>):("")}</th>
               <th>{notice.userId.name}</th>
               <th>{notice.title}</th>
               <th>{notice.content}</th>
               <th>{notice.view ? notice.view : 0}</th>
               <th>{convertToKST(notice.createdAt)}</th>
-              <th>
-                <Button size="sm" onClick={() => openEditForm(notice)}>
-                  공지수정
+              <th >
+                <Button variant="light" size="sm" onClick={() => openEditForm(notice)}>
+                  수정
                 </Button>
                 <Button
                   size="sm"
-                  variant="danger"
+                  variant="light"
                   onClick={() => deleteItem(notice._id, notice.title)}
                   className="mr-1"
                 >
-                    -
+                    삭제
                   </Button>               
               </th>
               </tr>

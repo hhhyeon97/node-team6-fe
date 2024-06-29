@@ -33,6 +33,7 @@ const AdminNoticePage = () => {
     "내용",
     "조회수",
     "등록일자",
+    ""
   ];
 
   // [ noticeList 가져오기 ]
