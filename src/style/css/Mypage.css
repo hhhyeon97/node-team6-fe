@@ -255,6 +255,29 @@
   bottom: 1rem;
   font-size: 1.5rem;
   color: #d61f1f;
+  z-index: 5;
+}
+.mypage-container .mypage-right .mylike_none {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+}
+.mypage-container .mypage-right .mylike_none h3 {
+  font-size: 6rem;
+  color: #bbb;
+}
+.mypage-container .mypage-right .mylike_none h4 {
+  font-weight: 600;
+}
+.mypage-container .mypage-right .mylike_none button {
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 0.3rem;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  margin-top: 0.5rem;
 }
 .mypage-container .canceled {
   opacity: 0.5;
@@ -345,7 +368,6 @@
 .modal-backdrop {
   --bs-backdrop-bg: #0000002b !important;
 }
-
 
 @media screen and (max-width: 480px) {
   /* 모바일 세로 */

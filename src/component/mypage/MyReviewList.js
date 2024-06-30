@@ -6,7 +6,7 @@ import { reviewAction } from '../../action/reviewAction';
 import { Button } from "react-bootstrap";
 import MyReviewCard from './MyReviewCard';
 
-const MyReviewList = ({ myReviewList, openReviewForm }) => {
+const MyReviewList = ({ myReviewList, openReviewForm, isMobile }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // const { myReviewList,  loading } = useSelector((state) => state.review);
@@ -31,12 +31,14 @@ const MyReviewList = ({ myReviewList, openReviewForm }) => {
                 <MyReviewCard
                   review={review}
                   openReviewForm={openReviewForm}
+                  isMobile={isMobile}
                 />
               </div>
           ):(
             <div key={review._id}>
                 <MyReviewCard
                   review={review}
+                  isMobile={isMobile}
                   // openReviewForm={openReviewForm}
                 />
             </div>

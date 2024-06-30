@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import '../style/css/MobileCategory.css'
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faUnlock } from '@fortawesome/free-solid-svg-icons';
 
-const MobileCategory = ({showCategory, setShowCategory}) => {
+const MobileCategory = ({showCategory, setShowCategory, user}) => {
   const navigate = useNavigate();
   const [category, setCategory] = useState('');
   let categoryIndex = null;
@@ -35,6 +35,10 @@ const MobileCategory = ({showCategory, setShowCategory}) => {
                 </button>
             </li>
         ))}
+      {user && user.level === 'admin' ? (
+        <li onClick={() => navigate('/admin')} className='category_admin'>
+          <FontAwesomeIcon icon={faUnlock}/> <span>ADMIN</span>
+        </li>) : ''}
     </ul>
   )
 }

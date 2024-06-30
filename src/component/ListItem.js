@@ -11,6 +11,7 @@ const ListItem = ({ item }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { likeList } = useSelector(state => state.like);
+    const { user } = useSelector(state=>state.user);
     const showPerformance = (id) => {
         navigate(`/performance/${id}`)
     }
@@ -30,6 +31,7 @@ const ListItem = ({ item }) => {
     //찜 기능
     const checkLike = likeList.find(like => like.seqId === item.mt20id);
     const addLike = (item) => {
+        if(!user) navigate('/login')
         dispatch(likeAction.addLikeToList({
             seqId: item.mt20id,
             seqImage: item.poster,
@@ -40,6 +42,7 @@ const ListItem = ({ item }) => {
         }))
     }
     const deleteLikeItem = (item) => {
+        if(!user) navigate('/login')
         dispatch(likeAction.deleteLikeItem({ id: checkLike._id }))
     }
 

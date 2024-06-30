@@ -3,10 +3,11 @@ import MyPageLayout from '../../Layout/MyPageLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { userActions } from '../../action/userAction';
-import { Form, Col, Alert, Container } from 'react-bootstrap';
+import { Form, Col, Alert, Container, Button } from 'react-bootstrap';
 import CloudinaryUploadWidget from '../../utils/CloudinaryUploadWidget';
 import AlertModal from '../../component/AlertModal';
 import defaultProfile from '../../assets/img/profile_user.png';
+import LinedTitle from '../../component/LinedTitle';
 
 // 회원정보 수정 컴포넌트
 const EditProfile = () => {
@@ -24,11 +25,24 @@ const EditProfile = () => {
     contact: '',
   });
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const [isMobile, setIsMobile] = useState(window.matchMedia("(max-width: 480px)").matches);
 
   // [ 유저 정보 받아오기 ]
   useEffect(() => {
     dispatch(userActions.getUser());
+
+    // 이벤트 리스너 등록
+    window.addEventListener('resize', handleResize);
+
+    // 컴포넌트 언마운트 시 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };   
   }, [dispatch]);
+
+  const handleResize = () => {
+    setIsMobile(window.matchMedia("(max-width: 480px)").matches);
+  };
 
   // [ user가 로딩되면 초기 데이터 설정 ]
   useEffect(() => {
@@ -129,7 +143,85 @@ const EditProfile = () => {
   };
 
   return (
-    <MyPageLayout title="나의 계정" cap="회원정보 수정">
+    <>
+    {isMobile ? (
+      <Container className='wrap-container mypage-wrap-container mobile_page_container'>
+        <LinedTitle title={"나의 계정"} cap={"회원정보 수정"}/>
+        <Form className="edit_user_form_container" onSubmit={handleSubmit}>
+          <Form.Group as={Col} controlId="image" className='profile_contaiener'>
+            <Form.Label>프로필 이미지</Form.Label>
+            <div class="upload_img_area">
+              <div class="edit_image_box">
+                <img
+                  id="uploadedimage"
+                  src={formData.image === '' ? defaultProfile : formData.image}
+                  className="upload-image"
+                  alt="uploadedimage"
+                ></img>
+              </div>
+              <CloudinaryUploadWidget uploadImage={uploadImage} />
+            </div>
+          </Form.Group>
+          <Col>
+            <Form.Group as={Col} controlId="email">
+              <Form.Label>이메일</Form.Label>
+              <Form.Control
+                id="email"
+                onChange={handleChange}
+                type="text"
+                placeholder="이메일을 입력해 주세요"
+                required
+                value={formData.email}
+                isInvalid={!!emailError}
+              />
+              <Form.Control.Feedback type="invalid">
+                {emailError}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group as={Col} controlId="name">
+              <Form.Label>이름</Form.Label>
+              <Form.Control
+                id="name"
+                onChange={handleChange}
+                type="text"
+                placeholder="한글 또는 영어로 입력해 주세요"
+                required
+                value={formData.name}
+                isInvalid={!!nameError}
+              />
+              <Form.Control.Feedback type="invalid">
+                {nameError}
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group as={Col} controlId="contact">
+              <Form.Label>연락처</Form.Label>
+              <Form.Control
+                onChange={handleChange}
+                type="text"
+                placeholder="11자리로 입력해 주세요"
+                required
+                id="contact"
+                value={formData.contact}
+                isInvalid={!!contactError}
+              />
+              <Form.Control.Feedback type="invalid">
+                {contactError}
+              </Form.Control.Feedback>
+            </Form.Group>
+
+          <Button className="edit_submit_btn" variant='dark' type="submit">
+            저장하기
+          </Button>
+          </Col>
+        </Form>
+        <div class="outMember_container" style={{width: 'fit-content'}}>
+          <p className="outMember_btn" onClick={handleMemberOut}>
+            회원탈퇴하기
+          </p>
+        </div>
+      </Container>
+    ):(
+      <MyPageLayout title="나의 계정" cap="회원정보 수정">
       <Container>
         <Form className="edit_user_form_container" onSubmit={handleSubmit}>
           <Form.Group as={Col} controlId="image" className='profile_contaiener'>
@@ -198,33 +290,35 @@ const EditProfile = () => {
           </button>
           </Col>
         </Form>
-        <div class="outMember_container">
-          <p className="outMember_btn" onClick={handleMemberOut}>
+        <div class="outMember_container" style={{width: 'fit-content'}}>
+          <p className="outMember_btn" onClick={handleMemberOut} >
             회원탈퇴하기
           </p>
         </div>
 
-        {user?.level === 'gold' ? (
-          <AlertModal
-            showModal={showModal}
-            setShowModal={setShowModal}
-            selectedId={user?._id}
-            selectedName="회원 탈퇴하기"
-            alertMessage={`${user?.name}회원님, 10% 혜택을 포기하실건가요? 🥺 회원님은 10% 할인 혜택을 받으실 수 있습니다`}
-            btnText="회원탈퇴"
-          />
-        ) : (
-          <AlertModal
-            showModal={showModal}
-            setShowModal={setShowModal}
-            selectedId={user?._id}
-            selectedName="회원 탈퇴하기"
-            alertMessage={`${user?.name}회원님, 정말 누나컬처를 떠나실건가요? 🥲`}
-            btnText="회원탈퇴"
-          />
-        )}
       </Container>
     </MyPageLayout>
+    )}
+      {user?.level === 'gold' ? (
+        <AlertModal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          selectedId={user?._id}
+          selectedName="회원 탈퇴하기"
+          alertMessage={`${user?.name}회원님, 10% 혜택을 포기하실건가요? 🥺 회원님은 10% 할인 혜택을 받으실 수 있습니다`}
+          btnText="회원탈퇴"
+        />
+      ) : (
+        <AlertModal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          selectedId={user?._id}
+          selectedName="회원 탈퇴하기"
+          alertMessage={`${user?.name}회원님, 정말 누나컬처를 떠나실건가요? 🥲`}
+          btnText="회원탈퇴"
+        />
+      )}
+    </>
   );
 };
 

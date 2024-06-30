@@ -120,7 +120,7 @@ const NoticePage = () => {
                   </span>
                 </Accordion.Header>
                 <Accordion.Body className="desc_wrap">
-                  <div>
+                  <div className="author_wrap">
                     <FontAwesomeIcon
                       icon={faWaze}
                       className="author_icon"
@@ -134,7 +134,7 @@ const NoticePage = () => {
                   <div className="notice_img_wrap">
                     {notice.img && <img src={notice.img} alt="공지 이미지" />}
                   </div>
-                  {notice.content}
+                  <div className="notice_content_wrap">{notice.content}</div>
                 </Accordion.Body>
               </Accordion.Item>
             </Card>

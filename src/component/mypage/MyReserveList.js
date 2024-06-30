@@ -6,7 +6,7 @@ import { reviewAction } from '../../action/reviewAction';
 import { Button } from "react-bootstrap";
 import MyReserveCard from './MyReserveCard';
 
-const MyReserveList = ({ reserveList, openReviewForm }) => {
+const MyReserveList = ({ reserveList, openReviewForm, isMobile }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -29,6 +29,7 @@ const MyReserveList = ({ reserveList, openReviewForm }) => {
           item={item}
           openReviewForm={openReviewForm}
           isReviewed={item.ticket.isReview} 
+          isMobile={isMobile}
         />
       </div>
     ))}

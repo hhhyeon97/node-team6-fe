@@ -6,6 +6,7 @@ import { faCircleQuestion } from "@fortawesome/free-regular-svg-icons";
 const MypageUserLevel = ({ user }) => {
   let levelClass = '';
   let benefitText = '';
+  const isMobile = window.matchMedia("(max-width: 480px)").matches;
 
   // [ level에 따라 className 및 혜택 문구 다르게 ]
   switch (user.level.toUpperCase()) {
@@ -32,18 +33,35 @@ const MypageUserLevel = ({ user }) => {
 
   return(
     <div className='user_level_section'>
+    {isMobile ? (
+      <>
         <div className='user_level_info'>
-          <h5>회원등급</h5>
           <div className={levelClass}>
             {user.level.toUpperCase()}
           </div>
+      </div>
+      <div className='vertical_bar'>&#124;</div>
+      <div className='user_level_info'>
+        {/* <FontAwesomeIcon icon={faCircleQuestion} /> */}
+        <div>{benefitText}</div>
+      </div>
+      </>
+    ):(
+      <>
+      <div className='user_level_info'>
+        <h5>회원등급</h5>
+        <div className={levelClass}>
+          {user.level.toUpperCase()}
         </div>
-        <div className='vertical_bar'>&#124;</div>
-        <div className='user_level_info'>
-          <FontAwesomeIcon icon={faCircleQuestion} />
-          <h5>등급정보</h5>
-          <div>{benefitText}</div>
-        </div>
+      </div>
+    <div className='vertical_bar'>&#124;</div>
+    <div className='user_level_info'>
+      <FontAwesomeIcon icon={faCircleQuestion} />
+      <h5>등급정보</h5>
+      <div>{benefitText}</div>
+    </div>
+    </>
+    )}
     </div>
   )
 }
