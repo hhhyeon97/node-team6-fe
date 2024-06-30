@@ -255,6 +255,7 @@
   bottom: 1rem;
   font-size: 1.5rem;
   color: #d61f1f;
+  z-index: 5;
 }
 .mypage-container .canceled {
   opacity: 0.5;

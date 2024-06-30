@@ -29,7 +29,7 @@ const PerformanceDetail = () => {
     const { detailData } = useSelector(state => state.list)
     const { reviewAllList } = useSelector(state => state.review)
     const { likeList } = useSelector(state => state.like);
-
+    const { user } = useSelector(state=> state.user);
     const { id } = useParams()
 
     const [view, setView] = useState(false);
@@ -104,6 +104,7 @@ const PerformanceDetail = () => {
     }
 
     const addLike = (item) => {
+        if(!user) navigate('/login')
         dispatch(likeAction.addLikeToList({
             seqId: item.mt20id,
             seqImage: item.poster,
@@ -114,6 +115,7 @@ const PerformanceDetail = () => {
         }))
     }
     const deleteLikeItem = (checkLike) => {
+        if(!user) navigate('/login')
         dispatch(likeAction.deleteLikeItem({ id: checkLike._id }))
     }
     return (
