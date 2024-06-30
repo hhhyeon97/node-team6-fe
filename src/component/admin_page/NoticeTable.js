@@ -5,7 +5,7 @@ import { convertToKST } from "../../utils/Date";
 const NoticeTable = ({ header, noticeList, deleteItem, openEditForm }) => {
   return (
     <div className="overflow-x">
-      <Table striped bordered hover>
+      <Table  hover>
         <thead>
             <tr>
               {header.map((title) => (
@@ -16,24 +16,24 @@ const NoticeTable = ({ header, noticeList, deleteItem, openEditForm }) => {
           <tbody>
           {noticeList?.length > 0 ? (
             noticeList?.map((notice, index) => (
-              <tr className="notice-table-item" onClick={() => openEditForm(notice)}>
+              <tr className="notice-table-item">
               <th>{notice.isImportant ? (<p>중요</p>):("")}</th>
               <th>{notice.userId.name}</th>
               <th>{notice.title}</th>
-              <th>{notice.content}</th>
-              <th>{notice.view ? notice.view : 0}</th>
+              {/* <th className='text_area'>{notice.content}</th> */}
               <th>{convertToKST(notice.createdAt)}</th>
-              <th>
-                <Button size="sm" onClick={() => openEditForm(notice)}>
-                  Edit
+              <th>{notice.view ? notice.view : 0}</th>
+              <th >
+                <Button variant="light" size="sm" onClick={() => openEditForm(notice)}>
+                  수정
                 </Button>
                 <Button
                   size="sm"
-                  variant="danger"
+                  variant="light"
                   onClick={() => deleteItem(notice._id, notice.title)}
                   className="mr-1"
                 >
-                    -
+                    삭제
                   </Button>               
               </th>
               </tr>

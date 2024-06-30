@@ -18,50 +18,51 @@ const MyReviews = () => {
 	const { myReviewList } = useSelector(state => state.review)
 	const [showDialog, setShowDialog] = useState(false);
 	const [query, setQuery] = useSearchParams();
-  const [searchQuery, setSearchQuery] = useState({
-    page: query.get("page") || 1,
-  });
+	const [searchQuery, setSearchQuery] = useState({
+		page: query.get("page") || 1,
+	});
+
 	// const mode = "edit"
-  const [mode, setMode] = useState("edit");
+	const [mode, setMode] = useState("edit");
 
 	useEffect(() => {
-			dispatch(reviewAction.getMyReview())
+		dispatch(reviewAction.getMyReview())
 	}, [])
 
 	useEffect(() => {
-			console.log('myreviewpage', myReviewList)
+		console.log('myreviewpage', myReviewList)
 	}, [myReviewList])
 
-  // [ 페이지가 바뀌면 url바꿔주기 ]
-  useEffect(() => {
-    const params = new URLSearchParams(searchQuery);
-    const query = params.toString();
-    navigate("?" + query);
-  }, [searchQuery]);
+	// [ 페이지가 바뀌면 url바꿔주기 ]
+	useEffect(() => {
+		const params = new URLSearchParams(searchQuery);
+		const query = params.toString();
+		navigate("?" + query);
+	}, [searchQuery]);
 
-  // [ 쿼리에 페이지값 바꿔주기 ]
-  const onPageChange = ({ selected }) => {
-    setSearchQuery({...searchQuery, page: selected +1});
-  };	
+	// [ 쿼리에 페이지값 바꿔주기 ]
+	const onPageChange = ({ selected }) => {
+		setSearchQuery({ ...searchQuery, page: selected + 1 });
+	};
 
 	// [ 상품 수정하기 form 열기 ] 
 	const openReviewForm = (review) => {
 		console.log("open")
-		dispatch({type: types.SET_SELECTED_REVIEW, payload: review });
+		dispatch({ type: types.SET_SELECTED_REVIEW, payload: review });
 		setShowDialog(true);
 	};
 
 	// [ 이미지 깨질때 ]
 	const handleImageError = (event) => {
-			event.target.style.display = 'none';
+		event.target.style.display = 'none';
 	};
 
-  return (
+	return (
 		<MyPageLayout title="나의 활동" cap="나의 리뷰">
 			<div className='my_review_all_container'>
-				<MyReviewList 
+				<MyReviewList
 					mode={mode}
-					myReviewList={myReviewList} 
+					myReviewList={myReviewList}
 					openReviewForm={openReviewForm}
 				/>
 			</div>
@@ -77,9 +78,9 @@ const MyReviews = () => {
 				showDialog={showDialog}
 				setShowDialog={setShowDialog}
 				setSearchQuery={setSearchQuery}
-			/> 
+			/>
 		</MyPageLayout>
-  )
+	)
 }
 
 export default MyReviews;

@@ -1,4 +1,5 @@
 .mypage-wrap-container {
+  max-width: 1350px;
   padding: 0;
   padding-top: 15px;
   position: relative;
@@ -107,6 +108,7 @@
 
     /* [ 회원정보 수정 페이지 ] */
     .edit_user_form_container {
+      display: flex;
       padding: 25px 0 30px 5px;
       border-bottom: 1px solid #000;
       .col{
@@ -116,16 +118,22 @@
         font-size: 1.2em;
       }
       .form-control{
-        width: 30%;
+        width: 100%;
       }
       .upload_img_area{
+        height: 100%;
         display: flex;
         align-items: center;
-        padding-left: 10px;
+        flex-flow: column;
+        // padding-left: 10px;
+      }
+      .profile_contaiener{
+        display: flex;
+        flex-flow: column;
       }
       .edit_image_box {
-        width: 100px;
-        height: 100px;
+        width: 250px;
+        height: 250px;
         border-radius: 50%;
         border: 1px solid #bbb;
         overflow: hidden;
@@ -135,22 +143,18 @@
         width: 100%;
         height: 100%;
       }
-<<<<<<< HEAD
-      .outMember_btn {
-        width: fit-content;
-        color: rgb(59, 59, 59);
-        cursor: pointer;
-      }
-      .outMember_btn:hover {
-        color: #000;
-=======
       .upload_img_btn {
-        margin-left: 15px;
+        // margin-left: 15px;
         padding: 0 13px;
-        height: 40px;
+        height: 50px;
+        border-radius: 10px;
+        margin-top: 20px;
+      }
+      .upload_img_btn:hover{
+        background-color: rgb(53, 53, 53);
       }
       .edit_submit_btn{
-        width: 30%;
+        width: 100%;
         padding: 15px;
         border: none;
         border-radius: 8px;
@@ -159,8 +163,11 @@
       }
       .edit_submit_btn:hover{
         background-color: rgb(49, 49, 49);
->>>>>>> 4b41267b04667458022e42ac1765140289d68de8
       }
+    }
+    .outMember_container{
+      display: flex;
+      justify-content: flex-end;
     }
     .outMember_btn{
       padding: 20px 0 0 5px;
@@ -176,20 +183,21 @@
     .mylike_wrap {
       display: flex;
       flex-wrap: wrap;
-      gap: 2%;
+      gap:2%;
+      margin-top:0.5rem;
     }
     .mylike_card_area {
       position: relative;
       display: flex;
       flex-direction: column;
       width: 23.5%;
-      height: 51vh;
+      height: 63vh;
       overflow: hidden;
       margin-bottom: 4rem;
       cursor: pointer;
 
       .mylike_care_image_size {
-        height: 57%;
+        height: 60%;
         border: 1px solid #e4e4e4;
         overflow: hidden;
         display: flex;
@@ -209,7 +217,7 @@
 
       .mylike_card_text_box {
         width: 100%;
-        height: 43%;
+        height: 40%;
         padding: 0.5rem 0.3rem 3.5rem 0.3rem;
         display: flex;
         flex-direction: column;
@@ -256,9 +264,13 @@
         }
       }
       .like_heart {
-        position: absolute;
+        // position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
         right: 0.5rem;
-        bottom: 3rem;
+        bottom: 1rem;
         font-size: 1.5rem;
         color: #d61f1f;
       }
@@ -268,25 +280,6 @@
     opacity: 0.5;
   }
 }
-<<<<<<< HEAD
-// [ 나의예매 디테일 페이지 ]
-.reserve-detail-container {
-  border: 2px solid red;
-  // 예매 취소 버튼
-  .okCancel {
-    font-size: 0.8em;
-    background-color: #000;
-  }
-  .disableCancel {
-    font-size: 0.7em;
-    pointer-events: none;
-    background-color: #bbb !important;
-    border: #bbb;
-  }
-}
-=======
-
->>>>>>> 4b41267b04667458022e42ac1765140289d68de8
 
 // [ 나의 예매 날짜로 조회 ]
 .ByDateReservationItem {
@@ -383,80 +376,23 @@
   --bs-backdrop-bg: #0000002b !important;
 }
 
-// [ 비밀번호 확인 페이지 ]
-.verify_password_form{
-  padding: 25px 0 30px 5px;
-  border-bottom: 1px solid #000;
-  font-size: 1.2em;
 
-  .message{
-    font-family: Gsans_L;
-    font-size: 0.6em;
-    margin-left: 5px;
-  }
-  .form-label{
-    margin: 0;
-    margin-bottom: 10px;
-  }
-  .input_group{
-    display: flex;
-    padding: 10px 0;
-    align-items: center;
-  }
-  .form-control{
-    width: 30%;
-    margin: 0;
-  }
-  .certificate_btn{
-    height: 38px;
-    font-size:0.7em;
-    margin-left: 7px;
-  }
-  .error_message{
-    width: 40%;
-    font-size: 0.6em;
-  }
-}
+@media screen and (max-width: 480px){
+	/* 모바일 세로 */
+	.wrap-container{
+		max-width: 340px;
+	}
 
-// [ 비밀번호 변경 페이지]
-.reset_password_form{
-  padding: 25px 0 30px 5px;
-  border-bottom: 1px solid #000;
-  font-size: 1.2em;
-
-  .ps_form_group{
-    padding-bottom: 20px;
-  }
-
-  .form-label{
-    margin: 0;
-    margin-bottom: 10px;
-  }
-  .password_input_wrap{
-    display: flex;
-    align-items: center;
-  }
-  .password_toggle_icon{
-    margin-left: 10px;
-    opacity: 0.4;
-  }
-  .input_group{
-    display: flex;
-    padding: 10px 0;
-    align-items: center;
-  }
-  .form-control{
-    width: 30%;
-    margin: 0;
-  }
-  .error_message{
-    width: 50%;
-    font-size: 0.6em;
-  }
-  .set_ps_btn{
-    width: 30%;
-    font-size:0.7em;
-    padding: 15px;
-    margin-top: 10px;
+  .mypage-container{
+    .mypage-right{
+      .mylike_card_area{
+        width: 49%;
+        height: 58vh;
+        margin-bottom: 2rem;
+        .mylike_card_text_box{
+          padding-bottom: 2rem;
+        }
+      }
+    }
   }
 }

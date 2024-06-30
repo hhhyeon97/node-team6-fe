@@ -42,15 +42,50 @@
 }
 .register_area .password_toggle_icon {
   position: absolute;
-  top: 65%;
+  top: 60%;
   right: 15px;
-  transform: translateY(-65%);
+  transform: translateY(-60%);
   cursor: pointer;
   color: #bbb;
 }
 .register_area .form-control.is-invalid ~ .password_toggle_icon {
   display: none;
 }
-.register_area .gap_message {
-  color: #797979;
+
+@media screen and (max-width: 768px) {
+  .register_area {
+    width: 80%;
+    padding: 0 20px;
+  }
+  .register_area .register_title {
+    font-size: 30px;
+  }
+  .register_area .register_form input {
+    height: 45px;
+    font-size: 14px;
+  }
+  .register_area .register_btn {
+    font-size: 18px;
+  }
+  .register_area .password_toggle_icon {
+    font-size: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+@media screen and (max-width: 480px) {
+  .register_area {
+    width: 90%;
+    padding: 0 10px;
+  }
+  .register_area .register_title {
+    font-size: 25px;
+  }
+  .register_area .register_form input {
+    height: 40px;
+    font-size: 13px;
+  }
+  .register_area .register_btn {
+    font-size: 16px;
+  }
 }

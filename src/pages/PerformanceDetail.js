@@ -129,7 +129,7 @@ const PerformanceDetail = () => {
                     </div>
                     <div className="DetailTitle">{detailData.prfnm}</div>
                     <Row className="DetailTopBox">
-                        <Col lg={4} md={4} sm={4} className="DetailTopImg">
+                        <Col lg={4} md={5} sm={4} className="DetailTopImg">
                             <img src={detailData.poster} />
                         </Col>
                         <Col lg={7} md={7} sm={12} className="DetailInfoBox">
@@ -141,24 +141,24 @@ const PerformanceDetail = () => {
                             </Row>
                             <Row className="DetailInfo">
                                 <Row>
-                                    <Col lg={4} md={4} sm={4}>장소</Col>
-                                    <Col lg={8} md={8} sm={8}>{detailData.fcltynm}</Col>
+                                    <Col lg={4} md={4} xs={4}>장소</Col>
+                                    <Col lg={8} md={8} xs={8}>{detailData.fcltynm}</Col>
                                 </Row>
                                 <Row>
-                                    <Col lg={4} md={4} sm={4}>공연기간</Col>
-                                    <Col lg={8} md={8} sm={8}>{detailData.prfpdfrom} ~ {detailData.prfpdto}</Col>
+                                    <Col lg={4} md={4} xs={4}>공연기간</Col>
+                                    <Col lg={8} md={8} xs={8}>{detailData.prfpdfrom} ~ {detailData.prfpdto}</Col>
                                 </Row>
                                 <Row>
-                                    <Col lg={4} md={4} sm={4}>공연 런타임</Col>
-                                    <Col lg={8} md={8} sm={8}>{detailData.prfruntime}</Col>
+                                    <Col lg={4} md={4} xs={4}>공연 런타임</Col>
+                                    <Col lg={8} md={8} xs={8}>{detailData.prfruntime}</Col>
                                 </Row>
                                 <Row>
-                                    <Col lg={4} md={4} sm={4}>관람 연령</Col>
-                                    <Col lg={8} md={8} sm={8}>{detailData.prfage}</Col>
+                                    <Col lg={4} md={4} xs={4}>관람 연령</Col>
+                                    <Col lg={8} md={8} xs={8}>{detailData.prfage}</Col>
                                 </Row>
                                 <Row>
-                                    <Col lg={4} md={4} sm={4}>가격</Col>
-                                    <Col lg={8} md={8} sm={8}>{costArray.length > 1 ? (costArray) : (detailData.pcseguidance)}</Col>
+                                    <Col lg={4} md={4} xs={4}>가격</Col>
+                                    <Col lg={8} md={8} xs={8}>{costArray.length > 1 ? (costArray) : (detailData.pcseguidance)}</Col>
                                 </Row>
                             </Row>
                             <Row className="DetailButtonBox">

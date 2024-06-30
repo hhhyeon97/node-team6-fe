@@ -84,7 +84,6 @@ const getUserNoticeList = (query) => async (dispatch) => {
 const getMainNoticeList = (size) => async (dispatch) => {
   try {
     dispatch({ type: types.GET_MAIN_NOTICE_LIST_REQUEST });
-    console.log(size);
     const response = await api.get(`/notice/main?size=${size}`);
     dispatch({
       type: types.GET_MAIN_NOTICE_LIST_SUCCESS,

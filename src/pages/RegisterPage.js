@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Alert, Container, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { resetError, userActions } from '../action/userAction';
+import { userActions } from '../action/userAction';
 import '../style/css/RegisterPage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faSlash } from '@fortawesome/free-solid-svg-icons';
@@ -27,7 +27,6 @@ const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { user, loading } = useSelector((state) => state.user);
-  // const [error, setError] = useState('');
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -84,7 +83,6 @@ const RegisterPage = () => {
     dispatch(
       userActions.registerUser({ name, email, password, contact }, navigate),
     );
-    //성공후 로그인 페이지로 넘어가기
   };
 
   const handleChange = (event) => {
@@ -92,7 +90,6 @@ const RegisterPage = () => {
     // 값을 읽어서 FormData에 넣어주기
     const { id, value } = event.target;
     const formattedValue = id === 'contact' ? formatPhoneNumber(value) : value;
-
     // setFormData({ ...formData, [id]: value });
     setFormData({ ...formData, [id]: formattedValue });
 
