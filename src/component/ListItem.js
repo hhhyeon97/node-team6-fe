@@ -45,10 +45,10 @@ const ListItem = ({ item }) => {
 
     return (
         <Row className="ListItem">
-            <Col lg={4} md={4} sm={4} className="image_col" onClick={() => showPerformance(item.mt20id)} style={{ backgroundImage: `url(${item.poster})` }}>
+            <Col lg={4} md={5} sm={4} className="image_col" onClick={() => showPerformance(item.mt20id)} style={{ backgroundImage: `url(${item.poster})` }}>
                 {/* <img className="posterImg" src={item.poster} alt="포스터 이미지"></img> */}
             </Col>
-            <Col lg={8} md={8} sm={8} className="item_info_box">
+            <Col lg={8} md={7} sm={8} className="item_info_box">
                 <div className="item_info_box_top">
                     <div className="item_info_box_term" onClick={() => showPerformance(item.mt20id)}>{item.prfpdfrom} ~ {item.prfpdto}</div>
                     <div className="item_info_box_title" onClick={() => showPerformance(item.mt20id)}>{item.prfnm}</div>

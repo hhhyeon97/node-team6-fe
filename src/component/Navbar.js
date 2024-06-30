@@ -4,15 +4,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import { userActions } from '../action/userAction';
 import { useDispatch, useSelector } from 'react-redux';
 import '../style/css/Navbar.css'
-import { faDoorOpen, faHeart, faMagnifyingGlass, faUnlock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faDoorOpen, faHeart, faMagnifyingGlass, faUnlock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Col, Container, Row } from 'react-bootstrap';
 import { likeAction } from '../action/likeAction';
+import MobileNavbar from './MobileNavbar';
 const Navbar = ({ user }) => {
   const [keyword, setKeyword] = useState('');
   const [category, setCategory] = useState('');
   const dispatch = useDispatch();
   let navigate = useNavigate();
   let categoryIndex = null;
+  const { likeQty } = useSelector(state => state.like);
+  const isMobile = window.matchMedia("(max-width: 480px)").matches;
 
   const menuList = [
     { name: '뮤지컬', code: 'GGGA' },
@@ -24,8 +27,10 @@ const Navbar = ({ user }) => {
   ]
 
   useEffect(()=>{
-    dispatch(likeAction.getLikeList())
-  },[])
+    if(user) {
+      dispatch(likeAction.getLikeList())  
+    }
+  },[likeQty,user])
 
   const logout = () => {
     dispatch(userActions.logout());
@@ -51,37 +56,33 @@ const Navbar = ({ user }) => {
     if (event.key === 'Enter') searchByKeyword(event);
   }
 
-  const { likeQty } = useSelector(state => state.like);
-
   return (
     <div className='nav_underline'>
       <Container className='wrap-container nav_area'>
         <Row>
-          <Col className='nav_logo_area'>
-            <a href="/">
+          <Col xs={8} className='nav_logo_area' onClick={()=>navigate('/')}>
               <img src="/testImage/logo.png" />
-            </a>
           </Col>
-          <Col className="nav_user_menu nav_icon">
+          <Col xs={4} className="nav_user_menu nav_icon">
             {user && user.level === 'admin' ? (
               <div onClick={() => navigate('/admin')}>
-                <FontAwesomeIcon icon={faUnlock} className='nav_user_icon' /> ADMIN
+                <FontAwesomeIcon icon={faUnlock} className='nav_user_icon' /> <span>ADMIN</span>
               </div>) : ''}
             {user ? (
               <div onClick={() => navigate('/mypage')}>
-                <FontAwesomeIcon icon={faUser} className='nav_user_icon' /> MY PAGE
+                <FontAwesomeIcon icon={faUser} className='nav_user_icon' /> <span>MY PAGE</span>
               </div>
             ) : (
               <div onClick={() => navigate('/register')}>
-                <FontAwesomeIcon icon={faUser} className='nav_user_icon' /> JOIN US
+                <FontAwesomeIcon icon={faUser} className='nav_user_icon' /> <span>JOIN US</span>
               </div>)}
             {user ? (
               <div onClick={() => navigate('/mypage/like')}>
-                <FontAwesomeIcon icon={faHeart} className='nav_user_icon' /> {`LIKE ${likeQty}`}
+                <FontAwesomeIcon icon={faHeart} className='nav_user_icon' /> <span>{`LIKE ${likeQty}`}</span>
               </div>
             ) : (
               <div onClick={() => navigate('/login')}>
-                <FontAwesomeIcon icon={faHeart} className='nav_user_icon' /> MY LIKE
+                <FontAwesomeIcon icon={faHeart} className='nav_user_icon' /> <span>MY LIKE</span>
               </div>
             )}
             {user ? (
@@ -96,9 +97,24 @@ const Navbar = ({ user }) => {
               </div>
             )}
           </Col>
+          <Col xs={4} className='mobile_input_area'>
+            {isMobile?(
+                <form onSubmit={searchByKeyword}>
+                  <input
+                    type='text'
+                    value={keyword}
+                    onChange={(event) => setKeyword(event.target.value)}
+                    onKeyDown={onCheckEnter}
+                  />
+                  <button>
+                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                  </button>
+                </form>
+              ):''}
+          </Col>
         </Row>
         <Row>
-          <Col className='nav_category_area'>
+          <Col xs={12} sm={9} className='nav_category_area'>
             <ul className='nav_category'>
               {menuList.map((menu, index) => (
                 <li key={index}>
@@ -111,8 +127,8 @@ const Navbar = ({ user }) => {
               ))}
             </ul>
           </Col>
-          <Col md={4} className='nav_input_area'>
-            <form onSubmit={searchByKeyword}>
+          <Col xs={3} className='nav_input_area'>
+            <form onSubmit={searchByKeyword} className='input-box'>
               <input
                 type='text'
                 value={keyword}
@@ -126,6 +142,7 @@ const Navbar = ({ user }) => {
           </Col>
         </Row>
       </Container>
+      {isMobile?(<MobileNavbar user={user} likeQty={likeQty} logout={logout} className='mobile_show'/>):''}
     </div>
   );
 };

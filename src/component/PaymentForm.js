@@ -12,7 +12,7 @@ const PaymentForm = ({
 
     return (
         <Row className="creditCard display-flex">
-            <Col md={5} xs={12}>
+            <Col lg={5} md={12} xs={12}>
                 <Cards
                     cvc={cardValue.cvc}
                     expiry={cardValue.expiry}
@@ -21,7 +21,7 @@ const PaymentForm = ({
                     number={cardValue.number}
                 />
             </Col>
-            <Col md={6} xs={12}>
+            <Col lg={6} md={12} xs={12} className="card_Info">
                 <div className="form-area">
                     <Form.Control
                         type="tel"

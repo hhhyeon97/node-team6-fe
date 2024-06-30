@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { likeAction } from '../../action/likeAction'
 
-const RankingCard = ({item,key}) => {
+const RankingCard = ({item}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const imgUrL = 'http://www.kopis.or.kr/';
@@ -41,7 +41,7 @@ const RankingCard = ({item,key}) => {
     },[error])
 
   return (
-    <div key={key} className='performance_card_area'>
+    <div className='performance_card_area'>
         <div className='performance_card_img_box' onClick={()=>navigate(`/performance/${item.mt20id}`)}>
             <img src={`${imgUrL}${item.poster}`} className='performance_card_img'/>
             <div className='ranking_num'>{item.rnum}</div>

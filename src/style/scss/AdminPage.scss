@@ -1,3 +1,6 @@
+.admin-wrap{
+  max-width: 1200px;
+}
 .admin_page_container {
   display: flex;
 
@@ -23,6 +26,26 @@
     color: inherit;
   }
 
+  .admin_page{
+    margin-top: 70px;
+  }
+
+  .table_title{
+    display: flex;
+    justify-content: center;
+  }
+  .table th {
+    text-align: center; /* 텍스트 가운데 정렬 */
+    vertical-align: middle; /* 상하 가운데 정렬 */
+    overflow: hidden; /* 넘치는 텍스트 숨김 */
+    white-space: nowrap; /* 텍스트를 한 줄로 */
+    text-overflow: ellipsis; /* 넘치는 텍스트는 ...으로 표시 */
+  }
+  /* 추가적으로 필요할 수 있는 스타일들 */
+.overflow-x {
+  overflow-x: auto;
+}
+
   // < admin_top_nav >
   .admin_top_nav {
     position: relative;
@@ -41,7 +64,11 @@
     position: absolute;
     top: 0;
     right: 0;
-    padding: 20px 30px;
+    padding: 20px 140px 20px 0;
+  }
+
+  .search-box input:focus-visible{
+    outline: none;
   }
 
   .search-box svg {
@@ -73,13 +100,15 @@
     overflow: hidden;
 
     .user_img {
+      width: 90px;
+      height: 90px;
       color: #bbb;
       margin-bottom: 15px;
     }
     .user_name {
       color: #fff;
       font-family: 'Gsans_B';
-      font-size: 0.7em;
+      font-size: 0.6em;
       overflow: hidden;
       text-overflow: ellipsis;
     }
@@ -87,6 +116,7 @@
     .link_menu {
       display: flex;
       flex-flow: column;
+      padding-left: 40px;
       width: 100%;
       margin-top: 20px;
       color: #bbb;
@@ -97,19 +127,42 @@
 
       a {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        padding: 10px 0;
+        padding: 15px 0;
+        font-size: 1.1em;
       }
       a:hover {
         color: #fff;
       }
+      a > svg{
+        margin-right: 8px;
+      }
     }
+  }
+  
+  .notice_edit_btns button{
+    border: 0.5px solid #000;
+    margin-left: 5px;
   }
 
   // < admin_main_container >
   .admin_main_container {
     width: 100%;
+  }
+
+  .reset_btn_area{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .search_reset{
+    border: 0.5px solid #bbb;
+    position: absolute;
+    color: rgb(78, 78, 78);
+    top: 0;
+    right: 0;
+    margin: 20px 30px;
   }
 
   // 회원관리 페이지
@@ -124,7 +177,7 @@
     }
     .user_profile{
       display: flex;
-      margin-right: 6px;
+      margin-right: 20px;
       width: 30px;
       height: 30px;
       border: 0.5px solid #bbb;
@@ -137,13 +190,23 @@
       object-fit: cover;
       margin-right: 20px;
     }
-    // .level_group{
-    //   display: flex;
+    // .profile_group{
+    //   // padding-left: 10px;
+    //   .user_name{
+    //     // width: 10em;
+    //     // overflow: hidden;
+    //     // text-overflow: ellipsis;
+    //     // border: 1px solid;
+    //   }
     // }
+    .level_group{
+      display: flex;
+      justify-content: center;
+    }
     .level_tag{
       width: fit-content;
       border-radius: 30px;
-      padding: 10px;
+      padding: 6px 8px;
       font-family: Gsans_B;
       font-size: 0.6em;
     }
@@ -158,6 +221,7 @@
     }
     .suspend{
       background-color: #bbb;
+      color: #fff;
       border: 1px solid #bbb;
     }
   }
@@ -181,5 +245,104 @@
   }
   .error-message {
     color: red;
+    font-size: 0.8em;
+    margin-left: 5px;
+  }
+  .img_area{
+    display: flex;
+    align-items: center;
+    button{
+      height: 40px;
+      padding: 0 15px;
+      margin-left: 20px
+    }
   }
 }
+
+// 유저 정보 수정 모달
+.user_detail_modal{
+  .profile_group{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+  .user_profile{
+    width: 100px;
+    height: 100px;
+    border: 0.5px solid #bbb;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .user_profile img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .order-button-area{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  .order-button-area button{
+    width: 100%;
+    padding: 13px;
+    font-size: 1.1em;
+  }
+  .order-button-area button:first-child{
+    margin-right: 5px;
+  }
+}
+
+// 리뷰 정보 수정 모달
+.review_detail_modal{
+  p{
+    margin: 0;
+  }
+  .suspend_review_area{
+    display: flex;
+    justify-content: flex-end;
+  }
+  .perform_infos{
+    display: flex;
+  }
+  .poster_box{
+    width: fit-content;
+    border: 0.5px solid #bbb;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .star_rate_info{
+    display: flex;
+  }
+  .review_info_group div{
+    padding: 3px 0;
+  }
+  .review_content{
+    height: 10em;
+    margin-top: 5px;
+    padding: 5px 10px;
+    overflow: hidden;
+    overflow-y: auto;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+  }
+  .order-button-area{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+    button{
+      padding: 10px 30px;
+    }
+  }
+}
+// .order-table-item, .notice-table-item{
+//   border-bottom: 1px solid #bbb;
+// }
+
+// .text_area{
+//   display: block;
+//   width: 520px;
+//   border-bottom: none
+// }

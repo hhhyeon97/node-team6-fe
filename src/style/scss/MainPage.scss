@@ -1,9 +1,30 @@
 .main_banner_area{
     background-color: rgb(182, 182, 182);
     width: 100%;
-    height: 40vh;
+    // height: 55vh;
     margin-bottom: 4.5rem;
     margin-top: -1px;
+    overflow: hidden;
+    .main_slider{
+        width: 100%;
+        .bg_blue{
+            background-color: #a3c9d4;
+        }
+        .bg_gr{
+            background-color: #f6f6f6;
+        }
+        .slide-img_box{
+            width: 100%;
+            display: flex !important;
+            justify-content: center !important;
+            cursor: pointer;
+            img {
+                width: 66.7%;
+                overflow: hidden;
+                object-fit: cover;
+            }
+        }
+    }
 }
 
 .month_performance_area{
@@ -25,6 +46,7 @@
             width: 5rem;
             height: 2.3rem;
             line-height: 2.1rem;
+            color: black;
         }
         button:hover{
             background-color: black;
@@ -210,13 +232,14 @@
 
 .event_banner{
     width: 100%;
-    background-color: gainsboro;
+    background-color: black;
+    color: white;
     text-align: center;
     padding: 3rem 0rem;
     margin-bottom: 5rem;
 
     button{
-        border: black;
+        border: 1px solid white;
         background-color: black;
         color: white;
         padding: 0.5rem 1rem;
@@ -224,7 +247,14 @@
         font-size: 1rem;
         margin-top: 0.35rem;
     }
-    h2{font-weight: 600;}
+    h2{font-weight: 600; margin-bottom: 0.8rem;}
+    h6{
+        font-weight: 300;
+        span {
+            color: #F44F08;
+            font-weight: 600;
+        }
+    }
 }
 
 .review_area{
@@ -244,7 +274,9 @@
             overflow: hidden;
             margin-bottom: 0.8rem;
             border: 1px solid #bbb;
+            cursor: pointer;
             .review_card_img_box{
+                border-right: 1px solid #bbb;
                 width: 30%;
                 overflow: hidden;
                 object-fit: cover;
@@ -282,6 +314,7 @@
                         margin-right: 0.3rem;
                         overflow: hidden;
                         object-fit: cover;
+                        border: 1px solid #bbb;
                             img {
                             width: 2.5rem;
                             height: 2.5rem;
@@ -294,3 +327,192 @@
     }
 }
 
+@media screen and (max-width: 768px){
+	/* 모바일 가로, 태블릿 세로 */
+	.wrap-container{
+		max-width: 720px;
+        // min-width: 720px;
+	}
+    .main_banner_area{
+        // min-width: 720px;
+        .main_slider{
+            .slide-img_box{
+                img {
+                    width: 100%;
+                }
+            }    
+        } 
+    }
+    .performance_card_area{
+        h3{
+            width: 100%;
+            max-height: 3.45rem;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            line-height: 1.15rem;
+            text-overflow: ellipsis;
+        }
+        h5 { font-size: 0.8rem;}
+        .performance_card_img_box{
+            height: 20vh;
+        }
+    }
+    .performance_card_area{
+        .ranking_num{
+            font-size: 3rem;
+        }
+    }
+
+    .month_performance_area{
+        margin-bottom: 3rem;
+        .scroll_box{
+            overflow: scroll;
+            scrollbar-width: none;
+        }
+        .month_performance_row{
+            min-width: 720px;
+        }
+        .genre_btn_area{
+            height: 2.2rem;
+            .scroll_width {
+                min-width: 720px;
+            }
+            button {
+                font-size: 0.8rem;
+                width: 4.5rem;
+                height: 2rem;
+                line-height: 2rem;
+            }
+        }
+    }
+    
+    .planned_card_area{
+        .slider{
+            width: 93%;
+        }
+        .planned_card_img_box{
+            height: 27vh;
+        }
+        .planned_text_box{
+            h3 {
+                width: 100%;
+                max-height: 3.6rem;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 3;
+                line-height: 1.2rem;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+
+    .event_banner{
+        // min-width: 720px;
+        h6{ font-size: 0.9rem; }
+    }
+
+    .review_area{
+        .review_box{
+            .review_card_area{
+                height: 20vh;
+                .review_card_text_box{
+                    h3{
+                        font-size: 0.9rem;
+                        max-height: 3.6rem;
+                        overflow: hidden;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 3;
+                        line-height: 1.2rem;
+                        text-overflow: ellipsis;
+                    }
+                    p{ font-size: 0.8rem;}
+                }
+            }    
+        }
+    }
+}
+
+@media screen and (max-width: 480px){
+	/* 모바일 세로 */
+	.wrap-container{
+		max-width: 340px;
+	}
+    .mobile_banner_area{
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        overflow: hidden;
+    }
+    .slide-img_box{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        object-fit: cover;
+        border-radius: 0.8rem;
+        border: 1px solid #bbb;
+
+        img{
+            width: 100%;
+            border-radius: 0.8rem;
+        }
+    }
+    .month_performance_area{
+        margin-bottom: 2rem;
+    }
+    .performance_card_area{
+        .performance_card_img_box{
+            height: 25vh;
+        }
+    }
+    .planned_performance{
+        margin-bottom: 3rem;
+        h2 { margin-top: 2rem; margin-bottom: 2rem; }
+    }
+    .planned_card_area{
+        .planned_card_img_box{
+            height: 37vh;
+        }
+        .slick-dots {
+            width: 100% !important;
+            justify-items: center !important;
+        }
+        .slick-dots li button::before{
+            font-size: 6px !important;
+            top: auto !important;
+        }
+    }
+    .event_banner{
+        margin-bottom: 3rem;
+        h6{ font-size: 0.7rem; }
+        button {
+            font-size: 0.8rem;
+            height: 2rem;
+            line-height: 1rem;
+        }
+    }
+    .review_area{
+        .review_box{
+            .review_card_area{
+                width: 100%;
+                .review_card_text_box{
+                    padding-top: 1rem;
+                    h3{max-height: 2.4rem;}
+                    span { font-size: 0.8rem; }
+                    .review_card_user_box{
+                        .review_card_user_img_box{
+                            img {
+                                width: 1.5rem;
+                                height: 1.5rem;
+                            }
+                        }
+                    }  
+                }
+            }
+        }
+    }
+}

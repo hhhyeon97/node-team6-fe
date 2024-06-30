@@ -4,7 +4,7 @@ const initialState ={
     loading:false,
     error:'',
     likeList:[],
-    likeQty:0
+    likeQty:null,
 };
 
 function likeReducer(state = initialState, action) {
@@ -26,7 +26,7 @@ function likeReducer(state = initialState, action) {
             return {...state, loading:false, error:payload};
 
         case types.RESET_LIKE:
-            return {...state, likeList:[]};
+            return {...state, likeList:[], likeQty:0};
         default:
             return state;
     }
