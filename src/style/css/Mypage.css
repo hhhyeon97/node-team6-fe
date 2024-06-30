@@ -374,12 +374,12 @@
   .wrap-container {
     max-width: 340px;
   }
-  .mypage-container .mypage-right .mylike_card_area {
+  .mobile_page_container .mylike_card_area {
     width: 49%;
     height: 58vh;
     margin-bottom: 2rem;
   }
-  .mypage-container .mypage-right .mylike_card_area .mylike_card_text_box {
+  .mobile_page_container .mylike_card_area .mylike_card_text_box {
     padding-bottom: 2rem;
   }
 }
