@@ -288,6 +288,9 @@
   .ListPageTitle .LegionDropContainer .regionDrop .liBox {
     top: 40px;
   }
+  .ListPageTitle .category_explan{
+    display:block;
+  }
 }
 @media screen and (max-width: 480px) {
   .ListPageMainBox .ListPageMain_inner_Box {
@@ -327,5 +330,8 @@
   .ListPageMainBox .ListPageMain_inner_Box .CalenderBox {
     margin-bottom: 20px;
     padding: 0px;
+  }
+    .ListPageTitle .category_explan{
+    display:none;
   }
 }
