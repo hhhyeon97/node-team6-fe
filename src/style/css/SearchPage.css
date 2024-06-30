@@ -1,5 +1,34 @@
+@charset "UTF-8";
 .search_page .search_page_main_text {
   margin: 1rem 0rem 2rem 0rem;
+}
+.search_page .search_none {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+}
+.search_page .search_none h4 {
+  font-size: 1rem;
+  color: #bbb;
+}
+.search_page .search_none button {
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 0.3rem;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  margin-top: 0.5rem;
+}
+.search_page .search_none .search_none_img {
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search_page .search_none .search_none_img img {
+  height: 100%;
 }
 
 .search_card_area {
@@ -55,4 +84,17 @@
   bottom: 0.2rem;
   color: #D61F1F;
   font-size: 1.2rem;
+}
+
+@media screen and (max-width: 480px) {
+  /* 모바일 세로 */
+  .wrap-container {
+    max-width: 340px;
+  }
+  .search_none {
+    text-align: center;
+  }
+  .search_none h4 {
+    font-size: 0.8rem;
+  }
 }
