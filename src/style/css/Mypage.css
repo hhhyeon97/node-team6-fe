@@ -346,7 +346,6 @@
   --bs-backdrop-bg: #0000002b !important;
 }
 
-
 @media screen and (max-width: 480px) {
   /* 모바일 세로 */
   .wrap-container {
