@@ -432,7 +432,7 @@
   bottom: 1rem;
   font-size: 1.5rem;
   color: #d61f1f;
-  z-index: 5;
+  z-index: 1;
 }
 
 .mylike_none {
@@ -466,7 +466,7 @@
   }
   .mypage-container .mypage-right .mylike_card_area {
     width: 49%;
-    height: 58vh;
+    height: 20rem;
     margin-bottom: 2rem;
   }
   .mypage-container .mypage-right .mylike_card_area .mylike_card_text_box {
