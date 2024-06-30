@@ -245,6 +245,10 @@
   .DetailPageAllBox .DetailBox .postersBox {
     height: 70vh;
   }
+  .DetailPageAllBox .DetailBox .postersBox .posters {
+    text-align: center;
+    padding: 0px 1em;
+  }
   .DetailPageAllBox .subTitle {
     margin: 20px 0 10px;
     font-size: 1.5em;
