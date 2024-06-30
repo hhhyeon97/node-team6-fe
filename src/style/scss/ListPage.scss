@@ -350,6 +350,9 @@
   }
 
   .ListPageTitle {
+    .category_explan{
+      display:block;
+    }
     .LegionDropContainer {
       .regionDrop {
         .liBox {
@@ -412,5 +415,10 @@
         padding: 0px;
       }
     }
+  }
+
+  .ListPageTitle{
+    .category_explan{
+      display: none;
   }
 }
