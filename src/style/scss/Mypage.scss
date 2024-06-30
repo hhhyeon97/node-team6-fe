@@ -273,6 +273,24 @@
         bottom: 1rem;
         font-size: 1.5rem;
         color: #d61f1f;
+        z-index: 5;
+      }
+    }
+    .mylike_none {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 5rem;
+      h3 {font-size: 6rem; color: #bbb; }
+      h4 {font-weight: 600;}
+      button {
+        background-color: black;
+        border: 1px solid black;
+        border-radius: 0.3rem;
+        color: white;
+        padding: 0.8rem 1.5rem;
+        margin-top: 0.5rem;
       }
     }
   }
@@ -378,6 +396,7 @@
 
 
 @media screen and (max-width: 480px){
+  
 	/* 모바일 세로 */
 	.wrap-container {
 		max-width: 340px;

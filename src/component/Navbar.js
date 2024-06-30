@@ -60,8 +60,10 @@ const Navbar = ({ user }) => {
     <div className='nav_underline'>
       <Container className='wrap-container nav_area'>
         <Row>
-          <Col xs={8} className='nav_logo_area' onClick={()=>navigate('/')}>
-              <img src="/testImage/logo.png" />
+          <Col xs={8} className='nav_logo_area' >
+              <a href='/' >
+                <img src="/testImage/logo.png" />  
+              </a>
           </Col>
           <Col xs={4} className="nav_user_menu nav_icon">
             {user && user.level === 'admin' ? (
