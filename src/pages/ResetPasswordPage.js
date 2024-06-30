@@ -95,7 +95,7 @@ const ResetPasswordPage = () => {
         </span>
       )}
       <Form className="reset_password_form" onSubmit={handleSubmit}>
-        <Form.Group controlId="formBasicPassword">
+        <Form.Group controlId="formBasicPassword" className="form_group_1">
           <Form.Label>새 비밀번호</Form.Label>
           <div className="password_input_wrap">
             <Form.Control

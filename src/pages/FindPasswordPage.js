@@ -4,7 +4,6 @@ import '../style/css/FindPasswordPage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../action/userAction';
 import { useNavigate } from 'react-router-dom';
-import LoadingText from '../component/LoadingText';
 const FindPasswordPage = () => {
   const [email, setEmail] = useState('');
   const { error, loading } = useSelector((state) => state.user);
@@ -18,7 +17,7 @@ const FindPasswordPage = () => {
   };
 
   const handleEmailFocus = () => {
-    dispatch(userActions.resetError()); // 에러 상태 초기화 액션 디스패치
+    dispatch(userActions.resetError());
   };
 
   useEffect(() => {
@@ -37,8 +36,10 @@ const FindPasswordPage = () => {
       <Form className="find_password_form" onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>
-            가입한 이메일을 입력해주세요.
-            <br /> 비밀번호 재설정 링크를 통해 비밀번호를 변경합니다.
+            <span className="find_password_info">
+              가입한 이메일을 입력해주세요.
+              <br /> 비밀번호 재설정 링크를 통해 비밀번호를 변경합니다.
+            </span>
           </Form.Label>
           <Form.Control
             type="email"
