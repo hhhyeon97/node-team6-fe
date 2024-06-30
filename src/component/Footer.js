@@ -29,7 +29,7 @@ const Footer = () => {
           </div>
         </Row>
         <Row className='under_line'>     
-          <Col lg={8} className='footer_notice'>
+          <Col lg={8} className='footer_notice mobile_margin'>
             <h3>공지사항</h3>
             {loading?(<div>공지사항을 불러오는 중입니다.</div>)
             : mainNoticeList&&mainNoticeList.length>0? mainNoticeList.map((item, index)=>(
@@ -38,24 +38,24 @@ const Footer = () => {
           </Col>
           <Col lg={4}>
             <Row className='footer_nav_area'>
-              <Col xs={3}>
+              <Col xs={3} className='mobile_margin'>
                 <h3>우리는</h3>
                 <h4>팀원 소개</h4>
                 <h4>동료 모집</h4>
               </Col>
-              <Col xs={3}>
+              <Col xs={3} className='mobile_margin'>
                 <h3>나의 예매</h3>
                 <h4 onClick={()=>navigate('/mypage/reservations/view-all?page=1')}>예매 내역</h4>
                 <h4>취소 내역</h4>
                 <h4 onClick={()=>navigate('/mypage/reviews')}>공연리뷰 내역</h4>
                 <h4 onClick={()=>navigate('/mypage/like')}>찜 내역</h4>
               </Col>
-              <Col xs={3}>
+              <Col xs={3} className='mobile_margin'>
                 <h3>나의 계정</h3>
                 <h4 onClick={()=>navigate('/mypage/edit-profile')}>회원정보수정</h4>
                 <h4>회원등급</h4>
               </Col>
-              <Col xs={3}>
+              <Col xs={3} className='mobile_margin'>
                 <h3>도움말</h3>
                 <h4 onClick={()=>navigate('/notice')}>공지사항</h4>
                 <h4>FAQ</h4>
