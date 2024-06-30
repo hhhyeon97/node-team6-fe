@@ -36,8 +36,8 @@ const MyLikeCard = ({item}) => {
           className={`mylike_card_image ${filterStyle}`}
         /> 
       </div>
-      <div className='mylike_card_text_box' onClick={()=>navigate(`/performance/${item.seqId}`)}>
-        <div>
+      <div className='mylike_card_text_box'>
+        <div onClick={()=>navigate(`/performance/${item.seqId}`)}>
           <h4>{StartDate(item.seqFrom)} ~ {StartDate(item.seqTo)}</h4>
           <h3>{item.seqTitle}</h3>
           <h5>{item.seqLocation}</h5>  

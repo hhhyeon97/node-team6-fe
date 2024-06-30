@@ -4,7 +4,7 @@ const initialState ={
     loading:false,
     error:'',
     likeList:[],
-    likeQty:null,
+    likeQty: 0,
 };
 
 function likeReducer(state = initialState, action) {

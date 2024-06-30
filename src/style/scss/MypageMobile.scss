@@ -346,8 +346,174 @@
           padding-bottom: 10px;
         }
       }
+      .my_reserve_card_container{
+        flex-flow: column;
+      }
+      .card_title h5{
+        padding-left: 5px;
+      }
+      .ticket_date{
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 10px;
+      }
     }
+
+
+
+    
+  //   	/* 모바일 세로 */
+  // .mypage-container{
+  //   .mypage-right{
+  //     .mylike_card_area{
+  //       width: 49%;
+  //       height: 58vh;
+  //       margin-bottom: 2rem;
+  //       .mylike_card_text_box{
+  //         padding-bottom: 2rem;
+  //       }
+  //     }
+  //   }
+  // }
 
 
   }//------- 마이 페이지 모바일 끝
 }
+
+    /* 나의 찜 페이지 */
+    .mylike_wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap:2%;
+      margin-top:0.5rem;
+    }
+    .mylike_card_area {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 23.5%;
+      height: 63vh;
+      overflow: hidden;
+      margin-bottom: 4rem;
+      cursor: pointer;
+
+      .mylike_care_image_size {
+        height: 60%;
+        border: 1px solid #e4e4e4;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0.4rem;
+        overflow: hidden;
+        object-fit: cover;
+      }
+      .mylike_card_image {
+        width: 100%;
+        height: 100%;
+      }
+      .filter_gray {
+        filter: grayscale(75%);
+      }
+
+      .mylike_card_text_box {
+        width: 100%;
+        height: 40%;
+        padding: 0.5rem 0.3rem 3.5rem 0.3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-bottom: 1px solid #bbb;
+
+        h4 {
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: gray;
+          margin-bottom: 0.4rem;
+        }
+        h3 {
+          font-size: 1.1rem;
+          font-weight: 600;
+          margin-bottom: 0.3rem;
+          max-height: 2.5rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        h5 {
+          font-size: 0.9rem;
+        }
+
+        button {
+          margin-top: 0.5rem;
+          width: 6rem;
+          height: 2rem;
+          line-height: 2rem;
+          border: 1px solid black;
+          background-color: black;
+          color: white;
+          border-radius: 0.5rem;
+          font-size: 0.8rem;
+        }
+        .before_perf {
+          background-color: white;
+          color: black;
+        }
+        .end_perf {
+          border-color: #bbb;
+          background-color: #bbb;
+          color: white;
+        }
+      }
+      .like_heart {
+        // position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        right: 0.5rem;
+        bottom: 1rem;
+        font-size: 1.5rem;
+        color: #d61f1f;
+        z-index: 5;
+      }
+    }
+
+    .mylike_none {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 5rem;
+      h3 {font-size: 6rem; color: #bbb; }
+      h4 {font-weight: 600;}
+      button {
+        background-color: black;
+        border: 1px solid black;
+        border-radius: 0.3rem;
+        color: white;
+        padding: 0.8rem 1.5rem;
+        margin-top: 0.5rem;
+      }
+    }
+
+@media screen and (max-width: 480px){
+  
+	/* 모바일 세로 */
+	.wrap-container {
+		max-width: 340px;
+	}
+
+  .mypage-container{
+    .mypage-right{
+      .mylike_card_area{
+        width: 49%;
+        height: 58vh;
+        margin-bottom: 2rem;
+        .mylike_card_text_box{
+          padding-bottom: 2rem;
+        }
+      }
+    }
+  }
+}
+

@@ -35,3 +35,8 @@
   padding-right: 0;
   color: black;
 }
+.mobile_nav_category_area .category_admin {
+  font-size: 0.8rem;
+  position: absolute;
+  bottom: 5rem;
+}
