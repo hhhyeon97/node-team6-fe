@@ -190,6 +190,27 @@
         white-space: normal;
       }
     }
-  }
+
+    .verify_ps_container{
+      font-size: 12px;
+      .password_info_message{
+        display: block;
+        padding: 10px 0;
+        font-size: 1.2em;
+      }
+      .verify_password_form{
+        font-size: 1.2em;
+        .submit_btn{
+          width: 100%;
+          padding: 12px;
+          margin: 15px 0 40px 0;
+        }
+        .error_message{
+          text-align: left;
+        }
+      }
+    }
+
+  }// 마이 페이지 모바일 끝
 
 }

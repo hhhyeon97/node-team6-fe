@@ -178,4 +178,23 @@
     font-size: 0.7em;
     white-space: normal;
   }
+  .mobile_page_container .verify_ps_container {
+    font-size: 12px;
+  }
+  .mobile_page_container .verify_ps_container .password_info_message {
+    display: block;
+    padding: 10px 0;
+    font-size: 1.2em;
+  }
+  .mobile_page_container .verify_ps_container .verify_password_form {
+    font-size: 1.2em;
+  }
+  .mobile_page_container .verify_ps_container .verify_password_form .submit_btn {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0 40px 0;
+  }
+  .mobile_page_container .verify_ps_container .verify_password_form .error_message {
+    text-align: left;
+  }
 }
