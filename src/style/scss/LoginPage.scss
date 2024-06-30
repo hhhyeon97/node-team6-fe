@@ -24,6 +24,7 @@
     margin-top: 10px;
     width: 100%;
     color: rgb(231, 94, 94);
+    font-size: 20px;
   }
   .sns_wrap {
     font-family: 'Gsans_B';
@@ -165,7 +166,9 @@
     .login_btn {
       font-size: 16px;
     }
-
+    .login_error_message {
+      font-size: 18px;
+    }
     .sns_btn_wrap {
       align-items: center;
       .custom_google_btn,
