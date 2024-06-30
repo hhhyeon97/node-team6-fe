@@ -11,10 +11,11 @@ import MyReserveCard from '../../component/mypage/MyReserveCard';
 import ReviewDialog from '../mypage/ReviewDialog';
 import '../../style/css/MyReserveDate.css'
 // import '../../style/css/MyReservationByDate.css'
+import LinedTitle from '../../component/LinedTitle';
 
 
 // 예약날짜로 나의 예매 조회 컴포넌트
-const ReservationByDate = () => {
+const ReservationByDateMobile = () => {
 	const dispatch = useDispatch();
 	const { reservationByDateList } = useSelector(state => state.reservation)
 	const [selectDate, setSelectDate] = useState(new Date())
@@ -54,6 +55,53 @@ const ReservationByDate = () => {
 	};
 
 	return (
+		<>
+		{isMobile ? (
+			<Container className='wrap-container mypage-wrap-container mobile_page_container'>
+				<LinedTitle title={"나의 예매"} cap={"관람일자로 조회"}/>
+				<Row className="my_reserve_date_container">
+						<Col lg={5} md={5} sm={6} className="CalenderBox calander_section">
+							<div className="stickyBox">
+								{selectDate ? <div className="selectDate">선택 날짜: {Dateformat(selectDate)} </div> :
+									<div className="selectDate"> 선택 날짜: {Dateformat(new Date())} </div>}
+								<CalenderBox 
+									selectDate={selectDate} 
+									setSelectDate={setSelectDate} 
+									reservations={reservationByDateList} // 예약 정보 전달
+								/>
+								<div className="todayBTNBox">
+									<button onClick={() => backToday()} className="todayButton">오늘로</button>
+								</div>
+							</div>
+						</Col>
+						<Col lg={6} md={6} sm={6} className='card_section'>
+							{reservationByDateList && reservationByDateList.length > 0 ? (
+								reservationByDateList.map(item => (
+									// <ReservationItem item={item} />
+									<>
+									<MyReserveCard
+										item={item}
+										openReviewForm={openReviewForm}
+									/>
+						
+										<ReviewDialog
+										mode={mode}
+										showDialog={showDialog}
+										setShowDialog={setShowDialog}
+										// setSearchQuery={setSearchQuery}
+										/>
+									</>
+								))
+							) : (
+								<div className='no_reserve_msg'>
+									<h4>해당 날짜에 예매내역이 없습니다.</h4>
+									<button onClick={() => backToday()} className="todayButton">오늘날짜로 돌아가기</button>
+								</div>
+							)}
+						</Col>
+				</Row>
+			</Container>
+		):(
 				<MyPageLayout title="나의 예매" cap="관람일자로 조회">
 				<Row className="my_reserve_date_container">
 						<Col lg={5} md={5} sm={6} className="CalenderBox calander_section">
@@ -97,7 +145,9 @@ const ReservationByDate = () => {
 						</Col>
 				</Row>
 			</MyPageLayout>
+		)}
+	</>
 	)
 }
 
-export default ReservationByDate;
+export default ReservationByDateMobile;

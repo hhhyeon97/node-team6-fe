@@ -55,13 +55,13 @@ const MyPageLayout = ({ title, cap, children }) => {
         <div class="mypage_side_bar_container mypage_side_bar_container_mobile">
           <UserProfile user={user} />
           <MypageUserLevel user={user}/>
-          <MypageSidebar />
+          <MypageSidebar/>
         </div>
       ):(
         <>
         <div class="mypage_side_bar_container">
           <UserProfile user={user} />
-          <MypageSidebar />
+          <MypageSidebar/>
         </div>
         <div className="mypage-container">
           <section className="mypage-right">
