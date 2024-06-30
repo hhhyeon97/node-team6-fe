@@ -166,6 +166,30 @@
         display: none;
       }
     }
+
+    // [ 나의 리뷰 페이지 ]
+    .my_review_all_container{
+      font-size: 12px;
+      .my_review_card{
+        flex-flow: column;
+      }
+      .card_main, .card_top{
+        width: 100%;
+      }
+      .review_text{
+        width: 100%;
+        font-size: 0.8em;
+      }
+      .review_date{
+        font-size: 0.8em;
+        justify-content: flex-end;
+      }
+      .suspend_msg{
+        width: 75%;
+        font-size: 0.7em;
+        white-space: normal;
+      }
+    }
   }
 
 }

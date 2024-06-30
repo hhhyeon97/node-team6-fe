@@ -44,6 +44,8 @@ const ViewAllReservations = () => {
     setIsMobile(window.matchMedia("(max-width: 480px)").matches);
   };
 
+  // ----------------------------
+
 	// console.log('reserveList',reserveList, totalPageNum)
 
   // [ 페이지가 바뀌면 url바꿔주기 ]
