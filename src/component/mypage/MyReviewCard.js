@@ -14,7 +14,7 @@ import defaultPhoto from "../../assets/img/default_photo.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 
-const MyReviewCard = ({ review,  openReviewForm }) => {
+const MyReviewCard = ({ review,  openReviewForm, isMobile }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
@@ -47,7 +47,7 @@ const MyReviewCard = ({ review,  openReviewForm }) => {
               <div className="top_info">
                 <Star startNum={review?.starRate} />
               </div>
-            <div>{review.reviewText}</div>
+            <div className='review_text'>{review.reviewText}</div>
             </div> 
             <div className='poster_box' >
               {review.image ? (
@@ -71,14 +71,14 @@ const MyReviewCard = ({ review,  openReviewForm }) => {
         </div>
       ):(
         <div className='my_review_card'>
-        <div className='suspend_msg'><FontAwesomeIcon icon={faCircleExclamation} />부적절한 내용으로 숨김처리됨 리뷰입니다. 자세한 사항은 1:1문의를 이용해주세요</div>
+        <div className='suspend_msg'><FontAwesomeIcon icon={faCircleExclamation} />부적절한 내용으로 숨김처리된 리뷰입니다. 자세한 사항은 1:1문의를 이용해주세요</div>
         <div className="card_main disabled">
             <div class="card_top">
               <div className='review_title'>{review.SeqTitle}</div>
               <div class="top_info">
                 <Star startNum={review?.starRate} />
               </div>
-            <div>{review.reviewText}</div>
+            <div className='review_text'>{review.reviewText}</div>
             </div> 
             <div className='poster_box' >
               {review.image ? (

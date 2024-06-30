@@ -114,7 +114,7 @@ const ListPage = () => {
             <Row className="ListPageTitle">
                 <Col>
                     <h1>{categoryName}</h1>
-                    <div>Noona Culture로 가장 빠르게 알아보는 {categoryName}소식</div>
+                    <div className="category_explan">Noona Culture로 가장 빠르게 알아보는 {categoryName}소식</div>
                 </Col>
                 <Col lg={5} md={5} sm={6} className="LegionDropContainer">
                     <ul onClick={() => { setView(!view) }} className="regionDrop">

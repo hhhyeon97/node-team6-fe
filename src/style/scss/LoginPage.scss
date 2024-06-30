@@ -2,7 +2,7 @@
   // height: 100vh;
   flex-direction: column;
   width: 450px;
-  margin-top: 30px;
+  margin-top: 40px;
 
   .login_form {
     width: 100%;
@@ -55,10 +55,6 @@
   .info_register_message {
     margin-top: 20px;
   }
-  /* .info_register_message a {
-      text-decoration: underline;
-      color: rgb(45, 111, 233);
-    } */
   .custom_kakao_btn {
     background-color: #fee500 !important;
     border-radius: 50%;
@@ -121,5 +117,61 @@
   }
   .register_btn:hover {
     color: #bbb;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .login_area {
+    width: 80%;
+    padding: 0 20px;
+
+    .login_title {
+      font-size: 30px;
+    }
+
+    .login_form input {
+      height: 45px;
+    }
+
+    .login_btn {
+      font-size: 18px;
+    }
+    .info_register_message {
+      text-align: center;
+    }
+    .sns_btn_wrap {
+      align-items: center;
+      .custom_google_btn,
+      .custom_kakao_btn {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .login_area {
+    width: 90%;
+    padding: 0 10px;
+
+    .login_title {
+      font-size: 25px;
+    }
+
+    .login_form input {
+      height: 40px;
+    }
+
+    .login_btn {
+      font-size: 16px;
+    }
+
+    .sns_btn_wrap {
+      align-items: center;
+      .custom_google_btn,
+      .custom_kakao_btn {
+        margin-bottom: 10px;
+      }
+    }
   }
 }

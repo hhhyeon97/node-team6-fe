@@ -9,8 +9,9 @@ import { reserveFormat } from '../../utils/Date';
 import { priceformat } from '../../utils/Date';
 import { convertToKST } from '../../utils/Date';
 import AlertModal from '../AlertModal';
+import "../../style/css/MypageMobile.css"
 
-const MyReserveCard = ({ item,  openReviewForm, isReviewed }) => {
+const MyReserveCard = ({ item,  openReviewForm, isMobile }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let canceled = '';
@@ -68,7 +69,7 @@ const MyReserveCard = ({ item,  openReviewForm, isReviewed }) => {
   }
 
   return(
-    <div className={`${canceled} my_reserve_card_container`}
+    <div className={`${canceled} my_reserve_card_container my_reserve_card_container_mobile`}
     onClick={handleCardClick}>
     <div className="card_top">
       <div class="info_group">
@@ -81,21 +82,44 @@ const MyReserveCard = ({ item,  openReviewForm, isReviewed }) => {
       </div>
     </div>
     <div className="card_main">
-      <div className='card_title'>
-          <div className='poster_box' onClick={handlePosterClick} >
-            <img
-              className='poster_img'
-              src={item?.ticket?.SeqImage}
-              style={{ width: '6em' }}
-              alt='예약공연 포스터'
-              />
+      {!isMobile ? (
+        <>
+          <div className='card_title'>
+              <div className='poster_box' onClick={handlePosterClick} >
+                <img
+                  className='poster_img'
+                  src={item?.ticket?.SeqImage}
+                  alt='예약공연 포스터'
+                  />
+              </div>
+              <h5>{item?.ticket?.SeqTitle}</h5>
+            </div>
+          <div className='item_price'>
+            <strong>{priceformat(item.totalPrice)}원 /</strong>
+            <strong>수량 {item?.ticketNum}</strong>
           </div>
-          <h5>{item?.ticket?.SeqTitle}</h5>
+        </>
+      ):(
+        <>
+        <div className='card_title'>
+            <div className='poster_box' onClick={handlePosterClick} >
+              <img
+                className='poster_img'
+                src={item?.ticket?.SeqImage}
+                alt='예약공연 포스터'
+                />
+            </div>
+          <div class="reserve_card-info_group">
+            <h5>{item?.ticket?.SeqTitle}</h5>
+            <div className='item_price' id='item_price'>
+              <strong>{priceformat(item.totalPrice)}원 /</strong>
+              <strong>수량 {item?.ticketNum}</strong>
+            </div>
+          </div>
         </div>
-      <div className='item_price'>
-        <strong>{priceformat(item.totalPrice)}원 /</strong>
-        <strong>수량 {item?.ticketNum}</strong>
-      </div>
+      </>
+      )}
+
       <div class="card_btns">
         {item.isCanceled ? (<div className='canceled_reserve'>예매취소됨</div>):(<Button variant='light' onClick={handleCancle} className={cancelBtnClass}>예매취소</Button>)}
         {canWriteReview && !item?.ticket?.isReview && !item.isCanceled ? (

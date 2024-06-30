@@ -27,6 +27,7 @@ import ReservationDetail from '../pages/mypage/ReservationDatail';
 import EditPassword from '../pages/mypage/ChangePassword';
 import VerifyCurrentPassword from '../pages/mypage/VerifyCurrentPassword';
 import ChangePassword from '../pages/mypage/ChangePassword';
+import ReservationByDateMobile from '../pages/mypage/ReservationByDateMobile';
 
 const AppRouter = () => {
   const navigate = useNavigate();
@@ -55,6 +56,10 @@ const AppRouter = () => {
       <Route
         path="/mypage/reservations/by-date"
         element={<ReservationByDate />}
+      />
+      <Route
+        path="/mypage/reservations/by-date/mobile"
+        element={<ReservationByDateMobile />}
       />
       <Route
         path="/mypage/reservations/view-all"

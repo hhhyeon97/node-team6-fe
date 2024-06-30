@@ -23,10 +23,6 @@ const LoginPage = () => {
     dispatch(userActions.loginWithEmail({ email, password }));
   };
 
-  // const handleGoogleLogin = async (googleData) => {
-  //   dispatch(userActions.loginWithGoogle(googleData.credential));
-  // };
-
   const handleGoogleLoginSuccess = (response) => {
     dispatch(userActions.loginWithGoogle(response.access_token));
   };
@@ -143,15 +139,6 @@ const LoginPage = () => {
               &nbsp;-
             </p>
             <div className="sns_btn_wrap">
-              {/* <GoogleLogin
-                  onSuccess={handleGoogleLogin}
-                  onError={() => {
-                    console.log('Login Failed');
-                  }}
-                /> */}
-              {/* <button className="custom_google_btn" onClick={googleLogin}>
-                <img src="testImage/google.png" alt="구글" />
-              </button> */}
               <button
                 className="custom_google_btn"
                 onClick={() => googleLogin()}
