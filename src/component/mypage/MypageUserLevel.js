@@ -42,7 +42,7 @@ const MypageUserLevel = ({ user }) => {
       </div>
       <div className='vertical_bar'>&#124;</div>
       <div className='user_level_info'>
-        <FontAwesomeIcon icon={faCircleQuestion} />
+        {/* <FontAwesomeIcon icon={faCircleQuestion} /> */}
         <div>{benefitText}</div>
       </div>
       </>
