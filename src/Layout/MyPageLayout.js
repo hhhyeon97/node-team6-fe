@@ -51,23 +51,28 @@ const MyPageLayout = ({ title, cap, children }) => {
 
   return (
     <Container className='wrap-container mypage-wrap-container'>
-      <div class="mypage_side_bar_container">
-        <UserProfile user={user} />
-        <MypageUserLevel user={user}/>
-        <MypageSidebar />
-      </div>
       {isMobile ? (
-        <></>
-      ):(
-        <div className="mypage-container">
-        <section className="mypage-right">
+        <div class="mypage_side_bar_container mypage_side_bar_container_mobile">
+          <UserProfile user={user} />
           <MypageUserLevel user={user}/>
-          <LinedTitle title={title} cap={cap}/>
-          <main>
-          {children}
-          </main>
-        </section>
-      </div>               
+          <MypageSidebar />
+        </div>
+      ):(
+        <>
+        <div class="mypage_side_bar_container">
+          <UserProfile user={user} />
+          <MypageSidebar />
+        </div>
+        <div className="mypage-container">
+          <section className="mypage-right">
+            <MypageUserLevel user={user}/>
+            <LinedTitle title={title} cap={cap}/>
+            <main>
+            {children}
+            </main>
+          </section>
+        </div>    
+        </>
       )}
     </Container>
 );

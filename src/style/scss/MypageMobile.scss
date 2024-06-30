@@ -1,4 +1,25 @@
 @media screen and (max-width: 480px){
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  ul,
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 	/* 모바일 세로 */
 	.wrap-container {
 		max-width: 340px;
@@ -6,7 +27,8 @@
   .mypage-wrap-container{
     overflow: hidden;
   }
-  .mypage_side_bar_container{
+
+  .mypage_side_bar_container_mobile{
     display: flex;
     justify-content: center;
     width: 100%;
@@ -22,69 +44,128 @@
       border-bottom: 1px solid #bbb;
       padding: 10px 0;
     }
-  }
-  .mypage_sidebar {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-  }
-  .user_profile {
-    flex-flow: row;
-  }
-  /* [ 회원 등급 정보 ] */
-  .user_level_section {
-    display: flex;
-    padding: 20px 10px;
-    background-color: #000;
-    margin-bottom: 20px;
-
-    .vertical_bar {
-      color: #4b4b4b;
-    }
-
-    .user_level_info {
+    .mypage_sidebar {
+      width: 100%;
       display: flex;
-      align-items: center;
-      padding: 0 10px;
-      font-size: 13px;
-      color: #fff;
-      div{
-        font-size: 0.8em;
+      justify-content: flex-start;
+    }
+    .user_profile {
+      flex-flow: row;
+      justify-content: center;
+      margin-bottom: 20px;
+      .user_name{
+        width: 50%;
+        margin-left: 10px;
+        padding: 0;
+        white-space: nowrap;
       }
-      
-      svg{
-        margin-right: 3px;
-      }
+    }
+    /* [ 회원 등급 정보 ] */
+    .user_level_section {
+      display: flex;
+      padding: 20px 10px;
+      background-color: #000;
+      margin-bottom: 20px;
 
-      h5 {
-        margin-right: 10px;
-        font-family: Gsans_B;
-        font-size: 1em;
-        color: #bbb;
+      .vertical_bar {
+        color: #4b4b4b;
       }
-      .level_bdg {
-        font-family: Gsans_B;
-        font-size: 0.7em;
-        padding: 7px 10px;
-        border-radius: 50px;
-      }
-      .normal {
-        background-color: #fff;
-        color: #000;
-      }
-      .gold {
-        border: 0.5px solid rgb(255, 255, 255);
-        background-color: rgb(0, 0, 0);
-        color: rgb(255, 255, 255);
-      }
-      .suspend {
-        background-color: #bbb;
-        color: rgb(255, 255, 255);
-      }
-      .admin {
-        background-color: #f44f08;
-        color: rgb(255, 255, 255);
+      .user_level_info {
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        font-size: 13px;
+        color: #fff;
+        div{
+          font-size: 0.8em;
+        }
+        
+        svg{
+          margin-right: 3px;
+        }
+
+        h5 {
+          margin-right: 10px;
+          font-family: Gsans_B;
+          font-size: 1em;
+          color: #bbb;
+        }
+        .level_bdg {
+          font-family: Gsans_B;
+          font-size: 0.7em;
+          padding: 7px 10px;
+          border-radius: 50px;
+        }
+        .normal {
+          background-color: #fff;
+          color: #000;
+        }
+        .gold {
+          border: 0.5px solid rgb(255, 255, 255);
+          background-color: rgb(0, 0, 0);
+          color: rgb(255, 255, 255);
+        }
+        .suspend {
+          background-color: #bbb;
+          color: rgb(255, 255, 255);
+        }
+        .admin {
+          background-color: #f44f08;
+          color: rgb(255, 255, 255);
+        }
       }
     }
   }
+  // < 마이페이지 페이지 컨테이너 >
+  .mobile_page_container{
+    flex-flow: column;
+    .title_section{
+      padding: 15px 0 5px 0;
+    }
+    .title_section>.title p{
+      margin: 0;
+    }
+    // [ 나의예매 전체조회 ]
+    .my_reserve_all_container{
+      .my_reserve_card_container{
+        font-size: 12px;
+        .poster_box{
+          width: 2em;
+        }
+        .info_group{
+          flex-flow: column;
+          font-size: 0.7em;
+          align-items: flex-start;
+        }
+        .card_main {
+          flex-flow: column;
+          align-items: flex-start;
+        }
+        .card_title{
+          width: 100%;
+          h5{
+            font-size: 1.3em;
+          }
+        }
+        .reserve_card_info_group{
+          .item_price{
+            width: 100%;
+            font-size: 1em;
+            flex-flow: row;
+          }
+        }
+        .card_btns{
+          width: 100%;
+          justify-content: flex-end;
+          button{
+            margin-left: 5px;
+          }
+        }
+      }
+      .disabled{
+        display: none;
+      }
+    }
+  }
+
 }

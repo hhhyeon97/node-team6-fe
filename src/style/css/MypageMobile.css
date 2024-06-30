@@ -1,5 +1,24 @@
 @charset "UTF-8";
 @media screen and (max-width: 480px) {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  ul,
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
   /* 모바일 세로 */
   .wrap-container {
     max-width: 340px;
@@ -7,81 +26,134 @@
   .mypage-wrap-container {
     overflow: hidden;
   }
-  .mypage_side_bar_container {
+  .mypage_side_bar_container_mobile {
     display: flex;
     justify-content: center;
     width: 100%;
     margin: 0;
+    /* [ 회원 등급 정보 ] */
   }
-  .mypage_side_bar_container ul {
+  .mypage_side_bar_container_mobile ul {
     width: 100%;
   }
-  .mypage_side_bar_container h3 {
+  .mypage_side_bar_container_mobile h3 {
     padding-bottom: 10px;
     border-bottom: 3px solid #000;
   }
-  .mypage_side_bar_container li {
+  .mypage_side_bar_container_mobile li {
     border-bottom: 1px solid #bbb;
     padding: 10px 0;
   }
-  .mypage_sidebar {
+  .mypage_side_bar_container_mobile .mypage_sidebar {
     width: 100%;
     display: flex;
     justify-content: flex-start;
   }
-  .user_profile {
+  .mypage_side_bar_container_mobile .user_profile {
     flex-flow: row;
+    justify-content: center;
+    margin-bottom: 20px;
   }
-  /* [ 회원 등급 정보 ] */
-  .user_level_section {
+  .mypage_side_bar_container_mobile .user_profile .user_name {
+    width: 50%;
+    margin-left: 10px;
+    padding: 0;
+    white-space: nowrap;
+  }
+  .mypage_side_bar_container_mobile .user_level_section {
     display: flex;
     padding: 20px 10px;
     background-color: #000;
     margin-bottom: 20px;
   }
-  .user_level_section .vertical_bar {
+  .mypage_side_bar_container_mobile .user_level_section .vertical_bar {
     color: #4b4b4b;
   }
-  .user_level_section .user_level_info {
+  .mypage_side_bar_container_mobile .user_level_section .user_level_info {
     display: flex;
     align-items: center;
     padding: 0 10px;
     font-size: 13px;
     color: #fff;
   }
-  .user_level_section .user_level_info div {
+  .mypage_side_bar_container_mobile .user_level_section .user_level_info div {
     font-size: 0.8em;
   }
-  .user_level_section .user_level_info svg {
+  .mypage_side_bar_container_mobile .user_level_section .user_level_info svg {
     margin-right: 3px;
   }
-  .user_level_section .user_level_info h5 {
+  .mypage_side_bar_container_mobile .user_level_section .user_level_info h5 {
     margin-right: 10px;
     font-family: Gsans_B;
     font-size: 1em;
     color: #bbb;
   }
-  .user_level_section .user_level_info .level_bdg {
+  .mypage_side_bar_container_mobile .user_level_section .user_level_info .level_bdg {
     font-family: Gsans_B;
     font-size: 0.7em;
     padding: 7px 10px;
     border-radius: 50px;
   }
-  .user_level_section .user_level_info .normal {
+  .mypage_side_bar_container_mobile .user_level_section .user_level_info .normal {
     background-color: #fff;
     color: #000;
   }
-  .user_level_section .user_level_info .gold {
+  .mypage_side_bar_container_mobile .user_level_section .user_level_info .gold {
     border: 0.5px solid rgb(255, 255, 255);
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
   }
-  .user_level_section .user_level_info .suspend {
+  .mypage_side_bar_container_mobile .user_level_section .user_level_info .suspend {
     background-color: #bbb;
     color: rgb(255, 255, 255);
   }
-  .user_level_section .user_level_info .admin {
+  .mypage_side_bar_container_mobile .user_level_section .user_level_info .admin {
     background-color: #f44f08;
     color: rgb(255, 255, 255);
+  }
+  .mobile_page_container {
+    flex-flow: column;
+  }
+  .mobile_page_container .title_section {
+    padding: 15px 0 5px 0;
+  }
+  .mobile_page_container .title_section > .title p {
+    margin: 0;
+  }
+  .mobile_page_container .my_reserve_all_container .my_reserve_card_container {
+    font-size: 12px;
+  }
+  .mobile_page_container .my_reserve_all_container .my_reserve_card_container .poster_box {
+    width: 2em;
+  }
+  .mobile_page_container .my_reserve_all_container .my_reserve_card_container .info_group {
+    flex-flow: column;
+    font-size: 0.7em;
+    align-items: flex-start;
+  }
+  .mobile_page_container .my_reserve_all_container .my_reserve_card_container .card_main {
+    flex-flow: column;
+    align-items: flex-start;
+  }
+  .mobile_page_container .my_reserve_all_container .my_reserve_card_container .card_title {
+    width: 100%;
+  }
+  .mobile_page_container .my_reserve_all_container .my_reserve_card_container .card_title h5 {
+    font-size: 1.3em;
+  }
+  .mobile_page_container .my_reserve_all_container .my_reserve_card_container .reserve_card_info_group .item_price {
+    width: 100%;
+    font-size: 1em;
+    flex-flow: row;
+  }
+  .mobile_page_container .my_reserve_all_container .my_reserve_card_container .card_btns {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .mobile_page_container .my_reserve_all_container .my_reserve_card_container .card_btns button {
+    margin-left: 5px;
+  }
+  .mobile_page_container .my_reserve_all_container .disabled {
+    display: none;
   }
 }
