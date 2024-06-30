@@ -54,16 +54,16 @@ const NoticePage = () => {
     setSearchQuery({ ...searchQuery, page: selected + 1 });
   };
 
-  // const breakTextOnDot = (text) => {
-  //   const parts = text.split('.');
-  //   return parts.map((part, index) => (
-  //     <span key={index}>
-  //       {part}
-  //       {index !== parts.length - 1 && '.'}
-  //       {index !== parts.length - 1 && <br />}
-  //     </span>
-  //   ));
-  // };
+  const breakTextOnDot = (text) => {
+    const parts = text.split('.');
+    return parts.map((part, index) => (
+      <span key={index}>
+        {part}
+        {index !== parts.length - 1 && '.'}
+        {index !== parts.length - 1 && <br />}
+      </span>
+    ));
+  };
 
   if (loading) {
     <LoadingText />;
@@ -134,7 +134,9 @@ const NoticePage = () => {
                   <div className="notice_img_wrap">
                     {notice.img && <img src={notice.img} alt="공지 이미지" />}
                   </div>
-                  <div className="notice_content_wrap">{notice.content}</div>
+                  <div className="notice_content_wrap">
+                    {breakTextOnDot(notice.content)}
+                  </div>
                 </Accordion.Body>
               </Accordion.Item>
             </Card>

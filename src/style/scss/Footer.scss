@@ -90,5 +90,11 @@
 	.footer_area {
         margin-top: 2rem;
         margin-bottom: 1.3rem;
+        h3 { margin-bottom: 0.3rem; }
+        h4 { margin-bottom: 0.3rem; }
+    }
+
+    .mobile_margin{
+        padding-bottom: 0.5rem !important;
     }
 }
