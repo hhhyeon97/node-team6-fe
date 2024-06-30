@@ -9,9 +9,9 @@ import ReservationItem from "../../component/ReservationItem";
 import * as types from "../../constants/reservation.constants";
 import MyReserveCard from '../../component/mypage/MyReserveCard';
 import ReviewDialog from '../mypage/ReviewDialog';
-import '../../style/css/MyReserveDate.css'
 // import '../../style/css/MyReservationByDate.css'
 import LinedTitle from '../../component/LinedTitle';
+import "../../style/css/MypageMobile.css";
 
 
 // 예약날짜로 나의 예매 조회 컴포넌트
@@ -82,6 +82,7 @@ const ReservationByDateMobile = () => {
 									<MyReserveCard
 										item={item}
 										openReviewForm={openReviewForm}
+										isMobile={isMobile}
 									/>
 						
 										<ReviewDialog
@@ -126,6 +127,7 @@ const ReservationByDateMobile = () => {
 									<MyReserveCard
 										item={item}
 										openReviewForm={openReviewForm}
+										isMobile={isMobile}
 									/>
 						
 										<ReviewDialog

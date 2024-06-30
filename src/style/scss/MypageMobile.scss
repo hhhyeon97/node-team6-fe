@@ -126,10 +126,40 @@
     .title_section>.title p{
       margin: 0;
     }
-    // [ 나의예매 전체조회 ]
-    .my_reserve_all_container{
+    // [ 나의예매 관람일자로 조회 ]
+    .my_reserve_date_container{
+      flex-flow: column;
+      .calander_section{
+        width: 100%;
+        // box-shadow: 5px 5px 6px #bbb;
+        padding: 0;
+        .react-calendar__tile{
+          height: 40px;
+        }
+        .todayBTNBox{
+          margin-top: 10px;
+        }
+      }
+      .card_section{
+        width: 100%;
+      }
+      .item_price{
+        width: 100%;
+        flex-flow: row;
+      }
+      .no_reserve_msg{
+        margin-top: 20px;
+      }
       .my_reserve_card_container{
         font-size: 12px;
+        .reserve_card_info_group{
+          width: 100%;
+        }
+        #item_price{
+          width: 100%;
+          font-size: 1em;
+          flex-flow: row;
+        }
         .poster_box{
           width: 2em;
         }
@@ -146,6 +176,56 @@
           width: 100%;
           h5{
             font-size: 1.3em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+          }
+        }
+
+        .card_btns{
+          width: 100%;
+          justify-content: flex-end;
+          button{
+            margin-left: 5px;
+            font-size: 0.7em;
+          }
+        }
+      }
+      .disabled{
+        display: none;
+      }
+    }
+    // [ 나의예매 전체조회 ]
+    .my_reserve_all_container{
+      .my_reserve_card_container{
+        font-size: 12px;
+        .poster_box{
+          width: 2em;
+        }
+        .info_group{
+          flex-flow: column;
+          font-size: 0.7em;
+          align-items: flex-start;
+        }
+        .item_price{
+          width: 100%;
+          flex-flow: row;
+        }
+        .card_main {
+          flex-flow: column;
+          align-items: flex-start;
+        }
+        .card_title{
+          width: 100%;
+          h5{
+            font-size: 1.3em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
           }
         }
         .reserve_card_info_group{
@@ -160,6 +240,7 @@
           justify-content: flex-end;
           button{
             margin-left: 5px;
+            font-size: 0.7em;
           }
         }
       }

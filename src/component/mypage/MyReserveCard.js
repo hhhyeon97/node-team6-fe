@@ -109,9 +109,9 @@ const MyReserveCard = ({ item,  openReviewForm, isMobile }) => {
                 alt='예약공연 포스터'
                 />
             </div>
-          <div class="reserve_card_info_group">
+          <div class="reserve_card-info_group">
             <h5>{item?.ticket?.SeqTitle}</h5>
-            <div className='item_price'>
+            <div className='item_price' id='item_price'>
               <strong>{priceformat(item.totalPrice)}원 /</strong>
               <strong>수량 {item?.ticketNum}</strong>
             </div>
