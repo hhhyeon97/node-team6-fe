@@ -18,7 +18,6 @@
 .notice_content_area {
   margin-top: 20px;
   width: 80%;
-  white-space: pre;
 }
 
 .pagination_wrap {
@@ -123,10 +122,11 @@ li {
 }
 
 .notice_img_wrap img {
-  width: 80%;
-  height: 300px;
+  width: 70%;
+  max-height: 300px;
   border-radius: 8px;
   margin-bottom: 10px;
+  opacity: 0.9;
 }
 
 @media screen and (max-width: 768px) {
@@ -171,7 +171,11 @@ li {
     height: auto;
   }
 }
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 375px) {
+  .notice_page_area {
+    width: 90%;
+    padding: 0 10px;
+  }
   .notice_title_wrap,
   .notice_id {
     font-size: 13px;
@@ -190,6 +194,7 @@ li {
     color: #bbb;
     left: -10px;
     bottom: 2px;
+    display: none;
   }
   .notice_content_wrap {
     font-size: 13px;
