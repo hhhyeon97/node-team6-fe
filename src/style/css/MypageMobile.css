@@ -308,12 +308,25 @@
     margin: 20px 0 5px 0;
   }
   .mobile_page_container .edit_user_form_container .outMember_container {
-    border: 1px solid red;
     width: fit-content;
   }
   .mobile_page_container .edit_user_form_container .outMember_btn {
-    border: 1px solid red;
     display: flex;
     width: fit-content;
+  }
+  .mobile_page_container .reserve-detail-container {
+    font-size: 12px;
+  }
+  .mobile_page_container .reserve-detail-container .order-info {
+    align-items: flex-start;
+    flex-flow: column;
+    padding: 15px 0 0 5px;
+  }
+  .mobile_page_container .reserve-detail-container .order-info li:last-child {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+    padding-bottom: 10px;
   }
 }
