@@ -23,6 +23,7 @@
   margin-top: 10px;
   width: 100%;
   color: rgb(231, 94, 94);
+  font-size: 20px;
 }
 .login_area .sns_wrap {
   font-family: "Gsans_B";
@@ -152,6 +153,9 @@
   }
   .login_area .login_btn {
     font-size: 16px;
+  }
+  .login_area .login_error_message {
+    font-size: 18px;
   }
   .login_area .sns_btn_wrap {
     align-items: center;
