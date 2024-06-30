@@ -33,7 +33,7 @@ const ReservationCompletePage = () => {
     return (
         <Container className="wrap-container">
             <Row className="completePageBox">
-                <Col lg={6} md={7} sm={12} className="completeTitle">주문이 <br /> 완료되었습니다.</Col>
+                <Col lg={6} md={7} sm={12} className="completeTitle">예매가 <br /> 완료되었습니다.</Col>
                 <Col lg={6} md={5} sm={12} className="completeInfo">
                     <Row>
                         예매 번호: {reservationId}
