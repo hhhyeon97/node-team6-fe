@@ -90,10 +90,10 @@ const ReservationDetail = () => {
                   
                   <section className="my-product">
                     <h4>예매상품정보</h4>
-                    <ul className='my_product_header'>
+                    {/* <ul className='my_product_header'>
                       <li>공연정보</li>
                       <li>티켓정보</li>
-                    </ul>
+                    </ul> */}
                     <ul className='my_reserve_card_container'>   
                       <div className='card_title'>
                         <div className='poster_box' onClick={() => navigate(`/performance/${selectedReserve.ticket.SeqId}`)} >

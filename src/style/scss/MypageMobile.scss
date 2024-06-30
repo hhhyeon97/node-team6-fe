@@ -346,6 +346,17 @@
           padding-bottom: 10px;
         }
       }
+      .my_reserve_card_container{
+        flex-flow: column;
+      }
+      .card_title h5{
+        padding-left: 5px;
+      }
+      .ticket_date{
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 10px;
+      }
     }
 
 
