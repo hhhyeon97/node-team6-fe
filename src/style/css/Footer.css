@@ -104,4 +104,13 @@
     margin-top: 2rem;
     margin-bottom: 1.3rem;
   }
+  .footer_area h3 {
+    margin-bottom: 0.3rem;
+  }
+  .footer_area h4 {
+    margin-bottom: 0.3rem;
+  }
+  .mobile_margin {
+    padding-bottom: 0.5rem !important;
+  }
 }

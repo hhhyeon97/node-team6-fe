@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { perfomanceListAction } from '../action/perfomanceListAction';
 import { EndDateformat, StringDateformat } from '../utils/Date';
 import { Container, Row } from 'react-bootstrap';
 import SearchCard from '../component/SearchCard';
 import '../style/css/SearchPage.css'
 import SearchPageSkeleton from './skeletion/SearchPageSkeleton';
+import notFound from '../assets/img/notFound.png'
 
 const REACT_APP_YEJIN_SERVICE_KEY = process.env.REACT_APP_YEJIN_SERVICE_KEY;
 
 const SearchPage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [selectDate, setSelectDate] = useState(new Date());
   const [errorMsg, setErrorMsg] = useState();
@@ -45,7 +47,7 @@ const SearchPage = () => {
 
   return (
     <Container className='wrap-container search_page'>
-      <h3 className='search_page_main_text'>{`'${keyword}'의 검색 결과입니다.`}</h3>
+      {PerformanceListData && PerformanceListData.length > 0 ?(<h3 className='search_page_main_text'>{`'${keyword}'의 검색 결과입니다.`}</h3>):''}
       <Row>
         {loading ? (
           <div>
@@ -58,7 +60,14 @@ const SearchPage = () => {
             PerformanceListData.map((item, index) => (
               <SearchCard key={index} item={item} />
             )) : (
-            <div>검색 결과가 없습니다. 다른 검색어를 입력해 주세요.</div>
+            <div className='search_none'>
+              <div className='search_none_img'>
+                <img src={notFound} alt='Not Found' />
+              </div>
+              <h3>{`"${keyword}"의 검색 결과가 없습니다`}</h3>
+              <h4>공연명이 잘못되었거나, 종료된 공연의 경우 검색되지 않을 수 있습니다.</h4>
+              <div onClick={()=>navigate('/')}><button>메인으로 돌아가기</button></div>
+            </div>
           )
         )}
       </Row>
