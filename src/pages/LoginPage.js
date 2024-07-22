@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Form, Alert } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../action/userAction';
 import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
@@ -40,8 +40,20 @@ const LoginPage = () => {
     dispatch(userActions.loginWithKakao(kakaoData));
   };
 
+  // ==== test
+  const location = useLocation();
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const code = urlParams.get('code');
+
+    if (code) {
+      dispatch(userActions.loginWithKakao(code));
+    }
+  }, [location.search, dispatch]);
+
   let REST_API_KEY = 'b205ba37d37752cd1feaa0421a8bfb5a';
-  let REDIRECT_URI = 'http://localhost:3000/api/auth/kakao';
+  let REDIRECT_URI = 'http://localhost:3000/api/auth/kakao/callback';
 
   const kakaoToken = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
 

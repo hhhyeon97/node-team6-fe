@@ -83,20 +83,39 @@ const loginWithGoogle = (accessToken) => async (dispatch) => {
 //   }
 // };
 
-const loginWithKakao = () => async (dispatch) => {
+// const loginWithKakao = () => async (dispatch) => {
+//   try {
+//     dispatch({ type: types.KAKAO_LOGIN_REQUEST });
+
+//     // 카카오 로그인 페이지로 리디렉션
+//     const response = await api.get('/auth/kakao/callback');
+//     const { data } = response;
+
+//     // 카카오 인증 URL로 리디렉션
+//     window.location.href = data.redirectUrl;
+//   } catch (error) {
+//     dispatch({
+//       type: types.KAKAO_LOGIN_FAIL,
+//       payload: error.response ? error.response.data : error.message,
+//     });
+//   }
+// };
+
+const loginWithKakao = (code) => async (dispatch) => {
   try {
     dispatch({ type: types.KAKAO_LOGIN_REQUEST });
 
-    // 카카오 로그인 페이지로 리디렉션
-    const response = await api.get('/auth/kakao/callback');
-    const { data } = response;
+    // 인가 코드를 백엔드로 전송
+    const response = await api.get(`/auth/kakao/callback?code=${code}`);
 
-    // 카카오 인증 URL로 리디렉션
-    window.location.href = data.redirectUrl;
+    if (response.status !== 200) throw new Error(response.error);
+
+    localStorage.setItem('token', response.data.token);
+    dispatch({ type: types.KAKAO_LOGIN_SUCCESS, payload: response.data });
   } catch (error) {
     dispatch({
       type: types.KAKAO_LOGIN_FAIL,
-      payload: error.response ? error.response.data : error.message,
+      payload: error.message,
     });
   }
 };
