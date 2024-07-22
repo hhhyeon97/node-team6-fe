@@ -6,15 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { noticeAction } from '../action/noticeAction';
 import { convertToKST } from '../utils/Date';
-import {
-  faPaperclip,
-  faStar,
-  faThumbTack,
-  faUser,
-  faUserCheck,
-  faUserCircle,
-  faUserClock,
-} from '@fortawesome/free-solid-svg-icons';
+import { faPaperclip, faThumbTack } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import LoadingText from '../component/LoadingText';
 import { faWaze } from '@fortawesome/free-brands-svg-icons';
@@ -31,8 +23,6 @@ const NoticePage = () => {
     page: query.get('page') || 1,
   });
   const [activeKey, setActiveKey] = useState(null);
-
-  const PAGE_SIZE = 5;
 
   // [ noticeList 가져오기 ]
   useEffect(() => {
@@ -81,16 +71,12 @@ const NoticePage = () => {
     <Container className="notice_page_area d-flex justify-content-center align-items-center">
       <div className="notice_content_area">
         <h2 className="notice_top_title">공지사항</h2>
-
-        {/* <Accordion defaultActiveKey="0" className="notice_accordion"> */}
-        {/* <Accordion className="notice_accordion"> */}
         <Accordion
           activeKey={activeKey}
           onSelect={(e) => setActiveKey(e)}
           className="notice_accordion"
         >
           {noticeList.map((notice, idx) => (
-            // <Card key={notice._id} className="notice_card">
             <Card
               key={notice._id}
               className={`notice_card ${notice.isImportant ? 'important' : ''}`}
