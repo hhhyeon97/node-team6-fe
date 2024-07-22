@@ -88,7 +88,7 @@ const loginWithKakao = () => async (dispatch) => {
     dispatch({ type: types.KAKAO_LOGIN_REQUEST });
 
     // 카카오 로그인 페이지로 리디렉션
-    const response = await api.get('/auth/kakao/login');
+    const response = await api.get('/auth/kakao/callback');
     const { data } = response;
 
     // 카카오 인증 URL로 리디렉션

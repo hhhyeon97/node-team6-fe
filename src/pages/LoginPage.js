@@ -40,6 +40,11 @@ const LoginPage = () => {
     dispatch(userActions.loginWithKakao(kakaoData));
   };
 
+  let REST_API_KEY = 'b205ba37d37752cd1feaa0421a8bfb5a';
+  let REDIRECT_URI = 'http://localhost:3000/api/auth/kakao';
+
+  const kakaoToken = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
+
   useEffect(() => {
     if (user) {
       navigate('/');
@@ -151,6 +156,9 @@ const LoginPage = () => {
                   console.log('Login Failed');
                 }}
               />
+              <a href={kakaoToken}>
+                <img src="/testImage/kakao.png"></img>
+              </a>
             </div>
           </div>
         </Form>
