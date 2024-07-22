@@ -65,37 +65,55 @@ const loginWithGoogle = (accessToken) => async (dispatch) => {
   }
 };
 
-const loginWithKakao = (token) => async (dispatch) => {
+// const loginWithKakao = (token) => async (dispatch) => {
+//   try {
+//     dispatch({ type: types.KAKAO_LOGIN_REQUEST });
+//     // console.log('test 1');
+//     const response = await api.post('/auth/kakao', { token });
+//     // console.log('test 2');
+//     if (response.status !== 200) throw new Error(response.error);
+//     // console.log('test 3');
+//     localStorage.setItem('token', response.data.token);
+//     dispatch({ type: types.KAKAO_LOGIN_SUCCESS, payload: response.data });
+//   } catch (error) {
+//     dispatch({
+//       type: types.KAKAO_LOGIN_FAIL,
+//       payload: error.error,
+//     });
+//   }
+// };
+
+const loginWithKakao = () => async (dispatch) => {
   try {
     dispatch({ type: types.KAKAO_LOGIN_REQUEST });
-    // console.log('test 1');
-    const response = await api.post('/auth/kakao', { token });
-    // console.log('test 2');
-    if (response.status !== 200) throw new Error(response.error);
-    // console.log('test 3');
-    localStorage.setItem('token', response.data.token);
-    dispatch({ type: types.KAKAO_LOGIN_SUCCESS, payload: response.data });
+
+    // 카카오 로그인 페이지로 리디렉션
+    const response = await api.get('/auth/kakao/login');
+    const { data } = response;
+
+    // 카카오 인증 URL로 리디렉션
+    window.location.href = data.redirectUrl;
   } catch (error) {
     dispatch({
       type: types.KAKAO_LOGIN_FAIL,
-      payload: error.error,
+      payload: error.response ? error.response.data : error.message,
     });
   }
 };
 
-const loginWithKakaoCode = (code, navigate) => async (dispatch) => {
-  // console.log('인가', code);
-  try {
-    dispatch({ type: types.KAKAO_LOGIN_REQUEST });
-    const response = await api.post('/auth/kakao/code', { code });
-    if (response.status !== 200) throw new Error(response.error);
-    localStorage.setItem('token', response.data.token);
-    dispatch({ type: types.KAKAO_LOGIN_SUCCESS, payload: response.data });
-    navigate('/');
-  } catch (error) {
-    dispatch({ type: types.KAKAO_LOGIN_FAIL, payload: error.error });
-  }
-};
+// const loginWithKakaoCode = (code, navigate) => async (dispatch) => {
+//   // console.log('인가', code);
+//   try {
+//     dispatch({ type: types.KAKAO_LOGIN_REQUEST });
+//     const response = await api.post('/auth/kakao/code', { code });
+//     if (response.status !== 200) throw new Error(response.error);
+//     localStorage.setItem('token', response.data.token);
+//     dispatch({ type: types.KAKAO_LOGIN_SUCCESS, payload: response.data });
+//     navigate('/');
+//   } catch (error) {
+//     dispatch({ type: types.KAKAO_LOGIN_FAIL, payload: error.error });
+//   }
+// };
 
 const logout = () => async (dispatch) => {
   dispatch({ type: types.LOGOUT });
@@ -287,7 +305,7 @@ export const userActions = {
   getUser,
   editUser,
   loginWithKakao,
-  loginWithKakaoCode,
+  // loginWithKakaoCode,
   updateUserLevel,
   forgotPassword,
   resetPassword,
