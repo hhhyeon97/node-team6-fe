@@ -65,35 +65,22 @@ const loginWithGoogle = (accessToken) => async (dispatch) => {
   }
 };
 
-const loginWithKakao = (token) => async (dispatch) => {
+const loginWithKakao = (code) => async (dispatch) => {
   try {
     dispatch({ type: types.KAKAO_LOGIN_REQUEST });
-    // console.log('test 1');
-    const response = await api.post('/auth/kakao', { token });
-    // console.log('test 2');
+
+    // 인가 코드를 백엔드로 전송
+    const response = await api.get(`/auth/kakao/callback?code=${code}`);
+
     if (response.status !== 200) throw new Error(response.error);
-    // console.log('test 3');
+
     localStorage.setItem('token', response.data.token);
     dispatch({ type: types.KAKAO_LOGIN_SUCCESS, payload: response.data });
   } catch (error) {
     dispatch({
       type: types.KAKAO_LOGIN_FAIL,
-      payload: error.error,
+      payload: error.message,
     });
-  }
-};
-
-const loginWithKakaoCode = (code, navigate) => async (dispatch) => {
-  // console.log('인가', code);
-  try {
-    dispatch({ type: types.KAKAO_LOGIN_REQUEST });
-    const response = await api.post('/auth/kakao/code', { code });
-    if (response.status !== 200) throw new Error(response.error);
-    localStorage.setItem('token', response.data.token);
-    dispatch({ type: types.KAKAO_LOGIN_SUCCESS, payload: response.data });
-    navigate('/');
-  } catch (error) {
-    dispatch({ type: types.KAKAO_LOGIN_FAIL, payload: error.error });
   }
 };
 
@@ -287,7 +274,6 @@ export const userActions = {
   getUser,
   editUser,
   loginWithKakao,
-  loginWithKakaoCode,
   updateUserLevel,
   forgotPassword,
   resetPassword,

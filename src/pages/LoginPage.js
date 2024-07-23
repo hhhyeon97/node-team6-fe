@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Form, Alert } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../action/userAction';
 import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 import '../style/css/LoginPage.css';
-import SocialKakao from '../component/SocialKakao';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import {
+  faComment,
+  faEye,
+  faEyeSlash,
+} from '@fortawesome/free-solid-svg-icons';
 import LoadingText from '../component/LoadingText';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const { user, error, loading } = useSelector((state) => state.user);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -36,8 +40,23 @@ const LoginPage = () => {
     onError: handleGoogleLoginError,
   });
 
-  const handleKakaoLogin = async (kakaoData) => {
-    dispatch(userActions.loginWithKakao(kakaoData));
+  // Kakao API 관련 설정
+  const REST_API_KEY = process.env.REACT_APP_KAKAO_REST_API_KEY;
+  const REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI;
+
+  const kakaoTokenUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const code = urlParams.get('code');
+
+    if (code) {
+      dispatch(userActions.loginWithKakao(code));
+    }
+  }, [location.search, dispatch]);
+
+  const handleKakaoLogin = () => {
+    window.location.href = kakaoTokenUrl;
   };
 
   useEffect(() => {
@@ -145,12 +164,9 @@ const LoginPage = () => {
               >
                 <img src="testImage/google.png" alt="구글" />
               </button>
-              <SocialKakao
-                onSuccess={handleKakaoLogin}
-                onError={() => {
-                  console.log('Login Failed');
-                }}
-              />
+              <button className="custom_kakao_btn" onClick={handleKakaoLogin}>
+                <FontAwesomeIcon icon={faComment} className="kakao_icon" />
+              </button>
             </div>
           </div>
         </Form>
