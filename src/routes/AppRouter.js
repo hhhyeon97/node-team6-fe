@@ -29,6 +29,7 @@ import VerifyCurrentPassword from '../pages/mypage/VerifyCurrentPassword';
 import ChangePassword from '../pages/mypage/ChangePassword';
 import ReservationByDateMobile from '../pages/mypage/ReservationByDateMobile';
 import KakaoCallbackPage from '../pages/KakaoCallbackPage';
+import NaverCallbackPage from '../pages/NaverCallbackPage';
 
 const AppRouter = () => {
   const navigate = useNavigate();
@@ -52,6 +53,7 @@ const AppRouter = () => {
       <Route path="/notice" element={<NoticePage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/api/auth/naver/callback" element={<NaverCallbackPage />} />
       <Route path="/api/auth/kakao/callback" element={<KakaoCallbackPage />} />
       <Route path="/find-password" element={<FindPasswordPage />} />
       <Route path="/reset-password/:token" element={<ResetPasswordPage />} />

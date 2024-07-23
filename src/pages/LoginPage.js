@@ -12,7 +12,7 @@ import {
   faEyeSlash,
 } from '@fortawesome/free-solid-svg-icons';
 import LoadingText from '../component/LoadingText';
-
+import RandomStringUtil from '../utils/RandomStringUtil';
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -49,14 +49,28 @@ const LoginPage = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const code = urlParams.get('code');
+    const state = urlParams.get('state');
 
     if (code) {
       dispatch(userActions.loginWithKakao(code));
+    }
+
+    if (code && state) {
+      dispatch(userActions.loginWithNaver(code, state));
     }
   }, [location.search, dispatch]);
 
   const handleKakaoLogin = () => {
     window.location.href = kakaoTokenUrl;
+  };
+
+  const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENT_ID;
+  const NAVER_REDIRECT_URI = process.env.REACT_APP_NAVER_REDIRECT_URI;
+
+  const handleNaverLogin = () => {
+    const state = RandomStringUtil.generateRandomString(10);
+    const naverTokenUrl = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${NAVER_CLIENT_ID}&redirect_uri=${NAVER_REDIRECT_URI}&state=${state}`;
+    window.location.href = naverTokenUrl;
   };
 
   useEffect(() => {
@@ -167,6 +181,7 @@ const LoginPage = () => {
               <button className="custom_kakao_btn" onClick={handleKakaoLogin}>
                 <FontAwesomeIcon icon={faComment} className="kakao_icon" />
               </button>
+              <button onClick={handleNaverLogin}>Login with Naver</button>
             </div>
           </div>
         </Form>
