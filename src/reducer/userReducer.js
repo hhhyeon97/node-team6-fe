@@ -19,6 +19,7 @@ function userReducer(state = initialState, action) {
     case types.GET_USER_REQUEST:
     case types.GOOGLE_LOGIN_REQUEST:
     case types.KAKAO_LOGIN_REQUEST:
+    case types.NAVER_LOGIN_REQUEST:
     case types.UPDATE_LEVEL_REQUEST:
     case types.EDIT_USER_REQUEST:
     case types.FORGOT_PASSWORD_REQUEST:
@@ -31,6 +32,7 @@ function userReducer(state = initialState, action) {
     case types.LOGIN_WITH_TOKEN_SUCCESS:
     case types.GOOGLE_LOGIN_SUCCESS:
     case types.KAKAO_LOGIN_SUCCESS:
+    case types.NAVER_LOGIN_SUCCESS:
     case types.GET_USER_SUCCESS:
     case types.EDIT_USER_SUCCESS:
       return { ...state, loading: false, user: payload.user, error: '' };
@@ -62,6 +64,7 @@ function userReducer(state = initialState, action) {
     case types.GET_USER_FAIL:
     case types.GOOGLE_LOGIN_FAIL:
     case types.KAKAO_LOGIN_FAIL:
+    case types.NAVER_LOGIN_FAIL:
     case types.EDIT_USER_FAIL:
     case types.FORGOT_PASSWORD_FAIL:
     case types.USER_CHANGE_PASSWORD_FAIL:

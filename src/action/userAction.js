@@ -84,6 +84,25 @@ const loginWithKakao = (code) => async (dispatch) => {
   }
 };
 
+const loginWithNaver = (token) => async (dispatch) => {
+  try {
+    dispatch({ type: types.NAVER_LOGIN_REQUEST });
+
+    // 토큰을 백엔드로 전송
+    const response = await api.get(`/auth/naver/callback?token=${token}`);
+
+    if (response.status !== 200) throw new Error(response.error);
+
+    localStorage.setItem('token', response.data.token);
+    dispatch({ type: types.NAVER_LOGIN_SUCCESS, payload: response.data });
+  } catch (error) {
+    dispatch({
+      type: types.NAVER_LOGIN_FAIL,
+      payload: error.message,
+    });
+  }
+};
+
 const logout = () => async (dispatch) => {
   dispatch({ type: types.LOGOUT });
   localStorage.removeItem('token');
@@ -280,4 +299,5 @@ export const userActions = {
   changePassword,
   deleteUser,
   verifyCurrentPassword,
+  loginWithNaver,
 };

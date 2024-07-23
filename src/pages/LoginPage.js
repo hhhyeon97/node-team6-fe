@@ -53,10 +53,21 @@ const LoginPage = () => {
     if (code) {
       dispatch(userActions.loginWithKakao(code));
     }
+
+    const token = urlParams.get('token');
+
+    if (token) {
+      dispatch(userActions.loginWithNaver(token));
+    }
   }, [location.search, dispatch]);
 
   const handleKakaoLogin = () => {
     window.location.href = kakaoTokenUrl;
+  };
+
+  const handleNaverLogin = () => {
+    // window.location.href = 'http://localhost:3000/api/auth/naver';
+    window.location.href = 'http://localhost:5000/api/auth/naver';
   };
 
   useEffect(() => {
@@ -167,6 +178,7 @@ const LoginPage = () => {
               <button className="custom_kakao_btn" onClick={handleKakaoLogin}>
                 <FontAwesomeIcon icon={faComment} className="kakao_icon" />
               </button>
+              <button onClick={handleNaverLogin}>Login with Naver</button>
             </div>
           </div>
         </Form>
