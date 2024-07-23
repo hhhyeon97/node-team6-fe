@@ -84,15 +84,13 @@ const loginWithKakao = (code) => async (dispatch) => {
   }
 };
 
-const loginWithNaver = (token) => async (dispatch) => {
+const loginWithNaver = (code, state) => async (dispatch) => {
   try {
     dispatch({ type: types.NAVER_LOGIN_REQUEST });
-
-    // 토큰을 백엔드로 전송
-    const response = await api.get(`/auth/naver/callback?token=${token}`);
-
+    const response = await api.get(
+      `/auth/naver/callback?code=${code}&state=${state}`,
+    );
     if (response.status !== 200) throw new Error(response.error);
-
     localStorage.setItem('token', response.data.token);
     dispatch({ type: types.NAVER_LOGIN_SUCCESS, payload: response.data });
   } catch (error) {

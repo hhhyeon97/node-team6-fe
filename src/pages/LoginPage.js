@@ -12,7 +12,7 @@ import {
   faEyeSlash,
 } from '@fortawesome/free-solid-svg-icons';
 import LoadingText from '../component/LoadingText';
-
+import RandomStringUtil from '../utils/RandomStringUtil';
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -49,15 +49,14 @@ const LoginPage = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const code = urlParams.get('code');
+    const state = urlParams.get('state');
 
     if (code) {
       dispatch(userActions.loginWithKakao(code));
     }
 
-    const token = urlParams.get('token');
-
-    if (token) {
-      dispatch(userActions.loginWithNaver(token));
+    if (code && state) {
+      dispatch(userActions.loginWithNaver(code, state));
     }
   }, [location.search, dispatch]);
 
@@ -65,9 +64,13 @@ const LoginPage = () => {
     window.location.href = kakaoTokenUrl;
   };
 
+  const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENT_ID;
+  const NAVER_REDIRECT_URI = process.env.REACT_APP_NAVER_REDIRECT_URI;
+
   const handleNaverLogin = () => {
-    // window.location.href = 'http://localhost:3000/api/auth/naver';
-    window.location.href = 'http://localhost:5000/api/auth/naver';
+    const state = RandomStringUtil.generateRandomString(10);
+    const naverTokenUrl = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${NAVER_CLIENT_ID}&redirect_uri=${NAVER_REDIRECT_URI}&state=${state}`;
+    window.location.href = naverTokenUrl;
   };
 
   useEffect(() => {
