@@ -65,7 +65,7 @@ const loginWithGoogle = (accessToken) => async (dispatch) => {
   }
 };
 
-const loginWithKakao = (code) => async (dispatch) => {
+const loginWithKakao = (code, navigate) => async (dispatch) => {
   try {
     dispatch({ type: types.KAKAO_LOGIN_REQUEST });
 
@@ -76,11 +76,13 @@ const loginWithKakao = (code) => async (dispatch) => {
 
     localStorage.setItem('token', response.data.token);
     dispatch({ type: types.KAKAO_LOGIN_SUCCESS, payload: response.data });
+    navigate('/');
   } catch (error) {
-    dispatch({
-      type: types.KAKAO_LOGIN_FAIL,
-      payload: error.message,
-    });
+    // dispatch({
+    //   type: types.KAKAO_LOGIN_FAIL,
+    //   payload: error.message,
+    // });
+    dispatch({ type: types.KAKAO_LOGIN_FAIL, payload: error.error });
   }
 };
 

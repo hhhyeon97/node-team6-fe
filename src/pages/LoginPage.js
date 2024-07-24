@@ -52,7 +52,7 @@ const LoginPage = () => {
     const state = urlParams.get('state');
 
     if (code) {
-      dispatch(userActions.loginWithKakao(code));
+      dispatch(userActions.loginWithKakao(code, navigate));
     }
 
     if (code && state) {
