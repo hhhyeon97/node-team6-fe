@@ -53,7 +53,7 @@ const AppRouter = () => {
       <Route path="/notice" element={<NoticePage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/api/auth/kakao/callback" element={<KakaoCallbackPage />} />
+      {/* <Route path="/api/auth/kakao/callback" element={<KakaoCallbackPage />} /> */}
       <Route path="/api/auth/naver/callback" element={<NaverCallbackPage />} />
       <Route path="/find-password" element={<FindPasswordPage />} />
       <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
