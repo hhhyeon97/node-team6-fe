@@ -16,7 +16,7 @@ const KakaoCallbackPage = () => {
     const code = urlParams.get('code');
 
     if (code) {
-      dispatch(userActions.loginWithKakao(code));
+      dispatch(userActions.loginWithKakao(code, navigate));
     }
   }, [location.search, dispatch]);
 
