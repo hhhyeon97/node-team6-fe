@@ -68,19 +68,12 @@ const loginWithGoogle = (accessToken) => async (dispatch) => {
 const loginWithKakao = (code) => async (dispatch) => {
   try {
     dispatch({ type: types.KAKAO_LOGIN_REQUEST });
-
     // 인가 코드를 백엔드로 전송
     const response = await api.get(`/auth/kakao/callback?code=${code}`);
-
     if (response.status !== 200) throw new Error(response.error);
-
     localStorage.setItem('token', response.data.token);
     dispatch({ type: types.KAKAO_LOGIN_SUCCESS, payload: response.data });
   } catch (error) {
-    // dispatch({
-    //   type: types.KAKAO_LOGIN_FAIL,
-    //   payload: error.message,
-    // });
     dispatch({ type: types.KAKAO_LOGIN_FAIL, payload: error.error });
   }
 };
@@ -95,10 +88,7 @@ const loginWithNaver = (code, state) => async (dispatch) => {
     localStorage.setItem('token', response.data.token);
     dispatch({ type: types.NAVER_LOGIN_SUCCESS, payload: response.data });
   } catch (error) {
-    dispatch({
-      type: types.NAVER_LOGIN_FAIL,
-      payload: error.message,
-    });
+    dispatch({ type: types.NAVER_LOGIN_FAIL, payload: error.error });
   }
 };
 
