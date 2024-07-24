@@ -50,9 +50,10 @@ const LoginPage = () => {
     const urlParams = new URLSearchParams(location.search);
     const code = urlParams.get('code');
     const state = urlParams.get('state');
-
+    console.log('test!!!!!!!!3333');
     if (code) {
-      dispatch(userActions.loginWithKakao(code, navigate));
+      console.log('test!!!!!!!!4444');
+      dispatch(userActions.loginWithKakao(code));
     }
 
     if (code && state) {
@@ -61,7 +62,9 @@ const LoginPage = () => {
   }, [location.search, dispatch]);
 
   const handleKakaoLogin = () => {
+    console.log('test!!!!!!!!');
     window.location.href = kakaoTokenUrl;
+    console.log('test!!!!!!!!22222222222');
   };
 
   const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENT_ID;
