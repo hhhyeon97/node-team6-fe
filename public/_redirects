@@ -1,2 +1,4 @@
 /api/* https://port-0-node-team6-be-re-lxzr0r7ve38740ea.sel5.cloudtype.app/api/:splat 200
+/api/auth/kakao/callback  /api/auth/kakao/callback  200
+/api/auth/naver/callback  /api/auth/naver/callback  200
 /*      /index.html  200
