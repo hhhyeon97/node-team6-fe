@@ -9,22 +9,29 @@ const KakaoCallbackPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const loginSuccess = useSelector((state) => state.user.loading);
+  const { loading, error, user } = useSelector((state) => state.user);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const code = urlParams.get('code');
 
     if (code) {
-      dispatch(userActions.loginWithKakao(code, navigate));
+      dispatch(userActions.loginWithKakao(code));
     }
   }, [location.search, dispatch]);
 
   useEffect(() => {
-    if (!loginSuccess) {
+    if (!loading && user) {
       navigate('/');
     }
-  }, [loginSuccess, navigate]);
+  }, [loading, user, navigate]);
+
+  useEffect(() => {
+    if (error) {
+      console.error('로그인 에러:', error);
+      navigate('/login');
+    }
+  }, [error, navigate]);
 
   return (
     <div>
