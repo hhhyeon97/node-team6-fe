@@ -65,34 +65,18 @@ const loginWithGoogle = (accessToken) => async (dispatch) => {
   }
 };
 
-// 카카오/네이버 로그인시 사용자 정보 가져오는 함수 따로 !
-// export const loadUser = (token) => async (dispatch) => {
-//   try {
-//     const response = await axios.get('/api/auth/me', {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//       },
-//     });
-//     dispatch({ type: types.USER_LOADED, payload: response.data });
-//   } catch (error) {
-//     dispatch({ type: types.AUTH_ERROR });
-//   }
-// };
-
-const loginWithKakao = (code, navigate) => async (dispatch) => {
+const loginWithKakao = (code) => async (dispatch) => {
   try {
-    console.log('tttttttttttttt================1');
+    console.log('tttttttttttttt1');
     dispatch({ type: types.KAKAO_LOGIN_REQUEST });
     // 인가 코드를 백엔드로 전송
     const response = await api.get(`/auth/kakao/callback?code=${code}`);
-    console.log('tttttttttttttt================2');
+    console.log('tttttttttttttt2');
     if (response.status !== 200) throw new Error(response.error);
     localStorage.setItem('token', response.data.token);
-    console.log('tttttttttttttt================3');
+    console.log('tttttttttttttt3');
     dispatch({ type: types.KAKAO_LOGIN_SUCCESS, payload: response.data });
-    console.log('tttttttttttttt================4');
-    navigate('/');
-    console.log('tttttttttttttt================5======메인으로가자고...제발');
+    console.log('tttttttttttttt4');
   } catch (error) {
     dispatch({ type: types.KAKAO_LOGIN_FAIL, payload: error.error });
   }
@@ -101,6 +85,7 @@ const loginWithKakao = (code, navigate) => async (dispatch) => {
 const loginWithNaver = (code, state) => async (dispatch) => {
   try {
     dispatch({ type: types.NAVER_LOGIN_REQUEST });
+    // 네이버는 code, state를 보내주어야 함 !!
     const response = await api.get(
       `/auth/naver/callback?code=${code}&state=${state}`,
     );
