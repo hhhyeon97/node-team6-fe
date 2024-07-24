@@ -42,29 +42,25 @@ const LoginPage = () => {
 
   // Kakao API 관련 설정
   const REST_API_KEY = process.env.REACT_APP_KAKAO_REST_API_KEY;
-  // const REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI;
-  const REDIRECT_URI = 'https://noona-culture.netlify.app/kakao/callback';
+  // const REDIRECT_URI = 'http://localhost:3000/api/auth/kakao/callback';
+  const REDIRECT_URI =
+    'https://noona-culture.netlify.app/api/auth/kakao/callback';
 
   const kakaoTokenUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
 
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const code = urlParams.get('code');
+
+    if (code) {
+      dispatch(userActions.loginWithKakao(code));
+    }
+  }, [location.search, dispatch]);
+
   const handleKakaoLogin = () => {
+    console.log('Redirecting to Kakao login page...');
     window.location.href = kakaoTokenUrl;
   };
-
-  // useEffect(() => {
-  //   const urlParams = new URLSearchParams(location.search);
-  //   const code = urlParams.get('code');
-  //   const state = urlParams.get('state');
-  //   console.log('test!!!!!!!!3333');
-  //   if (code) {
-  //     console.log('test!!!!!!!!4444');
-  //     dispatch(userActions.loginWithKakao(code));
-  //   }
-
-  //   if (code && state) {
-  //     dispatch(userActions.loginWithNaver(code, state));
-  //   }
-  // }, [location.search, dispatch]);
 
   const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENT_ID;
   const NAVER_REDIRECT_URI = process.env.REACT_APP_NAVER_REDIRECT_URI;
