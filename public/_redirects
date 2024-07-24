@@ -1,4 +1,2 @@
 /api/* https://port-0-node-team6-be-re-lxzr0r7ve38740ea.sel5.cloudtype.app/api/:splat 200
-/https://noona-culture.netlify.app/api/auth/kakao/callback  https://noona-culture.netlify.app/api/auth/kakao/callback  200
-/https://noona-culture.netlify.app/api/auth/naver/callback  https://noona-culture.netlify.app/api/auth/naver/callback  200
-/*      /index.html  200
+/* /index.html 200
