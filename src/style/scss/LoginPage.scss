@@ -87,6 +87,16 @@
     width: 20px;
     height: 20px;
   }
+  .custom_naver_btn {
+    background-color: #ffffff !important;
+    border-radius: 50%;
+    border: 1.5px solid lightgray;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .sns_btn_wrap {
     display: flex;
     margin-bottom: 30px;
@@ -143,7 +153,8 @@
     .sns_btn_wrap {
       align-items: center;
       .custom_google_btn,
-      .custom_kakao_btn {
+      .custom_kakao_btn,
+      .custom_naver_btn {
         margin-bottom: 10px;
       }
     }
@@ -172,8 +183,9 @@
     .sns_btn_wrap {
       align-items: center;
       .custom_google_btn,
-      .custom_kakao_btn {
-        margin-bottom: 10px;
+      .custom_kakao_btn,
+      .custom_naver_btn {
+        margin-top: 10px;
       }
     }
   }

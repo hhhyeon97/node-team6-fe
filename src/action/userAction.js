@@ -1,5 +1,6 @@
 import api from '../utils/api';
 import * as types from '../constants/user.constants';
+import { jwtDecode } from 'jwt-decode';
 
 const registerUser =
   ({ email, name, password, contact }, navigate) =>
@@ -65,32 +66,16 @@ const loginWithGoogle = (accessToken) => async (dispatch) => {
   }
 };
 
-// const loginWithKakao = (code) => async (dispatch) => {
-//   try {
-//     dispatch({ type: types.KAKAO_LOGIN_REQUEST });
-//     const response = await api.post('/auth/kakao', { code });
-//     if (response.status !== 200) throw new Error(response.error);
-//     localStorage.setItem('token', response.data.token);
-//     dispatch({ type: types.KAKAO_LOGIN_SUCCESS, payload: response.data });
-//   } catch (error) {
-//     dispatch({ type: types.KAKAO_LOGIN_FAIL, payload: error.error });
-//   }
-// };
-
-const loginWithKakao = (code) => async (dispatch) => {
+const loginWithKakao = (token) => async (dispatch) => {
   try {
     dispatch({ type: types.KAKAO_LOGIN_REQUEST });
-
-    // 인가 코드를 백엔드로 전송
-    const response = await api.get(`/auth/kakao/callback?code=${code}`);
-
+    console.log('test 1');
+    const response = await api.post('/auth/kakao', { token });
+    console.log('test 2');
     if (response.status !== 200) throw new Error(response.error);
-
+    console.log('test 3');
     localStorage.setItem('token', response.data.token);
     dispatch({ type: types.KAKAO_LOGIN_SUCCESS, payload: response.data });
-
-    // 성공 상태를 전역 상태에 저장
-    // dispatch({ type: types.SET_LOGIN_SUCCESS });
   } catch (error) {
     dispatch({
       type: types.KAKAO_LOGIN_FAIL,
@@ -304,6 +289,7 @@ export const userActions = {
   getUser,
   editUser,
   loginWithKakao,
+  setUserFromToken,
   updateUserLevel,
   forgotPassword,
   resetPassword,
