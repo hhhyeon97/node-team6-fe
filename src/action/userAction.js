@@ -1,6 +1,6 @@
 import api from '../utils/api';
 import * as types from '../constants/user.constants';
-import { jwtDecode } from 'jwt-decode';
+// import { jwtDecode } from 'jwt-decode';
 
 const registerUser =
   ({ email, name, password, contact }, navigate) =>
@@ -289,7 +289,6 @@ export const userActions = {
   getUser,
   editUser,
   loginWithKakao,
-  setUserFromToken,
   updateUserLevel,
   forgotPassword,
   resetPassword,
