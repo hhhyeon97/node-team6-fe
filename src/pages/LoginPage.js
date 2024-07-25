@@ -42,9 +42,9 @@ const LoginPage = () => {
 
   // Kakao API 관련 설정
   const REST_API_KEY = process.env.REACT_APP_KAKAO_REST_API_KEY;
-  // const REDIRECT_URI = 'http://localhost:3000/api/auth/kakao/callback';
-  const REDIRECT_URI =
-    'https://noona-culture.netlify.app/api/auth/kakao/callback';
+  const REDIRECT_URI = 'http://localhost:3000/api/auth/kakao/callback';
+  // const REDIRECT_URI =
+  //   'https://noona-culture.netlify.app/api/auth/kakao/callback';
 
   const kakaoTokenUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
 
@@ -59,7 +59,8 @@ const LoginPage = () => {
 
   const handleKakaoLogin = () => {
     console.log('Redirecting to Kakao login page...');
-    window.location.href = kakaoTokenUrl;
+    // window.location.href = kakaoTokenUrl;
+    window.location.assign(kakaoTokenUrl); // test 필요
   };
 
   const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENT_ID;
@@ -180,6 +181,9 @@ const LoginPage = () => {
                 <FontAwesomeIcon icon={faComment} className="kakao_icon" />
               </button>
               <button onClick={handleNaverLogin}>Login with Naver</button>
+              <a href={kakaoTokenUrl}>
+                <img src="testImage/kakao.png" />
+              </a>
             </div>
           </div>
         </Form>

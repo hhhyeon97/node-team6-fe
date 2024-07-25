@@ -1,5 +1,6 @@
 import api from '../utils/api';
 import * as types from '../constants/user.constants';
+import { jwtDecode } from 'jwt-decode';
 
 const registerUser =
   ({ email, name, password, contact }, navigate) =>
@@ -77,20 +78,55 @@ const loginWithGoogle = (accessToken) => async (dispatch) => {
 //   }
 // };
 
+// const loginWithKakao = (code) => async (dispatch) => {
+//   try {
+//     dispatch({ type: types.KAKAO_LOGIN_REQUEST });
+
+//     // 인가 코드를 백엔드로 전송
+//     const response = await api.get(`/auth/kakao/callback?code=${code}`);
+
+//     if (response.status !== 200) throw new Error(response.error);
+
+//     localStorage.setItem('token', response.data.token);
+//     dispatch({ type: types.KAKAO_LOGIN_SUCCESS, payload: response.data });
+
+//     // 성공 상태를 전역 상태에 저장
+//     // dispatch({ type: types.SET_LOGIN_SUCCESS });
+//   } catch (error) {
+//     dispatch({
+//       type: types.KAKAO_LOGIN_FAIL,
+//       payload: error.error,
+//     });
+//   }
+// };
+
+const setUserFromToken = (token) => (dispatch) => {
+  const decoded = jwtDecode(token);
+  dispatch({ type: types.LOGIN_SUCCESS, payload: { token, user: decoded } });
+};
+
+export const test = (token) => (dispatch) => {
+  localStorage.setItem('token', token);
+  dispatch({ type: types.LOGIN_SUCCESS, payload: token });
+};
+
 const loginWithKakao = (code) => async (dispatch) => {
   try {
     dispatch({ type: types.KAKAO_LOGIN_REQUEST });
 
     // 인가 코드를 백엔드로 전송
+    console.log('안녕 액션 함수 시도한다 !!!');
     const response = await api.get(`/auth/kakao/callback?code=${code}`);
 
     if (response.status !== 200) throw new Error(response.error);
 
     localStorage.setItem('token', response.data.token);
+    console.log('안녕 토큰 저장할게 !!!');
     dispatch({ type: types.KAKAO_LOGIN_SUCCESS, payload: response.data });
 
     // 성공 상태를 전역 상태에 저장
-    // dispatch({ type: types.SET_LOGIN_SUCCESS });
+    // dispatch(setUserFromToken(response.data.token));
+    // dispatch(test());
   } catch (error) {
     dispatch({
       type: types.KAKAO_LOGIN_FAIL,
@@ -304,6 +340,7 @@ export const userActions = {
   getUser,
   editUser,
   loginWithKakao,
+  setUserFromToken,
   updateUserLevel,
   forgotPassword,
   resetPassword,
