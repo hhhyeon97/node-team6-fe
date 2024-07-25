@@ -30,7 +30,6 @@ import ChangePassword from '../pages/mypage/ChangePassword';
 import ReservationByDateMobile from '../pages/mypage/ReservationByDateMobile';
 import KakaoCallbackPage from '../pages/KakaoCallbackPage';
 import NaverCallbackPage from '../pages/NaverCallbackPage';
-import TokenCallbackPage from '../pages/TokenCallbackPage';
 
 const AppRouter = () => {
   const navigate = useNavigate();
