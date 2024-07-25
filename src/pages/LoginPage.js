@@ -48,18 +48,19 @@ const LoginPage = () => {
 
   const kakaoTokenUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
 
-  useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
-    const code = urlParams.get('code');
+  // useEffect(() => {
+  //   const urlParams = new URLSearchParams(location.search);
+  //   const code = urlParams.get('code');
 
-    if (code) {
-      dispatch(userActions.loginWithKakao(code));
-    }
-  }, [location.search, dispatch]);
+  //   if (code) {
+  //     dispatch(userActions.loginWithKakao(code));
+  //   }
+  // }, [location.search, dispatch]);
 
   const handleKakaoLogin = () => {
     console.log('Redirecting to Kakao login page...');
-    window.location.href = kakaoTokenUrl;
+    // window.location.href = kakaoTokenUrl;
+    window.location.assign(kakaoTokenUrl); // test 필요
   };
 
   const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENT_ID;
@@ -180,6 +181,9 @@ const LoginPage = () => {
                 <FontAwesomeIcon icon={faComment} className="kakao_icon" />
               </button>
               <button onClick={handleNaverLogin}>Login with Naver</button>
+              <a href={kakaoTokenUrl}>
+                <img src="testImage/kakao.png" />
+              </a>
             </div>
           </div>
         </Form>
