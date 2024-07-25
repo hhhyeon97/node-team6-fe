@@ -17,11 +17,12 @@ import SocialKakao from '../component/SocialKakao';
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
   const { user, error, loading } = useSelector((state) => state.user);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENT_ID;
+  const NAVER_REDIRECT_URI = process.env.REACT_APP_NAVER_REDIRECT_URI;
 
   const loginWithEmail = (event) => {
     event.preventDefault();
@@ -41,35 +42,9 @@ const LoginPage = () => {
     onError: handleGoogleLoginError,
   });
 
-  // Kakao API 관련 설정
-  const REST_API_KEY = process.env.REACT_APP_KAKAO_REST_API_KEY;
-  const REDIRECT_URI = 'http://localhost:3000/api/auth/kakao/callback';
-  // const REDIRECT_URI =
-  // 'https://noona-culture.netlify.app/api/auth/kakao/callback';
-
-  const kakaoTokenUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
-
-  // useEffect(() => {
-  //   const urlParams = new URLSearchParams(location.search);
-  //   const code = urlParams.get('code');
-
-  //   if (code) {
-  //     dispatch(userActions.loginWithKakao(code));
-  //   }
-  // }, [location.search, dispatch]);
-
-  // const handleKakaoLogin = () => {
-  //   console.log('Redirecting to Kakao login page...');
-  //   // window.location.href = kakaoTokenUrl;
-  //   window.location.assign(kakaoTokenUrl); // test 필요
-  // };
-
   const handleKakaoLogin = async (kakaoData) => {
     dispatch(userActions.loginWithKakao(kakaoData));
   };
-
-  const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENT_ID;
-  const NAVER_REDIRECT_URI = process.env.REACT_APP_NAVER_REDIRECT_URI;
 
   const handleNaverLogin = () => {
     const state = RandomStringUtil.generateRandomString(10);
@@ -182,19 +157,27 @@ const LoginPage = () => {
               >
                 <img src="testImage/google.png" alt="구글" />
               </button>
-              {/* <button className="custom_kakao_btn" onClick={handleKakaoLogin}>
-                <FontAwesomeIcon icon={faComment} className="kakao_icon" />
-              </button> */}
               <SocialKakao
                 onSuccess={handleKakaoLogin}
                 onError={() => {
                   console.log('Login Failed');
                 }}
               />
-              <button onClick={handleNaverLogin}>Login with Naver</button>
-              <a href={kakaoTokenUrl}>
-                <img src="testImage/kakao.png" />
-              </a>
+              <button onClick={handleNaverLogin} className="custom_naver_btn">
+                <svg
+                  role="img"
+                  viewBox="0 0 24 24"
+                  width={18}
+                  height={18}
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Naver</title>
+                  <path
+                    fill="#03C75A"
+                    d="M16.273 12.845 7.376 0H0v24h7.726V11.156L16.624 24H24V0h-7.727v12.845Z"
+                  />
+                </svg>
+              </button>
             </div>
           </div>
         </Form>
